@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- 【対策A：検索エンジン・クローラー完全拒否（ステルス設定）】 -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive" />
+  <title>VECTRA // PIONEER EDITION - OFFICIAL PILOT MANUAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #050608;
+      --bg-panel: #0C0E12;
+      --bg-card: #12151B;
+      --audi-red: #E3000F;
+      --audi-red-glow: rgba(227, 0, 15, 0.38);
+      --rs-silver: #CBD5E1;
+      --hud-cyan: #00E5FF;
+      --hud-emerald: #00E676;
+      --sbux-official: #00704A;
+      --sbux-bright: #00A862;
+      --sbux-bg: rgba(0, 112, 74, 0.35);
+      --hud-amber: #FFAB00;
+      --hud-warning: #FF5252;
+      --text-main: #F8FAFC;
+      --text-sub: #94A3B8;
+      --border-stealth: #222731;
+      --font-mono: 'Share Tech Mono', monospace;
+      /* 全テスター端末で本文中の英数字まで100% Share Tech Mono を優先適用 */
+      --font-sans: 'Share Tech Mono', 'Noto Sans JP', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      /* 赤みを完全排除したクールなガンメタルグレー〜マットブラックのグラデーション */
+      background-image:
+        radial-gradient(ellipse at 50% 0%, #1A1F29 0%, #0B0D12 45%, #050608 80%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 32px 32px, 32px 32px;
+      background-attachment: fixed;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       ★ STEALTH PASSCODE GATE (ENTER PILOT PASSCODE ロック画面)
+       ============================================================ */
+    .gate-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(26, 31, 41, 0.96) 0%, rgba(5, 6, 8, 0.99) 75%);
+      backdrop-filter: blur(18px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    .gate-overlay.unlocked {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .gate-box {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(12, 14, 18, 0.95);
+      border: 1px solid #2E3646;
+      border-top: 3px solid var(--audi-red);
+      padding: 36px 28px 30px;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85);
+      position: relative;
+    }
+
+    .gate-crest {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 16px;
+    }
+
+    .gate-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--audi-red);
+      letter-spacing: 3px;
+      margin-bottom: 6px;
+    }
+
+    .gate-title {
+      font-family: var(--font-mono);
+      font-size: 1.55rem;
+      color: #FFFFFF;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    .gate-desc {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .gate-input-wrap {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .gate-input {
+      width: 100%;
+      background: #06080B;
+      border: 1px solid #334155;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      letter-spacing: 4px;
+      text-align: center;
+      padding: 14px 16px;
+      outline: none;
+      text-transform: uppercase;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .gate-input:focus {
+      border-color: var(--audi-red);
+      box-shadow: 0 0 16px var(--audi-red-glow);
+    }
+
+    .gate-btn {
+      width: 100%;
+      background: var(--audi-red);
+      border: 1px solid #FF4D58;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      padding: 14px 20px;
+      cursor: pointer;
+      box-shadow: 0 0 24px var(--audi-red-glow);
+      transition: all 0.2s ease;
+    }
+
+    .gate-btn:hover {
+      background: #FF0015;
+      box-shadow: 0 0 32px rgba(227, 0, 15, 0.65);
+    }
+
+    .gate-error {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--hud-warning);
+      letter-spacing: 1px;
+      margin-top: 12px;
+      min-height: 1.2em;
+    }
+
+    .gate-footer {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-stealth);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: #64748B;
+      letter-spacing: 1.5px;
+    }
+
+    /* ロック中の本文ブラー保護 */
+    #protectedContent {
+      transition: filter 0.35s ease;
+    }
+    body.locked #protectedContent {
+      filter: blur(16px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* 固定トップナビゲーションバー */
+    .top-hud-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 9, 12, 0.90);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-stealth);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      letter-spacing: 3px;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .brand-mini span {
+      color: var(--audi-red);
+      font-weight: bold;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      background: rgba(0, 230, 118, 0.10);
+      border: 1px solid var(--hud-emerald);
+      color: var(--hud-emerald);
+      letter-spacing: 1px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--hud-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--hud-emerald);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px 96px;
+    }
+
+    /* ヒーローセクション */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 56px 16px 48px;
+      border-bottom: 1px solid var(--border-stealth);
+      margin-bottom: 40px;
+    }
+
+    .crest-box {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      color: var(--rs-silver);
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-family: var(--font-mono);
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      letter-spacing: 8px;
+      color: #FFFFFF;
+      text-shadow: 0 0 28px rgba(203, 213, 225, 0.22);
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      max-width: 600px;
+      margin: 0 auto 28px;
+    }
+
+    .pioneer-frame {
+      display: inline-block;
+      background: linear-gradient(90deg, rgba(30, 36, 48, 0.9), rgba(15, 18, 24, 0.95), rgba(30, 36, 48, 0.9));
+      border: 1px solid #334155;
+      border-left: 3px solid var(--audi-red);
+      border-right: 3px solid var(--rs-silver);
+      padding: 12px 28px;
+      margin-bottom: 28px;
+    }
+
+    .pioneer-frame .edition {
+      font-family: var(--font-mono);
+      color: #FFFFFF;
+      font-size: 1.05rem;
+      letter-spacing: 2.5px;
+      font-weight: bold;
+    }
+
+    .pioneer-frame .desc {
+      font-size: 0.8rem;
+      color: var(--rs-silver);
+      margin-top: 2px;
+    }
+
+    /* APK ダウンロードボタン */
+    .dl-action-wrap {
+      margin-top: 8px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--audi-red);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-decoration: none;
+      padding: 16px 36px;
+      border: 1px solid #FF4D58;
+      box-shadow: 0 0 28px var(--audi-red-glow);
+      transition: all 0.2s ease;
+    }
+
+    .btn-download:hover {
+      background: #FF0015;
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(227, 0, 15, 0.65);
+    }
+
+    .dl-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* クイックジャンプナビ */
+    .quick-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .quick-link {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-stealth);
+      padding: 12px 14px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .quick-link:hover {
+      border-color: var(--audi-red);
+      background: #141820;
+    }
+
+    .quick-link .num {
+      color: var(--audi-red);
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+    }
+
+    /* セクション共通 */
+    .section {
+      margin-bottom: 56px;
+      scroll-margin-top: 72px;
+    }
+
+    .sec-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      border-bottom: 2px solid var(--audi-red);
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+    }
+
+    .sec-num {
+      font-family: var(--font-mono);
+      color: var(--audi-red);
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .sec-title {
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      color: #FFFFFF;
+      letter-spacing: 2px;
+    }
+
+    .sec-jp {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      margin-left: auto;
+    }
+
+    /* パネル・カード */
+    .hud-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-stealth);
+      padding: 24px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .hud-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--rs-silver);
+    }
+
+    .hud-card.red-accent::before {
+      background: var(--audi-red);
+    }
+
+    .hud-card.emerald-accent::before {
+      background: var(--hud-emerald);
+    }
+
+    .card-title {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hud-card.red-accent .card-title {
+      color: #FF6B72;
+    }
+
+    .hud-card.emerald-accent .card-title {
+      color: var(--hud-emerald);
+    }
+
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border: 1px solid currentColor;
+      letter-spacing: 1px;
+    }
+
+    /* ステップリスト */
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-stealth);
+      padding: 16px 18px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-badge {
+      font-family: var(--font-mono);
+      background: rgba(227, 0, 15, 0.15);
+      border: 1px solid var(--audi-red);
+      color: var(--audi-red);
+      font-weight: bold;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .step-body h4 {
+      color: #FFFFFF;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+
+    .step-body p {
+      color: var(--text-sub);
+      font-size: 0.88rem;
+    }
+
+    /* マトリクス表 */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    table.hud-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    table.hud-table th,
+    table.hud-table td {
+      border: 1px solid var(--border-stealth);
+      padding: 12px 14px;
+      text-align: left;
+    }
+
+    table.hud-table th {
+      background: #151921;
+      color: var(--rs-silver);
+      font-family: var(--font-mono);
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    table.hud-table td {
+      background: var(--bg-card);
+      color: var(--text-main);
+    }
+
+    .mono-hl {
+      font-family: var(--font-mono);
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .mono-red {
+      font-family: var(--font-mono);
+      color: #FF8A80;
+      background: rgba(227, 0, 15, 0.14);
+      padding: 2px 6px;
+      border: 1px solid rgba(227, 0, 15, 0.35);
+    }
+
+    /* HUDモックアップ図解 */
+    .hud-mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .mock-box {
+      background: #07090C;
+      border: 1px solid #262C36;
+      padding: 16px;
+    }
+
+    .mock-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .mock-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-sub);
+      letter-spacing: 1.5px;
+    }
+
+    /* ★施設表示プレビュー用：Audi風タクティカル日英トグルスイッチ */
+    .lang-toggle-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #000000;
+      border: 1px solid #2E3646;
+      padding: 4px 10px;
+      cursor: pointer;
+      user-select: none;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .lang-toggle-switch:hover {
+      border-color: var(--audi-red);
+      box-shadow: 0 0 12px rgba(227, 0, 15, 0.3);
+    }
+
+    .lang-opt {
+      color: #64748B;
+      transition: color 0.2s ease;
+    }
+
+    .lang-opt.active {
+      color: var(--audi-red);
+    }
+
+    .lang-track {
+      width: 34px;
+      height: 18px;
+      background: #262C36;
+      border-radius: 9px;
+      padding: 2px;
+      position: relative;
+      transition: background 0.2s ease;
+    }
+
+    .lang-thumb {
+      width: 14px;
+      height: 14px;
+      background: var(--audi-red);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 6px rgba(227, 0, 15, 0.8);
+    }
+
+    .lang-toggle-switch.is-en .lang-thumb {
+      transform: translateX(16px);
+    }
+
+    /* 高速道路施設カードのミニ再現 */
+    .fac-row-mock {
+      background: rgba(0, 0, 0, 0.90);
+      border: 1px solid #222731;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-family: var(--font-mono);
+    }
+
+    .fac-tag {
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #FFF;
+      margin-right: 10px;
+    }
+
+    .fac-tag.sa { background: #1B5E20; }
+    .fac-tag.jct { background: #00796B; }
+    .fac-tag.ic { background: #43A047; }
+
+    .fac-info {
+      flex: 1;
+    }
+
+    .fac-name {
+      color: #FFF;
+      font-weight: bold;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .fac-sub {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .fac-sub span {
+      font-size: 0.62rem;
+      border: 1px solid #555;
+      color: #CCC;
+      padding: 1px 5px;
+      line-height: 1.2;
+    }
+
+    .fac-sub span.in-tag {
+      border-color: var(--audi-red);
+      color: var(--audi-red);
+      font-weight: bold;
+    }
+
+    /* STARBUCKS 公式ロゴ付きタグ（HUD内） */
+    .fac-sub span.sbux-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--sbux-bg);
+      border: 1px solid var(--sbux-bright);
+      color: #FFFFFF;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      padding: 2px 7px 2px 4px;
+      box-shadow: 0 0 12px rgba(0, 168, 98, 0.45);
+    }
+
+    .sbux-real-logo-mini {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .fac-dist {
+      text-align: right;
+      margin-left: 8px;
+    }
+
+    .fac-dist .km {
+      color: #FFF;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .fac-dist .eta {
+      color: var(--hud-emerald);
+      font-size: 0.75rem;
+    }
+
+    /* STARBUCKS ワンポイントアドバイス（本物公式ロゴ付き枠） */
+    .sbux-spotlight {
+      margin-top: 18px;
+      background: linear-gradient(135deg, rgba(0, 98, 65, 0.30) 0%, rgba(12, 14, 18, 0.96) 70%);
+      border: 1px solid var(--sbux-bright);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 0 24px rgba(0, 112, 74, 0.25);
+    }
+
+    .sbux-emblem-wrap {
+      width: 66px;
+      height: 66px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #FFFFFF;
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 22px rgba(0, 168, 98, 0.65);
+    }
+
+    .sbux-real-logo-large {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .sbux-content {
+      flex: 1;
+    }
+
+    .sbux-spotlight-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .sbux-spotlight-title {
+      font-family: var(--font-mono);
+      color: #34D399;
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .sbux-pill {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      background: rgba(0, 168, 98, 0.25);
+      border: 1px solid var(--sbux-bright);
+      color: #A7F3D0;
+      padding: 2px 8px;
+      letter-spacing: 1px;
+    }
+
+    .sbux-spotlight p {
+      font-size: 0.87rem;
+      color: #E2E8F0;
+    }
+
+    .sbux-inline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      vertical-align: middle;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: bold;
+      background: var(--sbux-bg);
+      border: 1px solid var(--sbux-bright);
+      color: #FFFFFF;
+      padding: 2px 8px 2px 4px;
+      margin: 0 4px;
+      box-shadow: 0 0 8px rgba(0, 168, 98, 0.4);
+    }
+
+    /* ★ページ中盤以降で出現する「TOPへ戻る」タクティカルHUDボタン */
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 24px;
+      z-index: 150;
+      width: 52px;
+      height: 52px;
+      background: rgba(10, 12, 16, 0.92);
+      border: 1px solid #334155;
+      border-top: 2px solid var(--audi-red);
+      color: #FFFFFF;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(14px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover,
+    .back-to-top:active {
+      background: #161A22;
+      border-color: var(--audi-red);
+      color: var(--audi-red);
+      box-shadow: 0 0 20px var(--audi-red-glow);
+      transform: translateY(-2px);
+    }
+
+    .back-to-top svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--audi-red);
+      transition: transform 0.2s ease;
+    }
+
+    .back-to-top:hover svg {
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 16px;
+      border-top: 1px solid var(--border-stealth);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      letter-spacing: 1.5px;
+    }
+
+    @media (max-width: 600px) {
+      .sec-jp {
+        display: none;
+      }
+      .step-item {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .hud-card {
+        padding: 18px 16px;
+      }
+      .sbux-spotlight {
+        flex-direction: column;
+        text-align: left;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .back-to-top {
+        right: 16px;
+        bottom: 18px;
+        width: 48px;
+        height: 48px;
+      }
+    }
+  </style>
+</head>
+<body id="page-top" class="locked">
+
+  <!-- ============================================================
+       ★ PILOT PASSCODE LOCK SCREEN (合言葉ロック画面)
+       ============================================================ -->
+  <div id="pilotGateOverlay" class="gate-overlay">
+    <div class="gate-box">
+      <div class="gate-crest">
+        <svg viewBox="0 0 100 100" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,4 93,26 93,74 50,96 7,74 7,26" fill="#0B0D12" stroke="#334155" stroke-width="2"/>
+          <polygon points="50,10 87,29 87,71 50,90 13,71 13,29" fill="none" stroke="#CBD5E1" stroke-width="1" stroke-opacity="0.35"/>
+          <path d="M24,28 L50,80 L76,28 L64,28 L50,58 L36,28 Z" fill="#E3000F"/>
+          <path d="M50,16 L58,34 L50,29 L42,34 Z" fill="#F8FAFC"/>
+        </svg>
+      </div>
+      <div class="gate-eyebrow">RESTRICTED ACCESS // CLOSED BETA</div>
+      <h2 class="gate-title">ENTER PILOT PASSCODE</h2>
+      <p class="gate-desc">
+        本ページはVECTRA先行パイロット（5名限定枠）専用マニュアルです。<br>
+        招待時に案内されたパスコードを入力してロックを解除してください。
+      </p>
+      <form id="pilotGateForm" autocomplete="off">
+        <div class="gate-input-wrap">
+          <input
+            type="password"
+            id="pilotPassInput"
+            class="gate-input"
+            placeholder="PASSCODE"
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false"
+            required
+          />
+        </div>
+        <button type="submit" class="gate-btn">UNLOCK SYSTEM</button>
+      </form>
+      <div id="pilotGateError" class="gate-error"></div>
+      <div id="pilotGateFooter" class="gate-footer">VECTRA SECURITY VAULT // XOR-256 PROTECTED</div>
+    </div>
+  </div>
+
+  <!-- 保護対象コンテンツラッパー -->
+  <div id="protectedContent">
+
+    <!-- 固定トップHUDバー -->
+    <header class="top-hud-bar">
+      <a href="#page-top" class="brand-mini">
+        <span>//</span> VECTRA
+      </a>
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        PIONEER BUILD v2.4
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- 00. HERO & DOWNLOAD -->
+      <section class="hero">
+        <div class="crest-box">
+          <!-- VECTRA STEALTH CREST SVG -->
+          <svg viewBox="0 0 100 100" width="92" height="92" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,4 93,26 93,74 50,96 7,74 7,26" fill="#0B0D12" stroke="#334155" stroke-width="2"/>
+            <polygon points="50,10 87,29 87,71 50,90 13,71 13,29" fill="none" stroke="#CBD5E1" stroke-width="1" stroke-opacity="0.35"/>
+            <path d="M24,28 L50,80 L76,28 L64,28 L50,58 L36,28 Z" fill="#E3000F"/>
+            <path d="M50,16 L58,34 L50,29 L42,34 Z" fill="#F8FAFC"/>
+          </svg>
+        </div>
+
+        <div class="hero-eyebrow">NEXT-GEN TACTICAL HIGHWAY HUD</div>
+        <h1 class="hero-title">VECTRA</h1>
+        <p class="hero-subtitle">
+          高速道路の今と先を射抜く、ドライバー特化型タクティカル・ナビゲーションシステム。<br>
+          先行テスター向け公式導入・操作プロトコル。
+        </p>
+
+        <div class="pioneer-frame">
+          <div class="edition">VECTRA PIONEER EDITION</div>
+          <div class="desc">先行テスター特別無償ライセンス（5名限定枠・全機能解放モデル）</div>
+        </div>
+
+        <div class="dl-action-wrap">
+          <!-- ★パスコード解除時にXOR復号されたGoogleドライブURLが自動セットされます -->
+          <a id="vectraApkDownloadBtn" href="#locked" target="_blank" rel="noopener noreferrer" class="btn-download">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            DOWNLOAD APK (v2.4 / 80MB)
+          </a>
+          <div class="dl-meta">PACKAGE: jp.vectra.navi &nbsp;|&nbsp; TARGET: Android 8.0+ (ARM64 SLIM BUILD)</div>
+        </div>
+      </section>
+
+      <!-- クイックナビゲーション -->
+      <nav class="quick-nav">
+        <a href="#sec-install" class="quick-link">
+          <span class="num">01 // INSTALL</span>
+          <span>APK導入・警告突破手順</span>
+        </a>
+        <a href="#sec-auth" class="quick-link">
+          <span class="num">02 // LICENSE</span>
+          <span>初回認証と利用枠</span>
+        </a>
+        <a href="#sec-hwy" class="quick-link">
+          <span class="num">03 // HIGHWAY HUD</span>
+          <span>高速施設＆スタバアイコン</span>
+        </a>
+        <a href="#sec-navi" class="quick-link">
+          <span class="num">04 // ROUTE & ALT</span>
+          <span>ルート案内＆代替ルート</span>
+        </a>
+        <a href="#sec-custom" class="quick-link">
+          <span class="num">05 // CUSTOMIZE</span>
+          <span>渋滞線太さ・HUD設定</span>
+        </a>
+      </nav>
+
+      <!-- 01. INSTALLATION PROTOCOL -->
+      <section id="sec-install" class="section">
+        <div class="sec-header">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">INSTALLATION PROTOCOL</h2>
+          <span class="sec-jp">スタンドアロンAPKの導入手順</span>
+        </div>
+
+        <div class="hud-card red-accent">
+          <div class="card-title">
+            <span>Google Play プロテクト警告の突破方法（重要）</span>
+            <span class="badge">MUST READ</span>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:16px;">
+            本アプリはGoogle Playストア公開前の「先行クローズドβ専用ビルド（独自署名APK）」です。そのため、インストール時にAndroid標準のPlayプロテクト確認画面が表示されますが、ウイルスや不正プログラムではありません。以下の3ステップで導入してください。
+          </p>
+
+          <div class="step-list">
+            <div class="step-item">
+              <span class="step-badge">STEP 01</span>
+              <div class="step-body">
+                <h4>GoogleドライブからAPKを保存し「不明なアプリのインストール」を許可</h4>
+                <p>
+                  上部の <strong>DOWNLOAD APK</strong> ボタンからGoogleドライブを開き、「ダウンロード（スマホへ保存）」を実行します。保存したAPKを開き、初回のみ「この提供元のアプリをインストール」の設定画面が開く場合は、スイッチを <strong>ON（許可）</strong> にして戻ります。
+                </p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <span class="step-badge">STEP 02</span>
+              <div class="step-body">
+                <h4>Playプロテクト画面で「詳細」➔「インストールする」を選択</h4>
+                <p>
+                  「アプリをスキャンしますか？」または「安全ではないアプリがブロックされました」と表示された場合は、画面内の <strong>「詳細（More details）」</strong> をタップし、下部に現れる <strong>「インストールする（安全ではないアプリをインストール）」</strong> をタップしてください。
+                </p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <span class="step-badge">STEP 03</span>
+              <div class="step-body">
+                <h4>位置情報（GPS）権限の許可</h4>
+                <p>
+                  VECTRA起動後、位置情報へのアクセス許可を求められたら <strong>「アプリの使用中のみ許可」</strong>（かつ「正確な位置情報」をON）を選択してください。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02. AUTHENTICATION & LICENSE RULES (警告枠を完全撤廃しクリーン化) -->
+      <section id="sec-auth" class="section">
+        <div class="sec-header">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">PILOT AUTH & QUOTA</h2>
+          <span class="sec-jp">ログイン認証とライセンス枠</span>
+        </div>
+
+        <div class="hud-card">
+          <div class="card-title">
+            <span>1タップ起動 ＆ ライセンス枠のご案内</span>
+            <span class="badge">MAX 5 PILOTS</span>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-sub);">
+            起動画面（首都高C1背景）にて、任意のパイロットID（または下部の <strong>GOOGLE AUTHENTICATION</strong> からご自身のGoogleアカウント）でログインしてください。一度ログインすると端末内に認証情報が記憶され、<strong>次回からは「LAUNCH VECTRA」の1タップのみで即座にメインHUDへ突入</strong>します。
+          </p>
+
+          <div class="table-wrap">
+            <table class="hud-table">
+              <thead>
+                <tr>
+                  <th>機能カテゴリー</th>
+                  <th>PIONEER EDITION 利用上限</th>
+                  <th>リセット周期</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>高速道路 IC / SA / PA / JCT リスト表示</strong></td>
+                  <td><span class="mono-hl" style="color:var(--hud-emerald); border-color:var(--hud-emerald);">無制限 (FREE / UNLIMITED)</span></td>
+                  <td>常時無制限</td>
+                </tr>
+                <tr>
+                  <td><strong>ルートナビゲーション案内開始</strong></td>
+                  <td><strong>月間 50 回</strong> まで</td>
+                  <td>毎月1日 自動リセット</td>
+                </tr>
+                <tr>
+                  <td><strong>Google Places 目的地キーワード検索</strong></td>
+                  <td><strong>1日 10 回</strong> まで（※地図長押しピン留めは消費なし）</td>
+                  <td>毎日0時 自動リセット</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03. FREE-DRIVE HIGHWAY HUD & STARBUCKS SPOTLIGHT -->
+      <section id="sec-hwy" class="section">
+        <div class="sec-header">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">FREE-DRIVE HIGHWAY HUD</h2>
+          <span class="sec-jp">ナビ無しで使える高速道路施設モード</span>
+        </div>
+
+        <div class="hud-card emerald-accent">
+          <div class="card-title">
+            <span>目的地設定不要。高速本線に乗るだけで前方施設を自動ロックオン</span>
+            <span class="badge">CORE FEATURE</span>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:14px;">
+            いつもの道やドライブで「ルート案内（道案内）は要らないけれど、次のSA/PAやICまでの距離と到着時刻だけ知りたい」という場面に最適化されたVECTRAのコア機能です。<strong>ナビ回数を一切消費せず、完全無制限</strong>で利用できます。
+          </p>
+
+          <div class="hud-mockup-grid">
+            <div class="mock-box">
+              <div class="mock-header-bar">
+                <div class="mock-label">// HOW TO ACTIVATE</div>
+              </div>
+              <p style="font-size:0.86rem; color:var(--text-main); margin-bottom:10px;">
+                1. 画面右側の <span class="mono-red">ROUTE HGWY</span> スイッチが左側（HGWY）になっていることを確認します。<br><br>
+                2. 高速道路・都市高速の本線走行中に <span class="mono-hl">HIGHWAY MODE</span> スイッチをONにすると、進行方向の路線（首都高C1等の環状線周回にも完全対応）を自動解析し、直近3つの施設を下から上へ積み上げ表示します。<br><br>
+                <span style="color:var(--text-sub); font-size:0.8rem;">※施設名の表記は、日本語（デフォルト）と英語（欧州車コックピット風）をいつでもワンタップで切り替え可能です。</span>
+              </p>
+            </div>
+
+            <div class="mock-box">
+              <div class="mock-header-bar">
+                <div id="hwyPreviewLabel" class="mock-label">// HIGHWAY HUD PREVIEW (東名高速 上り)</div>
+                <!-- ★日本語（デフォルト）⇔ 英語 切り替えトグルスイッチ -->
+                <div id="facLangToggle" class="lang-toggle-switch" role="button" tabindex="0" aria-label="Toggle Facility Language">
+                  <span id="langOptJa" class="lang-opt active">日本語</span>
+                  <div class="lang-track">
+                    <div class="lang-thumb"></div>
+                  </div>
+                  <span id="langOptEn" class="lang-opt">EN</span>
+                </div>
+              </div>
+
+              <!-- 3段目（奥）：海老名SA（上り）★ここに本物スタバ店舗あり！ -->
+              <div class="fac-row-mock">
+                <span class="fac-tag sa">SA</span>
+                <div class="fac-info">
+                  <div id="facName3" class="fac-name" data-ja="海老名SA (上り)" data-en="Ebina SA (Inbound)">
+                    海老名SA (上り)
+                  </div>
+                  <div class="fac-sub">
+                    <span>P</span>
+                    <span>WC</span>
+                    <span>GAS</span>
+                    <span class="sbux-tag">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
+                        alt="Starbucks"
+                        class="sbux-real-logo-mini"
+                      />
+                      STARBUCKS
+                    </span>
+                  </div>
+                </div>
+                <div class="fac-dist">
+                  <div class="km">6.4 km</div>
+                  <div class="eta">18:37</div>
+                </div>
+              </div>
+
+              <!-- 2段目（中間）：海老名JCT -->
+              <div class="fac-row-mock">
+                <span class="fac-tag jct">JCT</span>
+                <div class="fac-info">
+                  <div id="facName2" class="fac-name" data-ja="海老名JCT" data-en="Ebina JCT">海老名JCT</div>
+                  <div class="fac-sub"><span>EXIT</span></div>
+                </div>
+                <div class="fac-dist">
+                  <div class="km">4.8 km</div>
+                  <div class="eta">18:35</div>
+                </div>
+              </div>
+
+              <!-- 1段目（手前）：厚木IC -->
+              <div class="fac-row-mock">
+                <span class="fac-tag ic">IC</span>
+                <div class="fac-info">
+                  <div id="facName1" class="fac-name" data-ja="厚木IC" data-en="Atsugi IC">厚木IC</div>
+                  <div class="fac-sub"><span class="in-tag">IN</span></div>
+                </div>
+                <div class="fac-dist">
+                  <div class="km">1.5 km</div>
+                  <div class="eta">18:32</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ★本物のスターバックス公式コーポレートロゴ（SVG）搭載 ワンポイントアドバイス枠 -->
+          <div class="sbux-spotlight">
+            <div class="sbux-emblem-wrap">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
+                alt="Starbucks Official Siren"
+                class="sbux-real-logo-large"
+              />
+            </div>
+            <div class="sbux-content">
+              <div class="sbux-spotlight-header">
+                <div class="sbux-spotlight-title">
+                  ONE-POINT ADVICE // SA・PA の「スタバアイコン」に注目！
+                </div>
+                <span class="sbux-pill">HIDDEN FEATURE</span>
+              </div>
+              <p>
+                ロングドライブ中のコーヒーブレイクを逃さないための「隠れ機能」を搭載！<br>
+                スターバックスが併設されている所定のSA・PA（東名・海老名SA上り、足柄SA上下、海ほたるPA、酒々井PA上下、湾岸幕張PA上下、大黒PA、談合坂SA上下など全国の高速SA/PA）が前方に迫ると、進行方向の上下線まで自動判別して施設カード内に
+                <span class="sbux-inline-badge">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
+                    alt="Starbucks"
+                    class="sbux-real-logo-mini"
+                  />
+                  STARBUCKS
+                </span>
+                アイコンが自動点灯します。高速走行中はぜひSA/PAカードのアイコン欄に注目してみてください！
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. TACTICAL ROUTE NAVIGATION -->
+      <section id="sec-navi" class="section">
+        <div class="sec-header">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">TACTICAL ROUTE & ALT SWITCH</h2>
+          <span class="sec-jp">ルート案内と2段階ステルス代替ルート</span>
+        </div>
+
+        <div class="hud-card">
+          <div class="card-title">
+            <span>2通りの目的地セットと、運転を妨げない「2段階ステルス代替ルート」</span>
+            <span class="badge">SMART ROUTING</span>
+          </div>
+
+          <div class="step-list">
+            <div class="step-item">
+              <span class="step-badge">METHOD A</span>
+              <div class="step-body">
+                <h4>キーワード検索（左下「🔍」ボタン）</h4>
+                <p>
+                  画面左下の虫眼鏡アイコンをタップし、施設名や住所を入力して検索します。候補をタップすると即座にルート計算・案内が開始されます。
+                </p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <span class="step-badge">METHOD B</span>
+              <div class="step-body">
+                <h4>マップ長押しダイレクトピン留め（検索回数消費ゼロ）</h4>
+                <p>
+                  地図上の行きたい場所を <strong>約1秒間長押し（ロングタップ）</strong> すると、赤いピンが刺さり、検索枠を消費せずにダイレクトにその地点へのナビを開始します。
+                </p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <span class="step-badge">STEALTH ALT</span>
+              <div class="step-body">
+                <h4>代替ルート（ALT ROUTE）の2段階切り替えギミック</h4>
+                <p>
+                  ルート案内中、分岐可能な別ルートが存在すると画面右下に半透明の <span class="mono-hl">ALT ROUTE 1/2 | -3 min</span> ボタンがステルス待機します。<br>
+                  ・<strong>1タップ目（Wake Up）</strong>：ボタンが鮮明化し、地図上の分岐ルート上に「到着予想時刻（ETA）・時間差・距離差」の吹き出しが出現します（4秒間放置すると自動で元のステルス状態へ戻ります）。<br>
+                  ・<strong>2タップ目（Confirm Switch）</strong>：起き上がったボタン（または地図上の吹き出し）をもう一度タップすると、即座にその代替ルートへ切り替わります！
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05. CUSTOMIZATION & CONTROLS -->
+      <section id="sec-custom" class="section">
+        <div class="sec-header">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">HUD & TRAFFIC CUSTOMIZATION</h2>
+          <span class="sec-jp">画面コントロールと設定メニュー</span>
+        </div>
+
+        <div class="hud-card">
+          <div class="card-title">
+            <span>渋滞ラインのリアルタイム太さ調整 ＆ カメラ制御</span>
+            <span class="badge">SETTINGS HUD</span>
+          </div>
+
+          <div class="table-wrap">
+            <table class="hud-table">
+              <thead>
+                <tr>
+                  <th>ボタン / 設定項目</th>
+                  <th>配置場所</th>
+                  <th>機能・動作詳細</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>コンパスボタン</strong></td>
+                  <td>左下（1段目）</td>
+                  <td>タップするごとにカメラ視点を <span class="mono-hl">NORTH-UP 2D（北固定）</span> ➔ <span class="mono-hl">HEAD-UP 2D（進行方向上）</span> ➔ <span class="mono-hl">HEAD-UP 3D（3D俯瞰）</span> の順で切り替えます。</td>
+                </tr>
+                <tr>
+                  <td><strong>レイヤー切替ボタン</strong></td>
+                  <td>左下（2段目）</td>
+                  <td>昼夜トラフィック・ダーク・サテライト（航空写真）など <strong>全7種類のマップスタイル</strong> をワンタップで巡回切り替えします。</td>
+                </tr>
+                <tr>
+                  <td><strong>自車3Dロックボタン</strong></td>
+                  <td>左下（3段目）</td>
+                  <td>地図をスクロールして現在地から離れた際、ワンタップで自車位置の <span class="mono-hl">HEAD-UP 3D</span> 追従モードへ即座に戻します。</td>
+                </tr>
+                <tr>
+                  <td><strong>Traffic Line Width</strong></td>
+                  <td>設定（⚙️）内</td>
+                  <td>地図上の渋滞情報ライン（緑・橙・赤・暗赤）の太さを <span class="mono-hl">0.5x 〜 2.0x</span> のスライダー、または <span class="mono-red">THIN / STD / BOLD</span> プリセットでリアルタイムに調整・保存できます。</td>
+                </tr>
+                <tr>
+                  <td><strong>Map / Voice Language</strong></td>
+                  <td>設定（⚙️）内</td>
+                  <td>地図ラベルおよび高速施設リスト・音声案内の言語を <strong>日本語（JA：デフォルト）</strong> と <strong>英語（EN：欧州車純正コックピット風）</strong> からいつでも切り替えできます。</td>
+                </tr>
+                <tr>
+                  <td><strong>HUD Opacity</strong></td>
+                  <td>設定（⚙️）内</td>
+                  <td>上下のHUDパネルおよび高速施設リストの背景透過度を <span class="mono-hl">85% / 75% / 70%</span> から好みに合わせて切り替えられます。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ★スクロール連動「TOPへ戻る」フローティングボタン -->
+    <a href="#page-top" id="backToTopBtn" class="back-to-top" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+      <span>TOP</span>
+    </a>
+
+    <footer>
+      VECTRA TACTICAL NAVIGATION SYSTEM // PIONEER EDITION v2.4<br>
+      DESIGNED FOR HIGH-PERFORMANCE DRIVING
+    </footer>
+
+  </div>
+
+  <script>
+    (function() {
+      // 1. スクロール連動「TOPへ戻る」ボタン制御
+      var topBtn = document.getElementById('backToTopBtn');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 320) {
+          topBtn.classList.add('visible');
+        } else {
+          topBtn.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      // 2. 高速道路施設プレビュー：日本語（デフォルト）⇔ 英語 切り替えトグルスイッチ
+      var isFacilityEnglish = false; // デフォルトは日本語
+      var langToggle = document.getElementById('facLangToggle');
+      var optJa = document.getElementById('langOptJa');
+      var optEn = document.getElementById('langOptEn');
+      var previewLabel = document.getElementById('hwyPreviewLabel');
+      var facItems = [
+        document.getElementById('facName1'),
+        document.getElementById('facName2'),
+        document.getElementById('facName3')
+      ];
+
+      function renderFacilityLanguage() {
+        if (isFacilityEnglish) {
+          langToggle.classList.add('is-en');
+          optJa.classList.remove('active');
+          optEn.classList.add('active');
+          previewLabel.textContent = '// HIGHWAY HUD PREVIEW (E1 TOMEI INBOUND)';
+        } else {
+          langToggle.classList.remove('is-en');
+          optJa.classList.add('active');
+          optEn.classList.remove('active');
+          previewLabel.textContent = '// HIGHWAY HUD PREVIEW (東名高速 上り)';
+        }
+        for (var i = 0; i < facItems.length; i++) {
+          var el = facItems[i];
+          if (el) {
+            el.textContent = isFacilityEnglish ? el.getAttribute('data-en') : el.getAttribute('data-ja');
+          }
+        }
+      }
+
+      if (langToggle) {
+        langToggle.addEventListener('click', function() {
+          isFacilityEnglish = !isFacilityEnglish;
+          renderFacilityLanguage();
+        });
+      }
+
+      // 3. VECTRA STEALTH VAULT (パスコードによるXOR復号＆ゲート解除エンジン)
+      // ※HTMLソース内にパスコード平文もGoogleドライブURL平文も一切残さない暗号化配列
+      var CIPHER_BYTES = [
+        89,70,48,38,54,121,123,125,37,67,91,50,51,107,36,59,61,38,93,87,106,
+        53,42,46,123,52,40,93,87,107,50,106,114,14,23,117,84,102,105,4,38,43,
+        57,60,42,125,65,119,52,14,9,39,35,42,92,81,5,12,61,123,27,49,40,110,
+        66,107,32,44,38,35,109,52,66,66,121,50,55,42,34,55,30,93,91,42,61
+      ];
+
+      function tryDecryptUrl(rawPass) {
+        var cleanKey = (rawPass || '').trim().toUpperCase();
+        if (cleanKey.length !== 9) return null;
+        var out = '';
+        for (var i = 0; i < CIPHER_BYTES.length; i++) {
+          var k = cleanKey.charCodeAt(i % cleanKey.length);
+          out += String.fromCharCode(CIPHER_BYTES[i] ^ k);
+        }
+        if (out.indexOf('https://drive.google.com/file/d/') === 0) {
+          return out;
+        }
+        return null;
+      }
+
+      var overlay = document.getElementById('pilotGateOverlay');
+      var form = document.getElementById('pilotGateForm');
+      var input = document.getElementById('pilotPassInput');
+      var errBox = document.getElementById('pilotGateError');
+      var dlBtn = document.getElementById('vectraApkDownloadBtn');
+
+      function applyUnlock(decryptedUrl, passKey) {
+        dlBtn.setAttribute('href', decryptedUrl);
+        overlay.classList.add('unlocked');
+        document.body.classList.remove('locked');
+        try {
+          sessionStorage.setItem('vectra_pilot_key', passKey);
+        } catch (e) {}
+      }
+
+      try {
+        var savedKey = sessionStorage.getItem('vectra_pilot_key');
+        if (savedKey) {
+          var restoredUrl = tryDecryptUrl(savedKey);
+          if (restoredUrl) {
+            applyUnlock(restoredUrl, savedKey);
+          }
+        }
+      } catch (e) {}
+
+      form.addEventListener('submit', function(ev) {
+        ev.preventDefault();
+        var val = input.value;
+        var decrypted = tryDecryptUrl(val);
+        if (decrypted) {
+          errBox.textContent = '';
+          applyUnlock(decrypted, val.trim().toUpperCase());
+        } else {
+          errBox.textContent = 'ACCESS DENIED // INVALID PILOT PASSCODE';
+          input.value = '';
+          input.focus();
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
