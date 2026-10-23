@@ -640,7 +640,7 @@
     }
 
     .radar-sweep {
-      transform-origin: 200px 125px;
+      transform-origin: 170px 115px;
       animation: radarSpin 6s linear infinite;
     }
 
@@ -1488,7 +1488,7 @@
           <span class="sec-jp">目的地不要の「走り屋モード」＆ 高速施設レーダー</span>
         </div>
 
-        <!-- ★新規追加：首都高「走り屋モード」タクティカル・レーダー図解パネル -->
+        <!-- ★首都高「走り屋モード」タクティカル・レーダー図解パネル -->
         <div class="shutoko-hero-banner">
           <div class="shutoko-banner-top">
             <span class="shutoko-mode-tag">
@@ -1506,7 +1506,7 @@
           </p>
 
           <div class="shutoko-grid">
-            <!-- 左：首都高C1〜湾岸線・大黒PA タクティカルSVGアニメーション図解 -->
+            <!-- 左：首都高C1〜湾岸線・辰巳/芝浦/大黒PA タクティカルSVGアニメーション図解 -->
             <div class="shutoko-svg-stage">
               <div class="shutoko-svg-header">
                 <span>// SHUTOKO C1 & BAYSHORE TACTICAL RADAR</span>
@@ -1559,17 +1559,17 @@
                   <circle class="jct-node" cx="102" cy="85" r="4.5"/>
                   <text x="28" y="85" fill="#CBD5E1" font-family="Share Tech Mono" font-size="10" font-weight="bold">三宅坂JCT</text>
 
-                  <!-- 聖地 PA ノード (辰巳PA / 芝浦PA / 大黒PA) -->
+                  <!-- 首都高 3大聖地 PA ノード (辰巳PA / 芝浦PA / 大黒PA) ※スタバ誤表記を完全排除 -->
                   <circle class="pa-node" cx="332" cy="146" r="5.5"/>
                   <rect x="315" y="116" width="96" height="20" fill="#06281A" stroke="#00E676" stroke-width="1"/>
                   <text x="321" y="130" fill="#00E676" font-family="Share Tech Mono" font-size="10" font-weight="bold">辰巳PA [LOCK]</text>
 
                   <circle class="pa-node" cx="238" cy="195" r="5"/>
-                  <text x="250" y="198" fill="#A7F3D0" font-family="Share Tech Mono" font-size="9.5" font-weight="bold">芝浦PA</text>
+                  <text x="250" y="198" fill="#A7F3D0" font-family="Share Tech Mono" font-size="9.5" font-weight="bold">芝浦PA [LOCK]</text>
 
                   <circle class="pa-node" cx="135" cy="234" r="6"/>
-                  <rect x="146" y="218" width="155" height="22" fill="#063824" stroke="#00A862" stroke-width="1.2"/>
-                  <text x="153" y="233" fill="#FFFFFF" font-family="Share Tech Mono" font-size="10" font-weight="bold">★ 大黒PA [STARBUCKS]</text>
+                  <rect x="146" y="218" width="112" height="20" fill="#06281A" stroke="#00E676" stroke-width="1.2"/>
+                  <text x="154" y="232" fill="#00E676" font-family="Share Tech Mono" font-size="10" font-weight="bold">大黒PA [LOCK]</text>
 
                   <!-- C1軌道をエンドレス周回する自車ターゲットマーカー (SVG SMIL Animation) -->
                   <g>
@@ -1619,7 +1619,7 @@
           </div>
         </div>
 
-        <!-- 施設カード実機プレビュー枠（首都高C1モード ⇔ 東名モード 切り替え可能） -->
+        <!-- 施設カード実機プレビュー枠（東名モード ⇔ 首都高C1モード 切り替え可能） -->
         <div class="hud-card emerald-accent">
           <div class="card-title">
             <span>実機HUDプレビュー：路線別ロックオン表示 ＆ 日英ワンタップ切替</span>
@@ -1634,16 +1634,16 @@
               <p style="font-size:0.86rem; color:var(--text-main); margin-bottom:10px;">
                 1. 画面右側の <span class="mono-red">ROUTE HGWY</span> スイッチが左側（HGWY）になっていることを確認します。<br><br>
                 2. 目的地を設定しないまま高速道路・都市高速の本線に乗り、<span class="mono-hl">HIGHWAY MODE</span> スイッチをONにするだけで「走り屋モード」が起動！直近3つの施設を下から上へ積み上げ表示します。<br><br>
-                <span style="color:var(--text-sub); font-size:0.8rem;">※右側のプレビューで<strong>「首都高モード（大黒PA・辰巳PA）」</strong>と<strong>「東名高速モード（海老名SA）」</strong>、および<strong>「日本語 ⇔ 英語表記」</strong>を実際に切り替えて体験できます。</span>
+                <span style="color:var(--text-sub); font-size:0.8rem;">※右側のプレビューで<strong>「東名高速（海老名SA：スタバ＆GAS表示）」</strong>と<strong>「首都高 C1/湾岸（大黒PA：P/WC表示）」</strong>、および<strong>「日本語 ⇔ 英語表記」</strong>を実際に切り替えて比較できます。</span>
               </p>
             </div>
 
             <div class="mock-box">
               <div class="mock-header-bar">
-                <!-- ★首都高 ⇔ 東名 切り替えタブ -->
+                <!-- ★東名（スタバあり）⇔ 首都高（大黒PA：P/WC）切り替えタブ -->
                 <div class="route-preset-tabs">
-                  <button type="button" id="presetShutokoBtn" class="route-preset-btn active">首都高 C1/湾岸</button>
-                  <button type="button" id="presetTomeiBtn" class="route-preset-btn">東名高速</button>
+                  <button type="button" id="presetTomeiBtn" class="route-preset-btn active">東名高速 (スタバ併設)</button>
+                  <button type="button" id="presetShutokoBtn" class="route-preset-btn">首都高 C1/湾岸</button>
                 </div>
 
                 <!-- ★日本語（デフォルト）⇔ 英語 切り替えトグルスイッチ -->
@@ -1656,14 +1656,15 @@
                 </div>
               </div>
 
-              <div id="hwyPreviewLabel" class="mock-label" style="margin-bottom:8px;">// HIGHWAY HUD PREVIEW (首都高 C1 ➔ 湾岸線)</div>
+              <div id="hwyPreviewLabel" class="mock-label" style="margin-bottom:8px;">// HIGHWAY HUD PREVIEW (東名高速 上り)</div>
 
-              <!-- 3段目（奥）：大黒PA または 海老名SA（上り）★ここにスタバ店舗あり！ -->
+              <!-- 3段目（奥）：海老名SA（上り：GAS + STARBUCKS）または 大黒PA（P + WC） -->
               <div class="fac-row-mock">
-                <span id="facTag3" class="fac-tag pa">PA</span>
+                <span id="facTag3" class="fac-tag sa">SA</span>
                 <div class="fac-info">
-                  <div id="facName3" class="fac-name">大黒PA</div>
+                  <div id="facName3" class="fac-name">海老名SA (上り)</div>
                   <div id="facSub3" class="fac-sub">
+                    <span>GAS</span>
                     <span class="sbux-tag">
                       <img
                         src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
@@ -1675,34 +1676,34 @@
                   </div>
                 </div>
                 <div class="fac-dist">
-                  <div id="facKm3" class="km">14.2 km</div>
-                  <div id="facEta3" class="eta">22:18</div>
+                  <div id="facKm3" class="km">6.4 km</div>
+                  <div id="facEta3" class="eta">18:37</div>
                 </div>
               </div>
 
-              <!-- 2段目（中間）：浜崎橋JCT または 海老名JCT -->
+              <!-- 2段目（中間）：海老名JCT または 浜崎橋JCT -->
               <div class="fac-row-mock">
                 <span id="facTag2" class="fac-tag jct">JCT</span>
                 <div class="fac-info">
-                  <div id="facName2" class="fac-name">浜崎橋JCT</div>
+                  <div id="facName2" class="fac-name">海老名JCT</div>
                   <div class="fac-sub"><span>EXIT</span></div>
                 </div>
                 <div class="fac-dist">
-                  <div id="facKm2" class="km">3.8 km</div>
-                  <div id="facEta2" class="eta">22:09</div>
+                  <div id="facKm2" class="km">4.8 km</div>
+                  <div id="facEta2" class="eta">18:35</div>
                 </div>
               </div>
 
-              <!-- 1段目（手前）：芝公園IC または 厚木IC -->
+              <!-- 1段目（手前）：厚木IC または 芝公園IC -->
               <div class="fac-row-mock">
                 <span id="facTag1" class="fac-tag ic">IC</span>
                 <div class="fac-info">
-                  <div id="facName1" class="fac-name">芝公園IC</div>
+                  <div id="facName1" class="fac-name">厚木IC</div>
                   <div class="fac-sub"><span class="in-tag">IN</span></div>
                 </div>
                 <div class="fac-dist">
-                  <div id="facKm1" class="km">0.9 km</div>
-                  <div id="facEta1" class="eta">22:05</div>
+                  <div id="facKm1" class="km">1.5 km</div>
+                  <div id="facEta1" class="eta">18:32</div>
                 </div>
               </div>
             </div>
@@ -1720,13 +1721,13 @@
             <div class="sbux-content">
               <div class="sbux-spotlight-header">
                 <div class="sbux-spotlight-title">
-                  ONE-POINT ADVICE // 全国54拠点の「スタバ＆給油所」スマート表示！
+                  ONE-POINT ADVICE // 全国高速SA・PAの「スタバ＆給油所」スマート表示！
                 </div>
                 <span class="sbux-pill">SMART DISPLAY</span>
               </div>
               <p>
                 ナイトドライブや長距離ツーリングのコーヒーブレイクを逃さないための「隠れ機能」を搭載！<br>
-                スターバックスが併設されている全国の高速SA・PA（首都高・大黒PA、海ほたるPA、守谷SA上下、海老名SA上り、足柄SA上下、酒々井PA上下、湾岸幕張PA上下、談合坂SA上下など全54拠点）が前方に迫ると、進行方向の上下線まで自動判別して施設カード内に
+                スターバックスが併設されている全国の高速SA・PA（海ほたるPA、湾岸幕張PA上下、守谷SA上下、海老名SA上り、足柄SA上下、酒々井PA上下、第三京浜・都筑PA上り、談合坂SA上下など）が前方に迫ると、進行方向の上下線まで自動判別して施設カード内に
                 <span class="sbux-inline-badge">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
@@ -1920,12 +1921,12 @@
         }
       }, { passive: true });
 
-      // 2. 高速道路施設プレビュー：首都高C1モード ⇔ 東名モード ＆ 日本語 ⇔ 英語 切り替えエンジン
+      // 2. 高速道路施設プレビュー：東名高速(海老名SA:スタバ＆GAS) ⇔ 首都高(大黒PA:P/WC) ＆ 日英切り替え
       var isFacilityEnglish = false; // デフォルトは日本語
-      var currentPreset = 'shutoko'; // デフォルトは走り屋モード象徴の「首都高 C1/湾岸」
+      var currentPreset = 'tomei';   // デフォルトはスタバ＆GAS表示の「東名高速（海老名SA上り）」
 
-      var btnShutoko = document.getElementById('presetShutokoBtn');
       var btnTomei = document.getElementById('presetTomeiBtn');
+      var btnShutoko = document.getElementById('presetShutokoBtn');
       var langToggle = document.getElementById('facLangToggle');
       var optJa = document.getElementById('langOptJa');
       var optEn = document.getElementById('langOptEn');
@@ -1969,10 +1970,11 @@
             ? '// HIGHWAY HUD PREVIEW (SHUTOKO C1 -> BAYSHORE)'
             : '// HIGHWAY HUD PREVIEW (首都高 C1 ➔ 湾岸線)';
 
+          // 大黒PAにはスタバは無いため、実機通りに [P] [WC] を表示！
           facTag3.textContent = 'PA';
           facTag3.className = 'fac-tag pa';
           facName3.textContent = isFacilityEnglish ? 'Daikoku PA' : '大黒PA';
-          facSub3.innerHTML = SBUX_BADGE_HTML;
+          facSub3.innerHTML = '<span>P</span><span>WC</span>';
           facKm3.textContent = '14.2 km';
           facEta3.textContent = '22:18';
 
@@ -1984,12 +1986,13 @@
           facKm1.textContent = '0.9 km';
           facEta1.textContent = '22:05';
         } else {
-          btnShutoko.classList.remove('active');
           btnTomei.classList.add('active');
+          btnShutoko.classList.remove('active');
           previewLabel.textContent = isFacilityEnglish
             ? '// HIGHWAY HUD PREVIEW (E1 TOMEI INBOUND)'
             : '// HIGHWAY HUD PREVIEW (東名高速 上り)';
 
+          // 海老名SA(上り)はスタバ併設のため P/WC を省略して [GAS] [★STARBUCKS] を表示！
           facTag3.textContent = 'SA';
           facTag3.className = 'fac-tag sa';
           facName3.textContent = isFacilityEnglish ? 'Ebina SA (Inbound)' : '海老名SA (上り)';
