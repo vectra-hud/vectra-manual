@@ -9,7 +9,7 @@
   <title>VECTRA // PIONEER EDITION - OFFICIAL PILOT MANUAL</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-deep: #050608;
@@ -22,15 +22,15 @@
       --hud-emerald: #00E676;
       --sbux-official: #00704A;
       --sbux-bright: #00A862;
-      --sbux-bg: rgba(0, 112, 74, 0.35);
+      --sbux-bg: linear-gradient(90deg, #07442C 0%, #032618 100%);
       --hud-amber: #FFAB00;
       --hud-warning: #FF5252;
       --text-main: #F8FAFC;
       --text-sub: #94A3B8;
       --border-stealth: #222731;
       --font-mono: 'Share Tech Mono', monospace;
-      /* 全テスター端末で本文中の英数字まで100% Share Tech Mono を優先適用 */
-      --font-sans: 'Share Tech Mono', 'Noto Sans JP', sans-serif;
+      /* 実機アプリ(v3.7)と完全同一：英数字＝Share Tech Mono / 日本語＝Zen Kaku Gothic New Bold */
+      --font-sans: 'Share Tech Mono', 'Zen Kaku Gothic New', sans-serif;
     }
 
     * {
@@ -44,11 +44,11 @@
       background-color: var(--bg-deep);
       color: var(--text-main);
       font-family: var(--font-sans);
+      font-weight: 700;
     }
 
     body {
       background-color: var(--bg-deep);
-      /* 赤みを完全排除したクールなガンメタルグレー〜マットブラックのグラデーション */
       background-image:
         radial-gradient(ellipse at 50% 0%, #1A1F29 0%, #0B0D12 45%, #050608 80%),
         linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
@@ -57,6 +57,7 @@
       background-attachment: fixed;
       line-height: 1.65;
       overflow-x: hidden;
+      font-weight: 700;
     }
 
     body.locked {
@@ -139,6 +140,7 @@
       color: #FFFFFF;
       font-family: var(--font-mono);
       font-size: 1.2rem;
+      font-weight: bold;
       letter-spacing: 4px;
       text-align: center;
       padding: 14px 16px;
@@ -221,6 +223,7 @@
       gap: 10px;
       font-family: var(--font-mono);
       font-size: 1.15rem;
+      font-weight: bold;
       letter-spacing: 3px;
       color: #FFFFFF;
       text-decoration: none;
@@ -237,6 +240,7 @@
       gap: 6px;
       font-family: var(--font-mono);
       font-size: 0.75rem;
+      font-weight: bold;
       padding: 4px 10px;
       background: rgba(0, 230, 118, 0.10);
       border: 1px solid var(--hud-emerald);
@@ -287,6 +291,7 @@
       font-family: var(--font-mono);
       color: var(--rs-silver);
       font-size: 0.85rem;
+      font-weight: bold;
       letter-spacing: 4px;
       margin-bottom: 8px;
     }
@@ -294,6 +299,7 @@
     .hero-title {
       font-family: var(--font-mono);
       font-size: clamp(2.4rem, 7vw, 4rem);
+      font-weight: bold;
       letter-spacing: 8px;
       color: #FFFFFF;
       text-shadow: 0 0 28px rgba(203, 213, 225, 0.22);
@@ -303,7 +309,7 @@
     .hero-subtitle {
       font-size: 0.95rem;
       color: var(--text-sub);
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto 28px;
     }
 
@@ -384,6 +390,7 @@
       color: var(--text-main);
       font-family: var(--font-mono);
       font-size: 0.82rem;
+      font-weight: bold;
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -427,6 +434,7 @@
     .sec-title {
       font-family: var(--font-mono);
       font-size: 1.35rem;
+      font-weight: bold;
       color: #FFFFFF;
       letter-spacing: 2px;
     }
@@ -467,6 +475,7 @@
     .card-title {
       font-family: var(--font-mono);
       font-size: 1.1rem;
+      font-weight: bold;
       color: #FFFFFF;
       letter-spacing: 1px;
       margin-bottom: 10px;
@@ -488,6 +497,7 @@
     .badge {
       font-family: var(--font-mono);
       font-size: 0.7rem;
+      font-weight: bold;
       padding: 2px 8px;
       border: 1px solid currentColor;
       letter-spacing: 1px;
@@ -521,9 +531,16 @@
       margin-top: 2px;
     }
 
+    .step-badge.cyan {
+      background: rgba(0, 229, 255, 0.12);
+      border-color: var(--hud-cyan);
+      color: var(--hud-cyan);
+    }
+
     .step-body h4 {
       color: #FFFFFF;
       font-size: 0.98rem;
+      font-weight: 900;
       margin-bottom: 4px;
     }
 
@@ -555,6 +572,7 @@
       background: #151921;
       color: var(--rs-silver);
       font-family: var(--font-mono);
+      font-weight: bold;
       letter-spacing: 1px;
       white-space: nowrap;
     }
@@ -566,6 +584,7 @@
 
     .mono-hl {
       font-family: var(--font-mono);
+      font-weight: bold;
       color: #FFFFFF;
       background: rgba(255, 255, 255, 0.08);
       padding: 2px 6px;
@@ -574,10 +593,20 @@
 
     .mono-red {
       font-family: var(--font-mono);
+      font-weight: bold;
       color: #FF8A80;
       background: rgba(227, 0, 15, 0.14);
       padding: 2px 6px;
       border: 1px solid rgba(227, 0, 15, 0.35);
+    }
+
+    .mono-cyan {
+      font-family: var(--font-mono);
+      font-weight: bold;
+      color: var(--hud-cyan);
+      background: rgba(0, 229, 255, 0.12);
+      padding: 2px 6px;
+      border: 1px solid rgba(0, 229, 255, 0.35);
     }
 
     /* HUDモックアップ図解 */
@@ -606,6 +635,7 @@
     .mock-label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
+      font-weight: bold;
       color: var(--text-sub);
       letter-spacing: 1.5px;
     }
@@ -667,24 +697,26 @@
       transform: translateX(16px);
     }
 
-    /* 高速道路施設カードのミニ再現 */
+    /* 高速道路施設カードのミニ再現（v3.7 高密度・大文字・横長ワイドスタバ仕様） */
     .fac-row-mock {
-      background: rgba(0, 0, 0, 0.90);
+      background: rgba(0, 0, 0, 0.92);
       border: 1px solid #222731;
-      padding: 10px 12px;
+      padding: 8px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 8px;
-      font-family: var(--font-mono);
+      font-family: var(--font-sans);
     }
 
     .fac-tag {
-      padding: 3px 8px;
-      font-size: 0.75rem;
-      font-weight: bold;
+      padding: 4px 9px;
+      font-size: 0.82rem;
+      font-weight: 900;
       color: #FFF;
       margin-right: 10px;
+      min-width: 38px;
+      text-align: center;
     }
 
     .fac-tag.sa { background: #1B5E20; }
@@ -697,8 +729,9 @@
 
     .fac-name {
       color: #FFF;
-      font-weight: bold;
-      font-size: 0.92rem;
+      font-weight: 900;
+      font-size: 1.05rem;
+      line-height: 1.15;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -708,15 +741,16 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 5px;
-      margin-top: 4px;
+      gap: 6px;
+      margin-top: 5px;
     }
 
     .fac-sub span {
-      font-size: 0.62rem;
-      border: 1px solid #555;
+      font-size: 0.68rem;
+      font-weight: bold;
+      border: 1.2px solid #555;
       color: #CCC;
-      padding: 1px 5px;
+      padding: 1px 6px;
       line-height: 1.2;
     }
 
@@ -726,23 +760,25 @@
       font-weight: bold;
     }
 
-    /* STARBUCKS 公式ロゴ付きタグ（HUD内） */
+    /* STARBUCKS 公式ロゴ付き横長ワイドタグ（実機v3.7完全準拠） */
     .fac-sub span.sbux-tag {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 7px;
       background: var(--sbux-bg);
-      border: 1px solid var(--sbux-bright);
+      border: 1.2px solid var(--sbux-bright);
+      border-radius: 4px;
       color: #FFFFFF;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      padding: 2px 7px 2px 4px;
-      box-shadow: 0 0 12px rgba(0, 168, 98, 0.45);
+      font-weight: 900;
+      font-size: 0.7rem;
+      letter-spacing: 0.8px;
+      padding: 2px 11px 2px 8px;
+      box-shadow: 0 0 12px rgba(0, 210, 120, 0.55);
     }
 
     .sbux-real-logo-mini {
-      width: 15px;
-      height: 15px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       display: block;
       flex-shrink: 0;
@@ -755,13 +791,16 @@
 
     .fac-dist .km {
       color: #FFF;
-      font-size: 1rem;
-      font-weight: bold;
+      font-size: 1.15rem;
+      font-weight: 900;
+      line-height: 1.1;
     }
 
     .fac-dist .eta {
-      color: var(--hud-emerald);
-      font-size: 0.75rem;
+      color: #FFFFFF;
+      font-size: 0.82rem;
+      font-weight: bold;
+      margin-top: 2px;
     }
 
     /* STARBUCKS ワンポイントアドバイス（本物公式ロゴ付き枠） */
@@ -820,6 +859,7 @@
     .sbux-pill {
       font-family: var(--font-mono);
       font-size: 0.68rem;
+      font-weight: bold;
       background: rgba(0, 168, 98, 0.25);
       border: 1px solid var(--sbux-bright);
       color: #A7F3D0;
@@ -835,17 +875,71 @@
     .sbux-inline-badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       vertical-align: middle;
       font-family: var(--font-mono);
       font-size: 0.76rem;
       font-weight: bold;
+      letter-spacing: 0.8px;
       background: var(--sbux-bg);
       border: 1px solid var(--sbux-bright);
+      border-radius: 4px;
       color: #FFFFFF;
-      padding: 2px 8px 2px 4px;
+      padding: 2px 10px 2px 7px;
       margin: 0 4px;
-      box-shadow: 0 0 8px rgba(0, 168, 98, 0.4);
+      box-shadow: 0 0 10px rgba(0, 210, 120, 0.45);
+    }
+
+    /* ★U字タブ（絆創膏タブ）クイックドロワーのビジュアル図解パーツ */
+    .bandaid-demo-bar {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .bandaid-drawer-mock {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid #222731;
+      padding: 5px 8px;
+    }
+
+    .bandaid-chip {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: #1F070A;
+      border: 1px solid var(--audi-red);
+      color: #FFFFFF;
+    }
+
+    .bandaid-chip.unset {
+      background: #12151B;
+      border-color: #3A3F4B;
+      color: #94A3B8;
+    }
+
+    .bandaid-tab-mock {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 36px;
+      background: #080A0E;
+      border: 1px solid var(--audi-red);
+      border-top-right-radius: 18px;
+      border-bottom-right-radius: 18px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--audi-red);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     }
 
     /* ★ページ中盤以降で出現する「TOPへ戻る」タクティカルHUDボタン */
@@ -991,7 +1085,7 @@
       </a>
       <div class="status-pill">
         <span class="status-dot"></span>
-        PIONEER BUILD v2.4
+        PIONEER BUILD v3.0
       </div>
     </header>
 
@@ -1013,7 +1107,7 @@
         <h1 class="hero-title">VECTRA</h1>
         <p class="hero-subtitle">
           高速道路の今と先を射抜く、ドライバー特化型タクティカル・ナビゲーションシステム。<br>
-          先行テスター向け公式導入・操作プロトコル。
+          全機種ボールドフォント統一＆クイック3拠点ドロワー搭載の最新プロトコル。
         </p>
 
         <div class="pioneer-frame">
@@ -1029,7 +1123,7 @@
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            DOWNLOAD APK (v2.4 / 80MB)
+            DOWNLOAD APK (v3.0 / 80MB)
           </a>
           <div class="dl-meta">PACKAGE: jp.vectra.navi &nbsp;|&nbsp; TARGET: Android 8.0+ (ARM64 SLIM BUILD)</div>
         </div>
@@ -1039,7 +1133,7 @@
       <nav class="quick-nav">
         <a href="#sec-install" class="quick-link">
           <span class="num">01 // INSTALL</span>
-          <span>APK導入・警告突破手順</span>
+          <span>APK導入・上書き更新手順</span>
         </a>
         <a href="#sec-auth" class="quick-link">
           <span class="num">02 // LICENSE</span>
@@ -1050,12 +1144,12 @@
           <span>高速施設＆スタバアイコン</span>
         </a>
         <a href="#sec-navi" class="quick-link">
-          <span class="num">04 // ROUTE & ALT</span>
-          <span>ルート案内＆代替ルート</span>
+          <span class="num">04 // QUICK PIN & ALT</span>
+          <span>お気に入り3拠点＆代替ルート</span>
         </a>
         <a href="#sec-custom" class="quick-link">
           <span class="num">05 // CUSTOMIZE</span>
-          <span>渋滞線太さ・HUD設定</span>
+          <span>渋滞線太さ・各種設定</span>
         </a>
       </nav>
 
@@ -1064,7 +1158,7 @@
         <div class="sec-header">
           <span class="sec-num">01</span>
           <h2 class="sec-title">INSTALLATION PROTOCOL</h2>
-          <span class="sec-jp">スタンドアロンAPKの導入手順</span>
+          <span class="sec-jp">スタンドアロンAPKの導入・アップデート手順</span>
         </div>
 
         <div class="hud-card red-accent">
@@ -1073,7 +1167,7 @@
             <span class="badge">MUST READ</span>
           </div>
           <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:16px;">
-            本アプリはGoogle Playストア公開前の「先行クローズドβ専用ビルド（独自署名APK）」です。そのため、インストール時にAndroid標準のPlayプロテクト確認画面が表示されますが、ウイルスや不正プログラムではありません。以下の3ステップで導入してください。
+            本アプリはGoogle Playストア公開前の「先行クローズドβ専用ビルド（独自署名APK）」です。初回導入時および新バージョンへの上書きアップデート時は、以下の3ステップでインストールしてください（※すでに旧版を導入済みの場合は、アンインストールせずそのまま上書きインストール可能です）。
           </p>
 
           <div class="step-list">
@@ -1100,9 +1194,9 @@
             <div class="step-item">
               <span class="step-badge">STEP 03</span>
               <div class="step-body">
-                <h4>位置情報（GPS）権限の許可</h4>
+                <h4>位置情報（GPS）権限の許可 ＆ フォントエンジンの自動最適化</h4>
                 <p>
-                  VECTRA起動後、位置情報へのアクセス許可を求められたら <strong>「アプリの使用中のみ許可」</strong>（かつ「正確な位置情報」をON）を選択してください。
+                  VECTRA起動後、位置情報へのアクセス許可を求められたら <strong>「アプリの使用中のみ許可」</strong>（かつ「正確な位置情報」をON）を選択してください。初回起動時にVECTRA専用の和欧混植ボールドフォントが自動キャッシュされ、どのスマホ機種でも100%統一されたコックピットHUDが描画されます。
                 </p>
               </div>
             </div>
@@ -1110,7 +1204,7 @@
         </div>
       </section>
 
-      <!-- 02. AUTHENTICATION & LICENSE RULES (警告枠を完全撤廃しクリーン化) -->
+      <!-- 02. AUTHENTICATION & LICENSE RULES -->
       <section id="sec-auth" class="section">
         <div class="sec-header">
           <span class="sec-num">02</span>
@@ -1124,7 +1218,8 @@
             <span class="badge">MAX 5 PILOTS</span>
           </div>
           <p style="font-size:0.9rem; color:var(--text-sub);">
-            起動画面（首都高C1背景）にて、任意のパイロットID（または下部の <strong>GOOGLE AUTHENTICATION</strong> からご自身のGoogleアカウント）でログインしてください。一度ログインすると端末内に認証情報が記憶され、<strong>次回からは「LAUNCH VECTRA」の1タップのみで即座にメインHUDへ突入</strong>します。
+            起動画面（首都高C1背景）にて、任意のパイロットID（または下部の <strong>Sign in with Google</strong> からご自身のGoogleアカウント）でログインしてください。一度ログインすると端末内に認証情報が記憶され、<strong>次回からは「LAUNCH VECTRA」の1タップのみで即座にメインHUDへ突入</strong>します。<br>
+            ※アプリの上書きアップデートや再インストールを行った場合も、端末固有IDにより当月の利用枠が自動的に引き継がれます。
           </p>
 
           <div class="table-wrap">
@@ -1149,7 +1244,7 @@
                 </tr>
                 <tr>
                   <td><strong>Google Places 目的地キーワード検索</strong></td>
-                  <td><strong>1日 10 回</strong> まで（※地図長押しピン留めは消費なし）</td>
+                  <td><strong>1日 10 回</strong> まで（※お気に入り3拠点・地図長押しピン留めは消費なし）</td>
                   <td>毎日0時 自動リセット</td>
                 </tr>
               </tbody>
@@ -1183,7 +1278,7 @@
               <p style="font-size:0.86rem; color:var(--text-main); margin-bottom:10px;">
                 1. 画面右側の <span class="mono-red">ROUTE HGWY</span> スイッチが左側（HGWY）になっていることを確認します。<br><br>
                 2. 高速道路・都市高速の本線走行中に <span class="mono-hl">HIGHWAY MODE</span> スイッチをONにすると、進行方向の路線（首都高C1等の環状線周回にも完全対応）を自動解析し、直近3つの施設を下から上へ積み上げ表示します。<br><br>
-                <span style="color:var(--text-sub); font-size:0.8rem;">※施設名の表記は、日本語（デフォルト）と英語（欧州車コックピット風）をいつでもワンタップで切り替え可能です。</span>
+                <span style="color:var(--text-sub); font-size:0.8rem;">※施設名の表記は、日本語（デフォルト）と英語（欧州車コックピット風）をいつでもワンタップで切り替え可能です。長い施設名は自動でスムーズに横スクロールします。</span>
               </p>
             </div>
 
@@ -1200,7 +1295,7 @@
                 </div>
               </div>
 
-              <!-- 3段目（奥）：海老名SA（上り）★ここに本物スタバ店舗あり！ -->
+              <!-- 3段目（奥）：海老名SA（上り）★実機v3.7準拠：スタバ併設時は P/WC を省略し、重要な GAS と横長ワイド STARBUCKS を表示！ -->
               <div class="fac-row-mock">
                 <span class="fac-tag sa">SA</span>
                 <div class="fac-info">
@@ -1208,8 +1303,6 @@
                     海老名SA (上り)
                   </div>
                   <div class="fac-sub">
-                    <span>P</span>
-                    <span>WC</span>
                     <span>GAS</span>
                     <span class="sbux-tag">
                       <img
@@ -1269,11 +1362,11 @@
                 <div class="sbux-spotlight-title">
                   ONE-POINT ADVICE // SA・PA の「スタバアイコン」に注目！
                 </div>
-                <span class="sbux-pill">HIDDEN FEATURE</span>
+                <span class="sbux-pill">SMART DISPLAY</span>
               </div>
               <p>
                 ロングドライブ中のコーヒーブレイクを逃さないための「隠れ機能」を搭載！<br>
-                スターバックスが併設されている所定のSA・PA（東名・海老名SA上り、足柄SA上下、海ほたるPA、酒々井PA上下、湾岸幕張PA上下、大黒PA、談合坂SA上下など全国の高速SA/PA）が前方に迫ると、進行方向の上下線まで自動判別して施設カード内に
+                スターバックスが併設されている全国の高速SA・PA（守谷SA上下、海老名SA上り、足柄SA上下、海ほたるPA、酒々井PA上下、湾岸幕張PA上下、大黒PA、談合坂SA上下など全54拠点）が前方に迫ると、進行方向の上下線まで自動判別して施設カード内に
                 <span class="sbux-inline-badge">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
@@ -1282,28 +1375,52 @@
                   />
                   STARBUCKS
                 </span>
-                アイコンが自動点灯します。高速走行中はぜひSA/PAカードのアイコン欄に注目してみてください！
+                アイコンが自動点灯します。<br>
+                ※スタバ併設エリアでは視認性を最大化するため、通常の <span class="mono-hl">P</span> <span class="mono-hl">WC</span> タグを自動省略し、給油可否がすぐ分かる重要な <span class="mono-hl">GAS</span> タグとスタバアイコンのみをワイドに表示します！
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 04. TACTICAL ROUTE NAVIGATION -->
+      <!-- 04. TACTICAL ROUTE NAVIGATION & QUICK DESTINATIONS -->
       <section id="sec-navi" class="section">
         <div class="sec-header">
           <span class="sec-num">04</span>
-          <h2 class="sec-title">TACTICAL ROUTE & ALT SWITCH</h2>
-          <span class="sec-jp">ルート案内と2段階ステルス代替ルート</span>
+          <h2 class="sec-title">QUICK PIN, ROUTE & ALT SWITCH</h2>
+          <span class="sec-jp">お気に入り3拠点ドロワーと2段階ステルス代替ルート</span>
         </div>
 
         <div class="hud-card">
           <div class="card-title">
-            <span>2通りの目的地セットと、運転を妨げない「2段階ステルス代替ルート」</span>
+            <span>3通りの目的地セットと、運転を妨げない「2段階ステルス代替ルート」</span>
             <span class="badge">SMART ROUTING</span>
           </div>
 
           <div class="step-list">
+            <!-- ★NEW: お気に入り3拠点（U字タブ引き出しドロワー）の説明 -->
+            <div class="step-item">
+              <span class="step-badge cyan">NEW // QUICK PIN</span>
+              <div class="step-body">
+                <h4>画面左端「U字プルタブ」によるお気に入り3拠点（Home / favolit1 / favolit2）ワンタップ出発</h4>
+                <p>
+                  画面左端（コンパスボタンのすぐ上）に配置された<strong>「横向きU字タブ（絆創膏の端っこ風タブ）」</strong>を指で右へ引っ張り出す（またはタップする）と、3つの専用拠点スロットが出現します（5秒間で自動収納）。
+                </p>
+                <div class="bandaid-demo-bar">
+                  <div class="bandaid-drawer-mock">
+                    <span class="bandaid-chip">[Home]</span>
+                    <span class="bandaid-chip">[favolit1]</span>
+                    <span class="bandaid-chip unset">[favolit2]</span>
+                  </div>
+                  <div class="bandaid-tab-mock">⋮⋮</div>
+                </div>
+                <p style="margin-top:6px;">
+                  ・<strong>未登録スロットをタップした場合</strong>：画面中央に赤い「＋」照準と透過アナウンス（例：<span class="mono-hl">Home 設定中</span>）が表示されます。地図を動かして登録したい場所に「＋」を合わせ、<strong>「決定」</strong>を押すだけで記憶されます。<br>
+                  ・<strong>登録済みスロットをタップした場合</strong>：<strong>検索回数を一切消費せず、1タップで即座にその拠点へのルート案内を開始</strong>します！（位置の変更や長押し消去は設定メニュー⚙️からいつでも行えます）
+                </p>
+              </div>
+            </div>
+
             <div class="step-item">
               <span class="step-badge">METHOD A</span>
               <div class="step-body">
@@ -1349,7 +1466,7 @@
 
         <div class="hud-card">
           <div class="card-title">
-            <span>渋滞ラインのリアルタイム太さ調整 ＆ カメラ制御</span>
+            <span>クイック拠点管理・渋滞ライン太さ調整・カメラ制御</span>
             <span class="badge">SETTINGS HUD</span>
           </div>
 
@@ -1363,6 +1480,11 @@
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td><strong>U字クイック拠点タブ</strong></td>
+                  <td>左端（コンパス上）</td>
+                  <td>右へスワイプ（またはタップ）で <span class="mono-red">[Home]</span> <span class="mono-red">[favolit1]</span> <span class="mono-red">[favolit2]</span> ドロワーを展開し、ワンタップで目的地セット・位置登録を行います。</td>
+                </tr>
                 <tr>
                   <td><strong>コンパスボタン</strong></td>
                   <td>左下（1段目）</td>
@@ -1379,6 +1501,11 @@
                   <td>地図をスクロールして現在地から離れた際、ワンタップで自車位置の <span class="mono-hl">HEAD-UP 3D</span> 追従モードへ即座に戻します。</td>
                 </tr>
                 <tr>
+                  <td><strong>QUICK DESTINATIONS (PIN)</strong></td>
+                  <td>設定（⚙️）内</td>
+                  <td>お気に入り3拠点の登録状態（<span class="mono-hl" style="color:var(--hud-emerald);">設定済</span> / <span class="mono-hl">未設定</span>）を一覧管理します。<strong>タップで位置の登録・変更</strong>、<strong>長押しで登録消去（未設定へ戻す）</strong>が可能です。</td>
+                </tr>
+                <tr>
                   <td><strong>Traffic Line Width</strong></td>
                   <td>設定（⚙️）内</td>
                   <td>地図上の渋滞情報ライン（緑・橙・赤・暗赤）の太さを <span class="mono-hl">0.5x 〜 2.0x</span> のスライダー、または <span class="mono-red">THIN / STD / BOLD</span> プリセットでリアルタイムに調整・保存できます。</td>
@@ -1392,6 +1519,11 @@
                   <td><strong>HUD Opacity</strong></td>
                   <td>設定（⚙️）内</td>
                   <td>上下のHUDパネルおよび高速施設リストの背景透過度を <span class="mono-hl">85% / 75% / 70%</span> から好みに合わせて切り替えられます。</td>
+                </tr>
+                <tr>
+                  <td><strong>DELETE ACCOUNT & DATA</strong></td>
+                  <td>設定（⚙️）最下部</td>
+                  <td>アカウント登録情報およびお気に入りピン・設定等の端末内データを初期状態へリセットします（削除後も再登録可能・当月利用枠は引き継がれます）。</td>
                 </tr>
               </tbody>
             </table>
@@ -1410,7 +1542,7 @@
     </a>
 
     <footer>
-      VECTRA TACTICAL NAVIGATION SYSTEM // PIONEER EDITION v2.4<br>
+      VECTRA TACTICAL NAVIGATION SYSTEM // PIONEER EDITION v3.0<br>
       DESIGNED FOR HIGH-PERFORMANCE DRIVING
     </footer>
 
