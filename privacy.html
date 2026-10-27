@@ -13,8 +13,9 @@
             --panel-bg: #0c121a;
             --cyan: #00e5ff;
             --cyan-dim: rgba(0, 229, 255, 0.25);
+            --cyan-border: rgba(0, 229, 255, 0.45);
             --red: #ff2a4b;
-            --red-dim: rgba(255, 42, 75, 0.25);
+            --red-dim: rgba(255, 42, 75, 0.35);
             --green: #00e676;
             --text-main: #e2e8f0;
             --text-sub: #94a3b8;
@@ -92,7 +93,7 @@
         .brand-sub-tag {
             font-family: 'Share Tech Mono', monospace;
             font-size: 0.72rem;
-            color: var(--red);
+            color: var(--text-sub);
             letter-spacing: 2px;
             margin-top: 3px;
         }
@@ -126,7 +127,7 @@
         }
 
         /* =========================================================
-           HUD HEADER & NAVIGATION MENU
+           HUD HEADER & NAVIGATION MENU (通常時すべて青・選択時赤)
            ========================================================= */
         .hud-header {
             border: 1px solid var(--cyan);
@@ -166,42 +167,38 @@
             letter-spacing: 0.8px;
             transition: all 0.2s ease;
         }
-        .hud-btn:hover {
-            background: rgba(0, 229, 255, 0.2);
-            box-shadow: 0 0 12px var(--cyan-dim);
-        }
-        .hud-btn-danger {
-            color: #ff6b81;
+        /* 選択・ホバー・タップ時に赤色へ変化 */
+        .hud-btn:hover,
+        .hud-btn:active,
+        .hud-btn:focus,
+        .hud-btn.selected {
+            color: #ffffff;
             border-color: var(--red);
-            background: rgba(255, 42, 75, 0.08);
-        }
-        .hud-btn-danger:hover {
-            background: rgba(255, 42, 75, 0.25);
-            box-shadow: 0 0 12px var(--red-dim);
+            background: rgba(255, 42, 75, 0.28);
+            box-shadow: 0 0 14px var(--red-dim);
+            outline: none;
         }
 
         /* =========================================================
-           SECTIONS & PANELS
+           SECTIONS & PANELS (内部項目もすべて青系で完全統一)
            ========================================================= */
         .section-title {
             font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
-            color: var(--red);
+            color: var(--cyan);
             font-size: 1.2rem;
             letter-spacing: 1.5px;
             margin: 36px 0 14px;
             padding-bottom: 6px;
-            border-bottom: 1px solid var(--red-dim);
+            border-bottom: 1px solid var(--cyan-border);
             text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
         }
         .panel {
             background-color: var(--panel-bg);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(0, 229, 255, 0.28);
             padding: 20px 24px;
             margin-bottom: 20px;
-        }
-        .panel-danger {
-            background-color: rgba(255, 42, 75, 0.05);
-            border: 1px solid var(--red);
+            box-shadow: inset 0 0 18px rgba(0, 229, 255, 0.03);
         }
         h3 {
             color: var(--cyan);
@@ -240,7 +237,7 @@
             font-size: 0.9rem;
         }
         th, td {
-            border: 1px solid rgba(148, 163, 184, 0.25);
+            border: 1px solid rgba(0, 229, 255, 0.22);
             padding: 10px 12px;
             text-align: left;
             vertical-align: top;
@@ -253,7 +250,7 @@
         .footer {
             margin-top: 48px;
             padding-top: 20px;
-            border-top: 1px solid rgba(148, 163, 184, 0.2);
+            border-top: 1px solid rgba(0, 229, 255, 0.2);
             text-align: center;
             font-family: 'Share Tech Mono', monospace;
             color: var(--text-sub);
@@ -285,13 +282,13 @@
             transition: all 0.2s ease;
             text-decoration: none;
         }
-        .floating-top-btn:hover {
-            background: rgba(0, 229, 255, 0.22);
-            box-shadow: 0 0 24px rgba(0, 229, 255, 0.55);
-            transform: translateY(-3px);
-        }
+        .floating-top-btn:hover,
         .floating-top-btn:active {
-            transform: translateY(0);
+            color: #ffffff;
+            border-color: var(--red);
+            background: rgba(255, 42, 75, 0.28);
+            box-shadow: 0 0 22px var(--red-dim);
+            transform: translateY(-2px);
         }
         .floating-top-arrow {
             width: 20px;
@@ -342,12 +339,12 @@
             <div class="brand-icon-box">
                 <!-- VECTRA Tactical HUD Vector Emblem SVG -->
                 <svg class="brand-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 9V2H9" stroke="#ff2a4b" stroke-width="2"/>
-                    <path d="M30 9V2H23" stroke="#ff2a4b" stroke-width="2"/>
-                    <path d="M2 23V30H9" stroke="#ff2a4b" stroke-width="2"/>
-                    <path d="M30 23V30H23" stroke="#ff2a4b" stroke-width="2"/>
+                    <path d="M2 9V2H9" stroke="#00e5ff" stroke-width="2"/>
+                    <path d="M30 9V2H23" stroke="#00e5ff" stroke-width="2"/>
+                    <path d="M2 23V30H9" stroke="#00e5ff" stroke-width="2"/>
+                    <path d="M30 23V30H23" stroke="#00e5ff" stroke-width="2"/>
                     <path d="M7 8L16 25L25 8H20.5L16 17L11.5 8H7Z" fill="#00e5ff"/>
-                    <circle cx="16" cy="7" r="1.8" fill="#ff2a4b"/>
+                    <circle cx="16" cy="7" r="1.8" fill="#00e5ff"/>
                 </svg>
             </div>
             <div class="brand-text-group">
@@ -370,11 +367,11 @@
             <div class="hud-title">VECTRA SYSTEM // 規約・プライバシーポリシー</div>
             <div class="hud-subtitle">5UM1R3 Works - Android専用 HUDナビゲーションシステム 法務ドキュメント</div>
             <div class="nav-bar">
-                <a href="index.html" class="hud-btn">&lt; 操作マニュアルへ戻る</a>
-                <a href="#privacy-policy" class="hud-btn">01 // プライバシーポリシー</a>
-                <a href="#account-deletion" class="hud-btn hud-btn-danger">02 // アカウント・データ削除</a>
-                <a href="#terms-of-service" class="hud-btn">03 // 利用規約・免責事項</a>
-                <a href="#contact" class="hud-btn">04 // 運営者情報・窓口</a>
+                <a href="index.html" class="hud-btn" onclick="selectNav(this)">&lt; 操作マニュアルへ戻る</a>
+                <a href="#privacy-policy" class="hud-btn" onclick="selectNav(this)">01 // プライバシーポリシー</a>
+                <a href="#account-deletion" class="hud-btn" onclick="selectNav(this)">02 // アカウント・データ削除</a>
+                <a href="#terms-of-service" class="hud-btn" onclick="selectNav(this)">03 // 利用規約・免責事項</a>
+                <a href="#contact" class="hud-btn" onclick="selectNav(this)">04 // 運営者情報・窓口</a>
             </div>
         </div>
 
@@ -382,11 +379,11 @@
             <div class="hud-title">VECTRA SYSTEM // PRIVACY POLICY &amp; TERMS</div>
             <div class="hud-subtitle">5UM1R3 Works - Android HUD Navigation System Legal Documentation</div>
             <div class="nav-bar">
-                <a href="index.html" class="hud-btn">&lt; BACK TO USER MANUAL</a>
-                <a href="#privacy-policy" class="hud-btn">01 // PRIVACY POLICY</a>
-                <a href="#account-deletion" class="hud-btn hud-btn-danger">02 // ACCOUNT &amp; DATA DELETION</a>
-                <a href="#terms-of-service" class="hud-btn">03 // TERMS OF SERVICE</a>
-                <a href="#contact" class="hud-btn">04 // CONTACT</a>
+                <a href="index.html" class="hud-btn" onclick="selectNav(this)">&lt; BACK TO USER MANUAL</a>
+                <a href="#privacy-policy" class="hud-btn" onclick="selectNav(this)">01 // PRIVACY POLICY</a>
+                <a href="#account-deletion" class="hud-btn" onclick="selectNav(this)">02 // ACCOUNT &amp; DATA DELETION</a>
+                <a href="#terms-of-service" class="hud-btn" onclick="selectNav(this)">03 // TERMS OF SERVICE</a>
+                <a href="#contact" class="hud-btn" onclick="selectNav(this)">04 // CONTACT</a>
             </div>
         </div>
     </header>
@@ -505,21 +502,21 @@
         <!-- [JA] -->
         <div class="lang-ja">
             <h2 class="section-title">02 // ACCOUNT &amp; DATA DELETION（アカウントおよびデータの削除方法）</h2>
-            <div class="panel panel-danger">
+            <div class="panel">
                 <p>Google Play のデータ削除要件に基づき、ユーザーはいつでもご自身のアカウント（<span class="mono">ACTIVE PILOT ID</span>）および関連データの削除を実行・リクエストすることができます。</p>
 
                 <h3>方法A：アプリ内から即時削除する手順（推奨）</h3>
                 <ol>
                     <li>『VECTRA』アプリを起動し、設定画面（システムコンフィグ）を開きます。</li>
                     <li>最下部の <strong><span class="mono">ACCOUNT &amp; DATA PRIVACY</span></strong> セクションまでスクロールします。</li>
-                    <li>赤色の <strong><span class="mono">[ DELETE ACCOUNT &amp; DATA ]</span></strong> ボタンをタップし、確認ダイアログで実行を選択します。</li>
+                    <li><strong><span class="mono">[ DELETE ACCOUNT &amp; DATA ]</span></strong> ボタンをタップし、確認ダイアログで実行を選択します。</li>
                     <li>端末内の設定データ（登録ピン・設定値）およびアカウント登録情報が即座に初期化・削除されます。</li>
                 </ol>
 
                 <h3>方法B：Web（メール）から削除をリクエストする手順（アプリをアンインストール済みの場合）</h3>
                 <p>すでにアプリを端末からアンインストールしており、アプリ内操作を行えない場合は、以下のボタン（または連絡先メールアドレス <span class="mono">mm01smg@gmail.com</span>）より削除リクエストを送信してください。原則として<strong>7営業日以内</strong>に対象アカウントおよび関連データの完全削除を実施いたします。</p>
                 <p style="margin: 16px 0;">
-                    <a href="mailto:mm01smg@gmail.com?subject=%5BVECTRA%5D%20Account%20Deletion%20Request&body=Please%20delete%20my%20VECTRA%20account%20and%20associated%20data.%0D%0A%0D%0AActive%20Pilot%20ID%20(Registered%20Email)%3A%20" class="hud-btn hud-btn-danger">
+                    <a href="mailto:mm01smg@gmail.com?subject=%5BVECTRA%5D%20Account%20Deletion%20Request&body=Please%20delete%20my%20VECTRA%20account%20and%20associated%20data.%0D%0A%0D%0AActive%20Pilot%20ID%20(Registered%20Email)%3A%20" class="hud-btn" onclick="selectNav(this)">
                         [ メールでアカウント削除をリクエストする ]
                     </a>
                 </p>
@@ -535,21 +532,21 @@
         <!-- [EN] -->
         <div class="lang-en">
             <h2 class="section-title">02 // ACCOUNT &amp; DATA DELETION</h2>
-            <div class="panel panel-danger">
+            <div class="panel">
                 <p>In compliance with Google Play's Data Safety and Account Deletion requirements, users can delete their account (<span class="mono">ACTIVE PILOT ID</span>) and associated data at any time using either of the methods below.</p>
 
                 <h3>Method A: Immediate In-App Deletion (Recommended)</h3>
                 <ol>
                     <li>Launch the <strong>VECTRA</strong> app and open the System Configuration (Settings) screen.</li>
                     <li>Scroll down to the <strong><span class="mono">ACCOUNT &amp; DATA PRIVACY</span></strong> section at the bottom.</li>
-                    <li>Tap the red <strong><span class="mono">[ DELETE ACCOUNT &amp; DATA ]</span></strong> button and confirm the deletion in the dialog.</li>
+                    <li>Tap the <strong><span class="mono">[ DELETE ACCOUNT &amp; DATA ]</span></strong> button and confirm the deletion in the dialog.</li>
                     <li>Your account registration details and all local device preferences (saved pins and custom settings) will be immediately erased and reset.</li>
                 </ol>
 
                 <h3>Method B: Web / Email Deletion Request (If the App is Already Uninstalled)</h3>
                 <p>If you have already uninstalled the App and cannot access the in-app deletion button, please submit a deletion request via the button below (or email us directly at <span class="mono">mm01smg@gmail.com</span>). We will completely delete your account and associated data within <strong>7 business days</strong>.</p>
                 <p style="margin: 16px 0;">
-                    <a href="mailto:mm01smg@gmail.com?subject=%5BVECTRA%5D%20Account%20Deletion%20Request&body=Please%20delete%20my%20VECTRA%20account%20and%20associated%20data.%0D%0A%0D%0AActive%20Pilot%20ID%20(Registered%20Email)%3A%20" class="hud-btn hud-btn-danger">
+                    <a href="mailto:mm01smg@gmail.com?subject=%5BVECTRA%5D%20Account%20Deletion%20Request&body=Please%20delete%20my%20VECTRA%20account%20and%20associated%20data.%0D%0A%0D%0AActive%20Pilot%20ID%20(Registered%20Email)%3A%20" class="hud-btn" onclick="selectNav(this)">
                         [ SEND ACCOUNT DELETION REQUEST VIA EMAIL ]
                     </a>
                 </p>
@@ -655,7 +652,7 @@
 <button type="button" class="floating-top-btn" onclick="scrollToTop()" aria-label="Back to Top">
     <svg class="floating-top-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 15L12 9L18 15" stroke="#00e5ff" stroke-width="2.2" stroke-linecap="square"/>
-        <path d="M6 10L12 4L18 10" stroke="#ff2a4b" stroke-width="1.8" stroke-linecap="square"/>
+        <path d="M6 10L12 4L18 10" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="square"/>
     </svg>
     <span class="floating-top-label lang-ja">先頭へ</span>
     <span class="floating-top-label lang-en">TOP</span>
@@ -679,7 +676,19 @@
         }
     }
 
+    function selectNav(el) {
+        var allBtns = document.querySelectorAll('.nav-bar .hud-btn');
+        for (var i = 0; i < allBtns.length; i++) {
+            allBtns[i].classList.remove('selected');
+        }
+        el.classList.add('selected');
+    }
+
     function scrollToTop() {
+        var allBtns = document.querySelectorAll('.nav-bar .hud-btn');
+        for (var i = 0; i < allBtns.length; i++) {
+            allBtns[i].classList.remove('selected');
+        }
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
