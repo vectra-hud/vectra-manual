@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <!-- 【検索エンジン・クローラー完全拒否（ステルス設定）】 -->
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
-  <meta name="googlebot" content="noindex, nofollow, noarchive" />
+  <!-- 【公式マニュアル SEO設定（privacy.html側のみステルス保護）】 -->
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="目的地設定ゼロで首都高C1・湾岸線・全国高速のIC/JCT/スタバ併設PAを自動捕捉する走り屋モード搭載。ドライバー特化型タクティカル・ナビゲーションシステム VECTRA 公式操作マニュアル＆FAQ。" />
   <title>VECTRA // OFFICIAL TACTICAL MANUAL &amp; FAQ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2173,14 +2173,14 @@
           </details>
         </div>
 
-        <!-- プライバシーポリシー＆利用規約ページへの直通バー（現在の言語設定を自動引き継ぎ） -->
+        <!-- プライバシーポリシー＆利用規約ページへの直通バー（rel="nofollow" で検索クローラー巡回を遮断） -->
         <div class="legal-link-bar">
           <div>
             <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--hud-cyan); letter-spacing:1.5px;">LEGAL &amp; DATA PRIVACY</div>
             <div class="i18n-ja" style="font-size:0.85rem; color:var(--text-sub);">利用規約・プライバシーポリシーおよびWebからのアカウント削除リクエスト窓口</div>
             <div class="i18n-en" style="font-size:0.85rem; color:var(--text-sub);">Terms of Service, Privacy Policy &amp; Web Account Deletion Request Portal</div>
           </div>
-          <a id="legalPolicyLink" href="privacy.html" class="btn-legal-link">
+          <a id="legalPolicyLink" href="privacy.html" rel="nofollow" class="btn-legal-link">
             [ PRIVACY POLICY &amp; TERMS ▸ ]
           </a>
         </div>
