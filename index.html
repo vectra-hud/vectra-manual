@@ -1250,13 +1250,13 @@
     }
 
     .footer-disclaimer {
-      max-width: 780px;
+      max-width: 820px;
       margin: 12px auto 0;
       font-family: var(--font-sans);
       font-size: 0.72rem;
       color: #64748B;
-      letter-spacing: 0.4px;
-      line-height: 1.5;
+      letter-spacing: 0.3px;
+      line-height: 1.6;
     }
 
     @media (max-width: 720px) {
@@ -1343,7 +1343,7 @@
     <div class="top-right-controls">
       <div class="status-pill">
         <span class="status-dot"></span>
-        PRODUCTION v3.9
+        PRODUCTION v3.9.9
       </div>
 
       <!-- アプリ側と完全同期する [ EN | JP ] トグル -->
@@ -1486,8 +1486,8 @@
               </tr>
               <tr>
                 <td>
-                  <strong class="i18n-ja">Google Places 目的地キーワード検索</strong>
-                  <strong class="i18n-en">Google Places Destination Search</strong>
+                  <strong class="i18n-ja">高精度 目的地キーワード検索</strong>
+                  <strong class="i18n-en">Destination Keyword Search</strong>
                 </td>
                 <td><span class="mono-hl" style="color:#64748B;">LOCKED [PRO限定]</span></td>
                 <td>
@@ -1648,7 +1648,7 @@
               <h5 class="i18n-ja">01 // 首都高C1・環状線の「エンドレス周回」完全対応</h5>
               <h5 class="i18n-en">01 // Endless Loop Support on Shutoko C1 &amp; Ring Routes</h5>
               <p class="i18n-ja">
-                C1（都心環状線）の内回り・外回りを何周ループしても、進行方向ベクトルから次に来るIC・JCTを自動で再ロックオン。ルーレット走行中に案内が途切れることは一切ありません。
+                C1（都心環状線）の内回り・外回りを何周ループしても、進行方向ベクトルから次に来るIC・JCTを自動で再ロックオン。環状線クルーズ中に案内が途切れることは一切ありません。
               </p>
               <p class="i18n-en">
                 No matter how many laps you run on the C1 Inner or Outer loop, VECTRA continuously re-locks onto upcoming ICs and JCTs from your heading vector. Your HUD never terminates mid-cruise.
@@ -2156,8 +2156,8 @@
             <summary>
               <div class="faq-q-wrap">
                 <span class="faq-q-badge">Q.04</span>
-                <span class="faq-q-text i18n-ja">1日10回の「Google目的地検索」枠を節約してルート案内を使うコツはありますか？</span>
-                <span class="faq-q-text i18n-en">How can I start route navigation without using my 10 daily Google Place searches?</span>
+                <span class="faq-q-text i18n-ja">1日10回の「目的地キーワード検索」枠を節約してルート案内を使うコツはありますか？</span>
+                <span class="faq-q-text i18n-en">How can I start route navigation without using my 10 daily Destination Searches?</span>
               </div>
               <span class="faq-indicator">+</span>
             </summary>
@@ -2165,7 +2165,7 @@
               <span class="i18n-ja">
                 <strong>2つの方法（検索消費ゼロ）</strong>があります。<br>
                 1. 自宅やよく行く拠点は左端の<strong>「U字プルタブ」の3拠点（<span class="mono-red">[Home]</span> / <span class="mono-red">[Favorite1]</span> / <span class="mono-red">[Favorite2]</span>）</strong>に登録しておくことで、いつでも検索枠を消費せず1タップで出発できます。<br>
-                2. 地図上の目的地を直接<strong>「約1秒間長押し（ロングタップ）」</strong>してピンを刺す方法も、検索APIを叩かないため検索枠を一切消費しません。
+                2. 地図上の目的地を直接<strong>「約1秒間長押し（ロングタップ）」</strong>してピンを刺す方法も、検索枠を一切消費しません。
               </span>
               <span class="i18n-en">
                 There are <strong>two zero-search-quota methods</strong>:<br>
@@ -2245,13 +2245,17 @@
   </a>
 
   <footer>
-    VECTRA TACTICAL NAVIGATION SYSTEM // OFFICIAL MANUAL v3.9<br>
+    VECTRA TACTICAL NAVIGATION SYSTEM // OFFICIAL MANUAL v3.9.9<br>
     DESIGNED FOR HIGH-PERFORMANCE DRIVING
     <div class="footer-disclaimer i18n-ja">
-      ※記載されている店舗名・ブランド名は各社の商標であり、施設案内（POI情報）の目的でのみ表示しています。
+      ※安全のため、運転中のスマートフォン操作や画面の注視は絶対におやめください。走行時は必ず実際の道路標識・交通規制に従ってください。<br>
+      ※記載されている店舗名・ブランド名は各社の商標または登録商標であり、施設案内（POI情報）の目的でのみ表示しています。<br>
+      Map Data: © Mapbox © OpenStreetMap contributors.
     </div>
     <div class="footer-disclaimer i18n-en">
-      *All store names and brand names mentioned are trademarks of their respective owners and are displayed strictly for Point of Interest (POI) informational purposes.
+      *For safety, never operate the device or stare at the screen while driving. Always obey actual road signs and traffic regulations.<br>
+      *All store names and brand names mentioned are trademarks of their respective owners and are displayed strictly for Point of Interest (POI) informational purposes.<br>
+      Map Data: © Mapbox © OpenStreetMap contributors.
     </div>
   </footer>
 
