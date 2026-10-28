@@ -871,7 +871,7 @@
       font-weight: bold;
     }
 
-    /* STARBUCKS 公式ロゴ付き横長ワイドタグ */
+    /* STARBUCKS VECTRA独自タクティカル・カフェアイコン付き横長ワイドタグ */
     .fac-sub span.sbux-tag {
       display: inline-flex;
       align-items: center;
@@ -888,8 +888,8 @@
     }
 
     .sbux-real-logo-mini {
-      width: 16px;
-      height: 16px;
+      width: 16.5px;
+      height: 16.5px;
       border-radius: 50%;
       display: block;
       flex-shrink: 0;
@@ -914,7 +914,7 @@
       margin-top: 2px;
     }
 
-    /* STARBUCKS ワンポイントアドバイス（本物公式ロゴ付き枠） */
+    /* STARBUCKS ワンポイントアドバイス（VECTRA独自タクティカル・カフェアイコン搭載枠） */
     .sbux-spotlight {
       margin-top: 18px;
       background: linear-gradient(135deg, rgba(0, 98, 65, 0.30) 0%, rgba(12, 14, 18, 0.96) 70%);
@@ -927,16 +927,17 @@
     }
 
     .sbux-emblem-wrap {
-      width: 66px;
-      height: 66px;
+      width: 68px;
+      height: 68px;
       flex-shrink: 0;
       border-radius: 50%;
-      background: #FFFFFF;
-      padding: 2px;
+      background: #021A10;
+      border: 1.5px solid var(--sbux-bright);
+      padding: 1px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 22px rgba(0, 168, 98, 0.65);
+      box-shadow: 0 0 22px rgba(0, 230, 118, 0.55);
     }
 
     .sbux-real-logo-large {
@@ -999,6 +1000,15 @@
       padding: 2px 10px 2px 7px;
       margin: 0 4px;
       box-shadow: 0 0 10px rgba(0, 210, 120, 0.45);
+    }
+
+    .poi-trademark-note {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(0, 168, 98, 0.35);
+      font-size: 0.76rem !important;
+      color: var(--text-sub) !important;
+      line-height: 1.5;
     }
 
     /* ★U字タブ（絆創膏タブ）クイックドロワーのビジュアル図解パーツ */
@@ -1239,6 +1249,16 @@
       letter-spacing: 1.5px;
     }
 
+    .footer-disclaimer {
+      max-width: 780px;
+      margin: 12px auto 0;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: #64748B;
+      letter-spacing: 0.4px;
+      line-height: 1.5;
+    }
+
     @media (max-width: 720px) {
       .shutoko-grid {
         grid-template-columns: 1fr;
@@ -1278,6 +1298,41 @@
   </style>
 </head>
 <body id="page-top">
+
+  <!-- ====================================================================
+       ★ VECTRA独自タクティカル・カフェアイコン（インラインSVGマスター定義）
+       外部画像URLへの依存ゼロ・知的所有権リスク100%クリア仕様
+       ==================================================================== -->
+  <svg width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="vectraCafeBgGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#063B25" />
+        <stop offset="100%" stop-color="#021A10" />
+      </radialGradient>
+      <symbol id="vectra-tactical-cafe-icon" viewBox="0 0 100 100">
+        <!-- 1. ダークエメラルド・タクティカルサークル背景 -->
+        <circle cx="50" cy="50" r="49" fill="url(#vectraCafeBgGrad)" />
+        <!-- 2. 外周グリーンネオンHUDベゼル＆強調アーク (#00A862 / #00E676) -->
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#00A862" stroke-width="4.5" stroke-opacity="0.88" />
+        <path d="M 87.7 23.6 A 46 46 0 0 1 87.7 76.4" fill="none" stroke="#00E676" stroke-width="6.5" stroke-linecap="round" />
+        <path d="M 12.3 76.4 A 46 46 0 0 1 12.3 23.6" fill="none" stroke="#00E676" stroke-width="6.5" stroke-linecap="round" />
+        <!-- 3. 内周ターゲットリング＆上下左右クロスヘア目盛り -->
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#80FFC8" stroke-width="2.5" stroke-dasharray="42 18" stroke-opacity="0.75" />
+        <line x1="50" y1="6" x2="50" y2="15" stroke="#00E676" stroke-width="3.5" />
+        <line x1="50" y1="85" x2="50" y2="94" stroke="#00E676" stroke-width="3.5" />
+        <line x1="6" y1="50" x2="15" y2="50" stroke="#00E676" stroke-width="3.5" />
+        <line x1="85" y1="50" x2="94" y2="50" stroke="#00E676" stroke-width="3.5" />
+        <!-- 4. 幾何学コーヒーカップ本体（台形ベクター＋D型ハンドル＋ソーサーベース） -->
+        <path d="M 28 49 L 66 49 L 60 72 L 34 72 Z" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linejoin="miter" />
+        <path d="M 65 53 L 75 53 L 72 66 L 61 66" fill="none" stroke="#FFFFFF" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="miter" />
+        <line x1="25" y1="79" x2="69" y2="79" stroke="#FFFFFF" stroke-width="6.2" stroke-linecap="square" />
+        <!-- 5. デジタル・タクティカルスチーム（3本の角型ウェーブ蒸気） -->
+        <path d="M 37 42 L 33 35 L 37 26" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="miter" />
+        <path d="M 47 42 L 44 33 L 49 21" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="miter" />
+        <path d="M 57 42 L 54 35 L 58 26" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="miter" />
+      </symbol>
+    </defs>
+  </svg>
 
   <!-- 固定トップHUDバー（右上に [ EN | JP ] 切替トグル常設） -->
   <header class="top-hud-bar">
@@ -1678,11 +1733,7 @@
                 <div id="facSub3" class="fac-sub">
                   <span>GAS</span>
                   <span class="sbux-tag">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
-                      alt="Starbucks"
-                      class="sbux-real-logo-mini"
-                    />
+                    <svg class="sbux-real-logo-mini" aria-hidden="true"><use href="#vectra-tactical-cafe-icon"/></svg>
                     STARBUCKS
                   </span>
                 </div>
@@ -1721,14 +1772,12 @@
           </div>
         </div>
 
-        <!-- ★本物のスターバックス公式コーポレートロゴ（SVG）搭載 ワンポイントアドバイス枠 -->
+        <!-- ★VECTRA独自タクティカル・カフェアイコン（SVG）搭載 ワンポイントアドバイス枠 -->
         <div class="sbux-spotlight">
           <div class="sbux-emblem-wrap">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
-              alt="Starbucks Official Siren"
-              class="sbux-real-logo-large"
-            />
+            <svg class="sbux-real-logo-large" role="img" aria-label="VECTRA Tactical Cafe POI Icon">
+              <use href="#vectra-tactical-cafe-icon"/>
+            </svg>
           </div>
           <div class="sbux-content">
             <div class="sbux-spotlight-header">
@@ -1742,11 +1791,7 @@
               ナイトドライブや長距離ツーリングのコーヒーブレイクを逃さないための「隠れ機能」を搭載！<br>
               スターバックスが併設されている全国の高速SA・PA（海ほたるPA、湾岸幕張PA上下、守谷SA上下、海老名SA上り、足柄SA上下、酒々井PA上下、第三京浜・都筑PA上り、談合坂SA上下など）が前方に迫ると、進行方向の上下線まで自動判別して施設カード内に
               <span class="sbux-inline-badge">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
-                  alt="Starbucks"
-                  class="sbux-real-logo-mini"
-                />
+                <svg class="sbux-real-logo-mini" aria-hidden="true"><use href="#vectra-tactical-cafe-icon"/></svg>
                 STARBUCKS
               </span>
               アイコンが自動点灯します。<br>
@@ -1754,17 +1799,19 @@
             </p>
             <p class="i18n-en">
               Never miss a coffee break during night drives or long-distance touring!<br>
-              When approaching an expressway SA/PA with an official Starbucks store (Umihotaru PA, Wangan-Makuhari PA, Moriya SA, Ebina SA Inbound, Ashigara SA, Shisui PA, Tsuzuki PA Inbound, Dangozaka SA, etc.), VECTRA automatically verifies your travel direction (Inbound/Outbound) and lights up the
+              When approaching an expressway SA/PA with a Starbucks store (Umihotaru PA, Wangan-Makuhari PA, Moriya SA, Ebina SA Inbound, Ashigara SA, Shisui PA, Tsuzuki PA Inbound, Dangozaka SA, etc.), VECTRA automatically verifies your travel direction (Inbound/Outbound) and lights up the
               <span class="sbux-inline-badge">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
-                  alt="Starbucks"
-                  class="sbux-real-logo-mini"
-                />
+                <svg class="sbux-real-logo-mini" aria-hidden="true"><use href="#vectra-tactical-cafe-icon"/></svg>
                 STARBUCKS
               </span>
               neon badge.<br>
               * For maximum cockpit legibility at Starbucks locations, standard <span class="mono-hl">P</span> and <span class="mono-hl">WC</span> tags are omitted so the critical <span class="mono-hl">GAS</span> (fuel) tag and wide Starbucks badge stand out clearly!
+            </p>
+            <p class="poi-trademark-note i18n-ja">
+              ※記載されている店舗名・ブランド名は各社の商標または登録商標であり、本アプリでは施設案内（POI情報）の目的でのみ表示しています。各企業との提携・協賛関係を示すものではありません。
+            </p>
+            <p class="poi-trademark-note i18n-en">
+              *All store names and brand names mentioned or displayed are trademarks or registered trademarks of their respective owners, and are shown strictly for Point of Interest (POI) informational purposes. Their use does not imply any affiliation or endorsement.
             </p>
           </div>
         </div>
@@ -2200,6 +2247,12 @@
   <footer>
     VECTRA TACTICAL NAVIGATION SYSTEM // OFFICIAL MANUAL v3.9<br>
     DESIGNED FOR HIGH-PERFORMANCE DRIVING
+    <div class="footer-disclaimer i18n-ja">
+      ※記載されている店舗名・ブランド名は各社の商標であり、施設案内（POI情報）の目的でのみ表示しています。
+    </div>
+    <div class="footer-disclaimer i18n-en">
+      *All store names and brand names mentioned are trademarks of their respective owners and are displayed strictly for Point of Interest (POI) informational purposes.
+    </div>
   </footer>
 
   <script>
@@ -2259,7 +2312,7 @@
 
       var SBUX_BADGE_HTML =
         '<span class="sbux-tag">' +
-          '<img src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg" alt="Starbucks" class="sbux-real-logo-mini" />' +
+          '<svg class="sbux-real-logo-mini" aria-hidden="true"><use href="#vectra-tactical-cafe-icon"/></svg>' +
           'STARBUCKS' +
         '</span>';
 
