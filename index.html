@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <!-- 【対策A：検索エンジン・クローラー完全拒否（ステルス設定）】 -->
+  <!-- 【検索エンジン・クローラー完全拒否（ステルス設定）】 -->
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
   <meta name="googlebot" content="noindex, nofollow, noarchive" />
-  <title>VECTRA // PIONEER EDITION - OFFICIAL PILOT MANUAL</title>
+  <title>VECTRA // OFFICIAL TACTICAL MANUAL &amp; FAQ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
       --text-sub: #94A3B8;
       --border-stealth: #222731;
       --font-mono: 'Share Tech Mono', monospace;
-      /* 実機アプリ(v3.7)と完全同一：英数字＝Share Tech Mono / 日本語＝Zen Kaku Gothic New Bold */
+      /* 実機アプリと完全同一：英数字＝Share Tech Mono / 日本語＝Zen Kaku Gothic New Bold */
       --font-sans: 'Share Tech Mono', 'Zen Kaku Gothic New', sans-serif;
     }
 
@@ -60,147 +60,17 @@
       font-weight: 700;
     }
 
-    body.locked {
-      overflow: hidden;
-    }
-
     /* ============================================================
-       ★ STEALTH PASSCODE GATE (ENTER PILOT PASSCODE ロック画面)
+       ★ 日英モード表示制御（JP基準：あえて英語の箇所はそのまま共通表示）
        ============================================================ */
-    .gate-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background:
-        radial-gradient(circle at 50% 35%, rgba(26, 31, 41, 0.96) 0%, rgba(5, 6, 8, 0.99) 75%);
-      backdrop-filter: blur(18px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      transition: opacity 0.35s ease, visibility 0.35s ease;
+    body:not(.lang-en) .i18n-en {
+      display: none !important;
     }
-
-    .gate-overlay.unlocked {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+    body.lang-en .i18n-ja {
+      display: none !important;
     }
-
-    .gate-box {
-      width: 100%;
-      max-width: 440px;
-      background: rgba(12, 14, 18, 0.95);
-      border: 1px solid #2E3646;
-      border-top: 3px solid var(--audi-red);
-      padding: 36px 28px 30px;
-      text-align: center;
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85);
-      position: relative;
-    }
-
-    .gate-crest {
-      width: 68px;
-      height: 68px;
-      margin: 0 auto 16px;
-    }
-
-    .gate-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--audi-red);
-      letter-spacing: 3px;
-      margin-bottom: 6px;
-    }
-
-    .gate-title {
-      font-family: var(--font-mono);
-      font-size: 1.55rem;
-      color: #FFFFFF;
-      letter-spacing: 4px;
-      margin-bottom: 8px;
-    }
-
-    .gate-desc {
-      font-size: 0.82rem;
-      color: var(--text-sub);
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-
-    .gate-input-wrap {
-      position: relative;
-      margin-bottom: 14px;
-    }
-
-    .gate-input {
-      width: 100%;
-      background: #06080B;
-      border: 1px solid #334155;
-      color: #FFFFFF;
-      font-family: var(--font-mono);
-      font-size: 1.2rem;
-      font-weight: bold;
-      letter-spacing: 4px;
-      text-align: center;
-      padding: 14px 16px;
-      outline: none;
-      text-transform: uppercase;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .gate-input:focus {
-      border-color: var(--audi-red);
-      box-shadow: 0 0 16px var(--audi-red-glow);
-    }
-
-    .gate-btn {
-      width: 100%;
-      background: var(--audi-red);
-      border: 1px solid #FF4D58;
-      color: #FFFFFF;
-      font-family: var(--font-mono);
-      font-size: 1rem;
-      font-weight: bold;
-      letter-spacing: 3px;
-      padding: 14px 20px;
-      cursor: pointer;
-      box-shadow: 0 0 24px var(--audi-red-glow);
-      transition: all 0.2s ease;
-    }
-
-    .gate-btn:hover {
-      background: #FF0015;
-      box-shadow: 0 0 32px rgba(227, 0, 15, 0.65);
-    }
-
-    .gate-error {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--hud-warning);
-      letter-spacing: 1px;
-      margin-top: 12px;
-      min-height: 1.2em;
-    }
-
-    .gate-footer {
-      margin-top: 20px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border-stealth);
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: #64748B;
-      letter-spacing: 1.5px;
-    }
-
-    /* ロック中の本文ブラー保護 */
-    #protectedContent {
-      transition: filter 0.35s ease;
-    }
-    body.locked #protectedContent {
-      filter: blur(16px);
-      pointer-events: none;
-      user-select: none;
+    body.lang-en .sec-jp {
+      display: none !important;
     }
 
     /* 固定トップナビゲーションバー */
@@ -208,13 +78,14 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(7, 9, 12, 0.90);
+      background: rgba(7, 9, 12, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-stealth);
       padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
     }
 
     .brand-mini {
@@ -234,12 +105,18 @@
       font-weight: bold;
     }
 
+    .top-right-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: bold;
       padding: 4px 10px;
       background: rgba(0, 230, 118, 0.10);
@@ -257,6 +134,47 @@
       animation: pulse 2s infinite;
     }
 
+    /* ★右上 [ EN | JP ] グローバル言語切替トグル（アプリタイトル画面と完全統一） */
+    .hud-lang-pill {
+      display: inline-flex;
+      align-items: center;
+      background: #0A121E;
+      border: 1px solid rgba(0, 229, 255, 0.45);
+      border-radius: 6px;
+      padding: 2px;
+      cursor: pointer;
+      user-select: none;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: bold;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .hud-lang-pill:hover {
+      border-color: var(--hud-cyan);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.28);
+    }
+
+    .hud-lang-chip {
+      padding: 3px 9px;
+      border-radius: 4px;
+      color: #90A4AE;
+      letter-spacing: 0.8px;
+      transition: all 0.18s ease;
+    }
+
+    .hud-lang-chip.active-en {
+      background: var(--hud-cyan);
+      color: #03070E;
+      font-weight: 900;
+    }
+
+    .hud-lang-chip.active-jp {
+      background: var(--audi-red);
+      color: #FFFFFF;
+      font-weight: 900;
+    }
+
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.35; }
@@ -272,9 +190,9 @@
     .hero {
       position: relative;
       text-align: center;
-      padding: 56px 16px 48px;
+      padding: 52px 16px 40px;
       border-bottom: 1px solid var(--border-stealth);
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .crest-box {
@@ -309,18 +227,18 @@
     .hero-subtitle {
       font-size: 0.95rem;
       color: var(--text-sub);
-      max-width: 660px;
-      margin: 0 auto 28px;
+      max-width: 680px;
+      margin: 0 auto 26px;
     }
 
     .pioneer-frame {
       display: inline-block;
       background: linear-gradient(90deg, rgba(30, 36, 48, 0.9), rgba(15, 18, 24, 0.95), rgba(30, 36, 48, 0.9));
       border: 1px solid #334155;
-      border-left: 3px solid var(--audi-red);
-      border-right: 3px solid var(--rs-silver);
+      border-left: 3px solid var(--hud-cyan);
+      border-right: 3px solid var(--audi-red);
       padding: 12px 28px;
-      margin-bottom: 28px;
+      margin-bottom: 8px;
     }
 
     .pioneer-frame .edition {
@@ -335,43 +253,6 @@
       font-size: 0.8rem;
       color: var(--rs-silver);
       margin-top: 2px;
-    }
-
-    /* APK ダウンロードボタン */
-    .dl-action-wrap {
-      margin-top: 8px;
-    }
-
-    .btn-download {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: var(--audi-red);
-      color: #FFFFFF;
-      font-family: var(--font-mono);
-      font-size: 1.1rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-decoration: none;
-      padding: 16px 36px;
-      border: 1px solid #FF4D58;
-      box-shadow: 0 0 28px var(--audi-red-glow);
-      transition: all 0.2s ease;
-    }
-
-    .btn-download:hover {
-      background: #FF0015;
-      transform: translateY(-2px);
-      box-shadow: 0 0 40px rgba(227, 0, 15, 0.65);
-    }
-
-    .dl-meta {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-sub);
-      margin-top: 10px;
-      letter-spacing: 1px;
     }
 
     /* クイックジャンプナビ */
@@ -829,6 +710,15 @@
       border: 1px solid rgba(227, 0, 15, 0.35);
     }
 
+    .mono-cyan {
+      font-family: var(--font-mono);
+      font-weight: bold;
+      color: var(--hud-cyan);
+      background: rgba(0, 229, 255, 0.10);
+      padding: 2px 6px;
+      border: 1px solid rgba(0, 229, 255, 0.35);
+    }
+
     /* HUDモックアップ図解 */
     .hud-mockup-grid {
       display: grid;
@@ -917,7 +807,7 @@
       transform: translateX(16px);
     }
 
-    /* 高速道路施設カードのミニ再現（v3.7 高密度・大文字・横長ワイドスタバ仕様） */
+    /* 高速道路施設カードのミニ再現（高密度・大文字・横長ワイドスタバ仕様） */
     .fac-row-mock {
       background: rgba(0, 0, 0, 0.92);
       border: 1px solid #222731;
@@ -981,7 +871,7 @@
       font-weight: bold;
     }
 
-    /* STARBUCKS 公式ロゴ付き横長ワイドタグ（実機v3.7完全準拠） */
+    /* STARBUCKS 公式ロゴ付き横長ワイドタグ */
     .fac-sub span.sbux-tag {
       display: inline-flex;
       align-items: center;
@@ -1163,6 +1053,126 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     }
 
+    /* ============================================================
+       ★ 05 // TACTICAL FAQ アコーディオンUI
+       ============================================================ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    details.faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-stealth);
+      border-left: 3px solid var(--hud-cyan);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    details.faq-item[open] {
+      border-left-color: var(--audi-red);
+      background: #10141C;
+    }
+
+    details.faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      user-select: none;
+    }
+
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-q-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .faq-q-badge {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: var(--hud-cyan);
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+
+    details.faq-item[open] .faq-q-badge {
+      color: var(--audi-red);
+    }
+
+    .faq-q-text {
+      color: #FFFFFF;
+      font-size: 0.96rem;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .faq-indicator {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--rs-silver);
+      transition: transform 0.2s ease, color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    details.faq-item[open] .faq-indicator {
+      transform: rotate(45deg);
+      color: var(--audi-red);
+    }
+
+    .faq-a-body {
+      padding: 0 18px 18px 46px;
+      color: var(--text-sub);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 12px;
+    }
+
+    /* 下部法務・規約リンクバー */
+    .legal-link-bar {
+      margin-top: 40px;
+      padding: 20px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-stealth);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-legal-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      color: var(--hud-cyan);
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.55);
+      padding: 10px 18px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-legal-link:hover {
+      background: rgba(0, 229, 255, 0.18);
+      border-color: var(--hud-cyan);
+      color: #FFFFFF;
+    }
+
     /* ★ページ中盤以降で出現する「TOPへ戻る」タクティカルHUDボタン */
     .back-to-top {
       position: fixed;
@@ -1239,6 +1249,9 @@
       .sec-jp {
         display: none;
       }
+      .status-pill {
+        display: none;
+      }
       .step-item {
         flex-direction: column;
         gap: 8px;
@@ -1252,6 +1265,9 @@
         align-items: flex-start;
         gap: 14px;
       }
+      .faq-a-body {
+        padding-left: 18px;
+      }
       .back-to-top {
         right: 16px;
         bottom: 18px;
@@ -1261,653 +1277,930 @@
     }
   </style>
 </head>
-<body id="page-top" class="locked">
+<body id="page-top">
 
-  <!-- ============================================================
-       ★ PILOT PASSCODE LOCK SCREEN (合言葉ロック画面)
-       ============================================================ -->
-  <div id="pilotGateOverlay" class="gate-overlay">
-    <div class="gate-box">
-      <div class="gate-crest">
-        <svg viewBox="0 0 100 100" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+  <!-- 固定トップHUDバー（右上に [ EN | JP ] 切替トグル常設） -->
+  <header class="top-hud-bar">
+    <a href="#page-top" class="brand-mini">
+      <span>//</span> VECTRA
+    </a>
+
+    <div class="top-right-controls">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        PRODUCTION v3.9
+      </div>
+
+      <!-- アプリ側と完全同期する [ EN | JP ] トグル -->
+      <div id="globalLangToggle" class="hud-lang-pill" role="button" tabindex="0" aria-label="Switch Manual Language">
+        <span id="globalChipEn" class="hud-lang-chip">EN</span>
+        <span id="globalChipJp" class="hud-lang-chip active-jp">JP</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- 00. HERO -->
+    <section class="hero">
+      <div class="crest-box">
+        <!-- VECTRA STEALTH CREST SVG -->
+        <svg viewBox="0 0 100 100" width="92" height="92" xmlns="http://www.w3.org/2000/svg">
           <polygon points="50,4 93,26 93,74 50,96 7,74 7,26" fill="#0B0D12" stroke="#334155" stroke-width="2"/>
           <polygon points="50,10 87,29 87,71 50,90 13,71 13,29" fill="none" stroke="#CBD5E1" stroke-width="1" stroke-opacity="0.35"/>
           <path d="M24,28 L50,80 L76,28 L64,28 L50,58 L36,28 Z" fill="#E3000F"/>
           <path d="M50,16 L58,34 L50,29 L42,34 Z" fill="#F8FAFC"/>
         </svg>
       </div>
-      <div class="gate-eyebrow">RESTRICTED ACCESS // CLOSED BETA</div>
-      <h2 class="gate-title">ENTER PILOT PASSCODE</h2>
-      <p class="gate-desc">
-        本ページはVECTRA先行パイロット（20名限定枠）専用マニュアルです。<br>
-        動画の概要欄で案内されたパスコードを入力してロックを解除してください。
+
+      <div class="hero-eyebrow">NEXT-GEN TACTICAL HIGHWAY HUD</div>
+      <h1 class="hero-title">VECTRA</h1>
+
+      <p class="hero-subtitle i18n-ja">
+        目的地設定ゼロで首都高C1・湾岸線・全国高速の今と先を射抜く「走り屋モード」搭載。<br>
+        ドライバー特化型タクティカル・ナビゲーションシステム 公式操作プロトコル。
       </p>
-      <form id="pilotGateForm" autocomplete="off">
-        <div class="gate-input-wrap">
-          <input
-            type="password"
-            id="pilotPassInput"
-            class="gate-input"
-            placeholder="PASSCODE"
-            autocomplete="off"
-            autocapitalize="characters"
-            spellcheck="false"
-            required
-          />
-        </div>
-        <button type="submit" class="gate-btn">UNLOCK SYSTEM</button>
-      </form>
-      <div id="pilotGateError" class="gate-error"></div>
-      <div id="pilotGateFooter" class="gate-footer">VECTRA SECURITY VAULT // XOR-256 PROTECTED</div>
-    </div>
-  </div>
+      <p class="hero-subtitle i18n-en">
+        Equipped with "Runner's Mode" to lock onto Shutoko C1, Bayshore, and nationwide expressways with zero destination setup.<br>
+        Official Operation Protocol for the Driver-Focused Tactical Navigation System.
+      </p>
 
-  <!-- 保護対象コンテンツラッパー -->
-  <div id="protectedContent">
-
-    <!-- 固定トップHUDバー -->
-    <header class="top-hud-bar">
-      <a href="#page-top" class="brand-mini">
-        <span>//</span> VECTRA
-      </a>
-      <div class="status-pill">
-        <span class="status-dot"></span>
-        PIONEER BUILD v3.0
+      <div class="pioneer-frame">
+        <div class="edition">VECTRA // FREE &amp; PRO EDITION</div>
+        <div class="desc i18n-ja">走り屋モード永久無償（FREE） ＆ タクティカル・ルートナビ（PRO）ハイブリッド仕様</div>
+        <div class="desc i18n-en">Unlimited Free-Drive Highway HUD (FREE) &amp; Tactical Route Navigation (PRO)</div>
       </div>
-    </header>
+    </section>
 
-    <div class="container">
+    <!-- クイックナビゲーション（番号・英語見出しはJP/EN共通） -->
+    <nav class="quick-nav">
+      <a href="#sec-auth" class="quick-link">
+        <span class="num">01 // LICENSE</span>
+        <span class="i18n-ja">認証・FREE/PROプラン</span>
+        <span class="i18n-en">Auth &amp; FREE/PRO Plans</span>
+      </a>
+      <a href="#sec-hwy" class="quick-link">
+        <span class="num">02 // RUNNER MODE</span>
+        <span class="i18n-ja">走り屋モード＆首都高HUD</span>
+        <span class="i18n-en">Runner's Mode &amp; Highway HUD</span>
+      </a>
+      <a href="#sec-navi" class="quick-link">
+        <span class="num">03 // QUICK PIN &amp; ALT</span>
+        <span class="i18n-ja">お気に入り3拠点＆代替ルート</span>
+        <span class="i18n-en">Quick 3 Pins &amp; Stealth Alt</span>
+      </a>
+      <a href="#sec-custom" class="quick-link">
+        <span class="num">04 // CUSTOMIZE</span>
+        <span class="i18n-ja">渋滞線太さ・各種設定</span>
+        <span class="i18n-en">Traffic Line &amp; HUD Settings</span>
+      </a>
+      <a href="#sec-faq" class="quick-link">
+        <span class="num">05 // FAQ</span>
+        <span class="i18n-ja">よくある質問・仕様解説</span>
+        <span class="i18n-en">Tactical FAQ &amp; Specs</span>
+      </a>
+    </nav>
 
-      <!-- 00. HERO & DOWNLOAD -->
-      <section class="hero">
-        <div class="crest-box">
-          <!-- VECTRA STEALTH CREST SVG -->
-          <svg viewBox="0 0 100 100" width="92" height="92" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="50,4 93,26 93,74 50,96 7,74 7,26" fill="#0B0D12" stroke="#334155" stroke-width="2"/>
-            <polygon points="50,10 87,29 87,71 50,90 13,71 13,29" fill="none" stroke="#CBD5E1" stroke-width="1" stroke-opacity="0.35"/>
-            <path d="M24,28 L50,80 L76,28 L64,28 L50,58 L36,28 Z" fill="#E3000F"/>
-            <path d="M50,16 L58,34 L50,29 L42,34 Z" fill="#F8FAFC"/>
-          </svg>
+    <!-- 01. AUTHENTICATION & LICENSE RULES -->
+    <section id="sec-auth" class="section">
+      <div class="sec-header">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title">SYSTEM AUTH &amp; LICENSE</h2>
+        <span class="sec-jp">ログイン認証とFREE / PROライセンス仕様</span>
+      </div>
+
+      <div class="hud-card cyan-accent">
+        <div class="card-title">
+          <span class="i18n-ja">1タップ起動 ＆ FREE / PRO プランの利用枠仕様</span>
+          <span class="i18n-en">1-Tap Launch &amp; FREE / PRO License Quotas</span>
+          <span class="badge">GOOGLE SIGN-IN</span>
         </div>
 
-        <div class="hero-eyebrow">NEXT-GEN TACTICAL HIGHWAY HUD</div>
-        <h1 class="hero-title">VECTRA</h1>
-        <p class="hero-subtitle">
-          目的地設定ゼロで首都高C1・湾岸線・全国高速の今と先を射抜く「走り屋モード」搭載。<br>
-          ドライバー特化型タクティカル・ナビゲーションシステム 公式導入・操作プロトコル。
+        <p class="i18n-ja" style="font-size:0.9rem; color:var(--text-sub);">
+          起動画面（首都高C1背景）の下部にある <strong>Sign in with Google</strong> ボタンからご自身のGoogleアカウントでログインしてください（タイトル画面右上の <span class="mono-cyan">[ EN | JP ]</span> トグルから表示言語を即座に切り替え可能です）。<br>
+          一度ログインすると端末内に認証情報が記憶され、<strong>次回からは「LAUNCH VECTRA」の1タップのみで即座にメインHUDへ突入</strong>します。アプリの上書きアップデートや再インストールを行った場合も、当月の利用枠が自動的に引き継がれます。
+        </p>
+        <p class="i18n-en" style="font-size:0.9rem; color:var(--text-sub);">
+          Sign in with your Google account using the <strong>Sign in with Google</strong> button on the title screen (you can switch the display language anytime via the <span class="mono-cyan">[ EN | JP ]</span> toggle at the top-right of the login card).<br>
+          Once authenticated, your credentials are saved locally so you can <strong>jump straight into the main HUD with a single tap on "LAUNCH VECTRA"</strong> next time. Your monthly quota is automatically preserved across app updates or reinstallations.
         </p>
 
-        <div class="pioneer-frame">
-          <div class="edition">VECTRA PIONEER EDITION</div>
-          <div class="desc">先行テスター特別無償ライセンス（20名限定枠・全機能解放モデル）</div>
+        <div class="table-wrap">
+          <table class="hud-table">
+            <thead>
+              <tr>
+                <th>
+                  <span class="i18n-ja">機能カテゴリー</span>
+                  <span class="i18n-en">FEATURE CATEGORY</span>
+                </th>
+                <th>FREE MODE (¥0)</th>
+                <th>PRO EDITION (¥300 / mo)</th>
+                <th>
+                  <span class="i18n-ja">リセット周期・備考</span>
+                  <span class="i18n-en">RESET CYCLE &amp; NOTES</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">走り屋モード（高速道路 IC / SA / PA / JCT ＆ スタバ自動捕捉）</strong>
+                  <strong class="i18n-en">Runner's Mode (Expressway IC / SA / PA / JCT &amp; Starbucks Radar)</strong>
+                </td>
+                <td><span class="mono-hl" style="color:var(--hud-emerald); border-color:var(--hud-emerald);">UNLIMITED (無制限)</span></td>
+                <td><span class="mono-hl" style="color:var(--hud-emerald); border-color:var(--hud-emerald);">UNLIMITED (無制限)</span></td>
+                <td>
+                  <span class="i18n-ja">目的地設定不要・常時無制限</span>
+                  <span class="i18n-en">No destination required / Always unlimited</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">ルートナビゲーション案内開始</strong>
+                  <strong class="i18n-en">Turn-by-Turn Route Navigation</strong>
+                </td>
+                <td><span class="mono-hl" style="color:#64748B;">LOCKED [PRO限定]</span></td>
+                <td>
+                  <strong class="i18n-ja">月間 15 回まで</strong>
+                  <strong class="i18n-en">Up to 15 runs / month</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">毎月1日自動リセット（※300m以内の近距離は消費なし）</span>
+                  <span class="i18n-en">Resets on the 1st of each month (Trips within 300m not counted)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">Google Places 目的地キーワード検索</strong>
+                  <strong class="i18n-en">Google Places Destination Search</strong>
+                </td>
+                <td><span class="mono-hl" style="color:#64748B;">LOCKED [PRO限定]</span></td>
+                <td>
+                  <strong class="i18n-ja">1日 10 回まで</strong>
+                  <strong class="i18n-en">Up to 10 searches / day</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">毎日0時自動リセット（※U字タブ3拠点・長押しピンは検索消費ゼロ）</span>
+                  <span class="i18n-en">Resets daily at 00:00 (Quick Pins &amp; Dropped Pins use 0 search quota)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">U字タブ お気に入り3拠点（[Home] / [Favorite1] / [Favorite2]）</strong>
+                  <strong class="i18n-en">Pull-Tab 3 Quick Pins ([Home] / [Favorite1] / [Favorite2])</strong>
+                </td>
+                <td><span class="mono-hl" style="color:#64748B;">LOCKED [PRO限定]</span></td>
+                <td>
+                  <strong class="i18n-ja">フル解放（登録・変更自由）</strong>
+                  <strong class="i18n-en">Unlocked (Unlimited edits)</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">検索枠を消費せず1タップでルート案内開始</span>
+                  <span class="i18n-en">1-tap route launch without consuming daily search quota</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. RUNNER'S FREE-DRIVE HIGHWAY HUD (★走り屋モード＆首都高タクティカル図解) -->
+    <section id="sec-hwy" class="section">
+      <div class="sec-header">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title">RUNNER'S MODE // SHUTOKO &amp; HIGHWAY HUD</h2>
+        <span class="sec-jp">目的地不要の「走り屋モード」＆ 高速施設レーダー</span>
+      </div>
+
+      <!-- ★首都高「走り屋モード」タクティカル・レーダー図解パネル -->
+      <div class="shutoko-hero-banner">
+        <div class="shutoko-banner-top">
+          <span class="shutoko-mode-tag">
+            <span class="status-dot" style="background:#FFF; box-shadow:0 0 8px #FFF;"></span>
+            RUNNER'S MODE // FREE-DRIVE LOCK-ON
+          </span>
+          <span class="badge" style="color:var(--hud-cyan);">ZERO QUOTA CONSUMPTION</span>
         </div>
 
-        <div class="dl-action-wrap">
-          <!-- ★パスコード解除時にXOR復号されたGoogleドライブURLが自動セットされます -->
-          <a id="vectraApkDownloadBtn" href="#locked" target="_blank" rel="noopener noreferrer" class="btn-download">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            DOWNLOAD APK (v3.0 / 80MB)
+        <div class="shutoko-Catch i18n-ja">
+          「どこへ行くか」じゃない。「今、どのコーナーとJCTの先に何があるか」だけを射抜く。
+        </div>
+        <div class="shutoko-Catch i18n-en">
+          It's not about where you're going. Lock onto what lies ahead of the next corner and junction.
+        </div>
+
+        <p class="i18n-ja" style="font-size:0.88rem; color:var(--text-sub);">
+          既存のスマホナビには致命的な弱点があります。それは<strong>「目的地を設定しないとただの地図になること」</strong>、そして<strong>「首都高C1などの環状線を1周すると到着扱いになって案内が消えること」</strong>です。<br>
+          VECTRAのコア機能である<strong>『走り屋モード（FREE-DRIVE HIGHWAY HUD）』</strong>は、目的地設定を一切必要としません。高速本線に乗った瞬間、自車の速度と進行方向ベクトルから走行中の路線（C1内回り/外回り、湾岸線、新東名など）をリアルタイムにロックオンし、<strong>何周ループしても前方のIC・JCT・PAまでの距離と通過予想時刻（ETA）を無限にスタック表示し続けます。</strong>
+        </p>
+        <p class="i18n-en" style="font-size:0.88rem; color:var(--text-sub);">
+          Conventional navigation apps have two fatal flaws: <strong>they become mere maps without a destination set</strong>, and <strong>they end guidance after a single lap on loop expressways like Shutoko C1</strong>.<br>
+          VECTRA's core <strong>"Runner's Mode (FREE-DRIVE HIGHWAY HUD)"</strong> requires zero destination input. The moment you enter an expressway mainline, it locks onto your active route (C1 Inner/Outer, Bayshore, Tomei, etc.) using your speed and heading vector—<strong>stacking upcoming ICs, JCTs, and PAs with real-time distance and ETA infinitely, no matter how many laps you run.</strong>
+        </p>
+
+        <div class="shutoko-grid">
+          <!-- 左：首都高C1〜湾岸線・辰巳/芝浦/大黒PA タクティカルSVGアニメーション図解 -->
+          <div class="shutoko-svg-stage">
+            <div class="shutoko-svg-header">
+              <span>// SHUTOKO C1 &amp; BAYSHORE TACTICAL RADAR</span>
+              <span style="color:var(--hud-emerald);">LOCK-ON: ACTIVE</span>
+            </div>
+
+            <div class="shutoko-svg-wrap">
+              <svg viewBox="0 0 420 250" xmlns="http://www.w3.org/2000/svg">
+                <!-- 背景レーダーグリッド -->
+                <g stroke="#182232" stroke-width="1" fill="none">
+                  <circle cx="170" cy="115" r="45"/>
+                  <circle cx="170" cy="115" r="85"/>
+                  <circle cx="170" cy="115" r="125" stroke-dasharray="4 4"/>
+                  <line x1="0" y1="115" x2="420" y2="115"/>
+                  <line x1="170" y1="0" x2="170" y2="250"/>
+                </g>
+
+                <!-- レーダースイープ走査線 -->
+                <g class="radar-sweep">
+                  <path d="M170,115 L295,65 A135,135 0 0,1 295,165 Z" fill="url(#radarGrad)" opacity="0.22"/>
+                </g>
+                <defs>
+                  <linearGradient id="radarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00E5FF" stop-opacity="0"/>
+                    <stop offset="100%" stop-color="#00E5FF" stop-opacity="0.65"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- 9号深川線・11号台場線（レインボーブリッジ）〜 湾岸線（B）・大黒PAルート -->
+                <path class="bayside-line" d="M235,88 L295,120 L345,155 L265,205 L120,238" />
+                <path class="bayside-line" d="M185,172 L245,198" stroke-dasharray="4 3" />
+
+                <!-- 首都高 C1 都心環状線（メインループ軌道） -->
+                <path id="c1Track" class="c1-loop-glow" d="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
+                <path class="c1-loop-core" d="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
+
+                <!-- 主要JCT・ICノード -->
+                <circle class="jct-node" cx="155" cy="44" r="4.5"/>
+                <text id="svgLblTakebashi" x="130" y="32" fill="#CBD5E1" font-family="Share Tech Mono" font-size="10" font-weight="bold">竹橋JCT</text>
+
+                <circle class="jct-node" cx="235" cy="88" r="5"/>
+                <text id="svgLblEdobashi" x="244" y="84" fill="#FFFFFF" font-family="Share Tech Mono" font-size="10" font-weight="bold">江戸橋JCT</text>
+
+                <circle class="jct-node" cx="185" cy="172" r="5"/>
+                <text id="svgLblHamasaki" x="120" y="192" fill="#FFFFFF" font-family="Share Tech Mono" font-size="10" font-weight="bold">浜崎橋JCT</text>
+
+                <circle class="jct-node" cx="105" cy="135" r="4.5"/>
+                <text id="svgLblTanimachi" x="32" y="140" fill="#CBD5E1" font-family="Share Tech Mono" font-size="10" font-weight="bold">谷町JCT</text>
+
+                <circle class="jct-node" cx="102" cy="85" r="4.5"/>
+                <text id="svgLblMiyakezaka" x="28" y="85" fill="#CBD5E1" font-family="Share Tech Mono" font-size="10" font-weight="bold">三宅坂JCT</text>
+
+                <!-- 首都高 3大聖地 PA ノード (辰巳PA / 芝浦PA / 大黒PA) -->
+                <circle class="pa-node" cx="332" cy="146" r="5.5"/>
+                <rect x="315" y="116" width="98" height="20" fill="#06281A" stroke="#00E676" stroke-width="1"/>
+                <text id="svgLblTatsumi" x="320" y="130" fill="#00E676" font-family="Share Tech Mono" font-size="10" font-weight="bold">辰巳PA [LOCK]</text>
+
+                <circle class="pa-node" cx="238" cy="195" r="5"/>
+                <text id="svgLblShibaura" x="250" y="198" fill="#A7F3D0" font-family="Share Tech Mono" font-size="9.5" font-weight="bold">芝浦PA [LOCK]</text>
+
+                <circle class="pa-node" cx="135" cy="234" r="6"/>
+                <rect x="146" y="218" width="114" height="20" fill="#06281A" stroke="#00E676" stroke-width="1.2"/>
+                <text id="svgLblDaikoku" x="152" y="232" fill="#00E676" font-family="Share Tech Mono" font-size="10" font-weight="bold">大黒PA [LOCK]</text>
+
+                <!-- C1軌道をエンドレス周回する自車ターゲットマーカー (SVG SMIL Animation) -->
+                <g>
+                  <circle r="9" fill="rgba(227, 0, 15, 0.35)">
+                    <animateMotion dur="7s" repeatCount="indefinite" path="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
+                  </circle>
+                  <circle r="4.5" fill="#E3000F" stroke="#FFFFFF" stroke-width="1.5">
+                    <animateMotion dur="7s" repeatCount="indefinite" path="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
+                  </circle>
+                </g>
+
+                <!-- 中央ステータス表示 -->
+                <text x="170" y="112" text-anchor="middle" fill="#E3000F" font-family="Share Tech Mono" font-size="13" font-weight="bold">C1 INNER/OUTER</text>
+                <text x="170" y="127" text-anchor="middle" fill="#94A3B8" font-family="Share Tech Mono" font-size="9">ENDLESS VECTOR SYNC</text>
+              </svg>
+            </div>
+
+            <div class="shutoko-svg-footer">
+              <span>VECTOR TRACKING: <strong style="color:#FFF;">360° REALTIME</strong></span>
+              <span>C1 / WANGAN / AQUA-LINE / TOHOKU / TOMEI</span>
+            </div>
+          </div>
+
+          <!-- 右：走り屋モードの3大核心ロジック解説 -->
+          <div class="shutoko-feature-list">
+            <div class="shutoko-point-box red">
+              <h5 class="i18n-ja">01 // 首都高C1・環状線の「エンドレス周回」完全対応</h5>
+              <h5 class="i18n-en">01 // Endless Loop Support on Shutoko C1 &amp; Ring Routes</h5>
+              <p class="i18n-ja">
+                C1（都心環状線）の内回り・外回りを何周ループしても、進行方向ベクトルから次に来るIC・JCTを自動で再ロックオン。ルーレット走行中に案内が途切れることは一切ありません。
+              </p>
+              <p class="i18n-en">
+                No matter how many laps you run on the C1 Inner or Outer loop, VECTRA continuously re-locks onto upcoming ICs and JCTs from your heading vector. Your HUD never terminates mid-cruise.
+              </p>
+            </div>
+
+            <div class="shutoko-point-box">
+              <h5 class="i18n-ja">02 // JCT分岐後の路線スイッチにも0.5秒で即応</h5>
+              <h5 class="i18n-en">02 // 0.5-Second Instant Route Switch at Junctions</h5>
+              <p class="i18n-ja">
+                例えば「C1から浜崎橋JCTで11号台場線へ抜け、レインボーブリッジを渡って湾岸線（大黒PA・辰巳PA方面）へ入る」といったルート変更も、ハンドルを切った瞬間に前方路線を再解析してリストを書き換えます。
+              </p>
+              <p class="i18n-en">
+                Branching from C1 at Hamasaki-bashi JCT onto Route 11 Daiba, crossing Rainbow Bridge toward the Bayshore Route (Daikoku PA / Tatsumi PA)? The moment you steer into the branch, the forward node stack updates automatically.
+              </p>
+            </div>
+
+            <div class="shutoko-point-box emerald">
+              <h5 class="i18n-ja">03 // 夜間コックピットに溶け込む「自動減光ステルスUI」</h5>
+              <h5 class="i18n-en">03 // Auto-Dimming Stealth UI for Night Cockpits</h5>
+              <p class="i18n-ja">
+                操作しない時はトグルスイッチ類が自動で半透明（50%減光）へフェードし、視界の邪魔をゼロに。スポーツ走行時のコックピット計器として機能します。
+              </p>
+              <p class="i18n-en">
+                When idle, toggle switches automatically fade to 50% stealth opacity, eliminating visual glare and functioning as an authentic night-drive cockpit instrument.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 施設カード実機プレビュー枠（東名モード ⇔ 首都高C1モード 切り替え可能） -->
+      <div class="hud-card emerald-accent">
+        <div class="card-title">
+          <span class="i18n-ja">実機HUDプレビュー：路線別ロックオン表示 ＆ 日英ワンタップ切替</span>
+          <span class="i18n-en">Live HUD Preview: Route Lock-On Stack &amp; JA/EN Toggle</span>
+          <span class="badge">INTERACTIVE DEMO</span>
+        </div>
+
+        <div class="hud-mockup-grid">
+          <div class="mock-box">
+            <div class="mock-header-bar">
+              <div class="mock-label">// HOW TO ACTIVATE RUNNER'S MODE</div>
+            </div>
+            <p class="i18n-ja" style="font-size:0.86rem; color:var(--text-main); margin-bottom:10px;">
+              1. 画面右側の <span class="mono-red">ROUTE HGWY</span> スイッチが左側（HGWY）になっていることを確認します。<br><br>
+              2. 目的地を設定しないまま高速道路・都市高速の本線に乗り、<span class="mono-hl">HIGHWAY MODE</span> スイッチをONにするだけで「走り屋モード」が起動！直近3つの施設を下から上へ積み上げ表示します。<br><br>
+              <span style="color:var(--text-sub); font-size:0.8rem;">※右側のプレビューで<strong>「東名高速（海老名SA：スタバ＆GAS表示）」</strong>と<strong>「首都高 C1/湾岸（大黒PA：P/WC表示）」</strong>、および<strong>「日本語 ⇔ 英語表記」</strong>を実際に切り替えて比較できます。</span>
+            </p>
+            <p class="i18n-en" style="font-size:0.86rem; color:var(--text-main); margin-bottom:10px;">
+              1. Ensure the <span class="mono-red">ROUTE HGWY</span> switch on the right side of the screen is set to the left (HGWY).<br><br>
+              2. Enter any expressway mainline without setting a destination and flip <span class="mono-hl">HIGHWAY MODE</span> ON. Runner's Mode activates immediately, stacking the next 3 upcoming facilities from bottom to top!<br><br>
+              <span style="color:var(--text-sub); font-size:0.8rem;">* Use the interactive preview on the right to compare <strong>"Tomei Expwy (Ebina SA: Starbucks &amp; GAS)"</strong> vs. <strong>"Shutoko C1/Bayshore (Daikoku PA: P/WC)"</strong> and toggle between <strong>JA / EN labels</strong>.</span>
+            </p>
+          </div>
+
+          <div class="mock-box">
+            <div class="mock-header-bar">
+              <!-- ★東名（スタバあり）⇔ 首都高（大黒PA：P/WC）切り替えタブ -->
+              <div class="route-preset-tabs">
+                <button type="button" id="presetTomeiBtn" class="route-preset-btn active">東名高速 (スタバ併設)</button>
+                <button type="button" id="presetShutokoBtn" class="route-preset-btn">首都高 C1/湾岸</button>
+              </div>
+
+              <!-- ★日本語 ⇔ 英語 切り替えトグルスイッチ -->
+              <div id="facLangToggle" class="lang-toggle-switch" role="button" tabindex="0" aria-label="Toggle Facility Language">
+                <span id="langOptJa" class="lang-opt active">日本語</span>
+                <div class="lang-track">
+                  <div class="lang-thumb"></div>
+                </div>
+                <span id="langOptEn" class="lang-opt">EN</span>
+              </div>
+            </div>
+
+            <div id="hwyPreviewLabel" class="mock-label" style="margin-bottom:8px;">// HIGHWAY HUD PREVIEW (東名高速 上り)</div>
+
+            <!-- 3段目（奥）：海老名SA（上り：GAS + STARBUCKS）または 大黒PA（P + WC） -->
+            <div class="fac-row-mock">
+              <span id="facTag3" class="fac-tag sa">SA</span>
+              <div class="fac-info">
+                <div id="facName3" class="fac-name">海老名SA (上り)</div>
+                <div id="facSub3" class="fac-sub">
+                  <span>GAS</span>
+                  <span class="sbux-tag">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
+                      alt="Starbucks"
+                      class="sbux-real-logo-mini"
+                    />
+                    STARBUCKS
+                  </span>
+                </div>
+              </div>
+              <div class="fac-dist">
+                <div id="facKm3" class="km">6.4 km</div>
+                <div id="facEta3" class="eta">18:37</div>
+              </div>
+            </div>
+
+            <!-- 2段目（中間）：海老名JCT または 浜崎橋JCT -->
+            <div class="fac-row-mock">
+              <span id="facTag2" class="fac-tag jct">JCT</span>
+              <div class="fac-info">
+                <div id="facName2" class="fac-name">海老名JCT</div>
+                <div class="fac-sub"><span>EXIT</span></div>
+              </div>
+              <div class="fac-dist">
+                <div id="facKm2" class="km">4.8 km</div>
+                <div id="facEta2" class="eta">18:35</div>
+              </div>
+            </div>
+
+            <!-- 1段目（手前）：厚木IC または 芝公園IC -->
+            <div class="fac-row-mock">
+              <span id="facTag1" class="fac-tag ic">IC</span>
+              <div class="fac-info">
+                <div id="facName1" class="fac-name">厚木IC</div>
+                <div class="fac-sub"><span class="in-tag">IN</span></div>
+              </div>
+              <div class="fac-dist">
+                <div id="facKm1" class="km">1.5 km</div>
+                <div id="facEta1" class="eta">18:32</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ★本物のスターバックス公式コーポレートロゴ（SVG）搭載 ワンポイントアドバイス枠 -->
+        <div class="sbux-spotlight">
+          <div class="sbux-emblem-wrap">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
+              alt="Starbucks Official Siren"
+              class="sbux-real-logo-large"
+            />
+          </div>
+          <div class="sbux-content">
+            <div class="sbux-spotlight-header">
+              <div class="sbux-spotlight-title">
+                <span class="i18n-ja">ONE-POINT ADVICE // 全国高速SA・PAの「スタバ＆給油所」スマート表示！</span>
+                <span class="i18n-en">ONE-POINT ADVICE // Smart "Starbucks &amp; GAS" Indicator on Nationwide SA/PAs!</span>
+              </div>
+              <span class="sbux-pill">SMART DISPLAY</span>
+            </div>
+            <p class="i18n-ja">
+              ナイトドライブや長距離ツーリングのコーヒーブレイクを逃さないための「隠れ機能」を搭載！<br>
+              スターバックスが併設されている全国の高速SA・PA（海ほたるPA、湾岸幕張PA上下、守谷SA上下、海老名SA上り、足柄SA上下、酒々井PA上下、第三京浜・都筑PA上り、談合坂SA上下など）が前方に迫ると、進行方向の上下線まで自動判別して施設カード内に
+              <span class="sbux-inline-badge">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
+                  alt="Starbucks"
+                  class="sbux-real-logo-mini"
+                />
+                STARBUCKS
+              </span>
+              アイコンが自動点灯します。<br>
+              ※スタバ併設エリアでは視認性を最大化するため、通常の <span class="mono-hl">P</span> <span class="mono-hl">WC</span> タグを自動省略し、給油可否がすぐ分かる重要な <span class="mono-hl">GAS</span> タグ（SAのみ）と横長ワイドなスタバアイコンのみを優先表示します！
+            </p>
+            <p class="i18n-en">
+              Never miss a coffee break during night drives or long-distance touring!<br>
+              When approaching an expressway SA/PA with an official Starbucks store (Umihotaru PA, Wangan-Makuhari PA, Moriya SA, Ebina SA Inbound, Ashigara SA, Shisui PA, Tsuzuki PA Inbound, Dangozaka SA, etc.), VECTRA automatically verifies your travel direction (Inbound/Outbound) and lights up the
+              <span class="sbux-inline-badge">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
+                  alt="Starbucks"
+                  class="sbux-real-logo-mini"
+                />
+                STARBUCKS
+              </span>
+              neon badge.<br>
+              * For maximum cockpit legibility at Starbucks locations, standard <span class="mono-hl">P</span> and <span class="mono-hl">WC</span> tags are omitted so the critical <span class="mono-hl">GAS</span> (fuel) tag and wide Starbucks badge stand out clearly!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. TACTICAL ROUTE NAVIGATION & QUICK DESTINATIONS -->
+    <section id="sec-navi" class="section">
+      <div class="sec-header">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title">QUICK PIN, ROUTE &amp; ALT SWITCH</h2>
+        <span class="sec-jp">お気に入り3拠点ドロワーと2段階ステルス代替ルート</span>
+      </div>
+
+      <div class="hud-card">
+        <div class="card-title">
+          <span class="i18n-ja">3通りの目的地セットと、運転を妨げない「2段階ステルス代替ルート」</span>
+          <span class="i18n-en">3 Destination Setup Methods &amp; "2-Step Stealth Alternative Route"</span>
+          <span class="badge">SMART ROUTING</span>
+        </div>
+
+        <div class="step-list">
+          <!-- お気に入り3拠点（U字タブ引き出しドロワー）の説明 -->
+          <div class="step-item">
+            <span class="step-badge cyan">NEW // QUICK PIN</span>
+            <div class="step-body">
+              <h4 class="i18n-ja">画面左端「U字プルタブ」によるお気に入り3拠点（Home / Favorite1 / Favorite2）ワンタップ出発</h4>
+              <h4 class="i18n-en">Left-Edge "U-Shaped Pull-Tab" for 1-Tap Launch to 3 Quick Pins (Home / Favorite1 / Favorite2)</h4>
+              <p class="i18n-ja">
+                画面左端（コンパスボタンのすぐ上）に配置された<strong>「横向きU字タブ（絆創膏の端っこ風タブ）」</strong>を指で右へ引っ張り出す（またはタップする）と、3つの専用拠点スロットが出現します（5秒間で自動収納）。
+              </p>
+              <p class="i18n-en">
+                Swipe right (or tap) on the <strong>horizontal U-shaped pull-tab</strong> located on the left edge just above the compass button to reveal 3 dedicated quick destination slots (auto-hides after 5 seconds).
+              </p>
+              <div class="bandaid-demo-bar">
+                <div class="bandaid-drawer-mock">
+                  <span class="bandaid-chip">[Home]</span>
+                  <span class="bandaid-chip">[Favorite1]</span>
+                  <span class="bandaid-chip unset">[Favorite2]</span>
+                </div>
+                <div class="bandaid-tab-mock">⋮⋮</div>
+              </div>
+              <p class="i18n-ja" style="margin-top:6px;">
+                ・<strong>未登録スロットをタップした場合</strong>：画面中央に赤い「＋」照準と透過アナウンス（例：<span class="mono-hl">Home 設定中</span>）が表示されます。地図を動かして自宅やよく行くPA/集合場所に「＋」を合わせ、<strong>「決定」</strong>を押すだけで記憶されます。<br>
+                ・<strong>登録済みスロットをタップした場合</strong>：<strong>1日10回の検索枠を一切消費せず、1タップで即座にその拠点へのルート案内確認画面を起動</strong>します！（位置の変更や長押し消去は設定メニュー⚙️からいつでも行えます）
+              </p>
+              <p class="i18n-en" style="margin-top:6px;">
+                • <strong>Tapping an UNSET slot</strong>: A red "+" crosshair appears at the center of the map. Pan the map to align "+" with your home or favorite meetup PA, then tap <strong>"SET PIN"</strong> to save.<br>
+                • <strong>Tapping a SAVED slot</strong>: Immediately opens the route launch confirmation to that location <strong>without consuming any of your 10 daily search quotas</strong>! (You can update or long-press to clear pins anytime in Settings ⚙️.)
+              </p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-badge">METHOD A</span>
+            <div class="step-body">
+              <h4 class="i18n-ja">キーワード検索（左下「🔍」ボタン）</h4>
+              <h4 class="i18n-en">Keyword Place Search (Bottom-Left "🔍" Button)</h4>
+              <p class="i18n-ja">
+                画面左下の虫眼鏡アイコンをタップし、施設名や住所を入力して検索します（PRO版：1日10回枠）。候補をタップすると確認ダイアログを経てルート案内が開始されます。
+              </p>
+              <p class="i18n-en">
+                Tap the magnifying glass icon at the bottom-left to search by facility name or address (PRO: 10 searches/day). Select a result to confirm and start route guidance.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-badge">METHOD B</span>
+            <div class="step-body">
+              <h4 class="i18n-ja">マップ長押しダイレクトピン留め（検索回数消費ゼロ）</h4>
+              <h4 class="i18n-en">Map Long-Press Direct Pin Drop (Zero Search Quota Used)</h4>
+              <p class="i18n-ja">
+                地図上の行きたい場所を <strong>約1秒間長押し（ロングタップ）</strong> すると、赤いピンが刺さり、検索枠を消費せずにダイレクトにその地点へのナビ確認画面を起動します。<br>
+                ※誤操作によるナビ枠消費を防ぐため、<strong>現在地から300m以内の地点は自動キャンセル（枠消費なし）</strong>され、<strong>目的地40m圏内に到達すると自動でナビを完了終了</strong>します。
+              </p>
+              <p class="i18n-en">
+                <strong>Long-press (about 1 second)</strong> anywhere on the map to drop a red pin and trigger route navigation directly without using daily search quota.<br>
+                * To prevent accidental quota loss, <strong>destinations within 300m of your current position are automatically canceled (0 quota used)</strong>, and guidance <strong>auto-completes upon entering within 40m of your destination</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-badge">STEALTH ALT</span>
+            <div class="step-body">
+              <h4 class="i18n-ja">代替ルート（ALT ROUTE）の2段階切り替えギミック</h4>
+              <h4 class="i18n-en">2-Step Stealth Alternative Route (ALT ROUTE) Switcher</h4>
+              <p class="i18n-ja">
+                ルート案内中、分岐可能な別ルートが存在すると画面右下に半透明の <span class="mono-hl">ALT ROUTE 1/2 | -3 min</span> ボタンがステルス待機します。<br>
+                ・<strong>1タップ目（Wake Up）</strong>：ボタンが鮮明化し、地図上の分岐ルート上に「到着予想時刻（ETA）・時間差・距離差」の吹き出しが出現します（4秒間放置すると自動で元のステルス状態へ戻ります）。<br>
+                ・<strong>2タップ目（Confirm Switch）</strong>：起き上がったボタン（または地図上の吹き出し）をもう一度タップすると、<strong>追加のナビ枠消費なしで即座にその代替ルートへ切り替わります！</strong>
+              </p>
+              <p class="i18n-en">
+                During active navigation, if an alternative route is available, a translucent <span class="mono-hl">ALT ROUTE 1/2 | -3 min</span> button waits in stealth mode at the bottom-right.<br>
+                • <strong>1st Tap (Wake Up)</strong>: The button brightens and a callout bubble showing ETA, time diff, and distance diff appears on the map (auto-returns to stealth after 4 seconds if untouched).<br>
+                • <strong>2nd Tap (Confirm Switch)</strong>: Tap the active button (or the map callout) again to <strong>switch to the alternative route immediately with zero extra quota consumption!</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. CUSTOMIZATION & CONTROLS -->
+    <section id="sec-custom" class="section">
+      <div class="sec-header">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title">HUD &amp; TRAFFIC CUSTOMIZATION</h2>
+        <span class="sec-jp">画面コントロールと設定メニュー</span>
+      </div>
+
+      <div class="hud-card">
+        <div class="card-title">
+          <span class="i18n-ja">クイック拠点管理・渋滞ライン太さ調整・カメラ制御</span>
+          <span class="i18n-en">Quick Pin Manager, Traffic Line Width &amp; Camera Controls</span>
+          <span class="badge">SETTINGS HUD</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="hud-table">
+            <thead>
+              <tr>
+                <th>
+                  <span class="i18n-ja">ボタン / 設定項目</span>
+                  <span class="i18n-en">CONTROL / SETTING</span>
+                </th>
+                <th>
+                  <span class="i18n-ja">配置場所</span>
+                  <span class="i18n-en">LOCATION</span>
+                </th>
+                <th>
+                  <span class="i18n-ja">機能・動作詳細</span>
+                  <span class="i18n-en">FUNCTION &amp; BEHAVIOR</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">U字クイック拠点タブ</strong>
+                  <strong class="i18n-en">U-Shaped Quick Pin Tab</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">左端（コンパス上）</span>
+                  <span class="i18n-en">Left Edge (Above Compass)</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">右へスワイプ（またはタップ）で <span class="mono-red">[Home]</span> <span class="mono-red">[Favorite1]</span> <span class="mono-red">[Favorite2]</span> ドロワーを展開し、ワンタップで目的地セット・位置登録を行います。</span>
+                  <span class="i18n-en">Swipe right (or tap) to open the <span class="mono-red">[Home]</span> <span class="mono-red">[Favorite1]</span> <span class="mono-red">[Favorite2]</span> drawer for 1-tap navigation or pin registration.</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">コンパスボタン</strong>
+                  <strong class="i18n-en">Compass Button</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">左下（1段目）</span>
+                  <span class="i18n-en">Bottom-Left (1st)</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">タップするごとにカメラ視点を <span class="mono-hl">NORTH-UP 2D（北固定）</span> ➔ <span class="mono-hl">HEAD-UP 2D（進行方向上）</span> ➔ <span class="mono-hl">HEAD-UP 3D（3D俯瞰）</span> の順で切り替えます。</span>
+                  <span class="i18n-en">Cycles camera perspective through <span class="mono-hl">NORTH-UP 2D</span> ➔ <span class="mono-hl">HEAD-UP 2D</span> ➔ <span class="mono-hl">HEAD-UP 3D</span>.</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">レイヤー切替ボタン</strong>
+                  <strong class="i18n-en">Map Style Layer Button</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">左下（2段目）</span>
+                  <span class="i18n-en">Bottom-Left (2nd)</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">昼夜トラフィック・ダーク・サテライト（航空写真）など <strong>全7種類のマップスタイル</strong> をワンタップで巡回切り替えします。</span>
+                  <span class="i18n-en">Cycles through <strong>all 7 map styles</strong> including Traffic Day/Night, Dark, and Satellite Streets.</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">自車3Dロックボタン</strong>
+                  <strong class="i18n-en">3D Follow Lock Button</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">左下（3段目）</span>
+                  <span class="i18n-en">Bottom-Left (3rd)</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">地図をスクロールして現在地から離れた際、ワンタップで自車位置の <span class="mono-hl">HEAD-UP 3D</span> 追従モードへ即座に戻します。</span>
+                  <span class="i18n-en">Instantly re-centers on your vehicle and restores <span class="mono-hl">HEAD-UP 3D</span> tracking after panning the map.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>QUICK DESTINATIONS (PIN)</strong></td>
+                <td>
+                  <span class="i18n-ja">設定（⚙️）内</span>
+                  <span class="i18n-en">In Settings (⚙️)</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">お気に入り3拠点の登録状態（<span class="mono-hl" style="color:var(--hud-emerald);">設定済</span> / <span class="mono-hl">未設定</span>）を一覧管理します。<strong>タップで位置の登録・変更</strong>、<strong>長押しで登録消去（未設定へ戻す）</strong>が可能です。</span>
+                  <span class="i18n-en">Manage your 3 quick pins (<span class="mono-hl" style="color:var(--hud-emerald);">SET</span> / <span class="mono-hl">UNSET</span>). <strong>Tap to set or update location</strong>, or <strong>long-press to clear</strong>.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Traffic Line Width</strong></td>
+                <td>
+                  <span class="i18n-ja">設定（⚙️）内</span>
+                  <span class="i18n-en">In Settings (⚙️)</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">地図上の渋滞情報ライン（緑・橙・赤・暗赤）の太さを <span class="mono-hl">0.5x 〜 2.0x</span> のスライダー、または <span class="mono-red">THIN / STD / BOLD</span> プリセットでリアルタイムに調整・保存できます。</span>
+                  <span class="i18n-en">Adjust real-time traffic congestion line thickness from <span class="mono-hl">0.5x to 2.0x</span> via slider or <span class="mono-red">THIN / STD / BOLD</span> presets.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Map / Voice Language</strong></td>
+                <td>
+                  <span class="i18n-ja">タイトル画面 ＆ 設定（⚙️）</span>
+                  <span class="i18n-en">Title Screen &amp; Settings (⚙️)</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">地図ラベル・全ダイアログ・高速施設リスト・音声案内の言語を <strong>日本語（JP）</strong> と <strong>英語（EN：欧州車純正コックピット風）</strong> からいつでも切り替えできます。</span>
+                  <span class="i18n-en">Switch map labels, dialogs, highway facility cards, and voice guidance between <strong>English (EN)</strong> and <strong>Japanese (JP)</strong> anytime.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>HUD Opacity</strong></td>
+                <td>
+                  <span class="i18n-ja">設定（⚙️）内</span>
+                  <span class="i18n-en">In Settings (⚙️)</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">上下のHUDパネルおよび高速施設リストの背景透過度を <span class="mono-hl">85% / 75% / 70%</span> から好みに合わせて切り替えられます。</span>
+                  <span class="i18n-en">Customize background opacity of HUD panels and facility cards across <span class="mono-hl">85% / 75% / 70%</span>.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>DELETE ACCOUNT &amp; DATA</strong></td>
+                <td>
+                  <span class="i18n-ja">設定（⚙️）最下部</span>
+                  <span class="i18n-en">Bottom of Settings (⚙️)</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">アカウント登録情報およびお気に入りピン・設定等の端末内データを初期状態へリセットします（削除後も再登録可能・当月利用枠は引き継がれます）。</span>
+                  <span class="i18n-en">Resets account registration and local device settings to default (re-registration is allowed anytime; current month's remaining quota is carried over).</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. TACTICAL FAQ (★新設：アコーディオン式 よくある質問) -->
+    <section id="sec-faq" class="section">
+      <div class="sec-header">
+        <span class="sec-num">05</span>
+        <h2 class="sec-title">TACTICAL FAQ // TROUBLESHOOTING</h2>
+        <span class="sec-jp">よくある質問とシステム仕様解説</span>
+      </div>
+
+      <div class="hud-card red-accent">
+        <div class="card-title">
+          <span class="i18n-ja">VECTRA 運用・課金・センサー挙動に関するQ&amp;A（タップで開閉）</span>
+          <span class="i18n-en">Frequently Asked Questions on Operations, Quotas &amp; Sensors (Tap to expand)</span>
+          <span class="badge">KNOWLEDGE BASE</span>
+        </div>
+
+        <div class="faq-list">
+          <!-- Q1 -->
+          <details class="faq-item" open>
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-q-badge">Q.01</span>
+                <span class="faq-q-text i18n-ja">無料（FREEモード）のままでも、高速道路の施設表示やスタバ捕捉は使えますか？</span>
+                <span class="faq-q-text i18n-en">Can I use the Expressway Facility HUD and Starbucks radar in FREE mode?</span>
+              </div>
+              <span class="faq-indicator">+</span>
+            </summary>
+            <div class="faq-a-body">
+              <span class="i18n-ja">
+                <strong>はい、完全無料・回数無制限でお使いいただけます。</strong><br>
+                目的地を設定せずに高速道路・都市高速の本線に乗り、画面右側の <span class="mono-hl">HIGHWAY MODE</span> トグルをONにするだけで、首都高C1の無限周回ロックオンや全国のSA/PA（スタバ・GAS表示）・IC・JCTの距離＆到着予想時刻（ETA）表示が永久に無償で稼働します。
+              </span>
+              <span class="i18n-en">
+                <strong>Yes, it is 100% free with unlimited use.</strong><br>
+                Simply enter an expressway mainline without setting a destination and flip <span class="mono-hl">HIGHWAY MODE</span> ON. Endless loop tracking on Shutoko C1 and nationwide SA/PA (Starbucks &amp; GAS badges), IC, and JCT distance/ETA stacks operate permanently at zero cost.
+              </span>
+            </div>
+          </details>
+
+          <!-- Q2 -->
+          <details class="faq-item">
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-q-badge">Q.02</span>
+                <span class="faq-q-text i18n-ja">一般道（下道）を走っている時に「HIGHWAY MODE」をONにするとすぐにOFFへ戻るのはなぜですか？</span>
+                <span class="faq-q-text i18n-en">Why does "HIGHWAY MODE" automatically turn OFF when driving on local streets?</span>
+              </div>
+              <span class="faq-indicator">+</span>
+            </summary>
+            <div class="faq-a-body">
+              <span class="i18n-ja">
+                VECTRAはGPS座標・走行速度・進行方向ベクトルから「現在、高速道路の本線上を走行しているか」を厳密に自動判定しています。<br>
+                ルート案内をしていない状態で一般道（または高速道路の高架下・側道）を走行中にONにした場合や、<span class="mono-red">LOCAL</span>（一般道優先）モードを選択している場合は、誤った施設リスト表示を防ぐため自動的にOFFへ戻る安全機構（Auto Bounce-Back）が働きます。高速本線に入ってからONにしてください。
+              </span>
+              <span class="i18n-en">
+                VECTRA strictly verifies whether you are actively driving on an expressway mainline using GPS coordinates, speed, and heading vectors.<br>
+                If you toggle it ON while on local roads (or underpass/frontage roads) without an active route, or while <span class="mono-red">LOCAL</span> mode is selected, the Auto Bounce-Back safety mechanism turns it OFF to prevent false facility locks. Please turn it ON once on the expressway mainline.
+              </span>
+            </div>
+          </details>
+
+          <!-- Q3 -->
+          <details class="faq-item">
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-q-badge">Q.03</span>
+                <span class="faq-q-text i18n-ja">PRO版の「月15回ルートナビ枠」はどのタイミングで消費されますか？リルートでも減りますか？</span>
+                <span class="faq-q-text i18n-en">When is 1 monthly navigation quota (15/mo in PRO) consumed? Does rerouting consume quota?</span>
+              </div>
+              <span class="faq-indicator">+</span>
+            </summary>
+            <div class="faq-a-body">
+              <span class="i18n-ja">
+                目的地を選択した後の確認ダイアログで <strong>「ナビ開始 (-1) / START NAVI (-1)」を押してルートが確定した瞬間のみ1回消費</strong>されます。<br>
+                ・<strong>追加消費されないケース</strong>：走行中に道を外れた際の「自動リルート（再計算）」、右下の「代替ルート（ALT ROUTE）への切り替え」、および <span class="mono-red">HGWY ⇔ LOCAL</span> トグル切り替え時の再計算では、ナビ枠は一切消費されません。<br>
+                ・<strong>300m近距離ガード</strong>：現在地から直線300m以内の地点を誤って指定した場合は自動的にキャンセルされ、枠は消費されません。
+              </span>
+              <span class="i18n-en">
+                1 quota is consumed <strong>only when you tap "START NAVI (-1)" in the confirmation dialog and the route is established</strong>.<br>
+                • <strong>Zero Extra Consumption</strong>: Automatic rerouting when deviating from the path, switching to an <span class="mono-hl">ALT ROUTE</span>, or toggling <span class="mono-red">HGWY ⇔ LOCAL</span> mid-trip does NOT consume any additional quota.<br>
+                • <strong>300m Nearby Guard</strong>: If a selected destination is within 300m of your current location, launch is automatically canceled with 0 quota used.
+              </span>
+            </div>
+          </details>
+
+          <!-- Q4 -->
+          <details class="faq-item">
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-q-badge">Q.04</span>
+                <span class="faq-q-text i18n-ja">1日10回の「Google目的地検索」枠を節約してルート案内を使うコツはありますか？</span>
+                <span class="faq-q-text i18n-en">How can I start route navigation without using my 10 daily Google Place searches?</span>
+              </div>
+              <span class="faq-indicator">+</span>
+            </summary>
+            <div class="faq-a-body">
+              <span class="i18n-ja">
+                <strong>2つの方法（検索消費ゼロ）</strong>があります。<br>
+                1. 自宅やよく行く拠点は左端の<strong>「U字プルタブ」の3拠点（<span class="mono-red">[Home]</span> / <span class="mono-red">[Favorite1]</span> / <span class="mono-red">[Favorite2]</span>）</strong>に登録しておくことで、いつでも検索枠を消費せず1タップで出発できます。<br>
+                2. 地図上の目的地を直接<strong>「約1秒間長押し（ロングタップ）」</strong>してピンを刺す方法も、検索APIを叩かないため検索枠を一切消費しません。
+              </span>
+              <span class="i18n-en">
+                There are <strong>two zero-search-quota methods</strong>:<br>
+                1. Register your home and frequent spots to the <strong>U-shaped pull-tab slots (<span class="mono-red">[Home]</span> / <span class="mono-red">[Favorite1]</span> / <span class="mono-red">[Favorite2]</span>)</strong> for instant 1-tap departure without using search quota.<br>
+                2. <strong>Long-press (1 sec)</strong> directly on any point on the map to drop a pin and launch navigation with zero search quota consumption.
+              </span>
+            </div>
+          </details>
+
+          <!-- Q5 -->
+          <details class="faq-item">
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-q-badge">Q.05</span>
+                <span class="faq-q-text i18n-ja">スマホのGPS（位置情報）をOFFにしたままアプリを起動してしまいました。アプリの再起動が必要ですか？</span>
+                <span class="faq-q-text i18n-en">I launched the app while my phone's GPS was turned OFF. Do I need to restart the app?</span>
+              </div>
+              <span class="faq-indicator">+</span>
+            </summary>
+            <div class="faq-a-body">
+              <span class="i18n-ja">
+                <strong>いいえ、アプリの再起動は不要です（ホットリカバリー対応）。</strong><br>
+                アプリを開いたまま画面上からスマホのクイック設定パネルを引き出して「位置情報（GPS）」をONに切り替えれば、VECTRAがOSのGPS復帰シグナルを自動検知し、数秒以内に現在地へロックオンして <span class="mono-hl">HEAD-UP 3D</span> 追従を開始します（左下の自車3Dロックボタンをタップしても即座に復帰します）。
+              </span>
+              <span class="i18n-en">
+                <strong>No app restart is needed (Hot-Recovery supported).</strong><br>
+                Simply swipe down your phone's quick settings panel and turn Location (GPS) ON. VECTRA automatically detects the OS provider activation signal, wakes up the map sensor, and locks onto your current position in <span class="mono-hl">HEAD-UP 3D</span> mode within seconds.
+              </span>
+            </div>
+          </details>
+
+          <!-- Q6 -->
+          <details class="faq-item">
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-q-badge">Q.06</span>
+                <span class="faq-q-text i18n-ja">「アカウント削除」や再インストールを行った場合、残りの利用回数やPRO定期購入はどうなりますか？</span>
+                <span class="faq-q-text i18n-en">What happens to my remaining quota and PRO subscription if I delete my account or reinstall?</span>
+              </div>
+              <span class="faq-indicator">+</span>
+            </summary>
+            <div class="faq-a-body">
+              <span class="i18n-ja">
+                ・<strong>当月利用枠の引き継ぎ</strong>：アカウント削除後に再登録した場合やアプリを再インストールした場合も、不正リセット防止仕様により当月の残りナビ回数・当日検索回数がそのまま引き継がれます。<br>
+                ・<strong>PRO版定期購入の復元と解約</strong>：機種変更や再導入時は、設定画面（⚙️）の「購入情報の復元」からPRO権限を復元できます。なお、アプリ内の「DELETE ACCOUNT &amp; DATA」を実行してもGoogle Playの定期購入（サブスクリプション）自体は自動解約されないため、課金を停止する際は必ず <strong>Google Playストア ＞ 定期購入</strong> 管理画面から解約手続きを行ってください。
+              </span>
+              <span class="i18n-en">
+                • <strong>Quota Carry-Over</strong>: If you re-register after deleting your account or reinstall the app within the same month, your remaining monthly navigation and daily search counts are carried over automatically.<br>
+                • <strong>PRO Subscription Restore &amp; Cancellation</strong>: You can restore your PRO license via "Restore Purchases" in Settings (⚙️). Note that executing "DELETE ACCOUNT &amp; DATA" in the app does NOT automatically cancel your Google Play billing. To stop recurring charges, please cancel via <strong>Google Play Store &gt; Subscriptions</strong>.
+              </span>
+            </div>
+          </details>
+        </div>
+
+        <!-- プライバシーポリシー＆利用規約ページへの直通バー（現在の言語設定を自動引き継ぎ） -->
+        <div class="legal-link-bar">
+          <div>
+            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--hud-cyan); letter-spacing:1.5px;">LEGAL &amp; DATA PRIVACY</div>
+            <div class="i18n-ja" style="font-size:0.85rem; color:var(--text-sub);">利用規約・プライバシーポリシーおよびWebからのアカウント削除リクエスト窓口</div>
+            <div class="i18n-en" style="font-size:0.85rem; color:var(--text-sub);">Terms of Service, Privacy Policy &amp; Web Account Deletion Request Portal</div>
+          </div>
+          <a id="legalPolicyLink" href="privacy.html" class="btn-legal-link">
+            [ PRIVACY POLICY &amp; TERMS ▸ ]
           </a>
-          <div class="dl-meta">PACKAGE: jp.vectra.navi &nbsp;|&nbsp; TARGET: Android 8.0+ (ARM64 SLIM BUILD)</div>
         </div>
-      </section>
-
-      <!-- クイックナビゲーション -->
-      <nav class="quick-nav">
-        <a href="#sec-install" class="quick-link">
-          <span class="num">01 // INSTALL</span>
-          <span>APK導入・上書き更新手順</span>
-        </a>
-        <a href="#sec-auth" class="quick-link">
-          <span class="num">02 // LICENSE</span>
-          <span>初回認証と20名限定枠</span>
-        </a>
-        <a href="#sec-hwy" class="quick-link">
-          <span class="num">03 // RUNNER MODE</span>
-          <span>走り屋モード＆首都高HUD</span>
-        </a>
-        <a href="#sec-navi" class="quick-link">
-          <span class="num">04 // QUICK PIN & ALT</span>
-          <span>お気に入り3拠点＆代替ルート</span>
-        </a>
-        <a href="#sec-custom" class="quick-link">
-          <span class="num">05 // CUSTOMIZE</span>
-          <span>渋滞線太さ・各種設定</span>
-        </a>
-      </nav>
-
-      <!-- 01. INSTALLATION PROTOCOL -->
-      <section id="sec-install" class="section">
-        <div class="sec-header">
-          <span class="sec-num">01</span>
-          <h2 class="sec-title">INSTALLATION PROTOCOL</h2>
-          <span class="sec-jp">スタンドアロンAPKの導入・アップデート手順</span>
-        </div>
-
-        <div class="hud-card red-accent">
-          <div class="card-title">
-            <span>Google Play プロテクト警告の突破方法（重要）</span>
-            <span class="badge">MUST READ</span>
-          </div>
-          <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:16px;">
-            本アプリはGoogle Playストア一般公開前の「先行クローズドβ専用ビルド（独自署名APK）」です。初回導入時および新バージョンへの上書きアップデート時は、以下の3ステップでインストールしてください（※すでに旧版を導入済みの場合は、アンインストールせずそのまま上書きインストール可能です）。
-          </p>
-
-          <div class="step-list">
-            <div class="step-item">
-              <span class="step-badge">STEP 01</span>
-              <div class="step-body">
-                <h4>GoogleドライブからAPKを保存し「不明なアプリのインストール」を許可</h4>
-                <p>
-                  上部の <strong>DOWNLOAD APK</strong> ボタンからGoogleドライブを開き、「ダウンロード（スマホへ保存）」を実行します。保存したAPKを開き、初回のみ「この提供元のアプリをインストール」の設定画面が開く場合は、スイッチを <strong>ON（許可）</strong> にして戻ります。
-                </p>
-              </div>
-            </div>
-
-            <div class="step-item">
-              <span class="step-badge">STEP 02</span>
-              <div class="step-body">
-                <h4>Playプロテクト画面で「詳細」➔「インストールする」を選択</h4>
-                <p>
-                  「アプリをスキャンしますか？」または「安全ではないアプリがブロックされました」と表示された場合は、画面内の <strong>「詳細（More details）」</strong> をタップし、下部に現れる <strong>「インストールする（安全ではないアプリをインストール）」</strong> をタップしてください。
-                </p>
-              </div>
-            </div>
-
-            <div class="step-item">
-              <span class="step-badge">STEP 03</span>
-              <div class="step-body">
-                <h4>位置情報（GPS）権限の許可 ＆ フォントエンジンの自動最適化</h4>
-                <p>
-                  VECTRA起動後、位置情報へのアクセス許可を求められたら <strong>「アプリの使用中のみ許可」</strong>（かつ「正確な位置情報」をON）を選択してください。初回起動時にVECTRA専用の和欧混植ボールドフォントが自動キャッシュされ、どのスマホ機種でも100%統一されたコックピットHUDが描画されます。
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 02. AUTHENTICATION & LICENSE RULES -->
-      <section id="sec-auth" class="section">
-        <div class="sec-header">
-          <span class="sec-num">02</span>
-          <h2 class="sec-title">PILOT AUTH & QUOTA</h2>
-          <span class="sec-jp">ログイン認証とライセンス枠</span>
-        </div>
-
-        <div class="hud-card">
-          <div class="card-title">
-            <span>1タップ起動 ＆ 先行20名ライセンス枠のご案内</span>
-            <span class="badge">MAX 20 PILOTS</span>
-          </div>
-          <p style="font-size:0.9rem; color:var(--text-sub);">
-            起動画面（首都高C1背景）にて、任意のパイロットID（または下部の <strong>Sign in with Google</strong> からご自身のGoogleアカウント）でログインしてください。一度ログインすると端末内に認証情報が記憶され、<strong>次回からは「LAUNCH VECTRA」の1タップのみで即座にメインHUDへ突入</strong>します。<br>
-            ※アプリの上書きアップデートや再インストールを行った場合も、端末固有IDにより当月の利用枠が自動的に引き継がれます。
-          </p>
-
-          <div class="table-wrap">
-            <table class="hud-table">
-              <thead>
-                <tr>
-                  <th>機能カテゴリー</th>
-                  <th>PIONEER EDITION 利用上限</th>
-                  <th>リセット周期</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>走り屋モード（高速道路 IC / SA / PA / JCT 自動ロックオン表示）</strong></td>
-                  <td><span class="mono-hl" style="color:var(--hud-emerald); border-color:var(--hud-emerald);">無制限 (FREE / UNLIMITED)</span></td>
-                  <td>常時無制限</td>
-                </tr>
-                <tr>
-                  <td><strong>ルートナビゲーション案内開始</strong></td>
-                  <td><strong>月間 50 回</strong> まで</td>
-                  <td>毎月1日 自動リセット</td>
-                </tr>
-                <tr>
-                  <td><strong>Google Places 目的地キーワード検索</strong></td>
-                  <td><strong>1日 10 回</strong> まで（※お気に入り3拠点・地図長押しピン留めは消費なし）</td>
-                  <td>毎日0時 自動リセット</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- 03. RUNNER'S FREE-DRIVE HIGHWAY HUD (★走り屋モード＆首都高タクティカル図解) -->
-      <section id="sec-hwy" class="section">
-        <div class="sec-header">
-          <span class="sec-num">03</span>
-          <h2 class="sec-title">RUNNER'S MODE // SHUTOKO & HIGHWAY HUD</h2>
-          <span class="sec-jp">目的地不要の「走り屋モード」＆ 高速施設レーダー</span>
-        </div>
-
-        <!-- ★首都高「走り屋モード」タクティカル・レーダー図解パネル -->
-        <div class="shutoko-hero-banner">
-          <div class="shutoko-banner-top">
-            <span class="shutoko-mode-tag">
-              <span class="status-dot" style="background:#FFF; box-shadow:0 0 8px #FFF;"></span>
-              RUNNER'S MODE // FREE-DRIVE LOCK-ON
-            </span>
-            <span class="badge" style="color:var(--hud-cyan);">ZERO QUOTA CONSUMPTION</span>
-          </div>
-          <div class="shutoko-Catch">
-            「どこへ行くか」じゃない。「今、どのコーナーとJCTの先に何があるか」だけを射抜く。
-          </div>
-          <p style="font-size:0.88rem; color:var(--text-sub);">
-            既存のスマホナビには致命的な弱点があります。それは<strong>「目的地を設定しないとただの地図になること」</strong>、そして<strong>「首都高C1などの環状線を1周すると到着扱いになって案内が消えること」</strong>です。<br>
-            VECTRAのコア機能である<strong>『走り屋モード（FREE-DRIVE HIGHWAY HUD）』</strong>は、目的地設定を一切必要としません。高速本線に乗った瞬間、自車の速度と進行方向ベクトルから走行中の路線（C1内回り/外回り、湾岸線、新東名など）をリアルタイムにロックオンし、<strong>何周ループしても前方のIC・JCT・PAまでの距離と通過予想時刻（ETA）を無限にスタック表示し続けます。</strong>
-          </p>
-
-          <div class="shutoko-grid">
-            <!-- 左：首都高C1〜湾岸線・辰巳/芝浦/大黒PA タクティカルSVGアニメーション図解 -->
-            <div class="shutoko-svg-stage">
-              <div class="shutoko-svg-header">
-                <span>// SHUTOKO C1 & BAYSHORE TACTICAL RADAR</span>
-                <span style="color:var(--hud-emerald);">LOCK-ON: ACTIVE</span>
-              </div>
-
-              <div class="shutoko-svg-wrap">
-                <svg viewBox="0 0 420 250" xmlns="http://www.w3.org/2000/svg">
-                  <!-- 背景レーダーグリッド -->
-                  <g stroke="#182232" stroke-width="1" fill="none">
-                    <circle cx="170" cy="115" r="45"/>
-                    <circle cx="170" cy="115" r="85"/>
-                    <circle cx="170" cy="115" r="125" stroke-dasharray="4 4"/>
-                    <line x1="0" y1="115" x2="420" y2="115"/>
-                    <line x1="170" y1="0" x2="170" y2="250"/>
-                  </g>
-
-                  <!-- レーダースイープ走査線 -->
-                  <g class="radar-sweep">
-                    <path d="M170,115 L295,65 A135,135 0 0,1 295,165 Z" fill="url(#radarGrad)" opacity="0.22"/>
-                  </g>
-                  <defs>
-                    <linearGradient id="radarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0"/>
-                      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0.65"/>
-                    </linearGradient>
-                  </defs>
-
-                  <!-- 9号深川線・11号台場線（レインボーブリッジ）〜 湾岸線（B）・大黒PAルート -->
-                  <path class="bayside-line" d="M235,88 L295,120 L345,155 L265,205 L120,238" />
-                  <path class="bayside-line" d="M185,172 L245,198" stroke-dasharray="4 3" />
-
-                  <!-- 首都高 C1 都心環状線（メインループ軌道） -->
-                  <path id="c1Track" class="c1-loop-glow" d="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
-                  <path class="c1-loop-core" d="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
-
-                  <!-- 主要JCT・ICノード -->
-                  <circle class="jct-node" cx="155" cy="44" r="4.5"/>
-                  <text x="130" y="32" fill="#CBD5E1" font-family="Share Tech Mono" font-size="10" font-weight="bold">竹橋JCT</text>
-
-                  <circle class="jct-node" cx="235" cy="88" r="5"/>
-                  <text x="244" y="84" fill="#FFFFFF" font-family="Share Tech Mono" font-size="10" font-weight="bold">江戸橋JCT</text>
-
-                  <circle class="jct-node" cx="185" cy="172" r="5"/>
-                  <text x="120" y="192" fill="#FFFFFF" font-family="Share Tech Mono" font-size="10" font-weight="bold">浜崎橋JCT</text>
-
-                  <circle class="jct-node" cx="105" cy="135" r="4.5"/>
-                  <text x="32" y="140" fill="#CBD5E1" font-family="Share Tech Mono" font-size="10" font-weight="bold">谷町JCT</text>
-
-                  <circle class="jct-node" cx="102" cy="85" r="4.5"/>
-                  <text x="28" y="85" fill="#CBD5E1" font-family="Share Tech Mono" font-size="10" font-weight="bold">三宅坂JCT</text>
-
-                  <!-- 首都高 3大聖地 PA ノード (辰巳PA / 芝浦PA / 大黒PA) ※スタバ誤表記を完全排除 -->
-                  <circle class="pa-node" cx="332" cy="146" r="5.5"/>
-                  <rect x="315" y="116" width="96" height="20" fill="#06281A" stroke="#00E676" stroke-width="1"/>
-                  <text x="321" y="130" fill="#00E676" font-family="Share Tech Mono" font-size="10" font-weight="bold">辰巳PA [LOCK]</text>
-
-                  <circle class="pa-node" cx="238" cy="195" r="5"/>
-                  <text x="250" y="198" fill="#A7F3D0" font-family="Share Tech Mono" font-size="9.5" font-weight="bold">芝浦PA [LOCK]</text>
-
-                  <circle class="pa-node" cx="135" cy="234" r="6"/>
-                  <rect x="146" y="218" width="112" height="20" fill="#06281A" stroke="#00E676" stroke-width="1.2"/>
-                  <text x="154" y="232" fill="#00E676" font-family="Share Tech Mono" font-size="10" font-weight="bold">大黒PA [LOCK]</text>
-
-                  <!-- C1軌道をエンドレス周回する自車ターゲットマーカー (SVG SMIL Animation) -->
-                  <g>
-                    <circle r="9" fill="rgba(227, 0, 15, 0.35)">
-                      <animateMotion dur="7s" repeatCount="indefinite" path="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
-                    </circle>
-                    <circle r="4.5" fill="#E3000F" stroke="#FFFFFF" stroke-width="1.5">
-                      <animateMotion dur="7s" repeatCount="indefinite" path="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
-                    </circle>
-                  </g>
-
-                  <!-- 中央ステータス表示 -->
-                  <text x="170" y="112" text-anchor="middle" fill="#E3000F" font-family="Share Tech Mono" font-size="13" font-weight="bold">C1 INNER/OUTER</text>
-                  <text x="170" y="127" text-anchor="middle" fill="#94A3B8" font-family="Share Tech Mono" font-size="9">ENDLESS VECTOR SYNC</text>
-                </svg>
-              </div>
-
-              <div class="shutoko-svg-footer">
-                <span>VECTOR TRACKING: <strong style="color:#FFF;">360° REALTIME</strong></span>
-                <span>C1 / WANGAN / AQUA-LINE / TOHOKU / TOMEI</span>
-              </div>
-            </div>
-
-            <!-- 右：走り屋モードの3大核心ロジック解説 -->
-            <div class="shutoko-feature-list">
-              <div class="shutoko-point-box red">
-                <h5>01 // 首都高C1・環状線の「エンドレス周回」完全対応</h5>
-                <p>
-                  C1（都心環状線）の内回り・外回りを何周ループしても、進行方向ベクトルから次に来るIC・JCTを自動で再ロックオン。ルーレット走行中に案内が途切れることは一切ありません。
-                </p>
-              </div>
-
-              <div class="shutoko-point-box">
-                <h5>02 // JCT分岐後の路線スイッチにも0.5秒で即応</h5>
-                <p>
-                  例えば「C1から浜崎橋JCTで11号台場線へ抜け、レインボーブリッジを渡って湾岸線（大黒PA・辰巳PA方面）へ入る」といったルート変更も、ハンドルを切った瞬間に前方路線を再解析してリストを書き換えます。
-                </p>
-              </div>
-
-              <div class="shutoko-point-box emerald">
-                <h5>03 // 夜間コックピットに溶け込む「自動減光ステルスUI」</h5>
-                <p>
-                  操作しない時はトグルスイッチ類が自動で半透明（50%減光）へフェードし、視界の邪魔をゼロに。スポーツ走行時のコックピット計器として機能します。
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 施設カード実機プレビュー枠（東名モード ⇔ 首都高C1モード 切り替え可能） -->
-        <div class="hud-card emerald-accent">
-          <div class="card-title">
-            <span>実機HUDプレビュー：路線別ロックオン表示 ＆ 日英ワンタップ切替</span>
-            <span class="badge">INTERACTIVE DEMO</span>
-          </div>
-
-          <div class="hud-mockup-grid">
-            <div class="mock-box">
-              <div class="mock-header-bar">
-                <div class="mock-label">// HOW TO ACTIVATE RUNNER'S MODE</div>
-              </div>
-              <p style="font-size:0.86rem; color:var(--text-main); margin-bottom:10px;">
-                1. 画面右側の <span class="mono-red">ROUTE HGWY</span> スイッチが左側（HGWY）になっていることを確認します。<br><br>
-                2. 目的地を設定しないまま高速道路・都市高速の本線に乗り、<span class="mono-hl">HIGHWAY MODE</span> スイッチをONにするだけで「走り屋モード」が起動！直近3つの施設を下から上へ積み上げ表示します。<br><br>
-                <span style="color:var(--text-sub); font-size:0.8rem;">※右側のプレビューで<strong>「東名高速（海老名SA：スタバ＆GAS表示）」</strong>と<strong>「首都高 C1/湾岸（大黒PA：P/WC表示）」</strong>、および<strong>「日本語 ⇔ 英語表記」</strong>を実際に切り替えて比較できます。</span>
-              </p>
-            </div>
-
-            <div class="mock-box">
-              <div class="mock-header-bar">
-                <!-- ★東名（スタバあり）⇔ 首都高（大黒PA：P/WC）切り替えタブ -->
-                <div class="route-preset-tabs">
-                  <button type="button" id="presetTomeiBtn" class="route-preset-btn active">東名高速 (スタバ併設)</button>
-                  <button type="button" id="presetShutokoBtn" class="route-preset-btn">首都高 C1/湾岸</button>
-                </div>
-
-                <!-- ★日本語（デフォルト）⇔ 英語 切り替えトグルスイッチ -->
-                <div id="facLangToggle" class="lang-toggle-switch" role="button" tabindex="0" aria-label="Toggle Facility Language">
-                  <span id="langOptJa" class="lang-opt active">日本語</span>
-                  <div class="lang-track">
-                    <div class="lang-thumb"></div>
-                  </div>
-                  <span id="langOptEn" class="lang-opt">EN</span>
-                </div>
-              </div>
-
-              <div id="hwyPreviewLabel" class="mock-label" style="margin-bottom:8px;">// HIGHWAY HUD PREVIEW (東名高速 上り)</div>
-
-              <!-- 3段目（奥）：海老名SA（上り：GAS + STARBUCKS）または 大黒PA（P + WC） -->
-              <div class="fac-row-mock">
-                <span id="facTag3" class="fac-tag sa">SA</span>
-                <div class="fac-info">
-                  <div id="facName3" class="fac-name">海老名SA (上り)</div>
-                  <div id="facSub3" class="fac-sub">
-                    <span>GAS</span>
-                    <span class="sbux-tag">
-                      <img
-                        src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
-                        alt="Starbucks"
-                        class="sbux-real-logo-mini"
-                      />
-                      STARBUCKS
-                    </span>
-                  </div>
-                </div>
-                <div class="fac-dist">
-                  <div id="facKm3" class="km">6.4 km</div>
-                  <div id="facEta3" class="eta">18:37</div>
-                </div>
-              </div>
-
-              <!-- 2段目（中間）：海老名JCT または 浜崎橋JCT -->
-              <div class="fac-row-mock">
-                <span id="facTag2" class="fac-tag jct">JCT</span>
-                <div class="fac-info">
-                  <div id="facName2" class="fac-name">海老名JCT</div>
-                  <div class="fac-sub"><span>EXIT</span></div>
-                </div>
-                <div class="fac-dist">
-                  <div id="facKm2" class="km">4.8 km</div>
-                  <div id="facEta2" class="eta">18:35</div>
-                </div>
-              </div>
-
-              <!-- 1段目（手前）：厚木IC または 芝公園IC -->
-              <div class="fac-row-mock">
-                <span id="facTag1" class="fac-tag ic">IC</span>
-                <div class="fac-info">
-                  <div id="facName1" class="fac-name">厚木IC</div>
-                  <div class="fac-sub"><span class="in-tag">IN</span></div>
-                </div>
-                <div class="fac-dist">
-                  <div id="facKm1" class="km">1.5 km</div>
-                  <div id="facEta1" class="eta">18:32</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ★本物のスターバックス公式コーポレートロゴ（SVG）搭載 ワンポイントアドバイス枠 -->
-          <div class="sbux-spotlight">
-            <div class="sbux-emblem-wrap">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
-                alt="Starbucks Official Siren"
-                class="sbux-real-logo-large"
-              />
-            </div>
-            <div class="sbux-content">
-              <div class="sbux-spotlight-header">
-                <div class="sbux-spotlight-title">
-                  ONE-POINT ADVICE // 全国高速SA・PAの「スタバ＆給油所」スマート表示！
-                </div>
-                <span class="sbux-pill">SMART DISPLAY</span>
-              </div>
-              <p>
-                ナイトドライブや長距離ツーリングのコーヒーブレイクを逃さないための「隠れ機能」を搭載！<br>
-                スターバックスが併設されている全国の高速SA・PA（海ほたるPA、湾岸幕張PA上下、守谷SA上下、海老名SA上り、足柄SA上下、酒々井PA上下、第三京浜・都筑PA上り、談合坂SA上下など）が前方に迫ると、進行方向の上下線まで自動判別して施設カード内に
-                <span class="sbux-inline-badge">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
-                    alt="Starbucks"
-                    class="sbux-real-logo-mini"
-                  />
-                  STARBUCKS
-                </span>
-                アイコンが自動点灯します。<br>
-                ※スタバ併設エリアでは視認性を最大化するため、通常の <span class="mono-hl">P</span> <span class="mono-hl">WC</span> タグを自動省略し、給油可否がすぐ分かる重要な <span class="mono-hl">GAS</span> タグ（SAのみ）と横長ワイドなスタバアイコンのみを優先表示します！
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 04. TACTICAL ROUTE NAVIGATION & QUICK DESTINATIONS -->
-      <section id="sec-navi" class="section">
-        <div class="sec-header">
-          <span class="sec-num">04</span>
-          <h2 class="sec-title">QUICK PIN, ROUTE & ALT SWITCH</h2>
-          <span class="sec-jp">お気に入り3拠点ドロワーと2段階ステルス代替ルート</span>
-        </div>
-
-        <div class="hud-card">
-          <div class="card-title">
-            <span>3通りの目的地セットと、運転を妨げない「2段階ステルス代替ルート」</span>
-            <span class="badge">SMART ROUTING</span>
-          </div>
-
-          <div class="step-list">
-            <!-- ★NEW: お気に入り3拠点（U字タブ引き出しドロワー）の説明 -->
-            <div class="step-item">
-              <span class="step-badge cyan">NEW // QUICK PIN</span>
-              <div class="step-body">
-                <h4>画面左端「U字プルタブ」によるお気に入り3拠点（Home / favolit1 / favolit2）ワンタップ出発</h4>
-                <p>
-                  画面左端（コンパスボタンのすぐ上）に配置された<strong>「横向きU字タブ（絆創膏の端っこ風タブ）」</strong>を指で右へ引っ張り出す（またはタップする）と、3つの専用拠点スロットが出現します（5秒間で自動収納）。
-                </p>
-                <div class="bandaid-demo-bar">
-                  <div class="bandaid-drawer-mock">
-                    <span class="bandaid-chip">[Home]</span>
-                    <span class="bandaid-chip">[favolit1]</span>
-                    <span class="bandaid-chip unset">[favolit2]</span>
-                  </div>
-                  <div class="bandaid-tab-mock">⋮⋮</div>
-                </div>
-                <p style="margin-top:6px;">
-                  ・<strong>未登録スロットをタップした場合</strong>：画面中央に赤い「＋」照準と透過アナウンス（例：<span class="mono-hl">Home 設定中</span>）が表示されます。地図を動かして自宅やよく行くPA/集合場所に「＋」を合わせ、<strong>「決定」</strong>を押すだけで記憶されます。<br>
-                  ・<strong>登録済みスロットをタップした場合</strong>：<strong>検索回数を一切消費せず、1タップで即座にその拠点へのルート案内を開始</strong>します！（位置の変更や長押し消去は設定メニュー⚙️からいつでも行えます）
-                </p>
-              </div>
-            </div>
-
-            <div class="step-item">
-              <span class="step-badge">METHOD A</span>
-              <div class="step-body">
-                <h4>キーワード検索（左下「🔍」ボタン）</h4>
-                <p>
-                  画面左下の虫眼鏡アイコンをタップし、施設名や住所を入力して検索します。候補をタップすると即座にルート計算・案内が開始されます。
-                </p>
-              </div>
-            </div>
-
-            <div class="step-item">
-              <span class="step-badge">METHOD B</span>
-              <div class="step-body">
-                <h4>マップ長押しダイレクトピン留め（検索回数消費ゼロ）</h4>
-                <p>
-                  地図上の行きたい場所を <strong>約1秒間長押し（ロングタップ）</strong> すると、赤いピンが刺さり、検索枠を消費せずにダイレクトにその地点へのナビを開始します。
-                </p>
-              </div>
-            </div>
-
-            <div class="step-item">
-              <span class="step-badge">STEALTH ALT</span>
-              <div class="step-body">
-                <h4>代替ルート（ALT ROUTE）の2段階切り替えギミック</h4>
-                <p>
-                  ルート案内中、分岐可能な別ルートが存在すると画面右下に半透明の <span class="mono-hl">ALT ROUTE 1/2 | -3 min</span> ボタンがステルス待機します。<br>
-                  ・<strong>1タップ目（Wake Up）</strong>：ボタンが鮮明化し、地図上の分岐ルート上に「到着予想時刻（ETA）・時間差・距離差」の吹き出しが出現します（4秒間放置すると自動で元のステルス状態へ戻ります）。<br>
-                  ・<strong>2タップ目（Confirm Switch）</strong>：起き上がったボタン（または地図上の吹き出し）をもう一度タップすると、即座にその代替ルートへ切り替わります！
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 05. CUSTOMIZATION & CONTROLS -->
-      <section id="sec-custom" class="section">
-        <div class="sec-header">
-          <span class="sec-num">05</span>
-          <h2 class="sec-title">HUD & TRAFFIC CUSTOMIZATION</h2>
-          <span class="sec-jp">画面コントロールと設定メニュー</span>
-        </div>
-
-        <div class="hud-card">
-          <div class="card-title">
-            <span>クイック拠点管理・渋滞ライン太さ調整・カメラ制御</span>
-            <span class="badge">SETTINGS HUD</span>
-          </div>
-
-          <div class="table-wrap">
-            <table class="hud-table">
-              <thead>
-                <tr>
-                  <th>ボタン / 設定項目</th>
-                  <th>配置場所</th>
-                  <th>機能・動作詳細</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>U字クイック拠点タブ</strong></td>
-                  <td>左端（コンパス上）</td>
-                  <td>右へスワイプ（またはタップ）で <span class="mono-red">[Home]</span> <span class="mono-red">[favolit1]</span> <span class="mono-red">[favolit2]</span> ドロワーを展開し、ワンタップで目的地セット・位置登録を行います。</td>
-                </tr>
-                <tr>
-                  <td><strong>コンパスボタン</strong></td>
-                  <td>左下（1段目）</td>
-                  <td>タップするごとにカメラ視点を <span class="mono-hl">NORTH-UP 2D（北固定）</span> ➔ <span class="mono-hl">HEAD-UP 2D（進行方向上）</span> ➔ <span class="mono-hl">HEAD-UP 3D（3D俯瞰）</span> の順で切り替えます。</td>
-                </tr>
-                <tr>
-                  <td><strong>レイヤー切替ボタン</strong></td>
-                  <td>左下（2段目）</td>
-                  <td>昼夜トラフィック・ダーク・サテライト（航空写真）など <strong>全7種類のマップスタイル</strong> をワンタップで巡回切り替えします。</td>
-                </tr>
-                <tr>
-                  <td><strong>自車3Dロックボタン</strong></td>
-                  <td>左下（3段目）</td>
-                  <td>地図をスクロールして現在地から離れた際、ワンタップで自車位置の <span class="mono-hl">HEAD-UP 3D</span> 追従モードへ即座に戻します。</td>
-                </tr>
-                <tr>
-                  <td><strong>QUICK DESTINATIONS (PIN)</strong></td>
-                  <td>設定（⚙️）内</td>
-                  <td>お気に入り3拠点の登録状態（<span class="mono-hl" style="color:var(--hud-emerald);">設定済</span> / <span class="mono-hl">未設定</span>）を一覧管理します。<strong>タップで位置の登録・変更</strong>、<strong>長押しで登録消去（未設定へ戻す）</strong>が可能です。</td>
-                </tr>
-                <tr>
-                  <td><strong>Traffic Line Width</strong></td>
-                  <td>設定（⚙️）内</td>
-                  <td>地図上の渋滞情報ライン（緑・橙・赤・暗赤）の太さを <span class="mono-hl">0.5x 〜 2.0x</span> のスライダー、または <span class="mono-red">THIN / STD / BOLD</span> プリセットでリアルタイムに調整・保存できます。</td>
-                </tr>
-                <tr>
-                  <td><strong>Map / Voice Language</strong></td>
-                  <td>設定（⚙️）内</td>
-                  <td>地図ラベルおよび高速施設リスト・音声案内の言語を <strong>日本語（JA：デフォルト）</strong> と <strong>英語（EN：欧州車純正コックピット風）</strong> からいつでも切り替えできます。</td>
-                </tr>
-                <tr>
-                  <td><strong>HUD Opacity</strong></td>
-                  <td>設定（⚙️）内</td>
-                  <td>上下のHUDパネルおよび高速施設リストの背景透過度を <span class="mono-hl">85% / 75% / 70%</span> から好みに合わせて切り替えられます。</td>
-                </tr>
-                <tr>
-                  <td><strong>DELETE ACCOUNT & DATA</strong></td>
-                  <td>設定（⚙️）最下部</td>
-                  <td>アカウント登録情報およびお気に入りピン・設定等の端末内データを初期状態へリセットします（削除後も再登録可能・当月利用枠は引き継がれます）。</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-    </div>
-
-    <!-- ★スクロール連動「TOPへ戻る」フローティングボタン -->
-    <a href="#page-top" id="backToTopBtn" class="back-to-top" aria-label="Back to top">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="18 15 12 9 6 15"></polyline>
-      </svg>
-      <span>TOP</span>
-    </a>
-
-    <footer>
-      VECTRA TACTICAL NAVIGATION SYSTEM // PIONEER EDITION v3.0<br>
-      DESIGNED FOR HIGH-PERFORMANCE DRIVING
-    </footer>
+      </div>
+    </section>
 
   </div>
+
+  <!-- ★スクロール連動「TOPへ戻る」フローティングボタン -->
+  <a href="#page-top" id="backToTopBtn" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+    <span>TOP</span>
+  </a>
+
+  <footer>
+    VECTRA TACTICAL NAVIGATION SYSTEM // OFFICIAL MANUAL v3.9<br>
+    DESIGNED FOR HIGH-PERFORMANCE DRIVING
+  </footer>
 
   <script>
     (function() {
@@ -1921,9 +2214,15 @@
         }
       }, { passive: true });
 
-      // 2. 高速道路施設プレビュー：東名高速(海老名SA:スタバ＆GAS) ⇔ 首都高(大黒PA:P/WC) ＆ 日英切り替え
-      var isFacilityEnglish = false; // デフォルトは日本語
-      var currentPreset = 'tomei';   // デフォルトはスタバ＆GAS表示の「東名高速（海老名SA上り）」
+      // 2. 高速道路施設プレビュー ＆ グローバル日英モード連動制御
+      var isGlobalEnglish = false;
+      var isFacilityEnglish = false;
+      var currentPreset = 'tomei';
+
+      var globalToggle = document.getElementById('globalLangToggle');
+      var globalChipEn = document.getElementById('globalChipEn');
+      var globalChipJp = document.getElementById('globalChipJp');
+      var legalPolicyLink = document.getElementById('legalPolicyLink');
 
       var btnTomei = document.getElementById('presetTomeiBtn');
       var btnShutoko = document.getElementById('presetShutokoBtn');
@@ -1945,6 +2244,18 @@
       var facName1 = document.getElementById('facName1');
       var facKm1 = document.getElementById('facKm1');
       var facEta1 = document.getElementById('facEta1');
+
+      // SVGレーダー内のJCT/PAラベル（ENモード時のみ英語化、JPモード時は元の漢字表記を維持）
+      var svgLabels = {
+        svgLblTakebashi: { ja: '竹橋JCT', en: 'Takebashi JCT' },
+        svgLblEdobashi:  { ja: '江戸橋JCT', en: 'Edobashi JCT' },
+        svgLblHamasaki:  { ja: '浜崎橋JCT', en: 'Hamasaki JCT' },
+        svgLblTanimachi: { ja: '谷町JCT', en: 'Tanimachi JCT' },
+        svgLblMiyakezaka:{ ja: '三宅坂JCT', en: 'Miyakezaka JCT' },
+        svgLblTatsumi:   { ja: '辰巳PA [LOCK]', en: 'Tatsumi PA' },
+        svgLblShibaura:  { ja: '芝浦PA [LOCK]', en: 'Shibaura PA' },
+        svgLblDaikoku:   { ja: '大黒PA [LOCK]', en: 'Daikoku PA' }
+      };
 
       var SBUX_BADGE_HTML =
         '<span class="sbux-tag">' +
@@ -1970,7 +2281,6 @@
             ? '// HIGHWAY HUD PREVIEW (SHUTOKO C1 -> BAYSHORE)'
             : '// HIGHWAY HUD PREVIEW (首都高 C1 ➔ 湾岸線)';
 
-          // 大黒PAにはスタバは無いため、実機通りに [P] [WC] を表示！
           facTag3.textContent = 'PA';
           facTag3.className = 'fac-tag pa';
           facName3.textContent = isFacilityEnglish ? 'Daikoku PA' : '大黒PA';
@@ -1992,7 +2302,6 @@
             ? '// HIGHWAY HUD PREVIEW (E1 TOMEI INBOUND)'
             : '// HIGHWAY HUD PREVIEW (東名高速 上り)';
 
-          // 海老名SA(上り)はスタバ併設のため P/WC を省略して [GAS] [★STARBUCKS] を表示！
           facTag3.textContent = 'SA';
           facTag3.className = 'fac-tag sa';
           facName3.textContent = isFacilityEnglish ? 'Ebina SA (Inbound)' : '海老名SA (上り)';
@@ -2008,6 +2317,51 @@
           facKm1.textContent = '1.5 km';
           facEta1.textContent = '18:32';
         }
+      }
+
+      function applyGlobalLanguage(useEnglish) {
+        isGlobalEnglish = !!useEnglish;
+        isFacilityEnglish = isGlobalEnglish;
+
+        if (isGlobalEnglish) {
+          document.body.classList.add('lang-en');
+          document.documentElement.setAttribute('lang', 'en');
+          globalChipEn.classList.add('active-en');
+          globalChipJp.classList.remove('active-jp');
+          btnTomei.textContent = 'TOMEI (STARBUCKS)';
+          btnShutoko.textContent = 'SHUTOKO C1 / BAY';
+          optJa.textContent = 'JA';
+          if (legalPolicyLink) legalPolicyLink.setAttribute('href', 'privacy.html?lang=en');
+        } else {
+          document.body.classList.remove('lang-en');
+          document.documentElement.setAttribute('lang', 'ja');
+          globalChipJp.classList.add('active-jp');
+          globalChipEn.classList.remove('active-en');
+          btnTomei.textContent = '東名高速 (スタバ併設)';
+          btnShutoko.textContent = '首都高 C1/湾岸';
+          optJa.textContent = '日本語';
+          if (legalPolicyLink) legalPolicyLink.setAttribute('href', 'privacy.html');
+        }
+
+        for (var id in svgLabels) {
+          var el = document.getElementById(id);
+          if (el) {
+            el.textContent = isGlobalEnglish ? svgLabels[id].en : svgLabels[id].ja;
+          }
+        }
+
+        renderFacilityPreview();
+      }
+
+      // 初期起動時のURLパラメータ (?lang=en) 同期判定
+      var params = new URLSearchParams(window.location.search);
+      var langParam = (params.get('lang') || '').toLowerCase();
+      applyGlobalLanguage(langParam === 'en');
+
+      if (globalToggle) {
+        globalToggle.addEventListener('click', function() {
+          applyGlobalLanguage(!isGlobalEnglish);
+        });
       }
 
       if (langToggle) {
@@ -2028,67 +2382,6 @@
           renderFacilityPreview();
         });
       }
-
-      // 3. VECTRA STEALTH VAULT (パスコードによるXOR復号＆ゲート解除エンジン)
-      var CIPHER_BYTES = [
-        89,70,48,38,54,121,123,125,37,67,91,50,51,107,36,59,61,38,93,87,106,
-        53,42,46,123,52,40,93,87,107,50,106,114,14,23,117,84,102,105,4,38,43,
-        57,60,42,125,65,119,52,14,9,39,35,42,92,81,5,12,61,123,27,49,40,110,
-        66,107,32,44,38,35,109,52,66,66,121,50,55,42,34,55,30,93,91,42,61
-      ];
-
-      function tryDecryptUrl(rawPass) {
-        var cleanKey = (rawPass || '').trim().toUpperCase();
-        if (cleanKey.length !== 9) return null;
-        var out = '';
-        for (var i = 0; i < CIPHER_BYTES.length; i++) {
-          var k = cleanKey.charCodeAt(i % cleanKey.length);
-          out += String.fromCharCode(CIPHER_BYTES[i] ^ k);
-        }
-        if (out.indexOf('https://drive.google.com/file/d/') === 0) {
-          return out;
-        }
-        return null;
-      }
-
-      var overlay = document.getElementById('pilotGateOverlay');
-      var form = document.getElementById('pilotGateForm');
-      var input = document.getElementById('pilotPassInput');
-      var errBox = document.getElementById('pilotGateError');
-      var dlBtn = document.getElementById('vectraApkDownloadBtn');
-
-      function applyUnlock(decryptedUrl, passKey) {
-        dlBtn.setAttribute('href', decryptedUrl);
-        overlay.classList.add('unlocked');
-        document.body.classList.remove('locked');
-        try {
-          sessionStorage.setItem('vectra_pilot_key', passKey);
-        } catch (e) {}
-      }
-
-      try {
-        var savedKey = sessionStorage.getItem('vectra_pilot_key');
-        if (savedKey) {
-          var restoredUrl = tryDecryptUrl(savedKey);
-          if (restoredUrl) {
-            applyUnlock(restoredUrl, savedKey);
-          }
-        }
-      } catch (e) {}
-
-      form.addEventListener('submit', function(ev) {
-        ev.preventDefault();
-        var val = input.value;
-        var decrypted = tryDecryptUrl(val);
-        if (decrypted) {
-          errBox.textContent = '';
-          applyUnlock(decrypted, val.trim().toUpperCase());
-        } else {
-          errBox.textContent = 'ACCESS DENIED // INVALID PILOT PASSCODE';
-          input.value = '';
-          input.focus();
-        }
-      });
     })();
   </script>
 
