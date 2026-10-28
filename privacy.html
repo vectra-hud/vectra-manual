@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VECTRA | PRIVACY POLICY & TERMS OF SERVICE</title>
+    <!-- 【ステルス防衛設定：審査官の直接閲覧は100%許可しつつ、検索エンジンの検索結果掲載・リンク追跡を完全拒否】 -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>VECTRA | PRIVACY POLICY &amp; TERMS OF SERVICE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -14,11 +17,13 @@
             --cyan: #00e5ff;
             --cyan-dim: rgba(0, 229, 255, 0.25);
             --cyan-border: rgba(0, 229, 255, 0.45);
+            --audi-red: #E3000F;
             --red: #ff2a4b;
             --red-dim: rgba(255, 42, 75, 0.35);
             --green: #00e676;
             --text-main: #e2e8f0;
             --text-sub: #94a3b8;
+            --font-mono: 'Share Tech Mono', monospace;
         }
         * {
             box-sizing: border-box;
@@ -41,7 +46,7 @@
         }
 
         /* =========================================================
-           TOP-OF-TOP BRAND BAR (左上VECTRAロゴ ＋ 右空白部に言語切替)
+           TOP-OF-TOP BRAND BAR (左上VECTRAロゴ ＋ 右上に [ EN | JP ] トグル)
            ========================================================= */
         .top-brand-bar {
             display: flex;
@@ -97,33 +102,43 @@
             letter-spacing: 2px;
             margin-top: 3px;
         }
-        .lang-switch {
-            display: flex;
+
+        /* ★アプリ＆マニュアルと完全統一した右上 [ EN | JP ] トグル */
+        .hud-lang-pill {
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            margin-left: auto;
-        }
-        .lang-btn {
-            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            background: #0A121E;
+            border: 1px solid rgba(0, 229, 255, 0.5);
+            border-radius: 6px;
+            padding: 3px;
             cursor: pointer;
-            color: var(--text-sub);
-            border: 1px solid rgba(148, 163, 184, 0.45);
-            background: rgba(12, 18, 26, 0.85);
-            padding: 8px 16px;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: all 0.2s ease;
+            user-select: none;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: bold;
+            margin-left: auto;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .lang-btn:hover {
+        .hud-lang-pill:hover {
             border-color: var(--cyan);
-            color: var(--cyan);
-        }
-        .lang-btn.active {
-            color: #06080c;
-            background: var(--cyan);
-            border-color: var(--cyan);
-            font-weight: 700;
             box-shadow: 0 0 14px var(--cyan-dim);
+        }
+        .hud-lang-chip {
+            padding: 4px 12px;
+            border-radius: 4px;
+            color: #90A4AE;
+            letter-spacing: 1px;
+            transition: all 0.18s ease;
+        }
+        .hud-lang-chip.active-en {
+            background: var(--cyan);
+            color: #03070E;
+            font-weight: 900;
+        }
+        .hud-lang-chip.active-jp {
+            background: var(--audi-red);
+            color: #FFFFFF;
+            font-weight: 900;
         }
 
         /* =========================================================
@@ -166,6 +181,7 @@
             font-size: 0.88rem;
             letter-spacing: 0.8px;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
         /* 選択・ホバー・タップ時に赤色へ変化 */
         .hud-btn:hover,
@@ -332,10 +348,10 @@
 <div class="container">
 
     <!-- ========================================================= -->
-    <!-- TOP-OF-TOP BRAND BAR (左:VECTRAタイトル / 右:日英切替)      -->
+    <!-- TOP-OF-TOP BRAND BAR (左:VECTRAタイトル / 右:[ EN | JP ])   -->
     <!-- ========================================================= -->
     <div class="top-brand-bar">
-        <a href="index.html" class="brand-identity" title="VECTRA HUD Navigation System">
+        <a id="topBrandManualLink" href="index.html" class="brand-identity" title="VECTRA HUD Navigation System">
             <div class="brand-icon-box">
                 <!-- VECTRA Tactical HUD Vector Emblem SVG -->
                 <svg class="brand-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -349,13 +365,14 @@
             </div>
             <div class="brand-text-group">
                 <span class="brand-main-name">VECTRA</span>
-                <span class="brand-sub-tag">TACTICAL HUD NAVIGATION // 5UM1R3 WORKS</span>
+                <span class="brand-sub-tag">TACTICAL HUD NAVIGATION // LEGAL VAULT</span>
             </div>
         </a>
 
-        <div class="lang-switch">
-            <button type="button" id="btn-ja" class="lang-btn active" onclick="switchLang('ja')">[ JA / 日本語 ]</button>
-            <button type="button" id="btn-en" class="lang-btn" onclick="switchLang('en')">[ EN / ENGLISH ]</button>
+        <!-- アプリおよびマニュアルと完全同期する [ EN | JP ] トグル -->
+        <div id="globalLangToggle" class="hud-lang-pill" role="button" tabindex="0" aria-label="Switch Language">
+            <span id="chipEn" class="hud-lang-chip" onclick="switchLang('en'); event.stopPropagation();">EN</span>
+            <span id="chipJp" class="hud-lang-chip active-jp" onclick="switchLang('ja'); event.stopPropagation();">JP</span>
         </div>
     </div>
 
@@ -365,9 +382,9 @@
     <header class="hud-header">
         <div class="lang-ja">
             <div class="hud-title">VECTRA SYSTEM // 規約・プライバシーポリシー</div>
-            <div class="hud-subtitle">5UM1R3 Works - Android専用 HUDナビゲーションシステム 法務ドキュメント</div>
+            <div class="hud-subtitle">Android専用 HUDナビゲーションシステム 法務ドキュメント</div>
             <div class="nav-bar">
-                <a href="index.html" class="hud-btn" onclick="selectNav(this)">&lt; 操作マニュアルへ戻る</a>
+                <a id="backManualBtnJa" href="index.html" class="hud-btn" onclick="selectNav(this)">&lt; 操作マニュアルへ戻る</a>
                 <a href="#privacy-policy" class="hud-btn" onclick="selectNav(this)">01 // プライバシーポリシー</a>
                 <a href="#account-deletion" class="hud-btn" onclick="selectNav(this)">02 // アカウント・データ削除</a>
                 <a href="#terms-of-service" class="hud-btn" onclick="selectNav(this)">03 // 利用規約・免責事項</a>
@@ -377,9 +394,9 @@
 
         <div class="lang-en">
             <div class="hud-title">VECTRA SYSTEM // PRIVACY POLICY &amp; TERMS</div>
-            <div class="hud-subtitle">5UM1R3 Works - Android HUD Navigation System Legal Documentation</div>
+            <div class="hud-subtitle">Android HUD Navigation System Legal Documentation</div>
             <div class="nav-bar">
-                <a href="index.html" class="hud-btn" onclick="selectNav(this)">&lt; BACK TO USER MANUAL</a>
+                <a id="backManualBtnEn" href="index.html?lang=en" class="hud-btn" onclick="selectNav(this)">&lt; BACK TO USER MANUAL</a>
                 <a href="#privacy-policy" class="hud-btn" onclick="selectNav(this)">01 // PRIVACY POLICY</a>
                 <a href="#account-deletion" class="hud-btn" onclick="selectNav(this)">02 // ACCOUNT &amp; DATA DELETION</a>
                 <a href="#terms-of-service" class="hud-btn" onclick="selectNav(this)">03 // TERMS OF SERVICE</a>
@@ -396,7 +413,7 @@
         <div class="lang-ja">
             <h2 class="section-title">01 // PRIVACY POLICY（プライバシーポリシー）</h2>
             <div class="panel">
-                <p><strong>5UM1R3 Works</strong>（以下「当方」といいます）は、当方が提供するAndroid専用HUDナビゲーションアプリケーション<strong>『VECTRA』</strong>（以下「本アプリ」といいます）における利用者情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます）を定め、適切な保護と管理に努めます。</p>
+                <p><strong>&#x35;&#x55;&#x4D;&#x31;&#x52;&#x33;&#x20;&#x57;&#x6F;&#x72;&#x6B;&#x73;</strong>（以下「当方」といいます）は、当方が提供するAndroid専用HUDナビゲーションアプリケーション<strong>『VECTRA』</strong>（以下「本アプリ」といいます）における利用者情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます）を定め、適切な保護と管理に努めます。</p>
 
                 <h3>1. 取得する情報および利用目的</h3>
                 <p>本アプリでは、リアルタイムのナビゲーション機能・HUD（ヘッドアップディスプレイ）表示・高速道路施設案内・および利用枠（クォータ）管理を提供するため、以下の情報を取得・利用します。</p>
@@ -417,23 +434,23 @@
                         </tr>
                         <tr>
                             <td><strong>アカウント識別情報</strong><br><span class="mono">ACTIVE PILOT ID</span></td>
-                            <td>ユーザーがログイン時に登録したメールアドレス（または識別ID）</td>
-                            <td>・ライセンス認証（Pioneer Edition等のステータス確認）<br>・月間ルートナビ回数および日間Google目的地検索回数のクォータ（利用上限枠）管理</td>
+                            <td>ユーザーがログイン時に登録したメールアドレス（または識別ID）および端末固有識別子</td>
+                            <td>・ライセンス認証（FREE / PRO Edition 等のステータス確認）<br>・月間ルートナビ回数および日間Google目的地検索回数のクォータ（利用上限枠）管理</td>
                         </tr>
                         <tr>
                             <td><strong>端末内設定データ</strong><br><span class="mono">Local Preferences</span></td>
-                            <td>クイック目的地ピン（Home / Favorite）、HUD透過度、言語設定、カスタムAPIキー設定（Pro機能）</td>
-                            <td>・端末内のローカルストレージ（SharedPreferences等）に保存され、次回起動時の設定復元にのみ使用されます。<br>・ユーザーが入力したカスタムAPIキーが当方の管理サーバーへ送信・収集されることはありません。</td>
+                            <td>クイック目的地ピン（Home / Favorite1 / Favorite2）、渋滞ライン太さ、HUD透過度、言語設定、音声設定</td>
+                            <td>・端末内のローカルストレージ（SharedPreferences等）に保存され、次回起動時の設定復元にのみ使用されます。<br>・ユーザーが入力したカスタム音声エンドポイント設定等が当方の管理サーバーへ送信・収集されることはありません。</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <h3>2. 外部サービス（第三者SDK・API）との連携について</h3>
-                <p>本アプリは、地図描画・ルート検索・施設検索・音声案内を実現するため、以下の外部サービスAPIへ必要なリクエスト（位置座標または検索キーワード等）を送信します。各サービスにおけるデータの取扱いについては、各提供元のプライバシーポリシーをご確認ください。</p>
+                <p>本アプリは、地図描画・ルート検索・施設検索・決済管理・音声案内を実現するため、以下の外部サービスAPIへ必要なリクエスト（位置座標または検索キーワード等）を送信します。各サービスにおけるデータの取扱いについては、各提供元のプライバシーポリシーをご確認ください。</p>
                 <ul>
                     <li><strong>Mapbox Navigation SDK / Maps SDK (Mapbox, Inc.)</strong>：地図タイルの描画、交通情報ライン表示、および経路探索・ナビゲーション計算のため。<br>
                         <a href="https://www.mapbox.com/legal/privacy" target="_blank" rel="noopener" class="mono">https://www.mapbox.com/legal/privacy</a></li>
-                    <li><strong>Google Maps Platform - Places API (Google LLC)</strong>：目的地検索および周辺施設情報の取得のため。<br>
+                    <li><strong>Google Maps Platform - Places API / Google Play Billing (Google LLC)</strong>：目的地検索、周辺施設情報の取得、およびGoogle Play定期購入ライセンス確認のため。<br>
                         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="mono">https://policies.google.com/privacy</a></li>
                     <li><strong>音声合成（TTS）エンジン</strong>：Android標準Text-to-Speechエンジン、または通信設定に応じた音声合成APIによるナビゲーション音声出力のため。</li>
                 </ul>
@@ -447,7 +464,7 @@
         <div class="lang-en">
             <h2 class="section-title">01 // PRIVACY POLICY</h2>
             <div class="panel">
-                <p><strong>5UM1R3 Works</strong> ("we", "us", or "our") establishes this Privacy Policy (the "Policy") regarding the handling of user information in the Android HUD navigation application <strong>"VECTRA"</strong> (the "App"), and is committed to protecting and managing user data appropriately.</p>
+                <p><strong>&#x35;&#x55;&#x4D;&#x31;&#x52;&#x33;&#x20;&#x57;&#x6F;&#x72;&#x6B;&#x73;</strong> ("we", "us", or "our") establishes this Privacy Policy (the "Policy") regarding the handling of user information in the Android HUD navigation application <strong>"VECTRA"</strong> (the "App"), and is committed to protecting and managing user data appropriately.</p>
 
                 <h3>1. Information We Collect and Purpose of Use</h3>
                 <p>To provide real-time navigation, Head-Up Display (HUD) telemetry, expressway facility guidance, and usage quota management, the App collects and uses the following information:</p>
@@ -468,23 +485,23 @@
                         </tr>
                         <tr>
                             <td><strong>Account Identifier</strong><br><span class="mono">ACTIVE PILOT ID</span></td>
-                            <td>Email address (or unique Pilot ID) registered by the user upon login.</td>
-                            <td>- License authentication (verifying Pioneer Edition or active tier status).<br>- Managing monthly route navigation quotas and daily Google destination search limits.</td>
+                            <td>Email address (or unique Pilot ID) registered upon login and device identifier.</td>
+                            <td>- License authentication (verifying FREE / PRO Edition tier status).<br>- Managing monthly route navigation quotas and daily Google destination search limits.</td>
                         </tr>
                         <tr>
                             <td><strong>Device Local Settings</strong><br><span class="mono">Local Preferences</span></td>
-                            <td>Quick destination pins (Home / Favorite), HUD opacity, language settings, and Custom API keys (Pro feature).</td>
-                            <td>- Stored locally on your device (via SharedPreferences) solely to restore your configuration upon next launch.<br>- Custom API keys entered by the user are never transmitted to or collected by our management servers.</td>
+                            <td>Quick destination pins (Home / Favorite1 / Favorite2), traffic line width, HUD opacity, language settings, and voice settings.</td>
+                            <td>- Stored locally on your device (via SharedPreferences) solely to restore your configuration upon next launch.<br>- Custom voice API endpoints entered by the user are never transmitted to or collected by our management servers.</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <h3>2. Third-Party SDKs and External APIs</h3>
-                <p>To provide map rendering, route calculation, place search, and voice guidance, the App sends necessary requests (such as coordinates or search queries) to the following external services. Please refer to each provider's privacy policy for details on how they handle data:</p>
+                <p>To provide map rendering, route calculation, place search, subscription verification, and voice guidance, the App sends necessary requests (such as coordinates or search queries) to the following external services. Please refer to each provider's privacy policy for details on how they handle data:</p>
                 <ul>
                     <li><strong>Mapbox Navigation SDK / Maps SDK (Mapbox, Inc.)</strong>: Used for rendering map tiles, traffic congestion lines, and route calculation/navigation.<br>
                         <a href="https://www.mapbox.com/legal/privacy" target="_blank" rel="noopener" class="mono">https://www.mapbox.com/legal/privacy</a></li>
-                    <li><strong>Google Maps Platform - Places API (Google LLC)</strong>: Used for destination search and retrieving facility details.<br>
+                    <li><strong>Google Maps Platform - Places API / Google Play Billing (Google LLC)</strong>: Used for destination search, retrieving facility details, and verifying Google Play subscriptions.<br>
                         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="mono">https://policies.google.com/privacy</a></li>
                     <li><strong>Text-to-Speech (TTS) Engine</strong>: Android standard TTS engine or configured voice synthesis API for outputting spoken navigation instructions.</li>
                 </ul>
@@ -507,16 +524,16 @@
 
                 <h3>方法A：アプリ内から即時削除する手順（推奨）</h3>
                 <ol>
-                    <li>『VECTRA』アプリを起動し、設定画面（システムコンフィグ）を開きます。</li>
+                    <li>『VECTRA』アプリを起動し、設定画面（⚙️ システムコンフィグ）を開きます。</li>
                     <li>最下部の <strong><span class="mono">ACCOUNT &amp; DATA PRIVACY</span></strong> セクションまでスクロールします。</li>
                     <li><strong><span class="mono">[ DELETE ACCOUNT &amp; DATA ]</span></strong> ボタンをタップし、確認ダイアログで実行を選択します。</li>
                     <li>端末内の設定データ（登録ピン・設定値）およびアカウント登録情報が即座に初期化・削除されます。</li>
                 </ol>
 
                 <h3>方法B：Web（メール）から削除をリクエストする手順（アプリをアンインストール済みの場合）</h3>
-                <p>すでにアプリを端末からアンインストールしており、アプリ内操作を行えない場合は、以下のボタン（または連絡先メールアドレス <span class="mono">mm01smg@gmail.com</span>）より削除リクエストを送信してください。原則として<strong>7営業日以内</strong>に対象アカウントおよび関連データの完全削除を実施いたします。</p>
+                <p>すでにアプリを端末からアンインストールしており、アプリ内操作を行えない場合は、以下のボタン（または連絡先メールアドレス <span class="mono">&#x6D;&#x6D;&#x30;&#x31;&#x73;&#x6D;&#x67;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;</span>）より削除リクエストを送信してください。原則として<strong>7営業日以内</strong>に対象アカウントおよび関連データの完全削除を実施いたします。</p>
                 <p style="margin: 16px 0;">
-                    <a href="mailto:mm01smg@gmail.com?subject=%5BVECTRA%5D%20Account%20Deletion%20Request&body=Please%20delete%20my%20VECTRA%20account%20and%20associated%20data.%0D%0A%0D%0AActive%20Pilot%20ID%20(Registered%20Email)%3A%20" class="hud-btn" onclick="selectNav(this)">
+                    <a href="#account-deletion" class="hud-btn js-delete-mailto" onclick="selectNav(this)">
                         [ メールでアカウント削除をリクエストする ]
                     </a>
                 </p>
@@ -524,7 +541,7 @@
                 <h3>削除されるデータと不正利用防止のための保持仕様について</h3>
                 <ul>
                     <li><strong>削除されるデータ</strong>：アカウント登録情報（Pilot ID紐付け設定）、端末内のすべての利用データ・カスタム設定・保存済み目的地ピン。</li>
-                    <li><strong>不正利用防止のための当月クォータ枠の保持仕様</strong>：無料利用枠（月間ルートナビ回数・日間検索回数）の削除・再登録による無限リセット（不正利用）を防止するため、同一IDで同月内に再登録した場合に限り、当月内の残り利用回数のカウントのみが引き継がれます。このカウント情報は翌月の月次リセット時に自動的に消去されます。</li>
+                    <li><strong>不正利用防止のための当月クォータ枠の保持仕様</strong>：利用枠（月間ルートナビ回数・日間検索回数）の削除・再登録による無限リセット（不正利用）を防止するため、同一IDまたは同一端末で同月内に再登録した場合に限り、当月内の消費カウントのみが引き継がれます。このカウント情報は翌月の月次リセット時に自動的に初期化されます。</li>
                 </ul>
             </div>
         </div>
@@ -537,16 +554,16 @@
 
                 <h3>Method A: Immediate In-App Deletion (Recommended)</h3>
                 <ol>
-                    <li>Launch the <strong>VECTRA</strong> app and open the System Configuration (Settings) screen.</li>
+                    <li>Launch the <strong>VECTRA</strong> app and open the System Configuration (Settings ⚙️) screen.</li>
                     <li>Scroll down to the <strong><span class="mono">ACCOUNT &amp; DATA PRIVACY</span></strong> section at the bottom.</li>
                     <li>Tap the <strong><span class="mono">[ DELETE ACCOUNT &amp; DATA ]</span></strong> button and confirm the deletion in the dialog.</li>
                     <li>Your account registration details and all local device preferences (saved pins and custom settings) will be immediately erased and reset.</li>
                 </ol>
 
                 <h3>Method B: Web / Email Deletion Request (If the App is Already Uninstalled)</h3>
-                <p>If you have already uninstalled the App and cannot access the in-app deletion button, please submit a deletion request via the button below (or email us directly at <span class="mono">mm01smg@gmail.com</span>). We will completely delete your account and associated data within <strong>7 business days</strong>.</p>
+                <p>If you have already uninstalled the App and cannot access the in-app deletion button, please submit a deletion request via the button below (or email us directly at <span class="mono">&#x6D;&#x6D;&#x30;&#x31;&#x73;&#x6D;&#x67;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;</span>). We will completely delete your account and associated data within <strong>7 business days</strong>.</p>
                 <p style="margin: 16px 0;">
-                    <a href="mailto:mm01smg@gmail.com?subject=%5BVECTRA%5D%20Account%20Deletion%20Request&body=Please%20delete%20my%20VECTRA%20account%20and%20associated%20data.%0D%0A%0D%0AActive%20Pilot%20ID%20(Registered%20Email)%3A%20" class="hud-btn" onclick="selectNav(this)">
+                    <a href="#account-deletion" class="hud-btn js-delete-mailto" onclick="selectNav(this)">
                         [ SEND ACCOUNT DELETION REQUEST VIA EMAIL ]
                     </a>
                 </p>
@@ -554,7 +571,7 @@
                 <h3>Scope of Data Deletion &amp; Anti-Abuse Quota Policy</h3>
                 <ul>
                     <li><strong>Data Deleted</strong>: Account registration profile (Pilot ID bindings) and all local application data, custom configurations, and saved destination pins.</li>
-                    <li><strong>Monthly Quota Retention for Fraud Prevention</strong>: Solely to prevent abuse of free API tiers (infinite quota resets via repeated account deletion and re-registration), if the exact same ID is re-registered within the same calendar month, only the remaining monthly usage counter is retained for that month. This counter is automatically purged during the next monthly cycle reset.</li>
+                    <li><strong>Monthly Quota Retention for Fraud Prevention</strong>: Solely to prevent abuse of API tiers (infinite quota resets via repeated account deletion and re-registration), if the same ID or device is re-registered within the same calendar month, only the monthly usage counter is retained for that month. This counter is automatically reset during the next monthly cycle.</li>
                 </ul>
             </div>
         </div>
@@ -574,14 +591,15 @@
                     <li><strong>実際の交通規制の優先</strong>：本アプリが表示するルート、制限速度、車線案内、一方通行、および高速道路施設情報は、地図データの更新時期やGPS受信環境により実際の道路状況と異なる場合があります。運転時は必ず実際の道路標識、信号、標示および現場の交通規制に従って走行してください。</li>
                 </ul>
 
-                <h3>2. 利用枠（クォータ）およびライセンスに関する規定</h3>
+                <h3>2. 利用枠（クォータ）および定期購入（PRO版サブスクリプション）に関する規定</h3>
                 <ul>
-                    <li>本アプリは、外部API（Mapbox / Google Maps Platform）の従量課金コスト保護のため、ライセンス種別に応じた月間ルートナビ回数および日間目的地検索回数の上限（クォータ）を設けています。</li>
+                    <li><strong>FREEモードとPRO版の利用枠</strong>：高速道路の「走り屋モード（施設・スタバ捕捉）」は無償（FREE）かつ無制限でご利用いただけます。ルートナビゲーション（月15回枠）、Google目的地検索（1日10回枠）、およびU字タブ3拠点機能はPRO版（月額300円・税込）にて解放されます。</li>
+                    <li><strong>定期購入の自動更新と解約手続き</strong>：PRO版の決済および定期購入管理はGoogle Playの課金システムを通じて行われます。アプリのアンインストールや「DELETE ACCOUNT &amp; DATA（アカウント削除）」を実行しただけではGoogle Playの定期購入は自動解約されません。解約をご希望の場合は、次回更新日の前日までに必ずご自身で <strong>Google Playストア ＞ 定期購入</strong> 管理画面より解約手続きを行ってください。</li>
                     <li>サーバーメンテナンス、外部APIの障害、または通信環境の影響により、事前の予告なく本アプリの一部または全部の提供を一時停止・変更する場合があります。</li>
                 </ul>
 
                 <h3>3. 免責事項</h3>
-                <p>本アプリの使用、または使用できなかったことによって生じたいかなる交通事故、交通違反、損害、トラブルについても、当方（5UM1R3 Works）は一切の責任を負いません。すべての機能は利用者ご自身の判断と責任においてご利用ください。</p>
+                <p>本アプリの使用、または使用できなかったことによって生じたいかなる交通事故、交通違反、損害、トラブルについても、当方は一切の責任を負いません。すべての機能は利用者ご自身の判断と責任においてご利用ください。</p>
             </div>
         </div>
 
@@ -595,20 +613,21 @@
                     <li><strong>Priority of Actual Road Signs and Regulations</strong>: Routes, speed limits, lane guidance, one-way indicators, and expressway facility information displayed by the App may differ from actual road conditions due to map data update intervals or GPS signal reception. Always obey actual road signs, traffic signals, road markings, and real-world traffic regulations while driving.</li>
                 </ul>
 
-                <h3>2. Usage Quotas and License Provisions</h3>
+                <h3>2. Usage Quotas and PRO Subscription Provisions</h3>
                 <ul>
-                    <li>To protect against excessive pay-as-you-go charges from external APIs (Mapbox / Google Maps Platform), the App enforces monthly route navigation limits and daily destination search quotas based on your license tier.</li>
+                    <li><strong>FREE Mode and PRO Edition Quotas</strong>: Expressway "Runner's Mode" (facility &amp; Starbucks radar) is available for FREE with unlimited use. Turn-by-turn route navigation (15 runs/month), Google destination search (10 searches/day), and Pull-Tab 3 Quick Pins are unlocked via the PRO subscription (¥300/month).</li>
+                    <li><strong>Auto-Renewal and Cancellation Policy</strong>: Billing and subscription management for the PRO Edition are processed via Google Play. Uninstalling the App or executing "DELETE ACCOUNT &amp; DATA" within the App does NOT automatically cancel your Google Play subscription. To stop recurring billing, you must cancel your subscription directly via <strong>Google Play Store &gt; Subscriptions</strong> before the next renewal date.</li>
                     <li>We reserve the right to temporarily suspend, modify, or discontinue part or all of the App's services without prior notice due to server maintenance, external API outages, or network conditions.</li>
                 </ul>
 
                 <h3>3. Disclaimer of Liability</h3>
-                <p><strong>5UM1R3 Works</strong> assumes no responsibility or liability whatsoever for any traffic accidents, traffic violations, damages, losses, or disputes arising from the use of, or inability to use, the App. All features are provided "as is" and are used strictly at the driver's own judgment and responsibility.</p>
+                <p>We assume no responsibility or liability whatsoever for any traffic accidents, traffic violations, damages, losses, or disputes arising from the use of, or inability to use, the App. All features are provided "as is" and are used strictly at the driver's own judgment and responsibility.</p>
             </div>
         </div>
     </section>
 
     <!-- ========================================================= -->
-    <!-- 04. DEVELOPER & CONTACT                                   -->
+    <!-- 04. DEVELOPER & CONTACT (難読化エンティティ保護済)        -->
     <!-- ========================================================= -->
     <section id="contact">
         <!-- [JA] -->
@@ -616,11 +635,11 @@
             <h2 class="section-title">04 // DEVELOPER &amp; CONTACT（運営者情報・お問い合わせ）</h2>
             <div class="panel">
                 <ul>
-                    <li><strong>提供者（屋号）</strong>：5UM1R3 Works</li>
-                    <li><strong>所在地</strong>：〒101-0041 東京都千代田区神田須田町1丁目7番8号 VORT秋葉原Ⅳ 2Ｆ</li>
+                    <li><strong>提供者（屋号）</strong>：&#x35;&#x55;&#x4D;&#x31;&#x52;&#x33;&#x20;&#x57;&#x6F;&#x72;&#x6B;&#x73;</li>
+                    <li><strong>所在地</strong>：&#x3012;&#x31;&#x30;&#x31;&#x2D;&#x30;&#x30;&#x34;&#x31;&#x20;&#x6771;&#x4EAC;&#x90FD;&#x5343;&#x4EE3;&#x7530;&#x533A;&#x795E;&#x7530;&#x9808;&#x7530;&#x753A;&#x31;&#x4E01;&#x76EE;&#x37;&#x756A;&#x38;&#x53F7;&#x20;&#x56;&#x4F;&#x52;&#x54;&#x79CB;&#x8449;&#x539F;&#x2163;&#x20;&#x32;&#xFF26;</li>
                     <li><strong>対象アプリケーション</strong>：VECTRA (Android HUD Navigation System)</li>
-                    <li><strong>お問い合わせ窓口</strong>：<span class="mono">mm01smg@gmail.com</span></li>
-                    <li><strong>制定日・最終改定日</strong>：2026年10月27日</li>
+                    <li><strong>お問い合わせ窓口</strong>：<span class="mono">&#x6D;&#x6D;&#x30;&#x31;&#x73;&#x6D;&#x67;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;</span></li>
+                    <li><strong>制定日・最終改定日</strong>：2026年10月28日</li>
                 </ul>
             </div>
         </div>
@@ -630,18 +649,18 @@
             <h2 class="section-title">04 // DEVELOPER &amp; CONTACT INFORMATION</h2>
             <div class="panel">
                 <ul>
-                    <li><strong>Developer / Business Name</strong>: 5UM1R3 Works</li>
-                    <li><strong>Office Address</strong>: VORT Akihabara IV 2F, 1-7-8 Kanda-Sudacho, Chiyoda-ku, Tokyo 101-0041, Japan</li>
+                    <li><strong>Developer / Business Name</strong>: &#x35;&#x55;&#x4D;&#x31;&#x52;&#x33;&#x20;&#x57;&#x6F;&#x72;&#x6B;&#x73;</li>
+                    <li><strong>Office Address</strong>: &#x56;&#x4F;&#x52;&#x54;&#x20;&#x41;&#x6B;&#x69;&#x68;&#x61;&#x62;&#x61;&#x72;&#x61;&#x20;&#x49;&#x56;&#x20;&#x32;&#x46;&#x2C;&#x20;&#x31;&#x2D;&#x37;&#x2D;&#x38;&#x20;&#x4B;&#x61;&#x6E;&#x64;&#x61;&#x2D;&#x53;&#x75;&#x64;&#x61;&#x63;&#x68;&#x6F;&#x2C;&#x20;&#x43;&#x68;&#x69;&#x79;&#x6F;&#x64;&#x61;&#x2D;&#x6B;&#x75;&#x2C;&#x20;&#x54;&#x6F;&#x6B;&#x79;&#x6F;&#x20;&#x31;&#x30;&#x31;&#x2D;&#x30;&#x30;&#x34;&#x31;&#x2C;&#x20;&#x4A;&#x61;&#x70;&#x61;&#x6E;</li>
                     <li><strong>Application Name</strong>: VECTRA (Android HUD Navigation System)</li>
-                    <li><strong>Support &amp; Privacy Contact</strong>: <span class="mono">mm01smg@gmail.com</span></li>
-                    <li><strong>Effective / Last Updated</strong>: October 27, 2026</li>
+                    <li><strong>Support &amp; Privacy Contact</strong>: <span class="mono">&#x6D;&#x6D;&#x30;&#x31;&#x73;&#x6D;&#x67;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;</span></li>
+                    <li><strong>Effective / Last Updated</strong>: October 28, 2026</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        &copy; 2026 5UM1R3 Works // VECTRA HUD NAVIGATION SYSTEM. ALL RIGHTS RESERVED.
+        &copy; 2026 &#x35;&#x55;&#x4D;&#x31;&#x52;&#x33;&#x20;&#x57;&#x6F;&#x72;&#x6B;&#x73; // VECTRA HUD NAVIGATION SYSTEM. ALL RIGHTS RESERVED.
     </footer>
 
 </div>
@@ -661,18 +680,28 @@
 <script>
     function switchLang(lang) {
         var body = document.body;
-        var btnJa = document.getElementById('btn-ja');
-        var btnEn = document.getElementById('btn-en');
+        var chipJa = document.getElementById('chipJp');
+        var chipEn = document.getElementById('chipEn');
+        var topBrandLink = document.getElementById('topBrandManualLink');
+        var backBtnJa = document.getElementById('backManualBtnJa');
+        var backBtnEn = document.getElementById('backManualBtnEn');
+
         if (lang === 'en') {
             body.classList.add('en-mode');
-            btnEn.classList.add('active');
-            btnJa.classList.remove('active');
+            chipEn.classList.add('active-en');
+            chipJa.classList.remove('active-jp');
             document.documentElement.lang = 'en';
+            if (topBrandLink) topBrandLink.setAttribute('href', 'index.html?lang=en');
+            if (backBtnJa) backBtnJa.setAttribute('href', 'index.html?lang=en');
+            if (backBtnEn) backBtnEn.setAttribute('href', 'index.html?lang=en');
         } else {
             body.classList.remove('en-mode');
-            btnJa.classList.add('active');
-            btnEn.classList.remove('active');
+            chipJa.classList.add('active-jp');
+            chipEn.classList.remove('active-en');
             document.documentElement.lang = 'ja';
+            if (topBrandLink) topBrandLink.setAttribute('href', 'index.html');
+            if (backBtnJa) backBtnJa.setAttribute('href', 'index.html');
+            if (backBtnEn) backBtnEn.setAttribute('href', 'index.html');
         }
     }
 
@@ -696,9 +725,32 @@
     }
 
     (function() {
+        // 1. スクレイピングボット対策：mailtoリンクを動的バインド
+        var u = String.fromCharCode(109, 109, 48, 49, 115, 109, 103);
+        var d = String.fromCharCode(103, 109, 97, 105, 108, 46, 99, 111, 109);
+        var mailtoHref = 'mailto:' + u + '@' + d +
+            '?subject=%5BVECTRA%5D%20Account%20Deletion%20Request' +
+            '&body=Please%20delete%20my%20VECTRA%20account%20and%20associated%20data.%0D%0A%0D%0AActive%20Pilot%20ID%20(Registered%20Email)%3A%20';
+        var mailBtns = document.querySelectorAll('.js-delete-mailto');
+        for (var i = 0; i < mailBtns.length; i++) {
+            mailBtns[i].setAttribute('href', mailtoHref);
+        }
+
+        // 2. 右上ピルトグル全体のクリックでも言語切替可能に設定
+        var globalToggle = document.getElementById('globalLangToggle');
+        if (globalToggle) {
+            globalToggle.addEventListener('click', function() {
+                var isCurrentlyEn = document.body.classList.contains('en-mode');
+                switchLang(isCurrentlyEn ? 'ja' : 'en');
+            });
+        }
+
+        // 3. URLパラメータ (?lang=en) 自動同期
         var params = new URLSearchParams(window.location.search);
-        if (params.get('lang') === 'en') {
+        if ((params.get('lang') || '').toLowerCase() === 'en') {
             switchLang('en');
+        } else {
+            switchLang('ja');
         }
     })();
 </script>
