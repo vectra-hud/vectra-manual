@@ -365,7 +365,7 @@
             </div>
             <div class="brand-text-group">
                 <span class="brand-main-name">VECTRA</span>
-                <span class="brand-sub-tag">TACTICAL HUD NAVIGATION // LEGAL VAULT</span>
+                <span class="brand-sub-tag">TACTICAL HUD NAVIGATION // LEGAL VAULT v4.0.0</span>
             </div>
         </a>
 
@@ -382,7 +382,7 @@
     <header class="hud-header">
         <div class="lang-ja">
             <div class="hud-title">VECTRA SYSTEM // 規約・プライバシーポリシー</div>
-            <div class="hud-subtitle">Android専用 HUDナビゲーションシステム 法務ドキュメント</div>
+            <div class="hud-subtitle">Android専用 HUDナビゲーションシステム 法務ドキュメント (V4.0.0)</div>
             <div class="nav-bar">
                 <a id="backManualBtnJa" href="index.html" class="hud-btn" onclick="selectNav(this)">&lt; 操作マニュアルへ戻る</a>
                 <a href="#privacy-policy" class="hud-btn" onclick="selectNav(this)">01 // プライバシーポリシー</a>
@@ -394,7 +394,7 @@
 
         <div class="lang-en">
             <div class="hud-title">VECTRA SYSTEM // PRIVACY POLICY &amp; TERMS</div>
-            <div class="hud-subtitle">Android HUD Navigation System Legal Documentation</div>
+            <div class="hud-subtitle">Android HUD Navigation System Legal Documentation (V4.0.0)</div>
             <div class="nav-bar">
                 <a id="backManualBtnEn" href="index.html?lang=en" class="hud-btn" onclick="selectNav(this)">&lt; BACK TO USER MANUAL</a>
                 <a href="#privacy-policy" class="hud-btn" onclick="selectNav(this)">01 // PRIVACY POLICY</a>
@@ -430,16 +430,16 @@
                         <tr>
                             <td><strong>位置情報</strong><br><span class="mono">ACCESS_FINE_LOCATION</span><br><span class="mono">ACCESS_COARSE_LOCATION</span><br><span class="mono">FOREGROUND_SERVICE_LOCATION</span></td>
                             <td>デバイスのGPS・ネットワークに基づく精密な現在地座標、移動速度、進行方向（方位）</td>
-                            <td>・自車位置のマップ追従描画、速度・進行方向のHUD表示<br>・ルート案内（ターン・バイ・ターン音声案内、オートリルート）<br>・進行方向上の高速道路施設（SA/PA/IC/JCT等）の接近判定<br>※ナビゲーション実行中（フォアグラウンドサービス稼働中を含む）のみ使用し、個人の行動履歴を第三者へ販売・マーケティング利用することは一切ありません。</td>
+                            <td>・自車位置のマップ追従描画、速度・進行方向のHUD表示<br>・ルート案内（ターン・バイ・ターン音声案内、オートリルート、40m圏内自動到着判定）<br>・進行方向上の高速道路施設（SA/PA/IC/JCTおよび全国49箇所スターバックス併設エリア等）の接近判定<br>※ナビゲーション実行中（フォアグラウンドサービス稼働中を含む）のみ使用し、個人の行動履歴を第三者へ販売・マーケティング利用することは一切ありません。</td>
                         </tr>
                         <tr>
                             <td><strong>アカウント識別情報</strong><br><span class="mono">ACTIVE PILOT ID</span></td>
                             <td>ユーザーがログイン時に登録したメールアドレス（または識別ID）および端末固有識別子</td>
-                            <td>・ライセンス認証（FREE / PRO Edition 等のステータス確認）<br>・月間ルートナビ回数および日間Google目的地検索回数のクォータ（利用上限枠）管理</td>
+                            <td>・ライセンス認証（FREE / PRO Edition / VECTRA RS 等のティアステータス確認）<br>・月間ルートナビ回数および月間Google目的地検索回数のクォータ（利用上限枠）管理</td>
                         </tr>
                         <tr>
                             <td><strong>端末内設定データ</strong><br><span class="mono">Local Preferences</span></td>
-                            <td>クイック目的地ピン（Home / Favorite1 / Favorite2）、渋滞ライン太さ、HUD透過度、言語設定、音声設定</td>
+                            <td>クイック目的地ピン（Home / Favorite1 / Favorite2）、マップスタイル選択状態、渋滞ライン太さ、HUD透過度、言語設定、音声設定</td>
                             <td>・端末内のローカルストレージ（SharedPreferences等）に保存され、次回起動時の設定復元にのみ使用されます。<br>・ユーザーが入力したカスタム音声エンドポイント設定等が当方の管理サーバーへ送信・収集されることはありません。</td>
                         </tr>
                     </tbody>
@@ -450,7 +450,7 @@
                 <ul>
                     <li><strong>Mapbox Navigation SDK / Maps SDK (Mapbox, Inc.)</strong>：地図タイルの描画、交通情報ライン表示、および経路探索・ナビゲーション計算のため。<br>
                         <a href="https://www.mapbox.com/legal/privacy" target="_blank" rel="noopener" class="mono">https://www.mapbox.com/legal/privacy</a></li>
-                    <li><strong>Google Maps Platform - Places API / Google Play Billing (Google LLC)</strong>：目的地検索、周辺施設情報の取得、およびGoogle Play定期購入ライセンス確認のため。<br>
+                    <li><strong>Google Maps Platform - Places API / Google Play Billing (Google LLC)</strong>：目的地検索、周辺施設情報の取得、およびGoogle Play定期購入（PRO / VECTRA RS）ライセンス確認のため。<br>
                         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="mono">https://policies.google.com/privacy</a></li>
                     <li><strong>音声合成（TTS）エンジン</strong>：Android標準Text-to-Speechエンジン、または通信設定に応じた音声合成APIによるナビゲーション音声出力のため。</li>
                 </ul>
@@ -481,16 +481,16 @@
                         <tr>
                             <td><strong>Location Information</strong><br><span class="mono">ACCESS_FINE_LOCATION</span><br><span class="mono">ACCESS_COARSE_LOCATION</span><br><span class="mono">FOREGROUND_SERVICE_LOCATION</span></td>
                             <td>Precise device GPS/network coordinates, travel speed, and heading (bearing).</td>
-                            <td>- Real-time vehicle tracking on the map and HUD speed/heading display.<br>- Turn-by-turn voice navigation and automatic rerouting.<br>- Proximity detection for upcoming expressway facilities (SA/PA/IC/JCT).<br>* Location data is used strictly while the App or its foreground navigation service is active. We never sell personal movement history to third parties or use it for marketing.</td>
+                            <td>- Real-time vehicle tracking on the map and HUD speed/heading display.<br>- Turn-by-turn voice navigation, automatic rerouting, and 40m auto-arrival detection.<br>- Proximity detection for upcoming expressway facilities (SA/PA/IC/JCT and 49 nationwide Starbucks locations).<br>* Location data is used strictly while the App or its foreground navigation service is active. We never sell personal movement history to third parties or use it for marketing.</td>
                         </tr>
                         <tr>
                             <td><strong>Account Identifier</strong><br><span class="mono">ACTIVE PILOT ID</span></td>
                             <td>Email address (or unique Pilot ID) registered upon login and device identifier.</td>
-                            <td>- License authentication (verifying FREE / PRO Edition tier status).<br>- Managing monthly route navigation quotas and daily Google destination search limits.</td>
+                            <td>- License authentication (verifying FREE / PRO Edition / VECTRA RS tier status).<br>- Managing monthly route navigation quotas and monthly Google destination search limits.</td>
                         </tr>
                         <tr>
                             <td><strong>Device Local Settings</strong><br><span class="mono">Local Preferences</span></td>
-                            <td>Quick destination pins (Home / Favorite1 / Favorite2), traffic line width, HUD opacity, language settings, and voice settings.</td>
+                            <td>Quick destination pins (Home / Favorite1 / Favorite2), selected map style, traffic line width, HUD opacity, language settings, and voice settings.</td>
                             <td>- Stored locally on your device (via SharedPreferences) solely to restore your configuration upon next launch.<br>- Custom voice API endpoints entered by the user are never transmitted to or collected by our management servers.</td>
                         </tr>
                     </tbody>
@@ -501,7 +501,7 @@
                 <ul>
                     <li><strong>Mapbox Navigation SDK / Maps SDK (Mapbox, Inc.)</strong>: Used for rendering map tiles, traffic congestion lines, and route calculation/navigation.<br>
                         <a href="https://www.mapbox.com/legal/privacy" target="_blank" rel="noopener" class="mono">https://www.mapbox.com/legal/privacy</a></li>
-                    <li><strong>Google Maps Platform - Places API / Google Play Billing (Google LLC)</strong>: Used for destination search, retrieving facility details, and verifying Google Play subscriptions.<br>
+                    <li><strong>Google Maps Platform - Places API / Google Play Billing (Google LLC)</strong>: Used for destination search, retrieving facility details, and verifying Google Play subscriptions (PRO / VECTRA RS).<br>
                         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="mono">https://policies.google.com/privacy</a></li>
                     <li><strong>Text-to-Speech (TTS) Engine</strong>: Android standard TTS engine or configured voice synthesis API for outputting spoken navigation instructions.</li>
                 </ul>
@@ -541,7 +541,7 @@
                 <h3>削除されるデータと不正利用防止のための保持仕様について</h3>
                 <ul>
                     <li><strong>削除されるデータ</strong>：アカウント登録情報（Pilot ID紐付け設定）、端末内のすべての利用データ・カスタム設定・保存済み目的地ピン。</li>
-                    <li><strong>不正利用防止のための当月クォータ枠の保持仕様</strong>：利用枠（月間ルートナビ回数・日間検索回数）の削除・再登録による無限リセット（不正利用）を防止するため、同一IDまたは同一端末で同月内に再登録した場合に限り、当月内の消費カウントのみが引き継がれます。このカウント情報は翌月の月次リセット時に自動的に初期化されます。</li>
+                    <li><strong>不正利用防止のための当月クォータ枠の保持仕様</strong>：利用枠（月間ルートナビ回数・月間検索回数）の削除・再登録による無限リセット（不正利用）を防止するため、同一IDまたは同一端末で同月内に再登録した場合に限り、当月内の消費カウントのみが引き継がれます。このカウント情報は翌月の月次リセット（毎月1日）時に自動的に初期化されます。</li>
                 </ul>
             </div>
         </div>
@@ -571,7 +571,7 @@
                 <h3>Scope of Data Deletion &amp; Anti-Abuse Quota Policy</h3>
                 <ul>
                     <li><strong>Data Deleted</strong>: Account registration profile (Pilot ID bindings) and all local application data, custom configurations, and saved destination pins.</li>
-                    <li><strong>Monthly Quota Retention for Fraud Prevention</strong>: Solely to prevent abuse of API tiers (infinite quota resets via repeated account deletion and re-registration), if the same ID or device is re-registered within the same calendar month, only the monthly usage counter is retained for that month. This counter is automatically reset during the next monthly cycle.</li>
+                    <li><strong>Monthly Quota Retention for Fraud Prevention</strong>: Solely to prevent abuse of API tiers (infinite quota resets via repeated account deletion and re-registration), if the same ID or device is re-registered within the same calendar month, only the monthly usage counter (navigation and search counts) is retained for that month. This counter is automatically reset on the 1st of the following month.</li>
                 </ul>
             </div>
         </div>
@@ -591,10 +591,14 @@
                     <li><strong>実際の交通規制の優先</strong>：本アプリが表示するルート、制限速度、車線案内、一方通行、および高速道路施設情報は、地図データの更新時期やGPS受信環境により実際の道路状況と異なる場合があります。運転時は必ず実際の道路標識、信号、標示および現場の交通規制に従って走行してください。</li>
                 </ul>
 
-                <h3>2. 利用枠（クォータ）および定期購入（PRO版サブスクリプション）に関する規定</h3>
+                <h3>2. 利用枠（クォータ）および定期購入（PRO版 / VECTRA RS サブスクリプション）に関する規定</h3>
                 <ul>
-                    <li><strong>FREEモードとPRO版の利用枠</strong>：高速道路の「走り屋モード（施設・スタバ捕捉）」は無償（FREE）かつ無制限でご利用いただけます。ルートナビゲーション（月15回枠）、Google目的地検索（1日10回枠）、およびU字タブ3拠点機能はPRO版（月額300円・税込）にて解放されます。</li>
-                    <li><strong>定期購入の自動更新と解約手続き</strong>：PRO版の決済および定期購入管理はGoogle Playの課金システムを通じて行われます。アプリのアンインストールや「DELETE ACCOUNT &amp; DATA（アカウント削除）」を実行しただけではGoogle Playの定期購入は自動解約されません。解約をご希望の場合は、次回更新日の前日までに必ずご自身で <strong>Google Playストア ＞ 定期購入</strong> 管理画面より解約手続きを行ってください。</li>
+                    <li><strong>FREEモードの利用枠（無償）</strong>：高速道路の「走り屋モード（IC/SA/PA/JCTおよび全国49箇所スターバックス捕捉）」は無償（FREE）かつ回数無制限でご利用いただけます。また、FREEモードではルートナビゲーション（月間6回まで）、Google目的地キーワード検索（月間6回まで）、および標準マップスタイル2種（夜間・昼間トラフィック）を無料でご利用いただけます。</li>
+                    <li><strong>PRO版（月額300円・税込）および VECTRA RS（月額500円・税込）の解放機能</strong>：
+                        <br>・<strong>PRO版（月額300円）</strong>：ルートナビゲーション（月間100回枠）、Google目的地キーワード検索（月間100回枠）、左端「U字プルタブ」お気に入り3拠点機能（検索枠消費ゼロ）、および航空写真（Satellite）・3Dスタンダードを含む全7種マップスタイルが解放されます。
+                        <br>・<strong>VECTRA RS（月額500円・パトロン版）</strong>：PRO版の全機能に加え、外部カスタム音声合成API連携（<span class="mono">CUSTOM VOICE</span>）およびRS専用コミュニティ・特典枠が解放されます。
+                    </li>
+                    <li><strong>定期購入の自動更新と解約手続き</strong>：PRO版およびVECTRA RSの決済・定期購入管理はGoogle Playの課金システムを通じて行われます。アプリのアンインストールやアプリ内の「DELETE ACCOUNT &amp; DATA（アカウント削除）」を実行しただけではGoogle Playの定期購入は自動解約されません。解約をご希望の場合は、次回更新日の前日までに必ずご自身で <strong>Google Playストア ＞ 定期購入</strong> 管理画面より解約手続きを行ってください。</li>
                     <li>サーバーメンテナンス、外部APIの障害、または通信環境の影響により、事前の予告なく本アプリの一部または全部の提供を一時停止・変更する場合があります。</li>
                 </ul>
 
@@ -613,10 +617,14 @@
                     <li><strong>Priority of Actual Road Signs and Regulations</strong>: Routes, speed limits, lane guidance, one-way indicators, and expressway facility information displayed by the App may differ from actual road conditions due to map data update intervals or GPS signal reception. Always obey actual road signs, traffic signals, road markings, and real-world traffic regulations while driving.</li>
                 </ul>
 
-                <h3>2. Usage Quotas and PRO Subscription Provisions</h3>
+                <h3>2. Usage Quotas and Subscription Provisions (PRO / VECTRA RS)</h3>
                 <ul>
-                    <li><strong>FREE Mode and PRO Edition Quotas</strong>: Expressway "Runner's Mode" (facility &amp; Starbucks radar) is available for FREE with unlimited use. Turn-by-turn route navigation (15 runs/month), Google destination search (10 searches/day), and Pull-Tab 3 Quick Pins are unlocked via the PRO subscription (¥300/month).</li>
-                    <li><strong>Auto-Renewal and Cancellation Policy</strong>: Billing and subscription management for the PRO Edition are processed via Google Play. Uninstalling the App or executing "DELETE ACCOUNT &amp; DATA" within the App does NOT automatically cancel your Google Play subscription. To stop recurring billing, you must cancel your subscription directly via <strong>Google Play Store &gt; Subscriptions</strong> before the next renewal date.</li>
+                    <li><strong>FREE Mode Quotas (¥0)</strong>: Expressway "Runner's Mode" (IC/SA/PA/JCT &amp; all 49 nationwide Starbucks radar) is available for FREE with unlimited use. FREE mode also includes up to 6 turn-by-turn route navigations per month, up to 6 Google destination keyword searches per month, and 2 standard traffic map styles (Night / Day) at zero cost.</li>
+                    <li><strong>PRO Edition (¥300/month) &amp; VECTRA RS (¥500/month) Features</strong>:
+                        <br>- <strong>PRO Edition (¥300/mo)</strong>: Unlocks up to 100 route navigations/month, up to 100 destination keyword searches/month, Pull-Tab 3 Quick Pins (0 search quota 1-tap launch), and all 7 tactical map styles (including Satellite Streets and 3D Standard).
+                        <br>- <strong>VECTRA RS (¥500/mo Patron Edition)</strong>: Includes all PRO features plus external custom TTS voice synthesis API integration (<span class="mono">CUSTOM VOICE</span>) and exclusive RS community perks.
+                    </li>
+                    <li><strong>Auto-Renewal and Cancellation Policy</strong>: Billing and subscription management for PRO and VECTRA RS are processed via Google Play. Uninstalling the App or executing "DELETE ACCOUNT &amp; DATA" within the App does NOT automatically cancel your Google Play subscription. To stop recurring billing, you must cancel your subscription directly via <strong>Google Play Store &gt; Subscriptions</strong> before the next renewal date.</li>
                     <li>We reserve the right to temporarily suspend, modify, or discontinue part or all of the App's services without prior notice due to server maintenance, external API outages, or network conditions.</li>
                 </ul>
 
@@ -639,7 +647,7 @@
                     <li><strong>所在地</strong>：&#x3012;&#x31;&#x30;&#x31;&#x2D;&#x30;&#x30;&#x34;&#x31;&#x20;&#x6771;&#x4EAC;&#x90FD;&#x5343;&#x4EE3;&#x7530;&#x533A;&#x795E;&#x7530;&#x9808;&#x7530;&#x753A;&#x31;&#x4E01;&#x76EE;&#x37;&#x756A;&#x38;&#x53F7;&#x20;&#x56;&#x4F;&#x52;&#x54;&#x79CB;&#x8449;&#x539F;&#x2163;&#x20;&#x32;&#xFF26;</li>
                     <li><strong>対象アプリケーション</strong>：VECTRA (Android HUD Navigation System)</li>
                     <li><strong>お問い合わせ窓口</strong>：<span class="mono">&#x6D;&#x6D;&#x30;&#x31;&#x73;&#x6D;&#x67;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;</span></li>
-                    <li><strong>制定日・最終改定日</strong>：2026年10月28日</li>
+                    <li><strong>制定日</strong>：2026年10月28日 ／ <strong>最終改定日</strong>：2026年10月29日</li>
                 </ul>
             </div>
         </div>
@@ -653,7 +661,7 @@
                     <li><strong>Office Address</strong>: &#x56;&#x4F;&#x52;&#x54;&#x20;&#x41;&#x6B;&#x69;&#x68;&#x61;&#x62;&#x61;&#x72;&#x61;&#x20;&#x49;&#x56;&#x20;&#x32;&#x46;&#x2C;&#x20;&#x31;&#x2D;&#x37;&#x2D;&#x38;&#x20;&#x4B;&#x61;&#x6E;&#x64;&#x61;&#x2D;&#x53;&#x75;&#x64;&#x61;&#x63;&#x68;&#x6F;&#x2C;&#x20;&#x43;&#x68;&#x69;&#x79;&#x6F;&#x64;&#x61;&#x2D;&#x6B;&#x75;&#x2C;&#x20;&#x54;&#x6F;&#x6B;&#x79;&#x6F;&#x20;&#x31;&#x30;&#x31;&#x2D;&#x30;&#x30;&#x34;&#x31;&#x2C;&#x20;&#x4A;&#x61;&#x70;&#x61;&#x6E;</li>
                     <li><strong>Application Name</strong>: VECTRA (Android HUD Navigation System)</li>
                     <li><strong>Support &amp; Privacy Contact</strong>: <span class="mono">&#x6D;&#x6D;&#x30;&#x31;&#x73;&#x6D;&#x67;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;</span></li>
-                    <li><strong>Effective / Last Updated</strong>: October 28, 2026</li>
+                    <li><strong>Effective Date</strong>: October 28, 2026 / <strong>Last Updated</strong>: October 29, 2026</li>
                 </ul>
             </div>
         </div>
