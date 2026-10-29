@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <!-- 【公式マニュアル SEO設定（privacy.html側のみステルス保護）】 -->
   <meta name="robots" content="index, follow" />
-  <meta name="description" content="目的地設定ゼロで首都高C1・湾岸線・全国高速のIC/JCT/スタバ併設PAを自動捕捉する走り屋モード搭載。ドライバー特化型タクティカル・ナビゲーションシステム VECTRA 公式操作マニュアル＆FAQ。" />
+  <meta name="description" content="目的地設定ゼロで首都高C1・湾岸線・全国高速のIC/JCT/スタバ併設PA全49箇所を自動捕捉する走り屋モード搭載。ドライバー特化型タクティカル・ナビゲーションシステム VECTRA 公式操作マニュアル＆FAQ。" />
   <title>VECTRA // OFFICIAL TACTICAL MANUAL &amp; FAQ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -668,13 +668,13 @@
     table.hud-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.86rem;
+      font-size: 0.85rem;
     }
 
     table.hud-table th,
     table.hud-table td {
       border: 1px solid var(--border-stealth);
-      padding: 12px 14px;
+      padding: 12px 13px;
       text-align: left;
     }
 
@@ -685,6 +685,12 @@
       font-weight: bold;
       letter-spacing: 1px;
       white-space: nowrap;
+    }
+
+    table.hud-table th.rs-col-head {
+      background: linear-gradient(180deg, rgba(227, 0, 15, 0.25) 0%, #151921 100%);
+      color: #FFFFFF;
+      border-top: 2px solid var(--audi-red);
     }
 
     table.hud-table td {
@@ -1064,6 +1070,245 @@
     }
 
     /* ============================================================
+       ★ 04 // 7種マップスタイル 実機スクリーンショット切替ギャラリー
+       ============================================================ */
+    .map-gallery-stage {
+      background: linear-gradient(145deg, #070A0F 0%, #0E131B 100%);
+      border: 1px solid #283242;
+      padding: 20px;
+      margin-top: 14px;
+      margin-bottom: 24px;
+      box-shadow: 0 0 28px rgba(0, 0, 0, 0.65);
+    }
+
+    .map-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .map-style-btn {
+      background: #0B0E14;
+      border: 1px solid #262F3F;
+      border-left: 3px solid #475569;
+      padding: 10px 10px;
+      color: var(--text-sub);
+      font-family: var(--font-mono);
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .map-style-btn:hover {
+      border-color: var(--hud-cyan);
+      color: #FFFFFF;
+      background: #111722;
+    }
+
+    .map-style-btn.active {
+      background: linear-gradient(90deg, rgba(227, 0, 15, 0.22) 0%, rgba(15, 19, 28, 0.95) 100%);
+      border-color: var(--audi-red);
+      border-left: 3px solid var(--audi-red);
+      color: #FFFFFF;
+      box-shadow: 0 0 16px rgba(227, 0, 15, 0.28);
+    }
+
+    .map-style-btn .btn-num {
+      font-size: 0.66rem;
+      color: var(--hud-cyan);
+      letter-spacing: 1.2px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .map-style-btn.active .btn-num {
+      color: #FF8A80;
+    }
+
+    .map-style-btn .btn-name {
+      font-size: 0.82rem;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+      color: #F8FAFC;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .map-viewer-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    /* スマホ実機ベゼルフレーム */
+    .phone-cockpit-frame {
+      background: #040507;
+      border: 2px solid #2E3846;
+      border-top: 3px solid var(--audi-red);
+      border-radius: 14px;
+      padding: 8px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
+      min-height: 460px;
+      overflow: hidden;
+    }
+
+    .phone-frame-topbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      color: var(--rs-silver);
+      padding: 2px 6px 6px;
+      border-bottom: 1px solid #1E2530;
+      margin-bottom: 6px;
+    }
+
+    .phone-screen-wrap {
+      width: 100%;
+      flex: 1;
+      position: relative;
+      background: #080B10;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phone-screen-img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
+      transition: opacity 0.2s ease;
+    }
+
+    .phone-img-fallback {
+      display: none;
+      padding: 24px 16px;
+      text-align: center;
+      font-family: var(--font-mono);
+      color: var(--text-sub);
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    .map-info-panel {
+      background: rgba(12, 15, 22, 0.94);
+      border: 1px solid #252E3D;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .map-info-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-bottom: 1px solid #1E2634;
+      padding-bottom: 10px;
+    }
+
+    .map-info-code {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--hud-cyan);
+      letter-spacing: 1.5px;
+    }
+
+    .map-tier-pill {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 3px 9px;
+      letter-spacing: 1px;
+      border: 1px solid var(--hud-emerald);
+      color: var(--hud-emerald);
+      background: rgba(0, 230, 118, 0.1);
+    }
+
+    .map-tier-pill.pro-only {
+      border-color: var(--audi-red);
+      color: #FF8A80;
+      background: rgba(227, 0, 15, 0.15);
+    }
+
+    .map-info-title {
+      font-size: 1.28rem;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+      margin: 6px 0 8px;
+    }
+
+    .map-info-desc {
+      font-size: 0.9rem;
+      color: #E2E8F0;
+      line-height: 1.68;
+    }
+
+    .map-telemetry-box {
+      background: #07090D;
+      border: 1px solid #1F2735;
+      border-left: 3px solid var(--hud-cyan);
+      padding: 12px 14px;
+      font-size: 0.82rem;
+      color: var(--text-sub);
+    }
+
+    .map-telemetry-box strong {
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+    }
+
+    .map-nav-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #1E2634;
+    }
+
+    .map-step-btn {
+      background: #10151F;
+      border: 1px solid #334155;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: bold;
+      padding: 8px 14px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.18s ease;
+    }
+
+    .map-step-btn:hover {
+      border-color: var(--audi-red);
+      background: rgba(227, 0, 15, 0.2);
+    }
+
+    /* ============================================================
        ★ 05 // TACTICAL FAQ アコーディオンUI
        ============================================================ */
     .faq-list {
@@ -1259,9 +1504,20 @@
       line-height: 1.6;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 780px) {
       .shutoko-grid {
         grid-template-columns: 1fr;
+      }
+      .map-selector-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .map-viewer-grid {
+        grid-template-columns: 1fr;
+      }
+      .phone-cockpit-frame {
+        max-width: 340px;
+        margin: 0 auto;
+        width: 100%;
       }
     }
 
@@ -1343,7 +1599,7 @@
     <div class="top-right-controls">
       <div class="status-pill">
         <span class="status-dot"></span>
-        PRODUCTION v3.9.9
+        PRODUCTION v4.0.0
       </div>
 
       <!-- アプリ側と完全同期する [ EN | JP ] トグル -->
@@ -1381,9 +1637,9 @@
       </p>
 
       <div class="pioneer-frame">
-        <div class="edition">VECTRA // FREE &amp; PRO EDITION</div>
-        <div class="desc i18n-ja">走り屋モード永久無償（FREE） ＆ タクティカル・ルートナビ（PRO）ハイブリッド仕様</div>
-        <div class="desc i18n-en">Unlimited Free-Drive Highway HUD (FREE) &amp; Tactical Route Navigation (PRO)</div>
+        <div class="edition">VECTRA // FREE / PRO / RS EDITION</div>
+        <div class="desc i18n-ja">走り屋モード永久無償（FREE） ＆ タクティカル・ルートナビ（PRO / VECTRA RS）3ティア仕様</div>
+        <div class="desc i18n-en">Unlimited Free-Drive Highway HUD (FREE) &amp; Tactical Route Navigation (PRO / VECTRA RS)</div>
       </div>
     </section>
 
@@ -1391,8 +1647,8 @@
     <nav class="quick-nav">
       <a href="#sec-auth" class="quick-link">
         <span class="num">01 // LICENSE</span>
-        <span class="i18n-ja">認証・FREE/PROプラン</span>
-        <span class="i18n-en">Auth &amp; FREE/PRO Plans</span>
+        <span class="i18n-ja">認証・FREE/PRO/RSプラン</span>
+        <span class="i18n-en">Auth &amp; 3-Tier Plans</span>
       </a>
       <a href="#sec-hwy" class="quick-link">
         <span class="num">02 // RUNNER MODE</span>
@@ -1405,9 +1661,9 @@
         <span class="i18n-en">Quick 3 Pins &amp; Stealth Alt</span>
       </a>
       <a href="#sec-custom" class="quick-link">
-        <span class="num">04 // CUSTOMIZE</span>
-        <span class="i18n-ja">渋滞線太さ・各種設定</span>
-        <span class="i18n-en">Traffic Line &amp; HUD Settings</span>
+        <span class="num">04 // 7 MAP STYLES</span>
+        <span class="i18n-ja">実機7種マップ＆各種設定</span>
+        <span class="i18n-en">7 Live Maps &amp; HUD Settings</span>
       </a>
       <a href="#sec-faq" class="quick-link">
         <span class="num">05 // FAQ</span>
@@ -1420,14 +1676,14 @@
     <section id="sec-auth" class="section">
       <div class="sec-header">
         <span class="sec-num">01</span>
-        <h2 class="sec-title">SYSTEM AUTH &amp; LICENSE</h2>
-        <span class="sec-jp">ログイン認証とFREE / PROライセンス仕様</span>
+        <h2 class="sec-title">SYSTEM AUTH &amp; 3-TIER LICENSE</h2>
+        <span class="sec-jp">ログイン認証とFREE / PRO / VECTRA RS ライセンス仕様</span>
       </div>
 
       <div class="hud-card cyan-accent">
         <div class="card-title">
-          <span class="i18n-ja">1タップ起動 ＆ FREE / PRO プランの利用枠仕様</span>
-          <span class="i18n-en">1-Tap Launch &amp; FREE / PRO License Quotas</span>
+          <span class="i18n-ja">1タップ起動 ＆ FREE / PRO / VECTRA RS プランの利用枠仕様</span>
+          <span class="i18n-en">1-Tap Launch &amp; FREE / PRO / VECTRA RS License Quotas</span>
           <span class="badge">GOOGLE SIGN-IN</span>
         </div>
 
@@ -1448,8 +1704,9 @@
                   <span class="i18n-ja">機能カテゴリー</span>
                   <span class="i18n-en">FEATURE CATEGORY</span>
                 </th>
-                <th>FREE MODE (¥0)</th>
-                <th>PRO EDITION (¥300 / mo)</th>
+                <th>FREE (¥0)</th>
+                <th>PRO (¥300 / mo)</th>
+                <th class="rs-col-head">VECTRA RS (¥500 / mo)</th>
                 <th>
                   <span class="i18n-ja">リセット周期・備考</span>
                   <span class="i18n-en">RESET CYCLE &amp; NOTES</span>
@@ -1459,13 +1716,14 @@
             <tbody>
               <tr>
                 <td>
-                  <strong class="i18n-ja">走り屋モード（高速道路 IC / SA / PA / JCT ＆ スタバ自動捕捉）</strong>
-                  <strong class="i18n-en">Runner's Mode (Expressway IC / SA / PA / JCT &amp; Starbucks Radar)</strong>
+                  <strong class="i18n-ja">走り屋モード（高速道路 IC / SA / PA / JCT ＆ スタバ全49箇所捕捉）</strong>
+                  <strong class="i18n-en">Runner's Mode (Expressway IC / SA / PA / JCT &amp; 49 Starbucks Radar)</strong>
                 </td>
-                <td><span class="mono-hl" style="color:var(--hud-emerald); border-color:var(--hud-emerald);">UNLIMITED (無制限)</span></td>
-                <td><span class="mono-hl" style="color:var(--hud-emerald); border-color:var(--hud-emerald);">UNLIMITED (無制限)</span></td>
+                <td><span class="mono-hl" style="color:var(--hud-emerald); border-color:var(--hud-emerald);">UNLIMITED</span></td>
+                <td><span class="mono-hl" style="color:var(--hud-emerald); border-color:var(--hud-emerald);">UNLIMITED</span></td>
+                <td><span class="mono-hl" style="color:var(--hud-emerald); border-color:var(--hud-emerald);">UNLIMITED</span></td>
                 <td>
-                  <span class="i18n-ja">目的地設定不要・常時無制限</span>
+                  <span class="i18n-ja">目的地設定不要・全プラン常時無制限</span>
                   <span class="i18n-en">No destination required / Always unlimited</span>
                 </td>
               </tr>
@@ -1474,14 +1732,21 @@
                   <strong class="i18n-ja">ルートナビゲーション案内開始</strong>
                   <strong class="i18n-en">Turn-by-Turn Route Navigation</strong>
                 </td>
-                <td><span class="mono-hl" style="color:#64748B;">LOCKED [PRO限定]</span></td>
                 <td>
-                  <strong class="i18n-ja">月間 15 回まで</strong>
-                  <strong class="i18n-en">Up to 15 runs / month</strong>
+                  <strong class="i18n-ja">月間 6 回まで</strong>
+                  <strong class="i18n-en">6 runs / mo</strong>
                 </td>
                 <td>
-                  <span class="i18n-ja">毎月1日自動リセット（※300m以内の近距離は消費なし）</span>
-                  <span class="i18n-en">Resets on the 1st of each month (Trips within 300m not counted)</span>
+                  <strong class="i18n-ja" style="color:var(--hud-cyan);">月間 100 回まで</strong>
+                  <strong class="i18n-en" style="color:var(--hud-cyan);">100 runs / mo</strong>
+                </td>
+                <td>
+                  <strong class="i18n-ja" style="color:#FF8A80;">月間 100 回まで</strong>
+                  <strong class="i18n-en" style="color:#FF8A80;">100 runs / mo</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">毎月1日リセット（※300m以内の近距離は消費なし・40m圏内自動到着終了）</span>
+                  <span class="i18n-en">Resets 1st of month (Trips within 300m not counted / 40m auto-arrival)</span>
                 </td>
               </tr>
               <tr>
@@ -1489,14 +1754,21 @@
                   <strong class="i18n-ja">高精度 目的地キーワード検索</strong>
                   <strong class="i18n-en">Destination Keyword Search</strong>
                 </td>
-                <td><span class="mono-hl" style="color:#64748B;">LOCKED [PRO限定]</span></td>
                 <td>
-                  <strong class="i18n-ja">1日 10 回まで</strong>
-                  <strong class="i18n-en">Up to 10 searches / day</strong>
+                  <strong class="i18n-ja">月間 6 回まで</strong>
+                  <strong class="i18n-en">6 searches / mo</strong>
                 </td>
                 <td>
-                  <span class="i18n-ja">毎日0時自動リセット（※U字タブ3拠点・長押しピンは検索消費ゼロ）</span>
-                  <span class="i18n-en">Resets daily at 00:00 (Quick Pins &amp; Dropped Pins use 0 search quota)</span>
+                  <strong class="i18n-ja" style="color:var(--hud-cyan);">月間 100 回まで</strong>
+                  <strong class="i18n-en" style="color:var(--hud-cyan);">100 searches / mo</strong>
+                </td>
+                <td>
+                  <strong class="i18n-ja" style="color:#FF8A80;">月間 100 回まで</strong>
+                  <strong class="i18n-en" style="color:#FF8A80;">100 searches / mo</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">毎月1日リセット（※U字タブ3拠点・マップ長押しピンは検索消費ゼロ）</span>
+                  <span class="i18n-en">Resets 1st of month (Quick Pins &amp; Dropped Pins use 0 search quota)</span>
                 </td>
               </tr>
               <tr>
@@ -1504,14 +1776,55 @@
                   <strong class="i18n-ja">U字タブ お気に入り3拠点（[Home] / [Favorite1] / [Favorite2]）</strong>
                   <strong class="i18n-en">Pull-Tab 3 Quick Pins ([Home] / [Favorite1] / [Favorite2])</strong>
                 </td>
-                <td><span class="mono-hl" style="color:#64748B;">LOCKED [PRO限定]</span></td>
+                <td><span class="mono-hl" style="color:#64748B;">LOCKED [PRO / RS]</span></td>
                 <td>
-                  <strong class="i18n-ja">フル解放（登録・変更自由）</strong>
-                  <strong class="i18n-en">Unlocked (Unlimited edits)</strong>
+                  <strong class="i18n-ja" style="color:var(--hud-emerald);">フル解放</strong>
+                  <strong class="i18n-en" style="color:var(--hud-emerald);">UNLOCKED</strong>
+                </td>
+                <td>
+                  <strong class="i18n-ja" style="color:var(--hud-emerald);">フル解放</strong>
+                  <strong class="i18n-en" style="color:var(--hud-emerald);">UNLOCKED</strong>
                 </td>
                 <td>
                   <span class="i18n-ja">検索枠を消費せず1タップでルート案内開始</span>
-                  <span class="i18n-en">1-tap route launch without consuming daily search quota</span>
+                  <span class="i18n-en">1-tap route launch without consuming search quota</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">タクティカル・マップスタイル切替</strong>
+                  <strong class="i18n-en">Tactical Map Style Layers</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">標準 2種（昼/夜）</span>
+                  <span class="i18n-en">Standard 2 Styles</span>
+                </td>
+                <td>
+                  <strong class="i18n-ja" style="color:var(--hud-emerald);">全 7種 フル解放</strong>
+                  <strong class="i18n-en" style="color:var(--hud-emerald);">All 7 Styles</strong>
+                </td>
+                <td>
+                  <strong class="i18n-ja" style="color:var(--hud-emerald);">全 7種 フル解放</strong>
+                  <strong class="i18n-en" style="color:var(--hud-emerald);">All 7 Styles</strong>
+                </td>
+                <td>
+                  <span class="i18n-ja">航空写真（Satellite）や3D都市モデルを含む全7種（詳細はセクション04）</span>
+                  <span class="i18n-en">Includes Satellite Streets, 3D Standard &amp; Dark Cockpit (See Sec 04)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="i18n-ja">CUSTOM VOICE（外部音声API連携）＆ RS専用コミュニティ枠</strong>
+                  <strong class="i18n-en">CUSTOM VOICE (External TTS API) &amp; RS Patron Community</strong>
+                </td>
+                <td><span class="mono-hl" style="color:#64748B;">LOCKED [RS限定]</span></td>
+                <td><span class="mono-hl" style="color:#64748B;">LOCKED [RS限定]</span></td>
+                <td>
+                  <span class="mono-red">RS PATRON UNLOCKED</span>
+                </td>
+                <td>
+                  <span class="i18n-ja">開発支援パトロン仕様（カスタム音声合成エンドポイント＆RS特典解放）</span>
+                  <span class="i18n-en">Patron tier unlocking custom TTS voice synthesis &amp; RS perks</span>
                 </td>
               </tr>
             </tbody>
@@ -1656,13 +1969,13 @@
             </div>
 
             <div class="shutoko-point-box">
-              <h5 class="i18n-ja">02 // JCT分岐後の路線スイッチにも0.5秒で即応</h5>
-              <h5 class="i18n-en">02 // 0.5-Second Instant Route Switch at Junctions</h5>
+              <h5 class="i18n-ja">02 // 上下線3段階フィルタ＆JCT分岐の0.5秒即応</h5>
+              <h5 class="i18n-en">02 // 3-Stage Direction Filter &amp; 0.5s JCT Branch Switch</h5>
               <p class="i18n-ja">
-                例えば「C1から浜崎橋JCTで11号台場線へ抜け、レインボーブリッジを渡って湾岸線（大黒PA・辰巳PA方面）へ入る」といったルート変更も、ハンドルを切った瞬間に前方路線を再解析してリストを書き換えます。
+                東京起点ベクトル＆ルート接線方位による<strong>「上下線3段階フィルタ」</strong>を搭載。対向車線のSA/PAや隣接ICの誤混入をシャットアウトし、JCT分岐でハンドルを切った瞬間に前方路線リストを書き換えます。
               </p>
               <p class="i18n-en">
-                Branching from C1 at Hamasaki-bashi JCT onto Route 11 Daiba, crossing Rainbow Bridge toward the Bayshore Route (Daikoku PA / Tatsumi PA)? The moment you steer into the branch, the forward node stack updates automatically.
+                Equipped with a <strong>3-Stage Inbound/Outbound Vector Filter</strong> that eliminates opposite-lane SA/PA noise and updates the forward node stack within 0.5 seconds of steering into a junction branch.
               </p>
             </div>
 
@@ -1782,14 +2095,14 @@
           <div class="sbux-content">
             <div class="sbux-spotlight-header">
               <div class="sbux-spotlight-title">
-                <span class="i18n-ja">ONE-POINT ADVICE // 全国高速SA・PAの「スタバ＆給油所」スマート表示！</span>
-                <span class="i18n-en">ONE-POINT ADVICE // Smart "Starbucks &amp; GAS" Indicator on Nationwide SA/PAs!</span>
+                <span class="i18n-ja">ONE-POINT ADVICE // 全国高速SA・PA「全49箇所スタバ＆給油所」完全網羅！</span>
+                <span class="i18n-en">ONE-POINT ADVICE // All 49 Nationwide Expressway "Starbucks &amp; GAS" Locations!</span>
               </div>
-              <span class="sbux-pill">SMART DISPLAY</span>
+              <span class="sbux-pill">49 LOCATIONS</span>
             </div>
             <p class="i18n-ja">
               ナイトドライブや長距離ツーリングのコーヒーブレイクを逃さないための「隠れ機能」を搭載！<br>
-              スターバックスが併設されている全国の高速SA・PA（海ほたるPA、湾岸幕張PA上下、守谷SA上下、海老名SA上り、足柄SA上下、酒々井PA上下、第三京浜・都筑PA上り、談合坂SA上下など）が前方に迫ると、進行方向の上下線まで自動判別して施設カード内に
+              スターバックスが併設されている<strong>全国の高速SA・PA 全49箇所</strong>（海ほたるPA、湾岸幕張PA上下、守谷SA上下、蓮田SA上り、羽生PA下り、海老名SA上り、EXPASA足柄上下、酒々井PA上下、第三京浜・都筑PA上り、談合坂SA上下など）が前方に迫ると、進行方向の上下線まで厳密に判別して施設カード内に
               <span class="sbux-inline-badge">
                 <svg class="sbux-real-logo-mini" aria-hidden="true"><use href="#vectra-tactical-cafe-icon"/></svg>
                 STARBUCKS
@@ -1799,7 +2112,7 @@
             </p>
             <p class="i18n-en">
               Never miss a coffee break during night drives or long-distance touring!<br>
-              When approaching an expressway SA/PA with a Starbucks store (Umihotaru PA, Wangan-Makuhari PA, Moriya SA, Ebina SA Inbound, Ashigara SA, Shisui PA, Tsuzuki PA Inbound, Dangozaka SA, etc.), VECTRA automatically verifies your travel direction (Inbound/Outbound) and lights up the
+              When approaching any of the <strong>49 expressway SA/PAs with a Starbucks store nationwide</strong> (Umihotaru PA, Wangan-Makuhari PA, Moriya SA, Hasuda SA Inbound, Ebina SA Inbound, Ashigara SA, Shisui PA, Tsuzuki PA Inbound, Dangozaka SA, etc.), VECTRA strictly verifies your travel direction (Inbound/Outbound) and lights up the
               <span class="sbux-inline-badge">
                 <svg class="sbux-real-logo-mini" aria-hidden="true"><use href="#vectra-tactical-cafe-icon"/></svg>
                 STARBUCKS
@@ -1836,7 +2149,7 @@
         <div class="step-list">
           <!-- お気に入り3拠点（U字タブ引き出しドロワー）の説明 -->
           <div class="step-item">
-            <span class="step-badge cyan">NEW // QUICK PIN</span>
+            <span class="step-badge cyan">PRO &amp; RS // QUICK PIN</span>
             <div class="step-body">
               <h4 class="i18n-ja">画面左端「U字プルタブ」によるお気に入り3拠点（Home / Favorite1 / Favorite2）ワンタップ出発</h4>
               <h4 class="i18n-en">Left-Edge "U-Shaped Pull-Tab" for 1-Tap Launch to 3 Quick Pins (Home / Favorite1 / Favorite2)</h4>
@@ -1856,11 +2169,11 @@
               </div>
               <p class="i18n-ja" style="margin-top:6px;">
                 ・<strong>未登録スロットをタップした場合</strong>：画面中央に赤い「＋」照準と透過アナウンス（例：<span class="mono-hl">Home 設定中</span>）が表示されます。地図を動かして自宅やよく行くPA/集合場所に「＋」を合わせ、<strong>「決定」</strong>を押すだけで記憶されます。<br>
-                ・<strong>登録済みスロットをタップした場合</strong>：<strong>1日10回の検索枠を一切消費せず、1タップで即座にその拠点へのルート案内確認画面を起動</strong>します！（位置の変更や長押し消去は設定メニュー⚙️からいつでも行えます）
+                ・<strong>登録済みスロットをタップした場合</strong>：<strong>月間の検索枠を一切消費せず、1タップで即座にその拠点へのルート案内確認画面を起動</strong>します！（位置の変更や長押し消去は設定メニュー⚙️からいつでも行えます）
               </p>
               <p class="i18n-en" style="margin-top:6px;">
                 • <strong>Tapping an UNSET slot</strong>: A red "+" crosshair appears at the center of the map. Pan the map to align "+" with your home or favorite meetup PA, then tap <strong>"SET PIN"</strong> to save.<br>
-                • <strong>Tapping a SAVED slot</strong>: Immediately opens the route launch confirmation to that location <strong>without consuming any of your 10 daily search quotas</strong>! (You can update or long-press to clear pins anytime in Settings ⚙️.)
+                • <strong>Tapping a SAVED slot</strong>: Immediately opens the route launch confirmation to that location <strong>without consuming any of your monthly search quotas</strong>! (You can update or long-press to clear pins anytime in Settings ⚙️.)
               </p>
             </div>
           </div>
@@ -1871,10 +2184,10 @@
               <h4 class="i18n-ja">キーワード検索（左下「🔍」ボタン）</h4>
               <h4 class="i18n-en">Keyword Place Search (Bottom-Left "🔍" Button)</h4>
               <p class="i18n-ja">
-                画面左下の虫眼鏡アイコンをタップし、施設名や住所を入力して検索します（PRO版：1日10回枠）。候補をタップすると確認ダイアログを経てルート案内が開始されます。
+                画面左下の虫眼鏡アイコンをタップし、施設名や住所を入力して検索します（FREE：月6回 ／ PRO・RS：月100回枠）。候補をタップすると確認ダイアログ（残りナビ回数表示付き）を経てルート案内が開始されます。
               </p>
               <p class="i18n-en">
-                Tap the magnifying glass icon at the bottom-left to search by facility name or address (PRO: 10 searches/day). Select a result to confirm and start route guidance.
+                Tap the magnifying glass icon at the bottom-left to search by facility name or address (FREE: 6/mo, PRO &amp; RS: 100/mo). Select a result to open the launch confirmation dialog and start route guidance.
               </p>
             </div>
           </div>
@@ -1889,7 +2202,7 @@
                 ※誤操作によるナビ枠消費を防ぐため、<strong>現在地から300m以内の地点は自動キャンセル（枠消費なし）</strong>され、<strong>目的地40m圏内に到達すると自動でナビを完了終了</strong>します。
               </p>
               <p class="i18n-en">
-                <strong>Long-press (about 1 second)</strong> anywhere on the map to drop a red pin and trigger route navigation directly without using daily search quota.<br>
+                <strong>Long-press (about 1 second)</strong> anywhere on the map to drop a red pin and trigger route navigation directly without using monthly search quota.<br>
                 * To prevent accidental quota loss, <strong>destinations within 300m of your current position are automatically canceled (0 quota used)</strong>, and guidance <strong>auto-completes upon entering within 40m of your destination</strong>.
               </p>
             </div>
@@ -1916,14 +2229,82 @@
       </div>
     </section>
 
-    <!-- 04. CUSTOMIZATION & CONTROLS -->
+    <!-- 04. 7 TACTICAL MAP STYLES & HUD CUSTOMIZATION -->
     <section id="sec-custom" class="section">
       <div class="sec-header">
         <span class="sec-num">04</span>
-        <h2 class="sec-title">HUD &amp; TRAFFIC CUSTOMIZATION</h2>
-        <span class="sec-jp">画面コントロールと設定メニュー</span>
+        <h2 class="sec-title">7 TACTICAL MAPS &amp; HUD CONTROLS</h2>
+        <span class="sec-jp">実機7種マップスタイル切替ギャラリー ＆ 設定メニュー</span>
       </div>
 
+      <!-- ★新設：実機スクリーンショット切替コックピットギャラリー（全8ボタン：7種マップ＋大黒PAロックオン） -->
+      <div class="hud-card red-accent">
+        <div class="card-title">
+          <span class="i18n-ja">実機キャプチャで見る「全7種マップスタイル ＆ 大黒PAロックオン」切替ショーケース</span>
+          <span class="i18n-en">Live Cockpit Captures: "All 7 Tactical Map Styles &amp; Daikoku PA Lock-On" Showcase</span>
+          <span class="badge">REAL SCREENSHOTS</span>
+        </div>
+
+        <p class="i18n-ja" style="font-size:0.88rem; color:var(--text-sub);">
+          画面左下（2段目）の<strong>「レイヤー切替ボタン」</strong>をタップするたびに、走行シーンや昼夜に合わせて7種類のMapbox v11タクティカルマップを瞬時にローテーション切り替えできます。下のボタンをタップして実機スクリーンショットと各モードの特性を確認してください。
+        </p>
+        <p class="i18n-en" style="font-size:0.88rem; color:var(--text-sub);">
+          Tap the <strong>Map Style Layer Button</strong> (bottom-left, 2nd button) to cycle through all 7 Mapbox v11 tactical map styles tailored for day/night runs and urban 3D legibility. Select any button below to inspect real cockpit screenshots.
+        </p>
+
+        <div class="map-gallery-stage">
+          <!-- 8つの切替ボタン（01〜07マップ種別 ＋ 08 大黒PA聖地ショット） -->
+          <div id="mapSelectorGrid" class="map-selector-grid"></div>
+
+          <div class="map-viewer-grid">
+            <!-- 左：実機スクリーンショット表示フレーム -->
+            <div class="phone-cockpit-frame">
+              <div class="phone-frame-topbar">
+                <span id="phoneFrameCounter">CAPTURE // 01 OF 08</span>
+                <span style="color:var(--hud-emerald);">● LIVE COCKPIT</span>
+              </div>
+              <div class="phone-screen-wrap">
+                <img id="mapGalleryImg" class="phone-screen-img" src="Screenshot_20261029_183622.jpg" alt="VECTRA Map Style Screenshot" />
+                <div id="mapGalleryFallback" class="phone-img-fallback">
+                  <div style="color:var(--audi-red); font-weight:bold; margin-bottom:6px;">[ SCREENSHOT STANDBY ]</div>
+                  <div id="mapFallbackFile" style="color:#FFF; margin-bottom:8px;">Screenshot_20261029_183622.jpg</div>
+                  <div>GitHubの index.html と同じ階層にドライブの .jpg ファイルを配置すると、ここに実機スクリーンショットが表示されます。</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 右：選択中マップスタイルの詳細スペック・解説パネル -->
+            <div class="map-info-panel">
+              <div>
+                <div class="map-info-top">
+                  <span id="mapInfoCode" class="map-info-code">STYLE 01 // Style.TRAFFIC_NIGHT</span>
+                  <span id="mapInfoTier" class="map-tier-pill">FREE &amp; PRO / RS</span>
+                </div>
+
+                <h3 id="mapInfoTitle" class="map-info-title">01 // TRAFFIC NIGHT（夜間トラフィック）</h3>
+                <p id="mapInfoDesc" class="map-info-desc">
+                  ダーク背景にリアルタイム渋滞ライン（緑・橙・赤・暗赤）とネオンルートを高コントラストに浮かび上がらせるVECTRA標準の夜間戦闘モード。首都高や都市高速の複雑なJCT網でも瞬時に状況判断が可能です。
+                </p>
+              </div>
+
+              <div>
+                <div class="map-telemetry-box">
+                  <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--hud-cyan); margin-bottom:4px;">// CAPTURED SCENE TELEMETRY</div>
+                  <div id="mapInfoScene">首都圏広域ルート案内（C3外環・E20中央道・K7横浜北線・54.8kmナビ稼働中 ＆ ALT ROUTE ステルス待機）</div>
+                </div>
+
+                <div class="map-nav-controls" style="margin-top:14px;">
+                  <button type="button" id="mapPrevBtn" class="map-step-btn">◀ PREV STYLE</button>
+                  <span id="mapStepIndicator" style="font-family:var(--font-mono); font-size:0.8rem; color:var(--rs-silver);">01 / 08</span>
+                  <button type="button" id="mapNextBtn" class="map-step-btn">NEXT STYLE ▶</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 画面コントロール＆設定メニュー一覧表 -->
       <div class="hud-card">
         <div class="card-title">
           <span class="i18n-ja">クイック拠点管理・渋滞ライン太さ調整・カメラ制御</span>
@@ -1960,8 +2341,8 @@
                   <span class="i18n-en">Left Edge (Above Compass)</span>
                 </td>
                 <td>
-                  <span class="i18n-ja">右へスワイプ（またはタップ）で <span class="mono-red">[Home]</span> <span class="mono-red">[Favorite1]</span> <span class="mono-red">[Favorite2]</span> ドロワーを展開し、ワンタップで目的地セット・位置登録を行います。</span>
-                  <span class="i18n-en">Swipe right (or tap) to open the <span class="mono-red">[Home]</span> <span class="mono-red">[Favorite1]</span> <span class="mono-red">[Favorite2]</span> drawer for 1-tap navigation or pin registration.</span>
+                  <span class="i18n-ja">右へスワイプ（またはタップ）で <span class="mono-red">[Home]</span> <span class="mono-red">[Favorite1]</span> <span class="mono-red">[Favorite2]</span> ドロワーを展開し、ワンタップで目的地セット・位置登録を行います（PRO / RS解放）。</span>
+                  <span class="i18n-en">Swipe right (or tap) to open the <span class="mono-red">[Home]</span> <span class="mono-red">[Favorite1]</span> <span class="mono-red">[Favorite2]</span> drawer for 1-tap navigation or pin registration (PRO / RS).</span>
                 </td>
               </tr>
               <tr>
@@ -1988,8 +2369,8 @@
                   <span class="i18n-en">Bottom-Left (2nd)</span>
                 </td>
                 <td>
-                  <span class="i18n-ja">昼夜トラフィック・ダーク・サテライト（航空写真）など <strong>全7種類のマップスタイル</strong> をワンタップで巡回切り替えします。</span>
-                  <span class="i18n-en">Cycles through <strong>all 7 map styles</strong> including Traffic Day/Night, Dark, and Satellite Streets.</span>
+                  <span class="i18n-ja">昼夜トラフィック・ダーク・サテライト（航空写真）・3Dスタンダードなど <strong>全7種類のマップスタイル</strong> をワンタップで巡回切り替えします（FREEは昼夜2種、PRO/RSは全7種フル解放）。</span>
+                  <span class="i18n-en">Cycles through <strong>all 7 map styles</strong> including Traffic Day/Night, Dark, 3D Standard, and Satellite Streets (2 styles in FREE; all 7 in PRO/RS).</span>
                 </td>
               </tr>
               <tr>
@@ -2051,14 +2432,25 @@
                 </td>
               </tr>
               <tr>
-                <td><strong>DELETE ACCOUNT &amp; DATA</strong></td>
+                <td><strong>CUSTOM VOICE &amp; COMMUNITY</strong></td>
+                <td>
+                  <span class="i18n-ja">設定（⚙️）内 [RS限定]</span>
+                  <span class="i18n-en">In Settings (⚙️) [RS ONLY]</span>
+                </td>
+                <td>
+                  <span class="i18n-ja"><strong>VECTRA RS（月額500円パトロン版）</strong>専用機能として、外部カスタム音声合成API連携およびRSメンバー専用コミュニティ枠を解放します。</span>
+                  <span class="i18n-en">Exclusive to <strong>VECTRA RS (¥500/mo Patron Edition)</strong>: unlocks external custom TTS API voice synthesis and RS community access.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>RESTORE &amp; DELETE ACCOUNT</strong></td>
                 <td>
                   <span class="i18n-ja">設定（⚙️）最下部</span>
                   <span class="i18n-en">Bottom of Settings (⚙️)</span>
                 </td>
                 <td>
-                  <span class="i18n-ja">アカウント登録情報およびお気に入りピン・設定等の端末内データを初期状態へリセットします（削除後も再登録可能・当月利用枠は引き継がれます）。</span>
-                  <span class="i18n-en">Resets account registration and local device settings to default (re-registration is allowed anytime; current month's remaining quota is carried over).</span>
+                  <span class="i18n-ja">機種変更時の「購入情報の復元（PRO / RSライセンス同期）」、およびアカウント登録情報・端末内データの初期化リセット（<span class="mono-hl">DELETE ACCOUNT &amp; DATA</span>）を実行します。</span>
+                  <span class="i18n-en">Restore Google Play subscriptions (PRO / RS) on new devices, or reset account registration and local device settings (<span class="mono-hl">DELETE ACCOUNT &amp; DATA</span>).</span>
                 </td>
               </tr>
             </tbody>
@@ -2067,7 +2459,7 @@
       </div>
     </section>
 
-    <!-- 05. TACTICAL FAQ (★新設：アコーディオン式 よくある質問) -->
+    <!-- 05. TACTICAL FAQ (★アコーディオン式 よくある質問：V4.0.0完全対応) -->
     <section id="sec-faq" class="section">
       <div class="sec-header">
         <span class="sec-num">05</span>
@@ -2077,8 +2469,8 @@
 
       <div class="hud-card red-accent">
         <div class="card-title">
-          <span class="i18n-ja">VECTRA 運用・課金・センサー挙動に関するQ&amp;A（タップで開閉）</span>
-          <span class="i18n-en">Frequently Asked Questions on Operations, Quotas &amp; Sensors (Tap to expand)</span>
+          <span class="i18n-ja">VECTRA 運用・3ティア課金・センサー挙動に関するQ&amp;A（タップで開閉）</span>
+          <span class="i18n-en">Frequently Asked Questions on Operations, 3-Tier Quotas &amp; Sensors (Tap to expand)</span>
           <span class="badge">KNOWLEDGE BASE</span>
         </div>
 
@@ -2088,19 +2480,19 @@
             <summary>
               <div class="faq-q-wrap">
                 <span class="faq-q-badge">Q.01</span>
-                <span class="faq-q-text i18n-ja">無料（FREEモード）のままでも、高速道路の施設表示やスタバ捕捉は使えますか？</span>
-                <span class="faq-q-text i18n-en">Can I use the Expressway Facility HUD and Starbucks radar in FREE mode?</span>
+                <span class="faq-q-text i18n-ja">無料（FREEモード）のままでも、高速道路の施設表示やルートナビは使えますか？</span>
+                <span class="faq-q-text i18n-en">Can I use the Expressway Facility HUD, Starbucks radar, and Route Navigation in FREE mode?</span>
               </div>
               <span class="faq-indicator">+</span>
             </summary>
             <div class="faq-a-body">
               <span class="i18n-ja">
-                <strong>はい、完全無料・回数無制限でお使いいただけます。</strong><br>
-                目的地を設定せずに高速道路・都市高速の本線に乗り、画面右側の <span class="mono-hl">HIGHWAY MODE</span> トグルをONにするだけで、首都高C1の無限周回ロックオンや全国のSA/PA（スタバ・GAS表示）・IC・JCTの距離＆到着予想時刻（ETA）表示が永久に無償で稼働します。
+                <strong>はい！「走り屋モード（高速施設＆全国49箇所スタバ自動捕捉）」は完全無料・回数無制限でお使いいただけます。</strong><br>
+                さらにV4.0.0からは、FREEモードでも<strong>「月間6回までのターン・バイ・ターン音声ルートナビ」および「月間6回までの目的地キーワード検索」が無料枠として開放</strong>されています。まずは無料でVECTRAのすべてのコア機能を実走体験してください。
               </span>
               <span class="i18n-en">
-                <strong>Yes, it is 100% free with unlimited use.</strong><br>
-                Simply enter an expressway mainline without setting a destination and flip <span class="mono-hl">HIGHWAY MODE</span> ON. Endless loop tracking on Shutoko C1 and nationwide SA/PA (Starbucks &amp; GAS badges), IC, and JCT distance/ETA stacks operate permanently at zero cost.
+                <strong>Yes! "Runner's Mode" (Expressway HUD &amp; all 49 Starbucks radar) is 100% free with unlimited use.</strong><br>
+                In addition, FREE mode includes <strong>up to 6 turn-by-turn route navigation runs and 6 destination keyword searches per month</strong> at zero cost, allowing you to experience VECTRA's full capabilities on the road.
               </span>
             </div>
           </details>
@@ -2132,8 +2524,8 @@
             <summary>
               <div class="faq-q-wrap">
                 <span class="faq-q-badge">Q.03</span>
-                <span class="faq-q-text i18n-ja">PRO版の「月15回ルートナビ枠」はどのタイミングで消費されますか？リルートでも減りますか？</span>
-                <span class="faq-q-text i18n-en">When is 1 monthly navigation quota (15/mo in PRO) consumed? Does rerouting consume quota?</span>
+                <span class="faq-q-text i18n-ja">月間のルートナビ枠（FREE 6回 / PRO・RS 100回）はどのタイミングで消費されますか？リルートでも減りますか？</span>
+                <span class="faq-q-text i18n-en">When is 1 monthly navigation quota (6 in FREE / 100 in PRO &amp; RS) consumed? Does rerouting consume quota?</span>
               </div>
               <span class="faq-indicator">+</span>
             </summary>
@@ -2141,12 +2533,12 @@
               <span class="i18n-ja">
                 目的地を選択した後の確認ダイアログで <strong>「ナビ開始 (-1) / START NAVI (-1)」を押してルートが確定した瞬間のみ1回消費</strong>されます。<br>
                 ・<strong>追加消費されないケース</strong>：走行中に道を外れた際の「自動リルート（再計算）」、右下の「代替ルート（ALT ROUTE）への切り替え」、および <span class="mono-red">HGWY ⇔ LOCAL</span> トグル切り替え時の再計算では、ナビ枠は一切消費されません。<br>
-                ・<strong>300m近距離ガード</strong>：現在地から直線300m以内の地点を誤って指定した場合は自動的にキャンセルされ、枠は消費されません。
+                ・<strong>300m近距離ガード＆40m自動到着</strong>：現在地から直線300m以内の地点を誤って指定した場合は自動キャンセル（枠消費ゼロ）され、目的地40m圏内に到達すると自動で案内完了となります。
               </span>
               <span class="i18n-en">
                 1 quota is consumed <strong>only when you tap "START NAVI (-1)" in the confirmation dialog and the route is established</strong>.<br>
                 • <strong>Zero Extra Consumption</strong>: Automatic rerouting when deviating from the path, switching to an <span class="mono-hl">ALT ROUTE</span>, or toggling <span class="mono-red">HGWY ⇔ LOCAL</span> mid-trip does NOT consume any additional quota.<br>
-                • <strong>300m Nearby Guard</strong>: If a selected destination is within 300m of your current location, launch is automatically canceled with 0 quota used.
+                • <strong>300m Guard &amp; 40m Auto-Arrival</strong>: Destinations within 300m of your current location are canceled with 0 quota used, and navigation automatically finishes when you arrive within 40m of your goal.
               </span>
             </div>
           </details>
@@ -2156,21 +2548,19 @@
             <summary>
               <div class="faq-q-wrap">
                 <span class="faq-q-badge">Q.04</span>
-                <span class="faq-q-text i18n-ja">1日10回の「目的地キーワード検索」枠を節約してルート案内を使うコツはありますか？</span>
-                <span class="faq-q-text i18n-en">How can I start route navigation without using my 10 daily Destination Searches?</span>
+                <span class="faq-q-text i18n-ja">PRO版（月額300円）と VECTRA RS（月額500円・パトロン版）の違いは何ですか？</span>
+                <span class="faq-q-text i18n-en">What is the difference between PRO (¥300/mo) and VECTRA RS (¥500/mo Patron Edition)?</span>
               </div>
               <span class="faq-indicator">+</span>
             </summary>
             <div class="faq-a-body">
               <span class="i18n-ja">
-                <strong>2つの方法（検索消費ゼロ）</strong>があります。<br>
-                1. 自宅やよく行く拠点は左端の<strong>「U字プルタブ」の3拠点（<span class="mono-red">[Home]</span> / <span class="mono-red">[Favorite1]</span> / <span class="mono-red">[Favorite2]</span>）</strong>に登録しておくことで、いつでも検索枠を消費せず1タップで出発できます。<br>
-                2. 地図上の目的地を直接<strong>「約1秒間長押し（ロングタップ）」</strong>してピンを刺す方法も、検索枠を一切消費しません。
+                ・<strong>PRO版（月額300円）</strong>：ルートナビ月100回、キーワード検索月100回、左端「U字プルタブ」のお気に入り3拠点登録（検索消費ゼロで1タップ出発）、および航空写真や3Dを含む「全7種マップスタイル」がすべて解放されるメインプランです。<br>
+                ・<strong>VECTRA RS（月額500円）</strong>：PRO版の全機能に加えて、外部カスタム音声合成API連携（<span class="mono-red">CUSTOM VOICE</span>）およびRS専用コミュニティ・エンブレム特典をフル解放する最上位の開発支援パトロンプランです。
               </span>
               <span class="i18n-en">
-                There are <strong>two zero-search-quota methods</strong>:<br>
-                1. Register your home and frequent spots to the <strong>U-shaped pull-tab slots (<span class="mono-red">[Home]</span> / <span class="mono-red">[Favorite1]</span> / <span class="mono-red">[Favorite2]</span>)</strong> for instant 1-tap departure without using search quota.<br>
-                2. <strong>Long-press (1 sec)</strong> directly on any point on the map to drop a pin and launch navigation with zero search quota consumption.
+                • <strong>PRO Edition (¥300/mo)</strong>: Unlocks 100 route navigations/mo, 100 keyword searches/mo, the U-shaped pull-tab 3 Quick Pins (0 search quota 1-tap launch), and all 7 tactical map styles.<br>
+                • <strong>VECTRA RS (¥500/mo)</strong>: Our top-tier Patron Edition that includes all PRO features plus full access to external <span class="mono-red">CUSTOM VOICE</span> synthesis APIs and exclusive RS community perks.
               </span>
             </div>
           </details>
@@ -2202,19 +2592,19 @@
             <summary>
               <div class="faq-q-wrap">
                 <span class="faq-q-badge">Q.06</span>
-                <span class="faq-q-text i18n-ja">「アカウント削除」や再インストールを行った場合、残りの利用回数やPRO定期購入はどうなりますか？</span>
-                <span class="faq-q-text i18n-en">What happens to my remaining quota and PRO subscription if I delete my account or reinstall?</span>
+                <span class="faq-q-text i18n-ja">「アカウント削除」や再インストールを行った場合、残りの利用回数やPRO / RS定期購入はどうなりますか？</span>
+                <span class="faq-q-text i18n-en">What happens to my remaining quota and PRO / RS subscription if I delete my account or reinstall?</span>
               </div>
               <span class="faq-indicator">+</span>
             </summary>
             <div class="faq-a-body">
               <span class="i18n-ja">
-                ・<strong>当月利用枠の引き継ぎ</strong>：アカウント削除後に再登録した場合やアプリを再インストールした場合も、不正リセット防止仕様により当月の残りナビ回数・当日検索回数がそのまま引き継がれます。<br>
-                ・<strong>PRO版定期購入の復元と解約</strong>：機種変更や再導入時は、設定画面（⚙️）の「購入情報の復元」からPRO権限を復元できます。なお、アプリ内の「DELETE ACCOUNT &amp; DATA」を実行してもGoogle Playの定期購入（サブスクリプション）自体は自動解約されないため、課金を停止する際は必ず <strong>Google Playストア ＞ 定期購入</strong> 管理画面から解約手続きを行ってください。
+                ・<strong>当月利用枠の引き継ぎ</strong>：アカウント削除後に再登録した場合やアプリを再インストールした場合も、不正リセット防止仕様により当月の残りナビ回数・検索回数がそのまま引き継がれます。<br>
+                ・<strong>PRO / RS定期購入の復元と解約</strong>：機種変更や再導入時は、設定画面（⚙️）の「購入情報の復元」からライセンス権限を即座に復元できます。なお、アプリ内の「DELETE ACCOUNT &amp; DATA」を実行してもGoogle Playの定期購入（サブスクリプション）自体は自動解約されないため、課金を停止する際は必ず <strong>Google Playストア ＞ 定期購入</strong> 管理画面から解約手続きを行ってください。
               </span>
               <span class="i18n-en">
-                • <strong>Quota Carry-Over</strong>: If you re-register after deleting your account or reinstall the app within the same month, your remaining monthly navigation and daily search counts are carried over automatically.<br>
-                • <strong>PRO Subscription Restore &amp; Cancellation</strong>: You can restore your PRO license via "Restore Purchases" in Settings (⚙️). Note that executing "DELETE ACCOUNT &amp; DATA" in the app does NOT automatically cancel your Google Play billing. To stop recurring charges, please cancel via <strong>Google Play Store &gt; Subscriptions</strong>.
+                • <strong>Quota Carry-Over</strong>: If you re-register after deleting your account or reinstall the app within the same month, your remaining monthly navigation and search counts are carried over automatically.<br>
+                • <strong>PRO / RS Subscription Restore &amp; Cancellation</strong>: You can restore your license via "Restore Purchases" in Settings (⚙️). Note that executing "DELETE ACCOUNT &amp; DATA" in the app does NOT automatically cancel your Google Play billing. To stop recurring charges, please cancel via <strong>Google Play Store &gt; Subscriptions</strong>.
               </span>
             </div>
           </details>
@@ -2245,7 +2635,7 @@
   </a>
 
   <footer>
-    VECTRA TACTICAL NAVIGATION SYSTEM // OFFICIAL MANUAL v3.9.9<br>
+    VECTRA TACTICAL NAVIGATION SYSTEM // OFFICIAL MANUAL v4.0.0<br>
     DESIGNED FOR HIGH-PERFORMANCE DRIVING
     <div class="footer-disclaimer i18n-ja">
       ※安全のため、運転中のスマートフォン操作や画面の注視は絶対におやめください。走行時は必ず実際の道路標識・交通規制に従ってください。<br>
@@ -2261,6 +2651,134 @@
 
   <script>
     (function() {
+      // =========================================================================
+      // ★ 実機スクリーンショット8枚（7種マップ＋大黒PAショット）の定義配列
+      // ドライブの .jpg を index.html と同じフォルダに置くだけでそのまま表示されます。
+      // 順番を入れ替えたい場合は file: 'Screenshot_20261029_xxxx.jpg' を入れ替えるだけです！
+      // =========================================================================
+      var MAP_STYLE_GALLERY = [
+        {
+          id: '01',
+          shortName: 'TRAFFIC NIGHT',
+          code: 'STYLE 01 // Style.TRAFFIC_NIGHT',
+          file: 'Screenshot_20261029_183622.jpg',
+          isProOnly: false,
+          tierJa: 'FREE & PRO / RS 対応',
+          tierEn: 'FREE & PRO / RS',
+          titleJa: '01 // TRAFFIC NIGHT（夜間トラフィック）',
+          titleEn: '01 // TRAFFIC NIGHT (Night Congestion HUD)',
+          descJa: 'ダーク背景にリアルタイム渋滞ライン（緑・橙・赤・暗赤）とネオンルートを高コントラストに浮かび上がらせるVECTRA標準の夜間戦闘モード。首都高や都市高速の複雑なJCT網でも瞬時に状況判断が可能です。',
+          descEn: 'VECTRA\'s signature night combat mode overlaying high-contrast real-time congestion lines and neon routes onto a dark canvas for instant junction awareness.',
+          sceneJa: '実機キャプチャ：首都圏広域ルート案内（C3外環・E20中央道・K7横浜北線・54.8kmナビ稼働中 ＆ ALT ROUTE ステルス待機）',
+          sceneEn: 'Live Capture: Greater Tokyo Wide Route Guidance (C3 / E20 / K7, 54.8 km active route & ALT ROUTE stealth standby)'
+        },
+        {
+          id: '02',
+          shortName: 'STEALTH DARK',
+          code: 'STYLE 02 // Style.DARK',
+          file: 'Screenshot_20261029_183455.jpg',
+          isProOnly: true,
+          tierJa: 'PRO / RS フル解放',
+          tierEn: 'PRO / RS UNLOCKED',
+          titleJa: '02 // DARK（ステルスダーク・英語コックピット）',
+          titleEn: '02 // DARK (Stealth Dark Cockpit)',
+          descJa: '周囲の色彩ノイズを極限まで削ぎ落とし、シアン＆レッドのHUDパネルとルートラインだけを際立たせる漆黒のコックピットモード。英語（EN）モードと組み合わせると欧州スポーツカーの純正計器のように機能します。',
+          descEn: 'Strips away ambient map color noise so cyan and red HUD telemetry and route vectors stand out with maximum clarity during night runs.',
+          sceneJa: '実機キャプチャ：英語（EN）モード×ルート案内稼働中（Setagaya / Yokohama / Tokyo / 56.4km・ETA 19:50）',
+          sceneEn: 'Live Capture: English (EN) Cockpit Mode during active 56.4 km navigation across Tokyo & Yokohama'
+        },
+        {
+          id: '03',
+          shortName: 'SATELLITE',
+          code: 'STYLE 03 // Style.SATELLITE_STREETS',
+          file: 'Screenshot_20261029_183726.jpg',
+          isProOnly: true,
+          tierJa: 'PRO / RS フル解放',
+          tierEn: 'PRO / RS UNLOCKED',
+          titleJa: '03 // SATELLITE STREETS（航空写真＋ハイウェイ網）',
+          titleEn: '03 // SATELLITE STREETS (Satellite + Highway Overlay)',
+          descJa: '高解像度な衛星航空写真の上に、高速道路ネットワーク・IC/JCTラベル・リアルタイム渋滞線・案内ルートを重畳表示するハイブリッドモード。湾岸エリアや海ほたる、山岳ワインディングの地形把握に威力を発揮します。',
+          descEn: 'Overlays expressway networks, IC/JCT labels, real-time traffic, and active route lines directly over high-resolution satellite imagery.',
+          sceneJa: '実機キャプチャ：東京湾・アクアライン・羽田空港〜横浜・横須賀 62.9km広域ルート＆代替ルート（+4 min）検知',
+          sceneEn: 'Live Capture: Tokyo Bay, Aqua-Line & Haneda Airport 62.9 km route with +4 min Alternative Route detection'
+        },
+        {
+          id: '04',
+          shortName: 'TRAFFIC DAY',
+          code: 'STYLE 04 // Style.TRAFFIC_DAY',
+          file: 'Screenshot_20261029_183524.jpg',
+          isProOnly: false,
+          tierJa: 'FREE & PRO / RS 対応',
+          tierEn: 'FREE & PRO / RS',
+          titleJa: '04 // TRAFFIC DAY（昼間トラフィック）',
+          titleEn: '04 // TRAFFIC DAY (Daylight Congestion HUD)',
+          descJa: '日中の強い直射日光下やオープン走行時でも、道路形状とリアルタイム渋滞ラインがくっきり視認できる高コントラスト昼間モード。日本語ラベルでの広域ルート確認にも最適です。',
+          descEn: 'High-contrast daylight traffic style engineered for crisp visibility of road geometry and congestion lines under bright sunlight.',
+          sceneJa: '実機キャプチャ：日本語（JP）モード×首都圏縦断56.4kmルート案内（川口・板橋・新宿・世田谷・大田〜横浜方面）',
+          sceneEn: 'Live Capture: Japanese (JP) Mode 56.4 km metropolitan route across Shinjuku, Setagaya, Ota & Yokohama'
+        },
+        {
+          id: '05',
+          shortName: 'STANDARD 3D',
+          code: 'STYLE 05 // Style.STANDARD',
+          file: 'Screenshot_20261029_183259.jpg',
+          isProOnly: true,
+          tierJa: 'PRO / RS フル解放',
+          tierEn: 'PRO / RS UNLOCKED',
+          titleJa: '05 // STANDARD 3D（3D立体ランドマーク）',
+          titleEn: '05 // STANDARD 3D (3D Urban Landmarks)',
+          descJa: 'Mapbox Maps SDK v11最新の3D都市ビルディング造形と立体ライティングを表現する次世代スタンダードマップ。都心部のビル群やランドマーク、カフェ・駐車場POIを立体的に把握できます。',
+          descEn: 'Next-generation Mapbox v11 Standard style featuring 3D urban building extrusions, dynamic lighting, and detailed POI landmarks.',
+          sceneJa: '実機キャプチャ：渋谷駅周辺3D詳細表示（MIYASHITA PARK・STARBUCKS・渋谷ヒカリエ・SHIBUYA STREAM・国道246号）',
+          sceneEn: 'Live Capture: Shibuya Station 3D closeup (MIYASHITA PARK, Starbucks, Shibuya Hikarie, Route 246)'
+        },
+        {
+          id: '06',
+          shortName: 'STREETS',
+          code: 'STYLE 06 // Style.MAPBOX_STREETS',
+          file: 'Screenshot_20261029_183242.jpg',
+          isProOnly: true,
+          tierJa: 'PRO / RS フル解放',
+          tierEn: 'PRO / RS UNLOCKED',
+          titleJa: '06 // MAPBOX STREETS（ストリート標準）',
+          titleEn: '06 // MAPBOX STREETS (Classic Vector Streets)',
+          descJa: '都市部の細街路、一方通行、坂道名称、主要施設アイコンを最もバランスよく描画する王道ストリートマップ。一般道（LOCAL）走行時や目的地周辺の最終アプローチで高い視認性を誇ります。',
+          descEn: 'Balanced vector street map highlighting urban road hierarchies, slopes, one-way streets, and neighborhood landmarks.',
+          sceneJa: '実機キャプチャ：渋谷〜代々木・道玄坂・オルガン坂・国道246号周辺の精細ストリート表示',
+          sceneEn: 'Live Capture: Detailed urban street network around Shibuya, Dogenzaka, Organ-zaka & Route 246'
+        },
+        {
+          id: '07',
+          shortName: 'LIGHT',
+          code: 'STYLE 07 // Style.LIGHT',
+          file: 'Screenshot_20261029_183324.jpg',
+          isProOnly: true,
+          tierJa: 'PRO / RS フル解放',
+          tierEn: 'PRO / RS UNLOCKED',
+          titleJa: '07 // LIGHT（モノトーンライト）',
+          titleEn: '07 // LIGHT (Minimalist Monotone Light)',
+          descJa: '地図背景の装飾色を抑えたクリーンなホワイト＆シルバー調のミニマルスタイル。ルートラインや自車位置マーカー、ピン留め地点をシャープに際立たせます。',
+          descEn: 'Clean silver-white architectural map canvas designed to make route lines and tactical markers pop without visual clutter.',
+          sceneJa: '実機キャプチャ：余計な色彩ノイズを排したクリーンマップ表示（18:33 キャプチャ）',
+          sceneEn: 'Live Capture: Minimalist high-legibility map rendering (18:33 Capture)'
+        },
+        {
+          id: '08',
+          shortName: 'DAIKOKU PA',
+          code: 'SCENE 08 // SHUTOKO BAYSHORE LOCK-ON',
+          file: 'Screenshot_20261029_183419.jpg',
+          isProOnly: false,
+          tierJa: '聖地ロックオン実機画面',
+          tierEn: 'DAIKOKU PA SPECIAL',
+          titleJa: '08 // DAIKOKU PA & JCT（大黒PA・湾岸線ロックオン）',
+          titleEn: '08 // DAIKOKU PA & JCT (Bayshore Sanctuary View)',
+          descJa: '首都高湾岸線（B）・大黒ふ頭・K5大黒線が交差する「大黒JCT / 大黒PA」周辺の実機キャプチャ。ループ橋のランプ形状やPA内の施設位置まで精密に描画します。',
+          descEn: 'Real cockpit capture of the iconic Daikoku PA & Daikoku JCT where the Shutoko Bayshore Route (B) and K5 Daikoku Line intersect.',
+          sceneJa: '実機キャプチャ：首都高湾岸線（EXPWY WANGAN LINE）・大黒JCT・大黒PA（タリーズコーヒー大黒PA店）周辺マップ',
+          sceneEn: 'Live Capture: Shutoko Bayshore Route, Daikoku JCT spiral ramps & Daikoku Parking Area'
+        }
+      ];
+
       // 1. スクロール連動「TOPへ戻る」ボタン制御
       var topBtn = document.getElementById('backToTopBtn');
       window.addEventListener('scroll', function() {
@@ -2275,6 +2793,7 @@
       var isGlobalEnglish = false;
       var isFacilityEnglish = false;
       var currentPreset = 'tomei';
+      var currentMapIndex = 0;
 
       var globalToggle = document.getElementById('globalLangToggle');
       var globalChipEn = document.getElementById('globalChipEn');
@@ -2302,7 +2821,22 @@
       var facKm1 = document.getElementById('facKm1');
       var facEta1 = document.getElementById('facEta1');
 
-      // SVGレーダー内のJCT/PAラベル（ENモード時のみ英語化、JPモード時は元の漢字表記を維持）
+      // マップギャラリーDOM要素
+      var mapSelectorGrid = document.getElementById('mapSelectorGrid');
+      var mapGalleryImg = document.getElementById('mapGalleryImg');
+      var mapGalleryFallback = document.getElementById('mapGalleryFallback');
+      var mapFallbackFile = document.getElementById('mapFallbackFile');
+      var phoneFrameCounter = document.getElementById('phoneFrameCounter');
+      var mapInfoCode = document.getElementById('mapInfoCode');
+      var mapInfoTier = document.getElementById('mapInfoTier');
+      var mapInfoTitle = document.getElementById('mapInfoTitle');
+      var mapInfoDesc = document.getElementById('mapInfoDesc');
+      var mapInfoScene = document.getElementById('mapInfoScene');
+      var mapStepIndicator = document.getElementById('mapStepIndicator');
+      var mapPrevBtn = document.getElementById('mapPrevBtn');
+      var mapNextBtn = document.getElementById('mapNextBtn');
+
+      // SVGレーダー内のJCT/PAラベル
       var svgLabels = {
         svgLblTakebashi: { ja: '竹橋JCT', en: 'Takebashi JCT' },
         svgLblEdobashi:  { ja: '江戸橋JCT', en: 'Edobashi JCT' },
@@ -2319,6 +2853,98 @@
           '<svg class="sbux-real-logo-mini" aria-hidden="true"><use href="#vectra-tactical-cafe-icon"/></svg>' +
           'STARBUCKS' +
         '</span>';
+
+      // マップギャラリーのボタン生成＆描画更新
+      function initMapGalleryButtons() {
+        if (!mapSelectorGrid) return;
+        mapSelectorGrid.innerHTML = '';
+        for (var i = 0; i < MAP_STYLE_GALLERY.length; i++) {
+          (function(idx) {
+            var item = MAP_STYLE_GALLERY[idx];
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'map-style-btn' + (idx === currentMapIndex ? ' active' : '');
+            btn.innerHTML =
+              '<span class="btn-num"><span>STYLE ' + item.id + '</span><span>' + (item.isProOnly ? 'PRO/RS' : 'FREE') + '</span></span>' +
+              '<span class="btn-name">' + item.shortName + '</span>';
+            btn.addEventListener('click', function() {
+              currentMapIndex = idx;
+              renderMapGallery();
+            });
+            mapSelectorGrid.appendChild(btn);
+          })(i);
+        }
+      }
+
+      function renderMapGallery() {
+        var item = MAP_STYLE_GALLERY[currentMapIndex];
+        if (!item) return;
+
+        var buttons = mapSelectorGrid ? mapSelectorGrid.querySelectorAll('.map-style-btn') : [];
+        for (var i = 0; i < buttons.length; i++) {
+          if (i === currentMapIndex) {
+            buttons[i].classList.add('active');
+          } else {
+            buttons[i].classList.remove('active');
+          }
+        }
+
+        if (phoneFrameCounter) {
+          phoneFrameCounter.textContent = 'CAPTURE // ' + item.id + ' OF 0' + MAP_STYLE_GALLERY.length;
+        }
+        if (mapStepIndicator) {
+          mapStepIndicator.textContent = item.id + ' / 0' + MAP_STYLE_GALLERY.length;
+        }
+        if (mapInfoCode) {
+          mapInfoCode.textContent = item.code;
+        }
+        if (mapInfoTier) {
+          mapInfoTier.textContent = isGlobalEnglish ? item.tierEn : item.tierJa;
+          if (item.isProOnly) {
+            mapInfoTier.classList.add('pro-only');
+          } else {
+            mapInfoTier.classList.remove('pro-only');
+          }
+        }
+        if (mapInfoTitle) {
+          mapInfoTitle.textContent = isGlobalEnglish ? item.titleEn : item.titleJa;
+        }
+        if (mapInfoDesc) {
+          mapInfoDesc.textContent = isGlobalEnglish ? item.descEn : item.descJa;
+        }
+        if (mapInfoScene) {
+          mapInfoScene.textContent = isGlobalEnglish ? item.sceneEn : item.sceneJa;
+        }
+        if (mapFallbackFile) {
+          mapFallbackFile.textContent = item.file;
+        }
+        if (mapGalleryImg) {
+          mapGalleryImg.style.display = 'block';
+          if (mapGalleryFallback) mapGalleryFallback.style.display = 'none';
+          mapGalleryImg.src = item.file;
+          mapGalleryImg.alt = isGlobalEnglish ? item.titleEn : item.titleJa;
+        }
+      }
+
+      if (mapGalleryImg) {
+        mapGalleryImg.addEventListener('error', function() {
+          mapGalleryImg.style.display = 'none';
+          if (mapGalleryFallback) mapGalleryFallback.style.display = 'block';
+        });
+      }
+
+      if (mapPrevBtn) {
+        mapPrevBtn.addEventListener('click', function() {
+          currentMapIndex = (currentMapIndex - 1 + MAP_STYLE_GALLERY.length) % MAP_STYLE_GALLERY.length;
+          renderMapGallery();
+        });
+      }
+      if (mapNextBtn) {
+        mapNextBtn.addEventListener('click', function() {
+          currentMapIndex = (currentMapIndex + 1) % MAP_STYLE_GALLERY.length;
+          renderMapGallery();
+        });
+      }
 
       function renderFacilityPreview() {
         if (isFacilityEnglish) {
@@ -2408,7 +3034,11 @@
         }
 
         renderFacilityPreview();
+        renderMapGallery();
       }
+
+      // 初期化実行
+      initMapGalleryButtons();
 
       // 初期起動時のURLパラメータ (?lang=en) 同期判定
       var params = new URLSearchParams(window.location.search);
