@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <!-- 【公式マニュアル SEO設定（privacy.html側のみステルス保護）】 -->
   <meta name="robots" content="index, follow" />
-  <meta name="description" content="目的地設定ゼロで首都高C1・湾岸線・全国高速のIC/JCT/スタバ併設PA全49箇所を自動捕捉する走り屋モード搭載。ドライバー特化型タクティカル・ナビゲーションシステム VECTRA 公式操作マニュアル＆FAQ。" />
+  <meta name="description" content="目的地設定ゼロで首都高C1・湾岸線・全国高速のIC/JCT/スタバ併設PA全49箇所を自動捕捉する走り屋モード搭載。さらにVECTRA RSではデュアルスロット(SLOT 1:2)＆160MBゼロ遅延プリロード音声エンジンを解放。VECTRA 公式操作マニュアル＆FAQ。" />
   <title>VECTRA // OFFICIAL TACTICAL MANUAL &amp; FAQ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,15 +29,10 @@
       --text-sub: #94A3B8;
       --border-stealth: #222731;
       --font-mono: 'Share Tech Mono', monospace;
-      /* 実機アプリと完全同一：英数字＝Share Tech Mono / 日本語＝Zen Kaku Gothic New Bold */
       --font-sans: 'Share Tech Mono', 'Zen Kaku Gothic New', sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       scroll-behavior: smooth;
@@ -60,336 +55,170 @@
       font-weight: 700;
     }
 
-    /* ============================================================
-       ★ 日英モード表示制御（JP基準：あえて英語の箇所はそのまま共通表示）
-       ============================================================ */
-    body:not(.lang-en) .i18n-en {
-      display: none !important;
-    }
-    body.lang-en .i18n-ja {
-      display: none !important;
-    }
-    body.lang-en .sec-jp {
-      display: none !important;
-    }
+    /* ★ 日英モード表示制御 */
+    body:not(.lang-en) .i18n-en { display: none !important; }
+    body.lang-en .i18n-ja { display: none !important; }
+    body.lang-en .sec-jp { display: none !important; }
 
     /* 固定トップナビゲーションバー */
     .top-hud-bar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       background: rgba(7, 9, 12, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-stealth);
       padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
 
     .brand-mini {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-mono);
-      font-size: 1.15rem;
-      font-weight: bold;
-      letter-spacing: 3px;
-      color: #FFFFFF;
-      text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono); font-size: 1.15rem; font-weight: bold;
+      letter-spacing: 3px; color: #FFFFFF; text-decoration: none;
     }
+    .brand-mini span { color: var(--audi-red); font-weight: bold; }
 
-    .brand-mini span {
-      color: var(--audi-red);
-      font-weight: bold;
-    }
-
-    .top-right-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .top-right-controls { display: flex; align-items: center; gap: 12px; }
 
     .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: bold;
-      padding: 4px 10px;
-      background: rgba(0, 230, 118, 0.10);
-      border: 1px solid var(--hud-emerald);
-      color: var(--hud-emerald);
-      letter-spacing: 1px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: bold;
+      padding: 4px 10px; background: rgba(0, 230, 118, 0.10);
+      border: 1px solid var(--hud-emerald); color: var(--hud-emerald); letter-spacing: 1px;
     }
 
     .status-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--hud-emerald);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--hud-emerald);
+      width: 7px; height: 7px; background: var(--hud-emerald);
+      border-radius: 50%; box-shadow: 0 0 8px var(--hud-emerald);
       animation: pulse 2s infinite;
     }
 
-    /* ★右上 [ EN | JP ] グローバル言語切替トグル（アプリタイトル画面と完全統一） */
+    /* ★右上 [ EN | JP ] グローバル言語切替トグル */
     .hud-lang-pill {
-      display: inline-flex;
-      align-items: center;
-      background: #0A121E;
-      border: 1px solid rgba(0, 229, 255, 0.45);
-      border-radius: 6px;
-      padding: 2px;
-      cursor: pointer;
-      user-select: none;
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      font-weight: bold;
+      display: inline-flex; align-items: center;
+      background: #0A121E; border: 1px solid rgba(0, 229, 255, 0.45);
+      border-radius: 6px; padding: 2px; cursor: pointer; user-select: none;
+      font-family: var(--font-mono); font-size: 0.76rem; font-weight: bold;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
+    .hud-lang-pill:hover { border-color: var(--hud-cyan); box-shadow: 0 0 12px rgba(0, 229, 255, 0.28); }
+    .hud-lang-chip { padding: 3px 9px; border-radius: 4px; color: #90A4AE; letter-spacing: 0.8px; transition: all 0.18s ease; }
+    .hud-lang-chip.active-en { background: var(--hud-cyan); color: #03070E; font-weight: 900; }
+    .hud-lang-chip.active-jp { background: var(--audi-red); color: #FFFFFF; font-weight: 900; }
 
-    .hud-lang-pill:hover {
-      border-color: var(--hud-cyan);
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.28);
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
-    .hud-lang-chip {
-      padding: 3px 9px;
-      border-radius: 4px;
-      color: #90A4AE;
-      letter-spacing: 0.8px;
-      transition: all 0.18s ease;
-    }
-
-    .hud-lang-chip.active-en {
-      background: var(--hud-cyan);
-      color: #03070E;
-      font-weight: 900;
-    }
-
-    .hud-lang-chip.active-jp {
-      background: var(--audi-red);
-      color: #FFFFFF;
-      font-weight: 900;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.35; }
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 20px 96px;
-    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px 96px; }
 
     /* ヒーローセクション */
     .hero {
-      position: relative;
-      text-align: center;
+      position: relative; text-align: center;
       padding: 52px 16px 40px;
-      border-bottom: 1px solid var(--border-stealth);
-      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-stealth); margin-bottom: 36px;
     }
-
     .crest-box {
-      width: 96px;
-      height: 96px;
-      margin: 0 auto 20px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 96px; height: 96px; margin: 0 auto 20px;
+      position: relative; display: flex; align-items: center; justify-content: center;
     }
-
     .hero-eyebrow {
-      font-family: var(--font-mono);
-      color: var(--rs-silver);
-      font-size: 0.85rem;
-      font-weight: bold;
-      letter-spacing: 4px;
-      margin-bottom: 8px;
+      font-family: var(--font-mono); color: var(--rs-silver);
+      font-size: 0.85rem; font-weight: bold; letter-spacing: 4px; margin-bottom: 8px;
     }
-
     .hero-title {
-      font-family: var(--font-mono);
-      font-size: clamp(2.4rem, 7vw, 4rem);
-      font-weight: bold;
-      letter-spacing: 8px;
-      color: #FFFFFF;
-      text-shadow: 0 0 28px rgba(203, 213, 225, 0.22);
-      margin-bottom: 8px;
+      font-family: var(--font-mono); font-size: clamp(2.4rem, 7vw, 4rem);
+      font-weight: bold; letter-spacing: 8px; color: #FFFFFF;
+      text-shadow: 0 0 28px rgba(203, 213, 225, 0.22); margin-bottom: 8px;
     }
-
-    .hero-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-sub);
-      max-width: 680px;
-      margin: 0 auto 26px;
-    }
+    .hero-subtitle { font-size: 0.95rem; color: var(--text-sub); max-width: 680px; margin: 0 auto 26px; }
 
     .pioneer-frame {
       display: inline-block;
       background: linear-gradient(90deg, rgba(30, 36, 48, 0.9), rgba(15, 18, 24, 0.95), rgba(30, 36, 48, 0.9));
       border: 1px solid #334155;
-      border-left: 3px solid var(--hud-cyan);
-      border-right: 3px solid var(--audi-red);
-      padding: 12px 28px;
-      margin-bottom: 8px;
+      border-left: 3px solid var(--hud-cyan); border-right: 3px solid var(--audi-red);
+      padding: 12px 28px; margin-bottom: 8px;
+    }
+    .pioneer-frame .edition { font-family: var(--font-mono); color: #FFFFFF; font-size: 1.05rem; letter-spacing: 2.5px; font-weight: bold; }
+    .pioneer-frame .desc { font-size: 0.8rem; color: var(--rs-silver); margin-top: 2px; }
+
+    /* Audi Sport風 RS タクティカル・エンブレム（アプリ実機と完全同一デザイン） */
+    .rs-sport-emblem {
+      display: inline-flex; align-items: center; gap: 5px; vertical-align: middle;
+    }
+    .rs-sport-emblem .vectra-txt {
+      font-family: var(--font-mono); font-weight: 900; color: #FFFFFF; letter-spacing: 1px;
+    }
+    .rs-rhombus-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      position: relative; padding: 1px 9px 1px 11px;
+      background: linear-gradient(108deg, var(--audi-red) 0%, var(--audi-red) 38%, rgba(18, 22, 30, 0.95) 39%, rgba(18, 22, 30, 0.95) 100%);
+      border: 1.2px solid rgba(209, 213, 219, 0.75);
+      transform: skewX(-16deg);
+      box-shadow: 0 0 12px rgba(227, 0, 15, 0.45);
+    }
+    .rs-rhombus-badge span {
+      transform: skewX(16deg);
+      font-family: var(--font-mono); font-weight: 900; font-style: italic;
+      color: #FFFFFF; font-size: 0.85em; letter-spacing: 1px; line-height: 1.1;
     }
 
-    .pioneer-frame .edition {
-      font-family: var(--font-mono);
-      color: #FFFFFF;
-      font-size: 1.05rem;
-      letter-spacing: 2.5px;
-      font-weight: bold;
-    }
-
-    .pioneer-frame .desc {
-      font-size: 0.8rem;
-      color: var(--rs-silver);
-      margin-top: 2px;
-    }
-
-    /* クイックジャンプナビ */
+    /* クイックジャンプナビ（6グリッド） */
     .quick-nav {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 10px;
-      margin-bottom: 48px;
+      grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+      gap: 10px; margin-bottom: 48px;
     }
-
     .quick-link {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-stealth);
-      padding: 12px 14px;
-      text-decoration: none;
-      color: var(--text-main);
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      font-weight: bold;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      transition: all 0.2s;
+      background: var(--bg-panel); border: 1px solid var(--border-stealth);
+      padding: 12px 14px; text-decoration: none; color: var(--text-main);
+      font-family: var(--font-mono); font-size: 0.82rem; font-weight: bold;
+      display: flex; flex-direction: column; gap: 4px; transition: all 0.2s;
     }
-
-    .quick-link:hover {
-      border-color: var(--audi-red);
-      background: #141820;
+    .quick-link:hover { border-color: var(--audi-red); background: #141820; }
+    .quick-link .num { color: var(--audi-red); font-size: 0.72rem; letter-spacing: 1.5px; }
+    .quick-link.rs-special {
+      background: linear-gradient(135deg, rgba(227, 0, 15, 0.18) 0%, rgba(12, 14, 18, 0.96) 80%);
+      border-color: rgba(227, 0, 15, 0.65);
     }
-
-    .quick-link .num {
-      color: var(--audi-red);
-      font-size: 0.72rem;
-      letter-spacing: 1.5px;
+    .quick-link.rs-special:hover {
+      border-color: var(--hud-cyan);
+      box-shadow: 0 0 16px rgba(227, 0, 15, 0.35);
     }
 
     /* セクション共通 */
-    .section {
-      margin-bottom: 56px;
-      scroll-margin-top: 72px;
-    }
-
+    .section { margin-bottom: 56px; scroll-margin-top: 72px; }
     .sec-header {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      border-bottom: 2px solid var(--audi-red);
-      padding-bottom: 8px;
-      margin-bottom: 24px;
+      display: flex; align-items: baseline; gap: 12px;
+      border-bottom: 2px solid var(--audi-red); padding-bottom: 8px; margin-bottom: 24px;
     }
-
-    .sec-num {
-      font-family: var(--font-mono);
-      color: var(--audi-red);
-      font-size: 1.3rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .sec-title {
-      font-family: var(--font-mono);
-      font-size: 1.35rem;
-      font-weight: bold;
-      color: #FFFFFF;
-      letter-spacing: 2px;
-    }
-
-    .sec-jp {
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      margin-left: auto;
-    }
+    .sec-num { font-family: var(--font-mono); color: var(--audi-red); font-size: 1.3rem; font-weight: bold; letter-spacing: 1px; }
+    .sec-title { font-family: var(--font-mono); font-size: 1.35rem; font-weight: bold; color: #FFFFFF; letter-spacing: 2px; }
+    .sec-jp { font-size: 0.85rem; color: var(--text-sub); margin-left: auto; }
 
     /* パネル・カード */
     .hud-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-stealth);
-      padding: 24px;
-      margin-bottom: 20px;
-      position: relative;
+      background: var(--bg-panel); border: 1px solid var(--border-stealth);
+      padding: 24px; margin-bottom: 20px; position: relative;
     }
-
     .hud-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--rs-silver);
+      content: ""; position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%; background: var(--rs-silver);
     }
-
-    .hud-card.red-accent::before {
-      background: var(--audi-red);
-    }
-
-    .hud-card.emerald-accent::before {
-      background: var(--hud-emerald);
-    }
-
-    .hud-card.cyan-accent::before {
-      background: var(--hud-cyan);
-    }
+    .hud-card.red-accent::before { background: var(--audi-red); }
+    .hud-card.emerald-accent::before { background: var(--hud-emerald); }
+    .hud-card.cyan-accent::before { background: var(--hud-cyan); }
 
     .card-title {
-      font-family: var(--font-mono);
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #FFFFFF;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
+      font-family: var(--font-mono); font-size: 1.1rem; font-weight: bold;
+      color: #FFFFFF; letter-spacing: 1px; margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
     }
-
-    .hud-card.red-accent .card-title {
-      color: #FF6B72;
-    }
-
-    .hud-card.emerald-accent .card-title {
-      color: var(--hud-emerald);
-    }
-
-    .hud-card.cyan-accent .card-title {
-      color: var(--hud-cyan);
-    }
+    .hud-card.red-accent .card-title { color: #FF6B72; }
+    .hud-card.emerald-accent .card-title { color: var(--hud-emerald); }
+    .hud-card.cyan-accent .card-title { color: var(--hud-cyan); }
 
     .badge {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      font-weight: bold;
-      padding: 2px 8px;
-      border: 1px solid currentColor;
-      letter-spacing: 1px;
+      font-family: var(--font-mono); font-size: 0.7rem; font-weight: bold;
+      padding: 2px 8px; border: 1px solid currentColor; letter-spacing: 1px;
     }
 
     /* ============================================================
@@ -397,1160 +226,434 @@
        ============================================================ */
     .shutoko-hero-banner {
       background: linear-gradient(135deg, rgba(227, 0, 15, 0.16) 0%, rgba(8, 11, 16, 0.98) 65%);
-      border: 1px solid rgba(227, 0, 15, 0.55);
-      border-left: 4px solid var(--audi-red);
-      padding: 22px;
-      margin-bottom: 22px;
-      box-shadow: 0 0 32px rgba(227, 0, 15, 0.18);
+      border: 1px solid rgba(227, 0, 15, 0.55); border-left: 4px solid var(--audi-red);
+      padding: 22px; margin-bottom: 22px; box-shadow: 0 0 32px rgba(227, 0, 15, 0.18);
     }
-
     .shutoko-banner-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px; margin-bottom: 12px;
     }
-
     .shutoko-mode-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--audi-red);
-      color: #FFFFFF;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      padding: 4px 12px;
-      box-shadow: 0 0 16px var(--audi-red-glow);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--audi-red); color: #FFFFFF;
+      font-family: var(--font-mono); font-size: 0.82rem; font-weight: bold;
+      letter-spacing: 2px; padding: 4px 12px; box-shadow: 0 0 16px var(--audi-red-glow);
     }
-
-    .shutoko-Catch {
-      font-size: 1.22rem;
-      font-weight: 900;
-      color: #FFFFFF;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-
+    .shutoko-Catch { font-size: 1.22rem; font-weight: 900; color: #FFFFFF; letter-spacing: 1px; margin-bottom: 8px; }
     .shutoko-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
-      align-items: stretch;
-      margin-top: 16px;
+      display: grid; grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px; align-items: stretch; margin-top: 16px;
     }
-
     .shutoko-svg-stage {
-      background:
-        radial-gradient(circle at 50% 50%, #101722 0%, #06080C 78%);
-      border: 1px solid #283242;
-      position: relative;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 320px;
-      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, #101722 0%, #06080C 78%);
+      border: 1px solid #283242; position: relative; padding: 12px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 320px; overflow: hidden;
     }
-
     .shutoko-svg-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--hud-cyan);
-      letter-spacing: 1.5px;
-      border-bottom: 1px solid rgba(0, 229, 255, 0.2);
-      padding-bottom: 6px;
-      margin-bottom: 6px;
-      z-index: 2;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-mono); font-size: 0.7rem; color: var(--hud-cyan);
+      letter-spacing: 1.5px; border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+      padding-bottom: 6px; margin-bottom: 6px; z-index: 2;
     }
-
-    .shutoko-svg-wrap {
-      width: 100%;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .shutoko-svg-wrap svg {
-      width: 100%;
-      height: auto;
-      max-height: 270px;
-      overflow: visible;
-    }
+    .shutoko-svg-wrap { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; }
+    .shutoko-svg-wrap svg { width: 100%; height: auto; max-height: 270px; overflow: visible; }
 
     .c1-loop-glow {
-      fill: none;
-      stroke: var(--audi-red);
-      stroke-width: 7;
-      stroke-opacity: 0.28;
+      fill: none; stroke: var(--audi-red); stroke-width: 7; stroke-opacity: 0.28;
       filter: drop-shadow(0 0 8px rgba(227, 0, 15, 0.8));
     }
-
     .c1-loop-core {
-      fill: none;
-      stroke: var(--audi-red);
-      stroke-width: 3;
-      stroke-dasharray: 8 4;
-      animation: dashFlow 12s linear infinite;
+      fill: none; stroke: var(--audi-red); stroke-width: 3;
+      stroke-dasharray: 8 4; animation: dashFlow 12s linear infinite;
     }
+    .bayside-line { fill: none; stroke: var(--hud-cyan); stroke-width: 2.5; stroke-opacity: 0.85; }
+    .jct-node { fill: #0B0E14; stroke: #FFFFFF; stroke-width: 2; }
+    .pa-node { fill: var(--hud-emerald); stroke: #050608; stroke-width: 1.5; }
+    .radar-sweep { transform-origin: 170px 115px; animation: radarSpin 6s linear infinite; }
 
-    .bayside-line {
-      fill: none;
-      stroke: var(--hud-cyan);
-      stroke-width: 2.5;
-      stroke-opacity: 0.85;
-    }
-
-    .jct-node {
-      fill: #0B0E14;
-      stroke: #FFFFFF;
-      stroke-width: 2;
-    }
-
-    .pa-node {
-      fill: var(--hud-emerald);
-      stroke: #050608;
-      stroke-width: 1.5;
-    }
-
-    .radar-sweep {
-      transform-origin: 170px 115px;
-      animation: radarSpin 6s linear infinite;
-    }
-
-    @keyframes dashFlow {
-      to { stroke-dashoffset: -240; }
-    }
-
-    @keyframes radarSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+    @keyframes dashFlow { to { stroke-dashoffset: -240; } }
+    @keyframes radarSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
     .shutoko-svg-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--text-sub);
-      border-top: 1px solid #1E2530;
-      padding-top: 6px;
-      z-index: 2;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-sub);
+      border-top: 1px solid #1E2530; padding-top: 6px; z-index: 2;
     }
-
-    .shutoko-feature-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      justify-content: center;
-    }
-
+    .shutoko-feature-list { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
     .shutoko-point-box {
-      background: rgba(12, 15, 20, 0.92);
-      border: 1px solid #262E3D;
-      border-left: 3px solid var(--hud-cyan);
-      padding: 12px 14px;
+      background: rgba(12, 15, 20, 0.92); border: 1px solid #262E3D;
+      border-left: 3px solid var(--hud-cyan); padding: 12px 14px;
     }
-
-    .shutoko-point-box.red {
-      border-left-color: var(--audi-red);
-    }
-
-    .shutoko-point-box.emerald {
-      border-left-color: var(--hud-emerald);
-    }
-
+    .shutoko-point-box.red { border-left-color: var(--audi-red); }
+    .shutoko-point-box.emerald { border-left-color: var(--hud-emerald); }
+    .shutoko-point-box.amber { border-left-color: var(--hud-amber); }
     .shutoko-point-box h5 {
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      color: #FFFFFF;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-family: var(--font-sans); font-size: 0.9rem; color: #FFFFFF;
+      margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
     }
+    .shutoko-point-box p { font-size: 0.8rem; color: var(--text-sub); line-height: 1.48; }
 
-    .shutoko-point-box p {
-      font-size: 0.8rem;
-      color: var(--text-sub);
-      line-height: 1.45;
+    /* ============================================================
+       ★ 03 // VECTRA RS — TACTICAL VOICE ENGINE 特設ショーケース
+       ============================================================ */
+    .rs-exclusive-stage {
+      background:
+        radial-gradient(circle at 85% 10%, rgba(227, 0, 15, 0.20) 0%, transparent 55%),
+        radial-gradient(circle at 15% 90%, rgba(0, 229, 255, 0.14) 0%, transparent 55%),
+        linear-gradient(145deg, #090609 0%, #0B0F17 55%, #070A0F 100%);
+      border: 1.5px solid var(--audi-red);
+      border-top: 3px solid var(--audi-red);
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 0 38px rgba(227, 0, 15, 0.22);
+      position: relative;
+    }
+    .rs-stage-header {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      border-bottom: 1px solid rgba(227, 0, 15, 0.35);
+      padding-bottom: 14px; margin-bottom: 16px;
+    }
+    .rs-patron-pill {
+      font-family: var(--font-mono); font-size: 0.74rem; font-weight: bold;
+      color: #FFFFFF; background: rgba(227, 0, 15, 0.25);
+      border: 1px solid var(--audi-red); padding: 4px 12px; letter-spacing: 1.5px;
+      box-shadow: 0 0 14px rgba(227, 0, 15, 0.35);
+    }
+    .rs-showcase-grid {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+    .rs-spec-pills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .rs-metric-box {
+      background: rgba(7, 10, 15, 0.95);
+      border: 1px solid #263244;
+      border-top: 2px solid var(--hud-cyan);
+      padding: 8px 10px;
+      text-align: center;
+    }
+    .rs-metric-box.red-top { border-top-color: var(--audi-red); }
+    .rs-metric-box.emerald-top { border-top-color: var(--hud-emerald); }
+    .rs-metric-label {
+      font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-sub); letter-spacing: 1px;
+    }
+    .rs-metric-val {
+      font-family: var(--font-mono); font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin-top: 2px;
     }
 
     /* プレビュー路線切り替えボタン (首都高C1 / 東名高速) */
-    .route-preset-tabs {
-      display: inline-flex;
-      gap: 4px;
-      background: #050608;
-      padding: 3px;
-      border: 1px solid #262C36;
-    }
-
+    .route-preset-tabs { display: inline-flex; gap: 4px; background: #050608; padding: 3px; border: 1px solid #262C36; }
     .route-preset-btn {
-      background: transparent;
-      border: none;
-      color: #64748B;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      font-weight: bold;
-      padding: 4px 8px;
-      cursor: pointer;
-      letter-spacing: 0.5px;
-      transition: all 0.2s;
+      background: transparent; border: none; color: #64748B;
+      font-family: var(--font-mono); font-size: 0.7rem; font-weight: bold;
+      padding: 4px 8px; cursor: pointer; letter-spacing: 0.5px; transition: all 0.2s;
     }
-
-    .route-preset-btn.active {
-      background: var(--audi-red);
-      color: #FFFFFF;
-    }
+    .route-preset-btn.active { background: var(--audi-red); color: #FFFFFF; }
 
     /* ステップリスト */
-    .step-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
+    .step-list { display: flex; flex-direction: column; gap: 16px; }
     .step-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-stealth);
-      padding: 16px 18px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
+      background: var(--bg-card); border: 1px solid var(--border-stealth);
+      padding: 16px 18px; display: flex; gap: 16px; align-items: flex-start;
     }
-
     .step-badge {
-      font-family: var(--font-mono);
-      background: rgba(227, 0, 15, 0.15);
-      border: 1px solid var(--audi-red);
-      color: var(--audi-red);
-      font-weight: bold;
-      font-size: 0.8rem;
-      padding: 4px 10px;
-      white-space: nowrap;
-      margin-top: 2px;
+      font-family: var(--font-mono); background: rgba(227, 0, 15, 0.15);
+      border: 1px solid var(--audi-red); color: var(--audi-red);
+      font-weight: bold; font-size: 0.8rem; padding: 4px 10px; white-space: nowrap; margin-top: 2px;
     }
-
-    .step-badge.cyan {
-      background: rgba(0, 229, 255, 0.12);
-      border-color: var(--hud-cyan);
-      color: var(--hud-cyan);
-    }
-
-    .step-body h4 {
-      color: #FFFFFF;
-      font-size: 0.98rem;
-      font-weight: 900;
-      margin-bottom: 4px;
-    }
-
-    .step-body p {
-      color: var(--text-sub);
-      font-size: 0.88rem;
-    }
+    .step-badge.cyan { background: rgba(0, 229, 255, 0.12); border-color: var(--hud-cyan); color: var(--hud-cyan); }
+    .step-body h4 { color: #FFFFFF; font-size: 0.98rem; font-weight: 900; margin-bottom: 4px; }
+    .step-body p { color: var(--text-sub); font-size: 0.88rem; }
 
     /* マトリクス表 */
-    .table-wrap {
-      overflow-x: auto;
-      margin-top: 12px;
-    }
-
-    table.hud-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-
-    table.hud-table th,
-    table.hud-table td {
-      border: 1px solid var(--border-stealth);
-      padding: 12px 13px;
-      text-align: left;
-    }
-
+    .table-wrap { overflow-x: auto; margin-top: 12px; }
+    table.hud-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.hud-table th, table.hud-table td { border: 1px solid var(--border-stealth); padding: 12px 13px; text-align: left; }
     table.hud-table th {
-      background: #151921;
-      color: var(--rs-silver);
-      font-family: var(--font-mono);
-      font-weight: bold;
-      letter-spacing: 1px;
-      white-space: nowrap;
+      background: #151921; color: var(--rs-silver);
+      font-family: var(--font-mono); font-weight: bold; letter-spacing: 1px; white-space: nowrap;
     }
-
     table.hud-table th.rs-col-head {
-      background: linear-gradient(180deg, rgba(227, 0, 15, 0.25) 0%, #151921 100%);
-      color: #FFFFFF;
-      border-top: 2px solid var(--audi-red);
+      background: linear-gradient(180deg, rgba(227, 0, 15, 0.28) 0%, #151921 100%);
+      color: #FFFFFF; border-top: 2px solid var(--audi-red);
     }
-
-    table.hud-table td {
-      background: var(--bg-card);
-      color: var(--text-main);
-    }
+    table.hud-table td { background: var(--bg-card); color: var(--text-main); }
 
     .mono-hl {
-      font-family: var(--font-mono);
-      font-weight: bold;
-      color: #FFFFFF;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 2px 6px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      font-family: var(--font-mono); font-weight: bold; color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08); padding: 2px 6px; border: 1px solid rgba(255, 255, 255, 0.22);
     }
-
     .mono-red {
-      font-family: var(--font-mono);
-      font-weight: bold;
-      color: #FF8A80;
-      background: rgba(227, 0, 15, 0.14);
-      padding: 2px 6px;
-      border: 1px solid rgba(227, 0, 15, 0.35);
+      font-family: var(--font-mono); font-weight: bold; color: #FF8A80;
+      background: rgba(227, 0, 15, 0.14); padding: 2px 6px; border: 1px solid rgba(227, 0, 15, 0.35);
     }
-
     .mono-cyan {
-      font-family: var(--font-mono);
-      font-weight: bold;
-      color: var(--hud-cyan);
-      background: rgba(0, 229, 255, 0.10);
-      padding: 2px 6px;
-      border: 1px solid rgba(0, 229, 255, 0.35);
+      font-family: var(--font-mono); font-weight: bold; color: var(--hud-cyan);
+      background: rgba(0, 229, 255, 0.10); padding: 2px 6px; border: 1px solid rgba(0, 229, 255, 0.35);
     }
 
     /* HUDモックアップ図解 */
-    .hud-mockup-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .mock-box {
-      background: #07090C;
-      border: 1px solid #262C36;
-      padding: 16px;
-    }
-
-    .mock-header-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .mock-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: bold;
-      color: var(--text-sub);
-      letter-spacing: 1.5px;
-    }
+    .hud-mockup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+    .mock-box { background: #07090C; border: 1px solid #262C36; padding: 16px; }
+    .mock-header-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .mock-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: bold; color: var(--text-sub); letter-spacing: 1.5px; }
 
     /* ★施設表示プレビュー用：Audi風タクティカル日英トグルスイッチ */
     .lang-toggle-switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #000000;
-      border: 1px solid #2E3646;
-      padding: 4px 10px;
-      cursor: pointer;
-      user-select: none;
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      font-weight: bold;
-      letter-spacing: 1px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #000000; border: 1px solid #2E3646; padding: 4px 10px;
+      cursor: pointer; user-select: none; font-family: var(--font-mono);
+      font-size: 0.74rem; font-weight: bold; letter-spacing: 1px;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-
-    .lang-toggle-switch:hover {
-      border-color: var(--audi-red);
-      box-shadow: 0 0 12px rgba(227, 0, 15, 0.3);
-    }
-
-    .lang-opt {
-      color: #64748B;
-      transition: color 0.2s ease;
-    }
-
-    .lang-opt.active {
-      color: var(--audi-red);
-    }
-
-    .lang-track {
-      width: 34px;
-      height: 18px;
-      background: #262C36;
-      border-radius: 9px;
-      padding: 2px;
-      position: relative;
-      transition: background 0.2s ease;
-    }
-
+    .lang-toggle-switch:hover { border-color: var(--audi-red); box-shadow: 0 0 12px rgba(227, 0, 15, 0.3); }
+    .lang-opt { color: #64748B; transition: color 0.2s ease; }
+    .lang-opt.active { color: var(--audi-red); }
+    .lang-track { width: 34px; height: 18px; background: #262C36; border-radius: 9px; padding: 2px; position: relative; transition: background 0.2s ease; }
     .lang-thumb {
-      width: 14px;
-      height: 14px;
-      background: var(--audi-red);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      left: 2px;
+      width: 14px; height: 14px; background: var(--audi-red); border-radius: 50%;
+      position: absolute; top: 2px; left: 2px;
       transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 0 6px rgba(227, 0, 15, 0.8);
     }
+    .lang-toggle-switch.is-en .lang-thumb { transform: translateX(16px); }
 
-    .lang-toggle-switch.is-en .lang-thumb {
-      transform: translateX(16px);
-    }
-
-    /* 高速道路施設カードのミニ再現（高密度・大文字・横長ワイドスタバ仕様） */
+    /* 高速道路施設カードのミニ再現 */
     .fac-row-mock {
-      background: rgba(0, 0, 0, 0.92);
-      border: 1px solid #222731;
-      padding: 8px 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-family: var(--font-sans);
+      background: rgba(0, 0, 0, 0.92); border: 1px solid #222731;
+      padding: 8px 10px; display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 8px; font-family: var(--font-sans);
     }
-
-    .fac-tag {
-      padding: 4px 9px;
-      font-size: 0.82rem;
-      font-weight: 900;
-      color: #FFF;
-      margin-right: 10px;
-      min-width: 42px;
-      text-align: center;
-    }
-
+    .fac-tag { padding: 4px 9px; font-size: 0.82rem; font-weight: 900; color: #FFF; margin-right: 10px; min-width: 42px; text-align: center; }
     .fac-tag.sa { background: #1B5E20; }
     .fac-tag.pa { background: #2E7D32; }
     .fac-tag.jct { background: #00796B; }
     .fac-tag.ic { background: #43A047; }
-
-    .fac-info {
-      flex: 1;
-    }
-
-    .fac-name {
-      color: #FFF;
-      font-weight: 900;
-      font-size: 1.05rem;
-      line-height: 1.15;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .fac-sub {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 6px;
-      margin-top: 5px;
-    }
-
-    .fac-sub span {
-      font-size: 0.68rem;
-      font-weight: bold;
-      border: 1.2px solid #555;
-      color: #CCC;
-      padding: 1px 6px;
-      line-height: 1.2;
-    }
-
-    .fac-sub span.in-tag {
-      border-color: var(--audi-red);
-      color: var(--audi-red);
-      font-weight: bold;
-    }
-
-    /* STARBUCKS VECTRA独自タクティカル・カフェアイコン付き横長ワイドタグ */
+    .fac-info { flex: 1; }
+    .fac-name { color: #FFF; font-weight: 900; font-size: 1.05rem; line-height: 1.15; display: flex; align-items: center; gap: 6px; }
+    .fac-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 5px; }
+    .fac-sub span { font-size: 0.68rem; font-weight: bold; border: 1.2px solid #555; color: #CCC; padding: 1px 6px; line-height: 1.2; }
+    .fac-sub span.in-tag { border-color: var(--audi-red); color: var(--audi-red); font-weight: bold; }
     .fac-sub span.sbux-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--sbux-bg);
-      border: 1.2px solid var(--sbux-bright);
-      border-radius: 4px;
-      color: #FFFFFF;
-      font-weight: 900;
-      font-size: 0.7rem;
-      letter-spacing: 0.8px;
-      padding: 2px 11px 2px 8px;
-      box-shadow: 0 0 12px rgba(0, 210, 120, 0.55);
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--sbux-bg); border: 1.2px solid var(--sbux-bright); border-radius: 4px;
+      color: #FFFFFF; font-weight: 900; font-size: 0.7rem; letter-spacing: 0.8px;
+      padding: 2px 11px 2px 8px; box-shadow: 0 0 12px rgba(0, 210, 120, 0.55);
     }
+    .sbux-real-logo-mini { width: 16.5px; height: 16.5px; border-radius: 50%; display: block; flex-shrink: 0; }
+    .fac-dist { text-align: right; margin-left: 8px; }
+    .fac-dist .km { color: #FFF; font-size: 1.15rem; font-weight: 900; line-height: 1.1; }
+    .fac-dist .eta { color: #FFFFFF; font-size: 0.82rem; font-weight: bold; margin-top: 2px; }
 
-    .sbux-real-logo-mini {
-      width: 16.5px;
-      height: 16.5px;
-      border-radius: 50%;
-      display: block;
-      flex-shrink: 0;
-    }
-
-    .fac-dist {
-      text-align: right;
-      margin-left: 8px;
-    }
-
-    .fac-dist .km {
-      color: #FFF;
-      font-size: 1.15rem;
-      font-weight: 900;
-      line-height: 1.1;
-    }
-
-    .fac-dist .eta {
-      color: #FFFFFF;
-      font-size: 0.82rem;
-      font-weight: bold;
-      margin-top: 2px;
-    }
-
-    /* STARBUCKS ワンポイントアドバイス（VECTRA独自タクティカル・カフェアイコン搭載枠） */
+    /* STARBUCKS ワンポイントアドバイス */
     .sbux-spotlight {
       margin-top: 18px;
       background: linear-gradient(135deg, rgba(0, 98, 65, 0.30) 0%, rgba(12, 14, 18, 0.96) 70%);
-      border: 1px solid var(--sbux-bright);
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      box-shadow: 0 0 24px rgba(0, 112, 74, 0.25);
+      border: 1px solid var(--sbux-bright); padding: 20px;
+      display: flex; align-items: center; gap: 20px; box-shadow: 0 0 24px rgba(0, 112, 74, 0.25);
     }
-
     .sbux-emblem-wrap {
-      width: 68px;
-      height: 68px;
-      flex-shrink: 0;
-      border-radius: 50%;
-      background: #021A10;
-      border: 1.5px solid var(--sbux-bright);
-      padding: 1px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 22px rgba(0, 230, 118, 0.55);
+      width: 68px; height: 68px; flex-shrink: 0; border-radius: 50%;
+      background: #021A10; border: 1.5px solid var(--sbux-bright); padding: 1px;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 0 22px rgba(0, 230, 118, 0.55);
     }
-
-    .sbux-real-logo-large {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      display: block;
-    }
-
-    .sbux-content {
-      flex: 1;
-    }
-
-    .sbux-spotlight-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .sbux-spotlight-title {
-      font-family: var(--font-mono);
-      color: #34D399;
-      font-size: 1rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
+    .sbux-real-logo-large { width: 100%; height: 100%; border-radius: 50%; display: block; }
+    .sbux-content { flex: 1; }
+    .sbux-spotlight-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+    .sbux-spotlight-title { font-family: var(--font-mono); color: #34D399; font-size: 1rem; font-weight: bold; letter-spacing: 1px; }
     .sbux-pill {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: bold;
-      background: rgba(0, 168, 98, 0.25);
-      border: 1px solid var(--sbux-bright);
-      color: #A7F3D0;
-      padding: 2px 8px;
-      letter-spacing: 1px;
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: bold;
+      background: rgba(0, 168, 98, 0.25); border: 1px solid var(--sbux-bright);
+      color: #A7F3D0; padding: 2px 8px; letter-spacing: 1px;
     }
-
-    .sbux-spotlight p {
-      font-size: 0.87rem;
-      color: #E2E8F0;
-    }
-
+    .sbux-spotlight p { font-size: 0.87rem; color: #E2E8F0; }
     .sbux-inline-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      vertical-align: middle;
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      font-weight: bold;
-      letter-spacing: 0.8px;
-      background: var(--sbux-bg);
-      border: 1px solid var(--sbux-bright);
-      border-radius: 4px;
-      color: #FFFFFF;
-      padding: 2px 10px 2px 7px;
-      margin: 0 4px;
-      box-shadow: 0 0 10px rgba(0, 210, 120, 0.45);
+      display: inline-flex; align-items: center; gap: 6px; vertical-align: middle;
+      font-family: var(--font-mono); font-size: 0.76rem; font-weight: bold; letter-spacing: 0.8px;
+      background: var(--sbux-bg); border: 1px solid var(--sbux-bright); border-radius: 4px;
+      color: #FFFFFF; padding: 2px 10px 2px 7px; margin: 0 4px; box-shadow: 0 0 10px rgba(0, 210, 120, 0.45);
     }
-
     .poi-trademark-note {
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px dashed rgba(0, 168, 98, 0.35);
-      font-size: 0.76rem !important;
-      color: var(--text-sub) !important;
-      line-height: 1.5;
+      margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(0, 168, 98, 0.35);
+      font-size: 0.76rem !important; color: var(--text-sub) !important; line-height: 1.5;
     }
 
-    /* ★U字タブ（絆創膏タブ）クイックドロワーのビジュアル図解パーツ */
-    .bandaid-demo-bar {
-      display: inline-flex;
-      align-items: center;
-      margin-top: 10px;
-      margin-bottom: 4px;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .bandaid-drawer-mock {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 0, 0, 0.9);
-      border: 1px solid #222731;
-      padding: 5px 8px;
-    }
-
+    /* ★U字タブ（絆創膏タブ）クイックドロワー */
+    .bandaid-demo-bar { display: inline-flex; align-items: center; margin-top: 10px; margin-bottom: 4px; flex-wrap: wrap; gap: 6px; }
+    .bandaid-drawer-mock { display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 0, 0, 0.9); border: 1px solid #222731; padding: 5px 8px; }
     .bandaid-chip {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: bold;
-      padding: 4px 10px;
-      border-radius: 3px;
-      background: #1F070A;
-      border: 1px solid var(--audi-red);
-      color: #FFFFFF;
+      font-family: var(--font-mono); font-size: 0.75rem; font-weight: bold;
+      padding: 4px 10px; border-radius: 3px; background: #1F070A; border: 1px solid var(--audi-red); color: #FFFFFF;
     }
-
-    .bandaid-chip.unset {
-      background: #12151B;
-      border-color: #3A3F4B;
-      color: #94A3B8;
-    }
-
+    .bandaid-chip.unset { background: #12151B; border-color: #3A3F4B; color: #94A3B8; }
     .bandaid-tab-mock {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 36px;
-      background: #080A0E;
-      border: 1px solid var(--audi-red);
-      border-top-right-radius: 18px;
-      border-bottom-right-radius: 18px;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--audi-red);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 36px; background: #080A0E; border: 1px solid var(--audi-red);
+      border-top-right-radius: 18px; border-bottom-right-radius: 18px;
+      font-family: var(--font-mono); font-size: 0.7rem; color: var(--audi-red); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     }
 
     /* ============================================================
-       ★ 04 // 全7種マップスタイル 実機スクリーンショット切替ギャラリー
+       ★ 全7種マップスタイル 実機スクリーンショット切替ギャラリー
        ============================================================ */
     .map-gallery-stage {
       background: linear-gradient(145deg, #070A0F 0%, #0E131B 100%);
-      border: 1px solid #283242;
-      padding: 20px;
-      margin-top: 14px;
-      margin-bottom: 24px;
+      border: 1px solid #283242; padding: 20px; margin-top: 14px; margin-bottom: 24px;
       box-shadow: 0 0 28px rgba(0, 0, 0, 0.65);
     }
-
-    /* 7個のタクティカルボタンが美しく整列するレスポンシブグリッド */
-    .map-selector-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
+    .map-selector-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; margin-bottom: 18px; }
     .map-style-btn {
-      background: #0B0E14;
-      border: 1px solid #262F3F;
-      border-left: 3px solid #475569;
-      padding: 10px 10px;
-      color: var(--text-sub);
-      font-family: var(--font-mono);
-      text-align: left;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
+      background: #0B0E14; border: 1px solid #262F3F; border-left: 3px solid #475569;
+      padding: 10px 10px; color: var(--text-sub); font-family: var(--font-mono);
+      text-align: left; cursor: pointer; transition: all 0.18s ease;
+      display: flex; flex-direction: column; gap: 3px;
     }
-
-    .map-style-btn:hover {
-      border-color: var(--hud-cyan);
-      color: #FFFFFF;
-      background: #111722;
-    }
-
+    .map-style-btn:hover { border-color: var(--hud-cyan); color: #FFFFFF; background: #111722; }
     .map-style-btn.active {
       background: linear-gradient(90deg, rgba(227, 0, 15, 0.22) 0%, rgba(15, 19, 28, 0.95) 100%);
-      border-color: var(--audi-red);
-      border-left: 3px solid var(--audi-red);
-      color: #FFFFFF;
-      box-shadow: 0 0 16px rgba(227, 0, 15, 0.28);
+      border-color: var(--audi-red); border-left: 3px solid var(--audi-red);
+      color: #FFFFFF; box-shadow: 0 0 16px rgba(227, 0, 15, 0.28);
     }
+    .map-style-btn .btn-num { font-size: 0.65rem; color: var(--hud-cyan); letter-spacing: 1px; display: flex; align-items: center; justify-content: space-between; }
+    .map-style-btn.active .btn-num { color: #FF8A80; }
+    .map-style-btn .btn-name { font-size: 0.8rem; font-weight: bold; letter-spacing: 0.6px; color: #F8FAFC; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    .map-style-btn .btn-num {
-      font-size: 0.65rem;
-      color: var(--hud-cyan);
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .map-style-btn.active .btn-num {
-      color: #FF8A80;
-    }
-
-    .map-style-btn .btn-name {
-      font-size: 0.8rem;
-      font-weight: bold;
-      letter-spacing: 0.6px;
-      color: #F8FAFC;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .map-viewer-grid {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 22px;
-      align-items: stretch;
-    }
+    .map-viewer-grid { display: grid; grid-template-columns: 300px 1fr; gap: 22px; align-items: stretch; }
 
     /* スマホ実機ベゼルフレーム */
     .phone-cockpit-frame {
-      background: #040507;
-      border: 2px solid #2E3846;
-      border-top: 3px solid var(--audi-red);
-      border-radius: 14px;
-      padding: 8px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
-      min-height: 460px;
-      overflow: hidden;
+      background: #040507; border: 2px solid #2E3846; border-top: 3px solid var(--audi-red);
+      border-radius: 14px; padding: 8px; position: relative;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85); min-height: 460px; overflow: hidden;
     }
-
     .phone-frame-topbar {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.66rem;
-      color: var(--rs-silver);
-      padding: 2px 6px 6px;
-      border-bottom: 1px solid #1E2530;
-      margin-bottom: 6px;
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-mono); font-size: 0.66rem; color: var(--rs-silver);
+      padding: 2px 6px 6px; border-bottom: 1px solid #1E2530; margin-bottom: 6px;
     }
-
     .phone-screen-wrap {
-      width: 100%;
-      flex: 1;
-      position: relative;
-      background: #080B10;
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%; flex: 1; position: relative; background: #080B10;
+      border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;
     }
-
     .phone-screen-img {
-      width: 100%;
-      height: auto;
-      max-height: 520px;
-      object-fit: contain;
-      display: block;
-      border-radius: 6px;
-      transition: opacity 0.2s ease;
+      width: 100%; height: auto; max-height: 540px; object-fit: contain;
+      display: block; border-radius: 6px; transition: opacity 0.2s ease;
     }
-
     .phone-img-fallback {
-      display: none;
-      padding: 24px 16px;
-      text-align: center;
-      font-family: var(--font-mono);
-      color: var(--text-sub);
-      font-size: 0.78rem;
-      line-height: 1.6;
+      display: none; padding: 24px 16px; text-align: center;
+      font-family: var(--font-mono); color: var(--text-sub); font-size: 0.78rem; line-height: 1.6;
     }
 
     .map-info-panel {
-      background: rgba(12, 15, 22, 0.94);
-      border: 1px solid #252E3D;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 14px;
+      background: rgba(12, 15, 22, 0.94); border: 1px solid #252E3D;
+      padding: 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
     }
-
-    .map-info-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-      border-bottom: 1px solid #1E2634;
-      padding-bottom: 10px;
-    }
-
-    .map-info-code {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--hud-cyan);
-      letter-spacing: 1.5px;
-    }
-
+    .map-info-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid #1E2634; padding-bottom: 10px; }
+    .map-info-code { font-family: var(--font-mono); font-size: 0.78rem; color: var(--hud-cyan); letter-spacing: 1.5px; }
     .map-tier-pill {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      font-weight: bold;
-      padding: 3px 9px;
-      letter-spacing: 1px;
-      border: 1px solid var(--hud-emerald);
-      color: var(--hud-emerald);
-      background: rgba(0, 230, 118, 0.1);
+      font-family: var(--font-mono); font-size: 0.7rem; font-weight: bold; padding: 3px 9px;
+      letter-spacing: 1px; border: 1px solid var(--hud-emerald); color: var(--hud-emerald); background: rgba(0, 230, 118, 0.1);
     }
-
-    .map-tier-pill.pro-only {
-      border-color: var(--audi-red);
-      color: #FF8A80;
-      background: rgba(227, 0, 15, 0.15);
-    }
-
-    .map-info-title {
-      font-size: 1.28rem;
-      font-weight: 900;
-      color: #FFFFFF;
-      letter-spacing: 1px;
-      margin: 6px 0 8px;
-    }
-
-    .map-info-desc {
-      font-size: 0.9rem;
-      color: #E2E8F0;
-      line-height: 1.68;
-    }
-
-    .map-telemetry-box {
-      background: #07090D;
-      border: 1px solid #1F2735;
-      border-left: 3px solid var(--hud-cyan);
-      padding: 12px 14px;
-      font-size: 0.82rem;
-      color: var(--text-sub);
-    }
-
-    .map-telemetry-box strong {
-      color: #FFFFFF;
-      font-family: var(--font-mono);
-    }
-
-    .map-nav-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding-top: 10px;
-      border-top: 1px solid #1E2634;
-    }
-
+    .map-tier-pill.pro-only { border-color: var(--audi-red); color: #FF8A80; background: rgba(227, 0, 15, 0.15); }
+    .map-info-title { font-size: 1.28rem; font-weight: 900; color: #FFFFFF; letter-spacing: 1px; margin: 6px 0 8px; }
+    .map-info-desc { font-size: 0.9rem; color: #E2E8F0; line-height: 1.68; }
+    .map-telemetry-box { background: #07090D; border: 1px solid #1F2735; border-left: 3px solid var(--hud-cyan); padding: 12px 14px; font-size: 0.82rem; color: var(--text-sub); }
+    .map-telemetry-box strong { color: #FFFFFF; font-family: var(--font-mono); }
+    .map-nav-controls { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1E2634; }
     .map-step-btn {
-      background: #10151F;
-      border: 1px solid #334155;
-      color: #FFFFFF;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: bold;
-      padding: 8px 14px;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: all 0.18s ease;
+      background: #10151F; border: 1px solid #334155; color: #FFFFFF;
+      font-family: var(--font-mono); font-size: 0.78rem; font-weight: bold;
+      padding: 8px 14px; cursor: pointer; letter-spacing: 1px; transition: all 0.18s ease;
     }
-
-    .map-step-btn:hover {
-      border-color: var(--audi-red);
-      background: rgba(227, 0, 15, 0.2);
-    }
+    .map-step-btn:hover { border-color: var(--audi-red); background: rgba(227, 0, 15, 0.2); }
 
     /* ============================================================
-       ★ 05 // TACTICAL FAQ アコーディオンUI
+       ★ TACTICAL FAQ アコーディオンUI
        ============================================================ */
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
     details.faq-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-stealth);
-      border-left: 3px solid var(--hud-cyan);
-      transition: border-color 0.2s, background 0.2s;
+      background: var(--bg-card); border: 1px solid var(--border-stealth);
+      border-left: 3px solid var(--hud-cyan); transition: border-color 0.2s, background 0.2s;
     }
-
-    details.faq-item[open] {
-      border-left-color: var(--audi-red);
-      background: #10141C;
-    }
-
+    details.faq-item[open] { border-left-color: var(--audi-red); background: #10141C; }
     details.faq-item summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 16px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      user-select: none;
+      list-style: none; cursor: pointer; padding: 16px 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px; user-select: none;
     }
-
-    details.faq-item summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .faq-q-wrap {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      flex: 1;
-    }
-
-    .faq-q-badge {
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      font-weight: bold;
-      color: var(--hud-cyan);
-      letter-spacing: 1px;
-      flex-shrink: 0;
-    }
-
-    details.faq-item[open] .faq-q-badge {
-      color: var(--audi-red);
-    }
-
-    .faq-q-text {
-      color: #FFFFFF;
-      font-size: 0.96rem;
-      font-weight: 900;
-      line-height: 1.45;
-    }
-
-    .faq-indicator {
-      font-family: var(--font-mono);
-      font-size: 1.1rem;
-      color: var(--rs-silver);
-      transition: transform 0.2s ease, color 0.2s ease;
-      flex-shrink: 0;
-    }
-
-    details.faq-item[open] .faq-indicator {
-      transform: rotate(45deg);
-      color: var(--audi-red);
-    }
-
-    .faq-a-body {
-      padding: 0 18px 18px 46px;
-      color: var(--text-sub);
-      font-size: 0.88rem;
-      line-height: 1.65;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-      padding-top: 12px;
-    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    .faq-q-wrap { display: flex; align-items: baseline; gap: 12px; flex: 1; }
+    .faq-q-badge { font-family: var(--font-mono); font-size: 0.82rem; font-weight: bold; color: var(--hud-cyan); letter-spacing: 1px; flex-shrink: 0; }
+    details.faq-item[open] .faq-q-badge { color: var(--audi-red); }
+    .faq-q-text { color: #FFFFFF; font-size: 0.96rem; font-weight: 900; line-height: 1.45; }
+    .faq-indicator { font-family: var(--font-mono); font-size: 1.1rem; color: var(--rs-silver); transition: transform 0.2s ease, color 0.2s ease; flex-shrink: 0; }
+    details.faq-item[open] .faq-indicator { transform: rotate(45deg); color: var(--audi-red); }
+    .faq-a-body { padding: 12px 18px 18px 46px; color: var(--text-sub); font-size: 0.88rem; line-height: 1.65; border-top: 1px solid rgba(255, 255, 255, 0.04); }
 
     /* 下部法務・規約リンクバー */
     .legal-link-bar {
-      margin-top: 40px;
-      padding: 20px;
-      background: var(--bg-panel);
-      border: 1px solid var(--border-stealth);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
+      margin-top: 40px; padding: 20px; background: var(--bg-panel); border: 1px solid var(--border-stealth);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
     }
-
     .btn-legal-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      color: var(--hud-cyan);
-      background: rgba(0, 229, 255, 0.08);
-      border: 1px solid rgba(0, 229, 255, 0.55);
-      padding: 10px 18px;
-      text-decoration: none;
-      transition: all 0.2s ease;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.82rem; font-weight: bold; letter-spacing: 1.5px;
+      color: var(--hud-cyan); background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.55); padding: 10px 18px; text-decoration: none; transition: all 0.2s ease;
     }
-
-    .btn-legal-link:hover {
-      background: rgba(0, 229, 255, 0.18);
-      border-color: var(--hud-cyan);
-      color: #FFFFFF;
-    }
+    .btn-legal-link:hover { background: rgba(0, 229, 255, 0.18); border-color: var(--hud-cyan); color: #FFFFFF; }
 
     /* ★ページ中盤以降で出現する「TOPへ戻る」タクティカルHUDボタン */
     .back-to-top {
-      position: fixed;
-      right: 22px;
-      bottom: 24px;
-      z-index: 150;
-      width: 52px;
-      height: 52px;
-      background: rgba(10, 12, 16, 0.92);
-      border: 1px solid #334155;
-      border-top: 2px solid var(--audi-red);
-      color: #FFFFFF;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: bold;
-      letter-spacing: 1.5px;
+      position: fixed; right: 22px; bottom: 24px; z-index: 150;
+      width: 52px; height: 52px; background: rgba(10, 12, 16, 0.92);
+      border: 1px solid #334155; border-top: 2px solid var(--audi-red);
+      color: #FFFFFF; text-decoration: none;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: bold; letter-spacing: 1.5px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(14px);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
+      opacity: 0; visibility: hidden; transform: translateY(14px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
     }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover, .back-to-top:active {
+      background: #161A22; border-color: var(--audi-red); color: var(--audi-red);
+      box-shadow: 0 0 20px var(--audi-red-glow); transform: translateY(-2px);
     }
-
-    .back-to-top:hover,
-    .back-to-top:active {
-      background: #161A22;
-      border-color: var(--audi-red);
-      color: var(--audi-red);
-      box-shadow: 0 0 20px var(--audi-red-glow);
-      transform: translateY(-2px);
-    }
-
-    .back-to-top svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--audi-red);
-      transition: transform 0.2s ease;
-    }
-
-    .back-to-top:hover svg {
-      transform: translateY(-2px);
-    }
+    .back-to-top svg { width: 18px; height: 18px; stroke: var(--audi-red); transition: transform 0.2s ease; }
+    .back-to-top:hover svg { transform: translateY(-2px); }
 
     footer {
-      text-align: center;
-      padding: 32px 16px;
-      border-top: 1px solid var(--border-stealth);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--text-sub);
-      letter-spacing: 1.5px;
+      text-align: center; padding: 32px 16px; border-top: 1px solid var(--border-stealth);
+      font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-sub); letter-spacing: 1.5px;
     }
-
     .footer-disclaimer {
-      max-width: 820px;
-      margin: 12px auto 0;
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      color: #64748B;
-      letter-spacing: 0.3px;
-      line-height: 1.6;
+      max-width: 820px; margin: 12px auto 0; font-family: var(--font-sans);
+      font-size: 0.72rem; color: #64748B; letter-spacing: 0.3px; line-height: 1.6;
     }
 
     @media (max-width: 780px) {
-      .shutoko-grid {
-        grid-template-columns: 1fr;
-      }
-      .map-selector-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .map-viewer-grid {
-        grid-template-columns: 1fr;
-      }
-      .phone-cockpit-frame {
-        max-width: 340px;
-        margin: 0 auto;
-        width: 100%;
-      }
+      .shutoko-grid, .rs-showcase-grid, .map-viewer-grid { grid-template-columns: 1fr; }
+      .map-selector-grid { grid-template-columns: repeat(2, 1fr); }
+      .phone-cockpit-frame { max-width: 340px; margin: 0 auto; width: 100%; }
     }
 
     @media (max-width: 600px) {
-      .sec-jp {
-        display: none;
-      }
-      .status-pill {
-        display: none;
-      }
-      .step-item {
-        flex-direction: column;
-        gap: 8px;
-      }
-      .hud-card {
-        padding: 18px 16px;
-      }
-      .sbux-spotlight {
-        flex-direction: column;
-        text-align: left;
-        align-items: flex-start;
-        gap: 14px;
-      }
-      .faq-a-body {
-        padding-left: 18px;
-      }
-      .back-to-top {
-        right: 16px;
-        bottom: 18px;
-        width: 48px;
-        height: 48px;
-      }
+      .sec-jp, .status-pill { display: none; }
+      .step-item { flex-direction: column; gap: 8px; }
+      .hud-card, .rs-exclusive-stage { padding: 18px 16px; }
+      .sbux-spotlight { flex-direction: column; text-align: left; align-items: flex-start; gap: 14px; }
+      .faq-a-body { padding-left: 18px; }
+      .back-to-top { right: 16px; bottom: 18px; width: 48px; height: 48px; }
     }
   </style>
 </head>
@@ -1558,7 +661,6 @@
 
   <!-- ====================================================================
        ★ VECTRA独自タクティカル・カフェアイコン（インラインSVGマスター定義）
-       外部画像URLへの依存ゼロ・知的所有権リスク100%クリア仕様
        ==================================================================== -->
   <svg width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -1567,23 +669,18 @@
         <stop offset="100%" stop-color="#021A10" />
       </radialGradient>
       <symbol id="vectra-tactical-cafe-icon" viewBox="0 0 100 100">
-        <!-- 1. ダークエメラルド・タクティカルサークル背景 -->
         <circle cx="50" cy="50" r="49" fill="url(#vectraCafeBgGrad)" />
-        <!-- 2. 外周グリーンネオンHUDベゼル＆強調アーク (#00A862 / #00E676) -->
         <circle cx="50" cy="50" r="46" fill="none" stroke="#00A862" stroke-width="4.5" stroke-opacity="0.88" />
         <path d="M 87.7 23.6 A 46 46 0 0 1 87.7 76.4" fill="none" stroke="#00E676" stroke-width="6.5" stroke-linecap="round" />
         <path d="M 12.3 76.4 A 46 46 0 0 1 12.3 23.6" fill="none" stroke="#00E676" stroke-width="6.5" stroke-linecap="round" />
-        <!-- 3. 内周ターゲットリング＆上下左右クロスヘア目盛り -->
         <circle cx="50" cy="50" r="38" fill="none" stroke="#80FFC8" stroke-width="2.5" stroke-dasharray="42 18" stroke-opacity="0.75" />
         <line x1="50" y1="6" x2="50" y2="15" stroke="#00E676" stroke-width="3.5" />
         <line x1="50" y1="85" x2="50" y2="94" stroke="#00E676" stroke-width="3.5" />
         <line x1="6" y1="50" x2="15" y2="50" stroke="#00E676" stroke-width="3.5" />
         <line x1="85" y1="50" x2="94" y2="50" stroke="#00E676" stroke-width="3.5" />
-        <!-- 4. 幾何学コーヒーカップ本体（台形ベクター＋D型ハンドル＋ソーサーベース） -->
         <path d="M 28 49 L 66 49 L 60 72 L 34 72 Z" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linejoin="miter" />
         <path d="M 65 53 L 75 53 L 72 66 L 61 66" fill="none" stroke="#FFFFFF" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="miter" />
         <line x1="25" y1="79" x2="69" y2="79" stroke="#FFFFFF" stroke-width="6.2" stroke-linecap="square" />
-        <!-- 5. デジタル・タクティカルスチーム（3本の角型ウェーブ蒸気） -->
         <path d="M 37 42 L 33 35 L 37 26" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="miter" />
         <path d="M 47 42 L 44 33 L 49 21" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="miter" />
         <path d="M 57 42 L 54 35 L 58 26" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="miter" />
@@ -1616,7 +713,6 @@
     <!-- 00. HERO -->
     <section class="hero">
       <div class="crest-box">
-        <!-- VECTRA STEALTH CREST SVG -->
         <svg viewBox="0 0 100 100" width="92" height="92" xmlns="http://www.w3.org/2000/svg">
           <polygon points="50,4 93,26 93,74 50,96 7,74 7,26" fill="#0B0D12" stroke="#334155" stroke-width="2"/>
           <polygon points="50,10 87,29 87,71 50,90 13,71 13,29" fill="none" stroke="#CBD5E1" stroke-width="1" stroke-opacity="0.35"/>
@@ -1630,11 +726,11 @@
 
       <p class="hero-subtitle i18n-ja">
         目的地設定ゼロで首都高C1・湾岸線・全国高速の今と先を射抜く「走り屋モード」搭載。<br>
-        ドライバー特化型タクティカル・ナビゲーションシステム 公式操作プロトコル。
+        さらに最上位 <strong>VECTRA RS</strong> では、デュアルスロット（SLOT 1:2）＆160MBゼロ遅延プリロード音声エンジンを解放。
       </p>
       <p class="hero-subtitle i18n-en">
         Equipped with "Runner's Mode" to lock onto Shutoko C1, Bayshore, and nationwide expressways with zero destination setup.<br>
-        Official Operation Protocol for the Driver-Focused Tactical Navigation System.
+        Top-tier <strong>VECTRA RS</strong> unlocks the Dual-Slot (SLOT 1:2) &amp; 160MB Zero-Latency Preload Voice Engine.
       </p>
 
       <div class="pioneer-frame">
@@ -1644,7 +740,7 @@
       </div>
     </section>
 
-    <!-- クイックナビゲーション（番号・英語見出しはJP/EN共通） -->
+    <!-- クイックナビゲーション（全6セクション） -->
     <nav class="quick-nav">
       <a href="#sec-auth" class="quick-link">
         <span class="num">01 // LICENSE</span>
@@ -1656,18 +752,23 @@
         <span class="i18n-ja">走り屋モード＆首都高HUD</span>
         <span class="i18n-en">Runner's Mode &amp; Highway HUD</span>
       </a>
+      <a href="#sec-rs" class="quick-link rs-special">
+        <span class="num" style="color:#FF8A80;">03 // VECTRA RS</span>
+        <span class="i18n-ja">RS専用デュアル音声＆先読み</span>
+        <span class="i18n-en">RS Dual Voice &amp; Preloader</span>
+      </a>
       <a href="#sec-navi" class="quick-link">
-        <span class="num">03 // QUICK PIN &amp; ALT</span>
+        <span class="num">04 // QUICK PIN &amp; ALT</span>
         <span class="i18n-ja">お気に入り3拠点＆代替ルート</span>
         <span class="i18n-en">Quick 3 Pins &amp; Stealth Alt</span>
       </a>
       <a href="#sec-custom" class="quick-link">
-        <span class="num">04 // 7 MAP STYLES</span>
+        <span class="num">05 // 7 MAP STYLES</span>
         <span class="i18n-ja">実機7種マップ＆各種設定</span>
         <span class="i18n-en">7 Live Maps &amp; HUD Settings</span>
       </a>
       <a href="#sec-faq" class="quick-link">
-        <span class="num">05 // FAQ</span>
+        <span class="num">06 // FAQ</span>
         <span class="i18n-ja">よくある質問・仕様解説</span>
         <span class="i18n-en">Tactical FAQ &amp; Specs</span>
       </a>
@@ -1809,14 +910,14 @@
                   <strong class="i18n-en" style="color:var(--hud-emerald);">All 7 Styles</strong>
                 </td>
                 <td>
-                  <span class="i18n-ja">夜間トラフィック・ダーク・航空写真・3Dを含む全7種（詳細はセクション04）</span>
-                  <span class="i18n-en">Includes Traffic Night, Stealth Dark, Satellite &amp; 3D Standard (See Sec 04)</span>
+                  <span class="i18n-ja">夜間トラフィック・ダーク・航空写真・3Dを含む全7種（詳細はセクション05）</span>
+                  <span class="i18n-en">Includes Traffic Night, Stealth Dark, Satellite &amp; 3D Standard (See Sec 05)</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <strong class="i18n-ja">CUSTOM VOICE（外部音声API連携）＆ RS専用コミュニティ枠</strong>
-                  <strong class="i18n-en">CUSTOM VOICE (External TTS API) &amp; RS Patron Community</strong>
+                  <strong class="i18n-ja">CUSTOM VOICE（SLOT 1:2 デュアル音声 ＆ 160MB先読みエンジン）</strong>
+                  <strong class="i18n-en">CUSTOM VOICE (SLOT 1:2 Dual Voice &amp; 160MB Preload Engine)</strong>
                 </td>
                 <td><span class="mono-hl" style="color:#64748B;">LOCKED [RS限定]</span></td>
                 <td><span class="mono-hl" style="color:#64748B;">LOCKED [RS限定]</span></td>
@@ -1824,8 +925,8 @@
                   <span class="mono-red">RS PATRON UNLOCKED</span>
                 </td>
                 <td>
-                  <span class="i18n-ja">開発支援パトロン仕様（カスタム音声合成エンドポイント＆RS特典解放）</span>
-                  <span class="i18n-en">Patron tier unlocking custom TTS voice synthesis &amp; RS perks</span>
+                  <span class="i18n-ja">2話者ID保持・80MB×2先読み・ルート通り名自動プリロード（詳細はセクション03）</span>
+                  <span class="i18n-en">Dual Speaker IDs, 80MB×2 Preloader &amp; Route Street Pre-Caching (See Sec 03)</span>
                 </td>
               </tr>
             </tbody>
@@ -1834,7 +935,7 @@
       </div>
     </section>
 
-    <!-- 02. RUNNER'S FREE-DRIVE HIGHWAY HUD (★走り屋モード＆首都高タクティカル図解) -->
+    <!-- 02. RUNNER'S FREE-DRIVE HIGHWAY HUD -->
     <section id="sec-hwy" class="section">
       <div class="sec-header">
         <span class="sec-num">02</span>
@@ -1842,7 +943,6 @@
         <span class="sec-jp">目的地不要の「走り屋モード」＆ 高速施設レーダー</span>
       </div>
 
-      <!-- ★首都高「走り屋モード」タクティカル・レーダー図解パネル -->
       <div class="shutoko-hero-banner">
         <div class="shutoko-banner-top">
           <span class="shutoko-mode-tag">
@@ -1869,7 +969,6 @@
         </p>
 
         <div class="shutoko-grid">
-          <!-- 左：首都高C1〜湾岸線・辰巳/芝浦/大黒PA タクティカルSVGアニメーション図解 -->
           <div class="shutoko-svg-stage">
             <div class="shutoko-svg-header">
               <span>// SHUTOKO C1 &amp; BAYSHORE TACTICAL RADAR</span>
@@ -1878,7 +977,6 @@
 
             <div class="shutoko-svg-wrap">
               <svg viewBox="0 0 420 250" xmlns="http://www.w3.org/2000/svg">
-                <!-- 背景レーダーグリッド -->
                 <g stroke="#182232" stroke-width="1" fill="none">
                   <circle cx="170" cy="115" r="45"/>
                   <circle cx="170" cy="115" r="85"/>
@@ -1887,7 +985,6 @@
                   <line x1="170" y1="0" x2="170" y2="250"/>
                 </g>
 
-                <!-- レーダースイープ走査線 -->
                 <g class="radar-sweep">
                   <path d="M170,115 L295,65 A135,135 0 0,1 295,165 Z" fill="url(#radarGrad)" opacity="0.22"/>
                 </g>
@@ -1898,15 +995,12 @@
                   </linearGradient>
                 </defs>
 
-                <!-- 9号深川線・11号台場線（レインボーブリッジ）〜 湾岸線（B）・大黒PAルート -->
                 <path class="bayside-line" d="M235,88 L295,120 L345,155 L265,205 L120,238" />
                 <path class="bayside-line" d="M185,172 L245,198" stroke-dasharray="4 3" />
 
-                <!-- 首都高 C1 都心環状線（メインループ軌道） -->
                 <path id="c1Track" class="c1-loop-glow" d="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
                 <path class="c1-loop-core" d="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
 
-                <!-- 主要JCT・ICノード -->
                 <circle class="jct-node" cx="155" cy="44" r="4.5"/>
                 <text id="svgLblTakebashi" x="130" y="32" fill="#CBD5E1" font-family="Share Tech Mono" font-size="10" font-weight="bold">竹橋JCT</text>
 
@@ -1922,7 +1016,6 @@
                 <circle class="jct-node" cx="102" cy="85" r="4.5"/>
                 <text id="svgLblMiyakezaka" x="28" y="85" fill="#CBD5E1" font-family="Share Tech Mono" font-size="10" font-weight="bold">三宅坂JCT</text>
 
-                <!-- 首都高 3大聖地 PA ノード (辰巳PA / 芝浦PA / 大黒PA) -->
                 <circle class="pa-node" cx="332" cy="146" r="5.5"/>
                 <rect x="315" y="116" width="98" height="20" fill="#06281A" stroke="#00E676" stroke-width="1"/>
                 <text id="svgLblTatsumi" x="320" y="130" fill="#00E676" font-family="Share Tech Mono" font-size="10" font-weight="bold">辰巳PA [LOCK]</text>
@@ -1934,7 +1027,6 @@
                 <rect x="146" y="218" width="114" height="20" fill="#06281A" stroke="#00E676" stroke-width="1.2"/>
                 <text id="svgLblDaikoku" x="152" y="232" fill="#00E676" font-family="Share Tech Mono" font-size="10" font-weight="bold">大黒PA [LOCK]</text>
 
-                <!-- C1軌道をエンドレス周回する自車ターゲットマーカー (SVG SMIL Animation) -->
                 <g>
                   <circle r="9" fill="rgba(227, 0, 15, 0.35)">
                     <animateMotion dur="7s" repeatCount="indefinite" path="M115,65 C155,32 225,40 235,88 C245,135 210,175 165,172 C115,168 92,130 100,90 C104,75 108,70 115,65 Z" />
@@ -1944,7 +1036,6 @@
                   </circle>
                 </g>
 
-                <!-- 中央ステータス表示 -->
                 <text x="170" y="112" text-anchor="middle" fill="#E3000F" font-family="Share Tech Mono" font-size="13" font-weight="bold">C1 INNER/OUTER</text>
                 <text x="170" y="127" text-anchor="middle" fill="#94A3B8" font-family="Share Tech Mono" font-size="9">ENDLESS VECTOR SYNC</text>
               </svg>
@@ -1956,7 +1047,6 @@
             </div>
           </div>
 
-          <!-- 右：走り屋モードの3大核心ロジック解説 -->
           <div class="shutoko-feature-list">
             <div class="shutoko-point-box red">
               <h5 class="i18n-ja">01 // 首都高C1・環状線の「エンドレス周回」完全対応</h5>
@@ -1994,7 +1084,7 @@
         </div>
       </div>
 
-      <!-- 施設カード実機プレビュー枠（東名モード ⇔ 首都高C1モード 切り替え可能） -->
+      <!-- 施設カード実機プレビュー枠 -->
       <div class="hud-card emerald-accent">
         <div class="card-title">
           <span class="i18n-ja">実機HUDプレビュー：路線別ロックオン表示 ＆ 日英ワンタップ切替</span>
@@ -2021,13 +1111,11 @@
 
           <div class="mock-box">
             <div class="mock-header-bar">
-              <!-- ★東名（スタバあり）⇔ 首都高（大黒PA：P/WC）切り替えタブ -->
               <div class="route-preset-tabs">
                 <button type="button" id="presetTomeiBtn" class="route-preset-btn active">東名高速 (スタバ併設)</button>
                 <button type="button" id="presetShutokoBtn" class="route-preset-btn">首都高 C1/湾岸</button>
               </div>
 
-              <!-- ★日本語 ⇔ 英語 切り替えトグルスイッチ -->
               <div id="facLangToggle" class="lang-toggle-switch" role="button" tabindex="0" aria-label="Toggle Facility Language">
                 <span id="langOptJa" class="lang-opt active">日本語</span>
                 <div class="lang-track">
@@ -2039,7 +1127,6 @@
 
             <div id="hwyPreviewLabel" class="mock-label" style="margin-bottom:8px;">// HIGHWAY HUD PREVIEW (東名高速 上り)</div>
 
-            <!-- 3段目（奥）：海老名SA（上り：GAS + STARBUCKS）または 大黒PA（P + WC） -->
             <div class="fac-row-mock">
               <span id="facTag3" class="fac-tag sa">SA</span>
               <div class="fac-info">
@@ -2058,7 +1145,6 @@
               </div>
             </div>
 
-            <!-- 2段目（中間）：海老名JCT または 浜崎橋JCT -->
             <div class="fac-row-mock">
               <span id="facTag2" class="fac-tag jct">JCT</span>
               <div class="fac-info">
@@ -2071,7 +1157,6 @@
               </div>
             </div>
 
-            <!-- 1段目（手前）：厚木IC または 芝公園IC -->
             <div class="fac-row-mock">
               <span id="facTag1" class="fac-tag ic">IC</span>
               <div class="fac-info">
@@ -2086,7 +1171,6 @@
           </div>
         </div>
 
-        <!-- ★VECTRA独自タクティカル・カフェアイコン（SVG）搭載 ワンポイントアドバイス枠 -->
         <div class="sbux-spotlight">
           <div class="sbux-emblem-wrap">
             <svg class="sbux-real-logo-large" role="img" aria-label="VECTRA Tactical Cafe POI Icon">
@@ -2132,10 +1216,131 @@
       </div>
     </section>
 
-    <!-- 03. TACTICAL ROUTE NAVIGATION & QUICK DESTINATIONS -->
-    <section id="sec-navi" class="section">
+    <!-- ====================================================================
+         ★ 03. VECTRA RS EXCLUSIVE // TACTICAL VOICE ENGINE & DUAL-SLOT PRELOADER
+         （新規独立セクション：258802.jpg 実機画面＆160MBゼロ遅延プリロード仕様）
+         ==================================================================== -->
+    <section id="sec-rs" class="section">
       <div class="sec-header">
         <span class="sec-num">03</span>
+        <h2 class="sec-title">VECTRA RS // TACTICAL VOICE ENGINE</h2>
+        <span class="sec-jp">RSパトロン限定：デュアルスロット音声連携 ＆ 160MB先読みエンジン</span>
+      </div>
+
+      <div class="rs-exclusive-stage">
+        <div class="rs-stage-header">
+          <div class="rs-sport-emblem" style="font-size:1.25rem;">
+            <span class="vectra-txt">VECTRA</span>
+            <span class="rs-rhombus-badge"><span>RS</span></span>
+            <span style="font-family:var(--font-mono); font-size:0.85rem; color:var(--hud-cyan); margin-left:6px; letter-spacing:1.5px;">// AUDIO &amp; API ARCHITECTURE</span>
+          </div>
+          <span class="rs-patron-pill">PATRON EXCLUSIVE // ¥500 / MO</span>
+        </div>
+
+        <div class="shutoko-Catch i18n-ja">
+          その場しのぎの「都度通信」ではない。最大160MBの事前先読みが、0.01秒の即応とトンネル圏外での完全発話を実現する。
+        </div>
+        <div class="shutoko-Catch i18n-en">
+          Beyond ordinary real-time synthesis. 160MB proactive preloading delivers 0.01s response and uninterrupted guidance even inside deep tunnels.
+        </div>
+
+        <p class="i18n-ja" style="font-size:0.88rem; color:var(--text-sub);">
+          高速道路のJCT分岐やレーンキープが連続するシーンにおいて、発話のたびに外部サーバーへ通信して数秒待たされるリアルタイム音声合成は実用になりません。<br>
+          最上位グレード <strong>『VECTRA RS（月額500円）』</strong> のために専用設計された <strong>TACTICAL VOICE ENGINE</strong> は、プライベートHTTPS音声合成エンドポイントと直結し、<strong>2種類の話者ID（<span class="mono-cyan">SLOT 1</span> / <span class="mono-red">SLOT 2</span>）の常時保管・ワンタップ切替</strong>と、<strong>最大160MB（<span class="mono-hl">80MB × 2スロット</span>）の2段階バックグラウンド先読み（プリロード）機構</strong>を搭載しています。
+        </p>
+        <p class="i18n-en" style="font-size:0.88rem; color:var(--text-sub);">
+          On high-speed expressways with rapid junction splits, waiting several seconds for on-the-fly network TTS synthesis is unacceptable.<br>
+          Exclusively engineered for our top-tier <strong>"VECTRA RS (¥500/mo)"</strong> edition, the <strong>TACTICAL VOICE ENGINE</strong> links directly to your private HTTPS neural TTS endpoint—featuring <strong>instant Dual-Slot (<span class="mono-cyan">SLOT 1</span> / <span class="mono-red">SLOT 2</span>) speaker switching</strong> and a <strong>160MB (<span class="mono-hl">80MB × 2 slots</span>) two-stage background preloader</strong>.
+        </p>
+
+        <div class="rs-showcase-grid">
+          <!-- 左：加工済み実機スクリーンショット (258802.jpg) -->
+          <div class="phone-cockpit-frame">
+            <div class="phone-frame-topbar">
+              <span>RS HUD // DUAL-SLOT PRELOADER</span>
+              <span style="color:var(--audi-red); font-weight:900;">● RS UNLOCKED</span>
+            </div>
+            <div class="phone-screen-wrap">
+              <img class="phone-screen-img" src="258802.jpg" alt="VECTRA RS Custom Voice Dual-Slot Preloader HUD" onerror="this.style.display='none'; document.getElementById('rsVoiceImgFallback').style.display='block';" />
+              <div id="rsVoiceImgFallback" class="phone-img-fallback">
+                <div style="color:var(--audi-red); font-weight:bold; margin-bottom:6px;">[ RS HUD SCREENSHOT ]</div>
+                <div style="color:#FFF; margin-bottom:8px;">258802.jpg</div>
+                <div>index.html と同じ階層に 258802.jpg を配置すると、ここにVECTRA RS実機設定画面が表示されます。</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右：4大コア技術スペック解説 -->
+          <div style="display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
+            <div class="rs-spec-pills">
+              <div class="rs-metric-box red-top">
+                <div class="rs-metric-label">ACTIVE VOICE SLOTS</div>
+                <div class="rs-metric-val">SLOT 1 : SLOT 2</div>
+              </div>
+              <div class="rs-metric-box">
+                <div class="rs-metric-label">DEDICATED CACHE</div>
+                <div class="rs-metric-val">80MB × 2 (160MB)</div>
+              </div>
+              <div class="rs-metric-box emerald-top">
+                <div class="rs-metric-label">PLAYBACK LATENCY</div>
+                <div class="rs-metric-val">0.01 SEC (LOCAL)</div>
+              </div>
+            </div>
+
+            <div class="shutoko-feature-list">
+              <div class="shutoko-point-box red">
+                <h5 class="i18n-ja">01 // デュアルスロット（SLOT 1 : 2）コックピット瞬時切替</h5>
+                <h5 class="i18n-en">01 // Dual-Slot (SLOT 1 : 2) Instant Cockpit Switching</h5>
+                <p class="i18n-ja">
+                  2つの異なる <span class="mono-hl">Speaker ID</span>（例：昼の高速巡航用の重厚なオペレーターボイスと、深夜の首都高クルーズ用のクールなAIアナウンスボイス）を常時ペア保管。<span class="mono-cyan">SLOT 1</span> と <span class="mono-red">SLOT 2</span> のトグルをタップするだけで、キャッシュを消すことなく瞬時にコックピットの相棒を切り替えられます。
+                </p>
+                <p class="i18n-en">
+                  Store two distinct <span class="mono-hl">Speaker IDs</span> side-by-side (e.g., a deep tactical operator for daytime cruising and a cool AI announcer for midnight runs). Toggle between <span class="mono-cyan">SLOT 1</span> and <span class="mono-red">SLOT 2</span> with a single tap without losing cached audio.
+                </p>
+              </div>
+
+              <div class="shutoko-point-box">
+                <h5 class="i18n-ja">02 // 保存ボタン連動「基本定型句ピン留めプリロード（80MB × 2）」</h5>
+                <h5 class="i18n-en">02 // One-Tap Static Phrase Preloading &amp; Pinned Storage (80MB × 2)</h5>
+                <p class="i18n-ja">
+                  <strong>「設定を保存して先読み開始」</strong>ボタンを押した瞬間、URLと両スロットのIDを端末へ永続保存すると同時に、ナビ基本定型句（距離案内・左右分岐・JCT/SA/PA・スタバ通知等）をバックグラウンドで一括ダウンロード。OSの自動削除を受けないアプリ専用領域（各スロット最大80MB・計160MB）へピン留め保護します。
+                </p>
+                <p class="i18n-en">
+                  Tapping <strong>"SAVE &amp; PRELOAD VOICE"</strong> permanently saves your Endpoint URL and Speaker IDs while sequentially downloading core navigation phrases into OS-protected internal storage (up to 80MB per slot / 160MB total) with live progress telemetry.
+                </p>
+              </div>
+
+              <div class="shutoko-point-box emerald">
+                <h5 class="i18n-ja">03 // ナビ開始時の「全ルート通り名・IC/JCT・SA/PA」動的先読み</h5>
+                <h5 class="i18n-en">03 // Dynamic Route-Ahead Street &amp; Junction Pre-Caching</h5>
+                <p class="i18n-ja">
+                  目的地をセットしてルートが確定した瞬間、出発地から終点までの<strong>全ステップの通り名・方面名・IC出口・SA/PA名称</strong>を自動抽出し、走行開始と同時に裏側で先読み蓄積。実際にその分岐へ到達するずっと前に音声ファイルが端末内に揃うため、<strong>山手トンネルやアクアラインなどの長大な地下トンネル（電波圏外）でもカスタム音声が一切途切れません。</strong>
+                </p>
+                <p class="i18n-en">
+                  The moment a route is confirmed, VECTRA scans every step from origin to destination—proactively synthesizing upcoming street names, junction exits, and SA/PA alerts in the background. <strong>Even inside deep underground expressway tunnels with zero cell reception, your custom voice continues speaking seamlessly.</strong>
+                </p>
+              </div>
+
+              <div class="shutoko-point-box amber">
+                <h5 class="i18n-ja">04 // HTTPS完全暗号化 ＆ スマート標準TTSフォールバック機構</h5>
+                <h5 class="i18n-en">04 // Strict HTTPS Encryption &amp; Smart Built-In TTS Fallback</h5>
+                <p class="i18n-ja">
+                  通信はすべて <span class="mono-cyan">https://</span>（SSL/TLS暗号化）に準拠。万が一外出先で自宅サーバーやVPNが一時的に応答しない場合でも、<span class="mono-hl">Auto Fallback to Standard TTS</span> スイッチによりOS標準TTS（スロット別ピッチ最適化済み）へ即座に自動フォールバックし、ナビの音声案内を絶対に止めません。
+                </p>
+                <p class="i18n-en">
+                  All API traffic enforces strict <span class="mono-cyan">https://</span> encryption. If your private server is unreachable, <span class="mono-hl">Auto Fallback to Standard TTS</span> seamlessly hands off guidance to the built-in OS speech engine with slot-tuned pitch.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. TACTICAL ROUTE NAVIGATION & QUICK DESTINATIONS -->
+    <section id="sec-navi" class="section">
+      <div class="sec-header">
+        <span class="sec-num">04</span>
         <h2 class="sec-title">QUICK PIN, ROUTE &amp; ALT SWITCH</h2>
         <span class="sec-jp">お気に入り3拠点ドロワーと2段階ステルス代替ルート</span>
       </div>
@@ -2148,7 +1353,6 @@
         </div>
 
         <div class="step-list">
-          <!-- お気に入り3拠点（U字タブ引き出しドロワー）の説明 -->
           <div class="step-item">
             <span class="step-badge cyan">PRO &amp; RS // QUICK PIN</span>
             <div class="step-body">
@@ -2230,15 +1434,14 @@
       </div>
     </section>
 
-    <!-- 04. 7 TACTICAL MAP STYLES & HUD CUSTOMIZATION -->
+    <!-- 05. 7 TACTICAL MAP STYLES & HUD CUSTOMIZATION -->
     <section id="sec-custom" class="section">
       <div class="sec-header">
-        <span class="sec-num">04</span>
+        <span class="sec-num">05</span>
         <h2 class="sec-title">7 TACTICAL MAPS &amp; HUD CONTROLS</h2>
         <span class="sec-jp">実機7種マップスタイル切替ギャラリー ＆ 設定メニュー</span>
       </div>
 
-      <!-- ★実機スクリーンショット切替コックピットギャラリー（全7ボタン：全7種マップ完全一致） -->
       <div class="hud-card red-accent">
         <div class="card-title">
           <span class="i18n-ja">実機キャプチャで見る「全7種タクティカル・マップスタイル」切替ショーケース</span>
@@ -2254,11 +1457,9 @@
         </p>
 
         <div class="map-gallery-stage">
-          <!-- 全7種の切替ボタン（STYLE 01 〜 STYLE 07） -->
           <div id="mapSelectorGrid" class="map-selector-grid"></div>
 
           <div class="map-viewer-grid">
-            <!-- 左：実機スクリーンショット表示フレーム -->
             <div class="phone-cockpit-frame">
               <div class="phone-frame-topbar">
                 <span id="phoneFrameCounter">CAPTURE // 01 OF 07</span>
@@ -2274,7 +1475,6 @@
               </div>
             </div>
 
-            <!-- 右：選択中マップスタイルの詳細スペック・解説パネル -->
             <div class="map-info-panel">
               <div>
                 <div class="map-info-top">
@@ -2433,14 +1633,14 @@
                 </td>
               </tr>
               <tr>
-                <td><strong>CUSTOM VOICE &amp; COMMUNITY</strong></td>
+                <td><strong>CUSTOM VOICE (SLOT 1:2 &amp; PRELOAD)</strong></td>
                 <td>
                   <span class="i18n-ja">設定（⚙️）内 [RS限定]</span>
                   <span class="i18n-en">In Settings (⚙️) [RS ONLY]</span>
                 </td>
                 <td>
-                  <span class="i18n-ja"><strong>VECTRA RS（月額500円パトロン版）</strong>専用機能として、外部カスタム音声合成API連携およびRSメンバー専用コミュニティ枠を解放します。</span>
-                  <span class="i18n-en">Exclusive to <strong>VECTRA RS (¥500/mo Patron Edition)</strong>: unlocks external custom TTS API voice synthesis and RS community access.</span>
+                  <span class="i18n-ja"><strong>VECTRA RS（月額500円パトロン版）</strong>専用機能として、デュアルスロット（SLOT 1:2）話者切替・最大160MB（80MB×2）定型句＆ルート通り名自動プリロード・RS専用コミュニティ枠を解放します（詳細はセクション03）。</span>
+                  <span class="i18n-en">Exclusive to <strong>VECTRA RS (¥500/mo Patron Edition)</strong>: unlocks Dual-Slot (SLOT 1:2) speaker switching, 160MB (80MB×2) static &amp; route street preloading, and RS community access (See Sec 03).</span>
                 </td>
               </tr>
               <tr>
@@ -2460,10 +1660,10 @@
       </div>
     </section>
 
-    <!-- 05. TACTICAL FAQ (★アコーディオン式 よくある質問：V4.0.0完全対応) -->
+    <!-- 06. TACTICAL FAQ -->
     <section id="sec-faq" class="section">
       <div class="sec-header">
-        <span class="sec-num">05</span>
+        <span class="sec-num">06</span>
         <h2 class="sec-title">TACTICAL FAQ // TROUBLESHOOTING</h2>
         <span class="sec-jp">よくある質問とシステム仕様解説</span>
       </div>
@@ -2557,11 +1757,11 @@
             <div class="faq-a-body">
               <span class="i18n-ja">
                 ・<strong>PRO版（月額300円）</strong>：ルートナビ月100回、キーワード検索月100回、左端「U字プルタブ」のお気に入り3拠点登録（検索消費ゼロで1タップ出発）、および夜間トラフィック・ダーク・航空写真・3Dを含む「全7種マップスタイル」がすべて解放されるメインプランです。<br>
-                ・<strong>VECTRA RS（月額500円）</strong>：PRO版の全機能に加えて、外部カスタム音声合成API連携（<span class="mono-red">CUSTOM VOICE</span>）およびRS専用コミュニティ・エンブレム特典をフル解放する最上位の開発支援パトロンプランです。
+                ・<strong>VECTRA RS（月額500円）</strong>：PRO版の全機能に加えて、2つの話者IDを瞬時に切り替えられるデュアルスロット機構（<span class="mono-cyan">SLOT 1 : 2</span>）と最大160MB（<span class="mono-hl">80MB × 2</span>）の定型句＆ルート通り名自動先読みエンジンを備えた <span class="mono-red">CUSTOM VOICE</span> API連携、およびRS専用コミュニティ特典をフル解放する最上位の開発支援パトロンプランです（詳細はセクション03）。
               </span>
               <span class="i18n-en">
                 • <strong>PRO Edition (¥300/mo)</strong>: Unlocks 100 route navigations/mo, 100 keyword searches/mo, the U-shaped pull-tab 3 Quick Pins (0 search quota 1-tap launch), and all 7 tactical map styles.<br>
-                • <strong>VECTRA RS (¥500/mo)</strong>: Our top-tier Patron Edition that includes all PRO features plus full access to external <span class="mono-red">CUSTOM VOICE</span> synthesis APIs and exclusive RS community perks.
+                • <strong>VECTRA RS (¥500/mo)</strong>: Our top-tier Patron Edition that includes all PRO features plus full access to the <span class="mono-red">CUSTOM VOICE</span> engine—featuring Dual-Slot (<span class="mono-cyan">SLOT 1 : 2</span>) speaker switching, 160MB (<span class="mono-hl">80MB × 2</span>) static &amp; route street pre-caching, and exclusive RS community perks (See Sec 03).
               </span>
             </div>
           </details>
@@ -2611,7 +1811,7 @@
           </details>
         </div>
 
-        <!-- プライバシーポリシー＆利用規約ページへの直通バー（rel="nofollow" で検索クローラー巡回を遮断） -->
+        <!-- プライバシーポリシー＆利用規約ページへの直通バー -->
         <div class="legal-link-bar">
           <div>
             <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--hud-cyan); letter-spacing:1.5px;">LEGAL &amp; DATA PRIVACY</div>
@@ -2652,16 +1852,6 @@
 
   <script>
     (function() {
-      // =========================================================================
-      // ★ 実機スクリーンショット全7種（MainActivity.kt の7スタイル＆FREE/PRO区分と完全一致）
-      // 01: TRAFFIC_NIGHT   -> Screenshot_20261029_183622.jpg [PRO/RS]
-      // 02: DARK            -> Screenshot_20261029_183524.jpg [PRO/RS]
-      // 03: SATELLITE       -> Screenshot_20261029_183726.jpg [PRO/RS]
-      // 04: TRAFFIC_DAY     -> Screenshot_20261029_183242.jpg [FREE]
-      // 05: STANDARD (3D)   -> Screenshot_20261029_183419.jpg [PRO/RS]
-      // 06: MAPBOX_STREETS  -> Screenshot_20261029_183324.jpg [FREE]
-      // 07: LIGHT           -> Screenshot_20261029_183455.jpg [PRO/RS]
-      // =========================================================================
       var MAP_STYLE_GALLERY = [
         {
           id: '01',
@@ -2770,7 +1960,6 @@
         }
       ];
 
-      // 1. スクロール連動「TOPへ戻る」ボタン制御
       var topBtn = document.getElementById('backToTopBtn');
       window.addEventListener('scroll', function() {
         if (window.scrollY > 320) {
@@ -2780,7 +1969,6 @@
         }
       }, { passive: true });
 
-      // 2. 高速道路施設プレビュー ＆ グローバル日英モード連動制御
       var isGlobalEnglish = false;
       var isFacilityEnglish = false;
       var currentPreset = 'tomei';
@@ -2812,7 +2000,6 @@
       var facKm1 = document.getElementById('facKm1');
       var facEta1 = document.getElementById('facEta1');
 
-      // マップギャラリーDOM要素
       var mapSelectorGrid = document.getElementById('mapSelectorGrid');
       var mapGalleryImg = document.getElementById('mapGalleryImg');
       var mapGalleryFallback = document.getElementById('mapGalleryFallback');
@@ -2827,7 +2014,6 @@
       var mapPrevBtn = document.getElementById('mapPrevBtn');
       var mapNextBtn = document.getElementById('mapNextBtn');
 
-      // SVGレーダー内のJCT/PAラベル
       var svgLabels = {
         svgLblTakebashi: { ja: '竹橋JCT', en: 'Takebashi JCT' },
         svgLblEdobashi:  { ja: '江戸橋JCT', en: 'Edobashi JCT' },
@@ -2845,7 +2031,6 @@
           'STARBUCKS' +
         '</span>';
 
-      // マップギャラリーの7ボタン生成＆描画更新
       function initMapGalleryButtons() {
         if (!mapSelectorGrid) return;
         mapSelectorGrid.innerHTML = '';
@@ -3028,10 +2213,8 @@
         renderMapGallery();
       }
 
-      // 初期化実行
       initMapGalleryButtons();
 
-      // 初期起動時のURLパラメータ (?lang=en) 同期判定
       var params = new URLSearchParams(window.location.search);
       var langParam = (params.get('lang') || '').toLowerCase();
       applyGlobalLanguage(langParam === 'en');
