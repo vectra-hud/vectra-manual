@@ -1070,7 +1070,7 @@
     }
 
     /* ============================================================
-       ★ 04 // 7種マップスタイル 実機スクリーンショット切替ギャラリー
+       ★ 04 // 全7種マップスタイル 実機スクリーンショット切替ギャラリー
        ============================================================ */
     .map-gallery-stage {
       background: linear-gradient(145deg, #070A0F 0%, #0E131B 100%);
@@ -1081,9 +1081,10 @@
       box-shadow: 0 0 28px rgba(0, 0, 0, 0.65);
     }
 
+    /* 7個のタクティカルボタンが美しく整列するレスポンシブグリッド */
     .map-selector-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
       gap: 8px;
       margin-bottom: 18px;
     }
@@ -1118,9 +1119,9 @@
     }
 
     .map-style-btn .btn-num {
-      font-size: 0.66rem;
+      font-size: 0.65rem;
       color: var(--hud-cyan);
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1131,9 +1132,9 @@
     }
 
     .map-style-btn .btn-name {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: bold;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.6px;
       color: #F8FAFC;
       white-space: nowrap;
       overflow: hidden;
@@ -2237,30 +2238,30 @@
         <span class="sec-jp">実機7種マップスタイル切替ギャラリー ＆ 設定メニュー</span>
       </div>
 
-      <!-- ★新設：実機スクリーンショット切替コックピットギャラリー（全8ボタン：7種マップ＋大黒PAロックオン） -->
+      <!-- ★実機スクリーンショット切替コックピットギャラリー（全7ボタン：全7種マップ完全一致） -->
       <div class="hud-card red-accent">
         <div class="card-title">
-          <span class="i18n-ja">実機キャプチャで見る「全7種マップスタイル ＆ 大黒PAロックオン」切替ショーケース</span>
-          <span class="i18n-en">Live Cockpit Captures: "All 7 Tactical Map Styles &amp; Daikoku PA Lock-On" Showcase</span>
-          <span class="badge">REAL SCREENSHOTS</span>
+          <span class="i18n-ja">実機キャプチャで見る「全7種タクティカル・マップスタイル」切替ショーケース</span>
+          <span class="i18n-en">Live Cockpit Captures: "All 7 Tactical Map Styles" Interactive Showcase</span>
+          <span class="badge">7 REAL SCREENSHOTS</span>
         </div>
 
         <p class="i18n-ja" style="font-size:0.88rem; color:var(--text-sub);">
-          画面左下（2段目）の<strong>「レイヤー切替ボタン」</strong>をタップするたびに、走行シーンや昼夜に合わせて7種類のMapbox v11タクティカルマップを瞬時にローテーション切り替えできます。下のボタンをタップして実機スクリーンショットと各モードの特性を確認してください。
+          画面左下（2段目）の<strong>「レイヤー切替ボタン」</strong>をタップするたびに、走行シーンや昼夜に合わせて7種類のMapbox v11タクティカルマップを瞬時にローテーション切り替えできます。下の7つのボタンをタップして実機スクリーンショットと各モードの特性を確認してください。
         </p>
         <p class="i18n-en" style="font-size:0.88rem; color:var(--text-sub);">
-          Tap the <strong>Map Style Layer Button</strong> (bottom-left, 2nd button) to cycle through all 7 Mapbox v11 tactical map styles tailored for day/night runs and urban 3D legibility. Select any button below to inspect real cockpit screenshots.
+          Tap the <strong>Map Style Layer Button</strong> (bottom-left, 2nd button) to cycle through all 7 Mapbox v11 tactical map styles tailored for day/night runs and urban 3D legibility. Select any of the 7 buttons below to inspect real cockpit screenshots.
         </p>
 
         <div class="map-gallery-stage">
-          <!-- 8つの切替ボタン（01〜07マップ種別 ＋ 08 大黒PA聖地ショット） -->
+          <!-- 全7種の切替ボタン（STYLE 01 〜 STYLE 07） -->
           <div id="mapSelectorGrid" class="map-selector-grid"></div>
 
           <div class="map-viewer-grid">
             <!-- 左：実機スクリーンショット表示フレーム -->
             <div class="phone-cockpit-frame">
               <div class="phone-frame-topbar">
-                <span id="phoneFrameCounter">CAPTURE // 01 OF 08</span>
+                <span id="phoneFrameCounter">CAPTURE // 01 OF 07</span>
                 <span style="color:var(--hud-emerald);">● LIVE COCKPIT</span>
               </div>
               <div class="phone-screen-wrap">
@@ -2290,12 +2291,12 @@
               <div>
                 <div class="map-telemetry-box">
                   <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--hud-cyan); margin-bottom:4px;">// CAPTURED SCENE TELEMETRY</div>
-                  <div id="mapInfoScene">首都圏広域ルート案内（C3外環・E20中央道・K7横浜北線・54.8kmナビ稼働中 ＆ ALT ROUTE ステルス待機）</div>
+                  <div id="mapInfoScene">実機キャプチャ：首都圏広域ルート案内（C3外環・E20中央道・K7横浜北線・54.8kmナビ稼働中 ＆ ALT ROUTE ステルス待機）</div>
                 </div>
 
                 <div class="map-nav-controls" style="margin-top:14px;">
                   <button type="button" id="mapPrevBtn" class="map-step-btn">◀ PREV STYLE</button>
-                  <span id="mapStepIndicator" style="font-family:var(--font-mono); font-size:0.8rem; color:var(--rs-silver);">01 / 08</span>
+                  <span id="mapStepIndicator" style="font-family:var(--font-mono); font-size:0.8rem; color:var(--rs-silver);">01 / 07</span>
                   <button type="button" id="mapNextBtn" class="map-step-btn">NEXT STYLE ▶</button>
                 </div>
               </div>
@@ -2369,8 +2370,8 @@
                   <span class="i18n-en">Bottom-Left (2nd)</span>
                 </td>
                 <td>
-                  <span class="i18n-ja">昼夜トラフィック・ダーク・サテライト（航空写真）・3Dスタンダードなど <strong>全7種類のマップスタイル</strong> をワンタップで巡回切り替えします（FREEは昼夜2種、PRO/RSは全7種フル解放）。</span>
-                  <span class="i18n-en">Cycles through <strong>all 7 map styles</strong> including Traffic Day/Night, Dark, 3D Standard, and Satellite Streets (2 styles in FREE; all 7 in PRO/RS).</span>
+                  <span class="i18n-ja">昼夜トラフィック・ステルスダーク・サテライト（航空写真）・3Dスタンダードなど <strong>全7種類のマップスタイル</strong> をワンタップで巡回切り替えします（FREEは昼夜2種、PRO/RSは全7種フル解放）。</span>
+                  <span class="i18n-en">Cycles through <strong>all 7 map styles</strong> including Traffic Day/Night, Stealth Dark, 3D Standard, and Satellite Streets (2 styles in FREE; all 7 in PRO/RS).</span>
                 </td>
               </tr>
               <tr>
@@ -2652,9 +2653,14 @@
   <script>
     (function() {
       // =========================================================================
-      // ★ 実機スクリーンショット8枚（7種マップ＋大黒PAショット）の定義配列
-      // ドライブの .jpg を index.html と同じフォルダに置くだけでそのまま表示されます。
-      // 順番を入れ替えたい場合は file: 'Screenshot_20261029_xxxx.jpg' を入れ替えるだけです！
+      // ★ 実機スクリーンショット全7種（MainActivity.kt の7スタイルと100%完全一致）
+      // 01: TRAFFIC_NIGHT   -> Screenshot_20261029_183622.jpg (6枚目: 夜間トラフィック)
+      // 02: DARK            -> Screenshot_20261029_183524.jpg (5枚目: 純粋なDark / ステルスダーク)
+      // 03: SATELLITE       -> Screenshot_20261029_183726.jpg (7枚目: 航空写真＋ハイウェイ網)
+      // 04: TRAFFIC_DAY     -> Screenshot_20261029_183242.jpg (1枚目: 昼間トラフィック)
+      // 05: STANDARD (3D)   -> Screenshot_20261029_183419.jpg (3枚目: 大黒PA/JCT 3Dスタンダード)
+      // 06: MAPBOX_STREETS  -> Screenshot_20261029_183324.jpg (2枚目: ストリート標準)
+      // 07: LIGHT           -> Screenshot_20261029_183455.jpg (4枚目: モノトーンライト)
       // =========================================================================
       var MAP_STYLE_GALLERY = [
         {
@@ -2676,16 +2682,16 @@
           id: '02',
           shortName: 'STEALTH DARK',
           code: 'STYLE 02 // Style.DARK',
-          file: 'Screenshot_20261029_183455.jpg',
+          file: 'Screenshot_20261029_183524.jpg',
           isProOnly: true,
           tierJa: 'PRO / RS フル解放',
           tierEn: 'PRO / RS UNLOCKED',
-          titleJa: '02 // DARK（ステルスダーク・英語コックピット）',
+          titleJa: '02 // DARK（ステルスダーク）',
           titleEn: '02 // DARK (Stealth Dark Cockpit)',
-          descJa: '周囲の色彩ノイズを極限まで削ぎ落とし、シアン＆レッドのHUDパネルとルートラインだけを際立たせる漆黒のコックピットモード。英語（EN）モードと組み合わせると欧州スポーツカーの純正計器のように機能します。',
-          descEn: 'Strips away ambient map color noise so cyan and red HUD telemetry and route vectors stand out with maximum clarity during night runs.',
-          sceneJa: '実機キャプチャ：英語（EN）モード×ルート案内稼働中（Setagaya / Yokohama / Tokyo / 56.4km・ETA 19:50）',
-          sceneEn: 'Live Capture: English (EN) Cockpit Mode during active 56.4 km navigation across Tokyo & Yokohama'
+          descJa: '周囲の渋滞線や色彩ノイズを極限まで削ぎ落とし、シアン＆レッドのHUDパネルとルートラインだけを際立たせる純粋な漆黒コックピットモード。夜間ドライビングで最高の没入感を提供します。',
+          descEn: 'Strips away ambient traffic color noise so cyan and red HUD telemetry and route vectors stand out with maximum clarity during night runs.',
+          sceneJa: '実機キャプチャ：純粋なダーク背景×首都圏縦断56.4kmルート案内（川口・板橋・新宿・世田谷・大田〜鶴見川方面）',
+          sceneEn: 'Live Capture: Pure Stealth Dark canvas during active 56.4 km navigation across Tokyo metropolitan area'
         },
         {
           id: '03',
@@ -2706,76 +2712,61 @@
           id: '04',
           shortName: 'TRAFFIC DAY',
           code: 'STYLE 04 // Style.TRAFFIC_DAY',
-          file: 'Screenshot_20261029_183524.jpg',
+          file: 'Screenshot_20261029_183242.jpg',
           isProOnly: false,
           tierJa: 'FREE & PRO / RS 対応',
           tierEn: 'FREE & PRO / RS',
           titleJa: '04 // TRAFFIC DAY（昼間トラフィック）',
           titleEn: '04 // TRAFFIC DAY (Daylight Congestion HUD)',
-          descJa: '日中の強い直射日光下やオープン走行時でも、道路形状とリアルタイム渋滞ラインがくっきり視認できる高コントラスト昼間モード。日本語ラベルでの広域ルート確認にも最適です。',
+          descJa: '日中の強い直射日光下やオープン走行時でも、道路形状とリアルタイム渋滞ラインがくっきり視認できる高コントラスト昼間モード。都市部の幹線道路や交差点アプローチの確認にも最適です。',
           descEn: 'High-contrast daylight traffic style engineered for crisp visibility of road geometry and congestion lines under bright sunlight.',
-          sceneJa: '実機キャプチャ：日本語（JP）モード×首都圏縦断56.4kmルート案内（川口・板橋・新宿・世田谷・大田〜横浜方面）',
-          sceneEn: 'Live Capture: Japanese (JP) Mode 56.4 km metropolitan route across Shinjuku, Setagaya, Ota & Yokohama'
+          sceneJa: '実機キャプチャ：渋谷〜代々木・道玄坂・宮益坂・国道246号周辺の昼間トラフィック表示',
+          sceneEn: 'Live Capture: Daylight traffic rendering around Shibuya, Dogenzaka, Miyamasu-zaka & Route 246'
         },
         {
           id: '05',
           shortName: 'STANDARD 3D',
           code: 'STYLE 05 // Style.STANDARD',
-          file: 'Screenshot_20261029_183259.jpg',
+          file: 'Screenshot_20261029_183419.jpg',
           isProOnly: true,
           tierJa: 'PRO / RS フル解放',
           tierEn: 'PRO / RS UNLOCKED',
-          titleJa: '05 // STANDARD 3D（3D立体ランドマーク）',
-          titleEn: '05 // STANDARD 3D (3D Urban Landmarks)',
-          descJa: 'Mapbox Maps SDK v11最新の3D都市ビルディング造形と立体ライティングを表現する次世代スタンダードマップ。都心部のビル群やランドマーク、カフェ・駐車場POIを立体的に把握できます。',
-          descEn: 'Next-generation Mapbox v11 Standard style featuring 3D urban building extrusions, dynamic lighting, and detailed POI landmarks.',
-          sceneJa: '実機キャプチャ：渋谷駅周辺3D詳細表示（MIYASHITA PARK・STARBUCKS・渋谷ヒカリエ・SHIBUYA STREAM・国道246号）',
-          sceneEn: 'Live Capture: Shibuya Station 3D closeup (MIYASHITA PARK, Starbucks, Shibuya Hikarie, Route 246)'
+          titleJa: '05 // STANDARD 3D（3D立体スタンダード）',
+          titleEn: '05 // STANDARD 3D (3D Urban & Junction Standard)',
+          descJa: 'Mapbox Maps SDK v11最新の3D都市造形と立体ライティングを表現する次世代スタンダードマップ。首都高湾岸線・大黒JCTのループ橋ランプ形状やPA内の施設配置まで立体的に把握できます。',
+          descEn: 'Next-generation Mapbox v11 Standard style featuring 3D structure extrusions, dynamic lighting, and detailed junction ramp geometry.',
+          sceneJa: '実機キャプチャ：首都高湾岸線（EXPWY WANGAN LINE）・大黒JCT・大黒PA周辺の3Dスタンダード表示',
+          sceneEn: 'Live Capture: Shutoko Bayshore Route, Daikoku JCT spiral ramps & Daikoku PA in 3D Standard mode'
         },
         {
           id: '06',
           shortName: 'STREETS',
           code: 'STYLE 06 // Style.MAPBOX_STREETS',
-          file: 'Screenshot_20261029_183242.jpg',
+          file: 'Screenshot_20261029_183324.jpg',
           isProOnly: true,
           tierJa: 'PRO / RS フル解放',
           tierEn: 'PRO / RS UNLOCKED',
           titleJa: '06 // MAPBOX STREETS（ストリート標準）',
           titleEn: '06 // MAPBOX STREETS (Classic Vector Streets)',
-          descJa: '都市部の細街路、一方通行、坂道名称、主要施設アイコンを最もバランスよく描画する王道ストリートマップ。一般道（LOCAL）走行時や目的地周辺の最終アプローチで高い視認性を誇ります。',
-          descEn: 'Balanced vector street map highlighting urban road hierarchies, slopes, one-way streets, and neighborhood landmarks.',
-          sceneJa: '実機キャプチャ：渋谷〜代々木・道玄坂・オルガン坂・国道246号周辺の精細ストリート表示',
-          sceneEn: 'Live Capture: Detailed urban street network around Shibuya, Dogenzaka, Organ-zaka & Route 246'
+          descJa: '都市部の幹線道路、細街路、公園緑地、主要ランドマークを最もバランスよく描画する王道ストリートマップ。一般道（LOCAL）走行時や都心エリアの広域把握で高い視認性を誇ります。',
+          descEn: 'Balanced vector street map highlighting urban road hierarchies, parks, tunnels, and metropolitan landmarks.',
+          sceneJa: '実機キャプチャ：新宿〜明治神宮・代々木公園〜原宿・表参道〜渋谷・恵比寿・目黒（山手トンネル）ストリート表示',
+          sceneEn: 'Live Capture: Urban street network across Shinjuku, Yoyogi Park, Harajuku, Shibuya, Ebisu & Meguro'
         },
         {
           id: '07',
           shortName: 'LIGHT',
           code: 'STYLE 07 // Style.LIGHT',
-          file: 'Screenshot_20261029_183324.jpg',
+          file: 'Screenshot_20261029_183455.jpg',
           isProOnly: true,
           tierJa: 'PRO / RS フル解放',
           tierEn: 'PRO / RS UNLOCKED',
           titleJa: '07 // LIGHT（モノトーンライト）',
           titleEn: '07 // LIGHT (Minimalist Monotone Light)',
-          descJa: '地図背景の装飾色を抑えたクリーンなホワイト＆シルバー調のミニマルスタイル。ルートラインや自車位置マーカー、ピン留め地点をシャープに際立たせます。',
-          descEn: 'Clean silver-white architectural map canvas designed to make route lines and tactical markers pop without visual clutter.',
-          sceneJa: '実機キャプチャ：余計な色彩ノイズを排したクリーンマップ表示（18:33 キャプチャ）',
-          sceneEn: 'Live Capture: Minimalist high-legibility map rendering (18:33 Capture)'
-        },
-        {
-          id: '08',
-          shortName: 'DAIKOKU PA',
-          code: 'SCENE 08 // SHUTOKO BAYSHORE LOCK-ON',
-          file: 'Screenshot_20261029_183419.jpg',
-          isProOnly: false,
-          tierJa: '聖地ロックオン実機画面',
-          tierEn: 'DAIKOKU PA SPECIAL',
-          titleJa: '08 // DAIKOKU PA & JCT（大黒PA・湾岸線ロックオン）',
-          titleEn: '08 // DAIKOKU PA & JCT (Bayshore Sanctuary View)',
-          descJa: '首都高湾岸線（B）・大黒ふ頭・K5大黒線が交差する「大黒JCT / 大黒PA」周辺の実機キャプチャ。ループ橋のランプ形状やPA内の施設位置まで精密に描画します。',
-          descEn: 'Real cockpit capture of the iconic Daikoku PA & Daikoku JCT where the Shutoko Bayshore Route (B) and K5 Daikoku Line intersect.',
-          sceneJa: '実機キャプチャ：首都高湾岸線（EXPWY WANGAN LINE）・大黒JCT・大黒PA（タリーズコーヒー大黒PA店）周辺マップ',
-          sceneEn: 'Live Capture: Shutoko Bayshore Route, Daikoku JCT spiral ramps & Daikoku Parking Area'
+          descJa: '地図背景の装飾色を抑えたクリーンなホワイト＆シルバー調のミニマルスタイル。ネオンカラーの案内ルートラインや自車位置マーカー、HUDパネルをシャープに際立たせます。',
+          descEn: 'Clean silver-white architectural map canvas designed to make route lines and tactical HUD markers pop without visual clutter.',
+          sceneJa: '実機キャプチャ：モノトーンライト背景×英語（EN）コックピット（Setagaya / Yokohama / Tokyo / 56.4kmルート案内）',
+          sceneEn: 'Live Capture: Minimalist Light canvas in English (EN) Cockpit Mode with 56.4 km active route'
         }
       ];
 
@@ -2854,7 +2845,7 @@
           'STARBUCKS' +
         '</span>';
 
-      // マップギャラリーのボタン生成＆描画更新
+      // マップギャラリーの7ボタン生成＆描画更新
       function initMapGalleryButtons() {
         if (!mapSelectorGrid) return;
         mapSelectorGrid.innerHTML = '';
