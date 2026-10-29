@@ -1797,7 +1797,7 @@
                   <strong class="i18n-en">Tactical Map Style Layers</strong>
                 </td>
                 <td>
-                  <span class="i18n-ja">標準 2種（昼/夜）</span>
+                  <span class="i18n-ja">標準 2種（DAY / STREETS）</span>
                   <span class="i18n-en">Standard 2 Styles</span>
                 </td>
                 <td>
@@ -1809,8 +1809,8 @@
                   <strong class="i18n-en" style="color:var(--hud-emerald);">All 7 Styles</strong>
                 </td>
                 <td>
-                  <span class="i18n-ja">航空写真（Satellite）や3D都市モデルを含む全7種（詳細はセクション04）</span>
-                  <span class="i18n-en">Includes Satellite Streets, 3D Standard &amp; Dark Cockpit (See Sec 04)</span>
+                  <span class="i18n-ja">夜間トラフィック・ダーク・航空写真・3Dを含む全7種（詳細はセクション04）</span>
+                  <span class="i18n-en">Includes Traffic Night, Stealth Dark, Satellite &amp; 3D Standard (See Sec 04)</span>
                 </td>
               </tr>
               <tr>
@@ -2279,7 +2279,7 @@
               <div>
                 <div class="map-info-top">
                   <span id="mapInfoCode" class="map-info-code">STYLE 01 // Style.TRAFFIC_NIGHT</span>
-                  <span id="mapInfoTier" class="map-tier-pill">FREE &amp; PRO / RS</span>
+                  <span id="mapInfoTier" class="map-tier-pill pro-only">PRO / RS フル解放</span>
                 </div>
 
                 <h3 id="mapInfoTitle" class="map-info-title">01 // TRAFFIC NIGHT（夜間トラフィック）</h3>
@@ -2370,8 +2370,8 @@
                   <span class="i18n-en">Bottom-Left (2nd)</span>
                 </td>
                 <td>
-                  <span class="i18n-ja">昼夜トラフィック・ステルスダーク・サテライト（航空写真）・3Dスタンダードなど <strong>全7種類のマップスタイル</strong> をワンタップで巡回切り替えします（FREEは昼夜2種、PRO/RSは全7種フル解放）。</span>
-                  <span class="i18n-en">Cycles through <strong>all 7 map styles</strong> including Traffic Day/Night, Stealth Dark, 3D Standard, and Satellite Streets (2 styles in FREE; all 7 in PRO/RS).</span>
+                  <span class="i18n-ja">昼夜トラフィック・ステルスダーク・サテライト（航空写真）・3Dスタンダードなど <strong>全7種類のマップスタイル</strong> をワンタップで巡回切り替えします（FREEは標準2種 [TRAFFIC DAY / STREETS]、PRO/RSは全7種フル解放）。</span>
+                  <span class="i18n-en">Cycles through <strong>all 7 map styles</strong> including Traffic Day/Night, Stealth Dark, 3D Standard, and Satellite Streets (2 styles [TRAFFIC DAY / STREETS] in FREE; all 7 in PRO/RS).</span>
                 </td>
               </tr>
               <tr>
@@ -2556,7 +2556,7 @@
             </summary>
             <div class="faq-a-body">
               <span class="i18n-ja">
-                ・<strong>PRO版（月額300円）</strong>：ルートナビ月100回、キーワード検索月100回、左端「U字プルタブ」のお気に入り3拠点登録（検索消費ゼロで1タップ出発）、および航空写真や3Dを含む「全7種マップスタイル」がすべて解放されるメインプランです。<br>
+                ・<strong>PRO版（月額300円）</strong>：ルートナビ月100回、キーワード検索月100回、左端「U字プルタブ」のお気に入り3拠点登録（検索消費ゼロで1タップ出発）、および夜間トラフィック・ダーク・航空写真・3Dを含む「全7種マップスタイル」がすべて解放されるメインプランです。<br>
                 ・<strong>VECTRA RS（月額500円）</strong>：PRO版の全機能に加えて、外部カスタム音声合成API連携（<span class="mono-red">CUSTOM VOICE</span>）およびRS専用コミュニティ・エンブレム特典をフル解放する最上位の開発支援パトロンプランです。
               </span>
               <span class="i18n-en">
@@ -2653,14 +2653,14 @@
   <script>
     (function() {
       // =========================================================================
-      // ★ 実機スクリーンショット全7種（MainActivity.kt の7スタイルと100%完全一致）
-      // 01: TRAFFIC_NIGHT   -> Screenshot_20261029_183622.jpg (6枚目: 夜間トラフィック)
-      // 02: DARK            -> Screenshot_20261029_183524.jpg (5枚目: 純粋なDark / ステルスダーク)
-      // 03: SATELLITE       -> Screenshot_20261029_183726.jpg (7枚目: 航空写真＋ハイウェイ網)
-      // 04: TRAFFIC_DAY     -> Screenshot_20261029_183242.jpg (1枚目: 昼間トラフィック)
-      // 05: STANDARD (3D)   -> Screenshot_20261029_183419.jpg (3枚目: 大黒PA/JCT 3Dスタンダード)
-      // 06: MAPBOX_STREETS  -> Screenshot_20261029_183324.jpg (2枚目: ストリート標準)
-      // 07: LIGHT           -> Screenshot_20261029_183455.jpg (4枚目: モノトーンライト)
+      // ★ 実機スクリーンショット全7種（MainActivity.kt の7スタイル＆FREE/PRO区分と完全一致）
+      // 01: TRAFFIC_NIGHT   -> Screenshot_20261029_183622.jpg [PRO/RS]
+      // 02: DARK            -> Screenshot_20261029_183524.jpg [PRO/RS]
+      // 03: SATELLITE       -> Screenshot_20261029_183726.jpg [PRO/RS]
+      // 04: TRAFFIC_DAY     -> Screenshot_20261029_183242.jpg [FREE]
+      // 05: STANDARD (3D)   -> Screenshot_20261029_183419.jpg [PRO/RS]
+      // 06: MAPBOX_STREETS  -> Screenshot_20261029_183324.jpg [FREE]
+      // 07: LIGHT           -> Screenshot_20261029_183455.jpg [PRO/RS]
       // =========================================================================
       var MAP_STYLE_GALLERY = [
         {
@@ -2668,12 +2668,12 @@
           shortName: 'TRAFFIC NIGHT',
           code: 'STYLE 01 // Style.TRAFFIC_NIGHT',
           file: 'Screenshot_20261029_183622.jpg',
-          isProOnly: false,
-          tierJa: 'FREE & PRO / RS 対応',
-          tierEn: 'FREE & PRO / RS',
+          isProOnly: true,
+          tierJa: 'PRO / RS フル解放',
+          tierEn: 'PRO / RS UNLOCKED',
           titleJa: '01 // TRAFFIC NIGHT（夜間トラフィック）',
           titleEn: '01 // TRAFFIC NIGHT (Night Congestion HUD)',
-          descJa: 'ダーク背景にリアルタイム渋滞ライン（緑・橙・赤・暗赤）とネオンルートを高コントラストに浮かび上がらせるVECTRA標準の夜間戦闘モード。首都高や都市高速の複雑なJCT網でも瞬時に状況判断が可能です。',
+          descJa: 'ダーク背景にリアルタイム渋滞ライン（緑・橙・赤・暗赤）とネオンルートを高コントラストに浮かび上がらせるVECTRA象徴の夜間戦闘モード。首都高や都市高速の複雑なJCT網でも瞬時に状況判断が可能です。',
           descEn: 'VECTRA\'s signature night combat mode overlaying high-contrast real-time congestion lines and neon routes onto a dark canvas for instant junction awareness.',
           sceneJa: '実機キャプチャ：首都圏広域ルート案内（C3外環・E20中央道・K7横浜北線・54.8kmナビ稼働中 ＆ ALT ROUTE ステルス待機）',
           sceneEn: 'Live Capture: Greater Tokyo Wide Route Guidance (C3 / E20 / K7, 54.8 km active route & ALT ROUTE stealth standby)'
@@ -2743,9 +2743,9 @@
           shortName: 'STREETS',
           code: 'STYLE 06 // Style.MAPBOX_STREETS',
           file: 'Screenshot_20261029_183324.jpg',
-          isProOnly: true,
-          tierJa: 'PRO / RS フル解放',
-          tierEn: 'PRO / RS UNLOCKED',
+          isProOnly: false,
+          tierJa: 'FREE & PRO / RS 対応',
+          tierEn: 'FREE & PRO / RS',
           titleJa: '06 // MAPBOX STREETS（ストリート標準）',
           titleEn: '06 // MAPBOX STREETS (Classic Vector Streets)',
           descJa: '都市部の幹線道路、細街路、公園緑地、主要ランドマークを最もバランスよく描画する王道ストリートマップ。一般道（LOCAL）走行時や都心エリアの広域把握で高い視認性を誇ります。',
