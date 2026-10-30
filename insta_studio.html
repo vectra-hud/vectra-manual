@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VECTRA // INSTAGRAM 4:5 CAROUSEL STUDIO (1080x1350)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #050608;
+      --bg-panel: #0C0F16;
+      --audi-red: #E3000F;
+      --hud-cyan: #00E5FF;
+      --hud-emerald: #00E676;
+      --hud-amber: #FFAB00;
+      --text-main: #F8FAFC;
+      --text-sub: #94A3B8;
+      --border-stealth: #222938;
+      --font-mono: 'Share Tech Mono', monospace;
+      --font-sans: 'Share Tech Mono', 'Zen Kaku Gothic New', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    .studio-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 11, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--audi-red);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .studio-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .studio-brand span.slash { color: var(--audi-red); }
+    .studio-badge {
+      font-size: 0.72rem;
+      background: rgba(0, 229, 255, 0.12);
+      border: 1px solid var(--hud-cyan);
+      color: var(--hud-cyan);
+      padding: 3px 8px;
+      letter-spacing: 1px;
+    }
+
+    .studio-controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ctrl-btn {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 900;
+      padding: 9px 16px;
+      border: 1px solid #334155;
+      background: #121722;
+      color: #FFFFFF;
+      cursor: pointer;
+      letter-spacing: 0.8px;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--hud-cyan);
+      background: #192232;
+    }
+
+    .ctrl-btn.primary {
+      background: var(--audi-red);
+      border-color: #FF4D58;
+      box-shadow: 0 0 18px rgba(227, 0, 15, 0.4);
+    }
+
+    .ctrl-btn.primary:hover {
+      background: #FF1A29;
+      transform: translateY(-1px);
+    }
+
+    .ctrl-btn.lang-active {
+      border-color: var(--hud-cyan);
+      color: var(--hud-cyan);
+      background: rgba(0, 229, 255, 0.14);
+    }
+
+    .toolbar-panel {
+      max-width: 1400px;
+      margin: 22px auto 10px;
+      padding: 0 20px;
+    }
+
+    .upload-bar {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-stealth);
+      border-left: 4px solid var(--hud-cyan);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .upload-info h3 {
+      font-size: 0.96rem;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .upload-info p {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    .file-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 230, 118, 0.12);
+      border: 1px solid var(--hud-emerald);
+      color: var(--hud-emerald);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 900;
+      padding: 9px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .file-label:hover {
+      background: rgba(0, 230, 118, 0.24);
+      color: #FFFFFF;
+    }
+
+    input[type="file"] { display: none; }
+
+    /* スライド一覧グリッド */
+    .slides-grid {
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .slide-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-stealth);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+    }
+
+    .slide-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1E2532;
+      padding-bottom: 8px;
+    }
+
+    .slide-num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: var(--hud-cyan);
+      letter-spacing: 1px;
+    }
+
+    .slide-spec {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-sub);
+    }
+
+    .canvas-wrap {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #050608;
+      border: 1px solid #2A3342;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .canvas-wrap canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .slide-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dl-single-btn {
+      flex: 1;
+      background: #161C28;
+      border: 1px solid #334155;
+      border-left: 3px solid var(--audi-red);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-weight: 900;
+      font-size: 0.8rem;
+      padding: 9px 12px;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .dl-single-btn:hover {
+      background: var(--audi-red);
+      border-color: var(--audi-red);
+    }
+
+    @media (max-width: 600px) {
+      .studio-header { padding: 12px 14px; }
+      .slides-grid { grid-template-columns: 1fr; padding: 0 14px; }
+      .toolbar-panel { padding: 0 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="studio-header">
+    <div class="studio-brand">
+      <span class="slash">//</span> VECTRA INSTA STUDIO
+      <span class="studio-badge">4:5 CAROUSEL (1080×1350px)</span>
+    </div>
+
+    <div class="studio-controls">
+      <button type="button" id="btnLangJp" class="ctrl-btn lang-active">JP 日本語版 (7枚)</button>
+      <button type="button" id="btnLangEn" class="ctrl-btn">EN 英語版 (7枚)</button>
+      <button type="button" id="btnDownloadAll" class="ctrl-btn primary">⬇ 全7枚を一括PNG保存 (1080×1350)</button>
+    </div>
+  </header>
+
+  <div class="toolbar-panel">
+    <div class="upload-bar">
+      <div class="upload-info">
+        <h3>📸 実機スクリーンショット自動合成（そのままでも高精細ベクター描画で即保存可能！）</h3>
+        <p id="uploadStatusText">
+          「258802.jpg（RS設定画面）」やマップのスクショ（Screenshot_*.jpg）を選択すると、スライド01・04・05のスマホ枠へ即座に実機画像がハメ込まれます。
+        </p>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <label class="file-label">
+          📂 スクショ画像を選択（複数可）
+          <input type="file" id="fileInput" accept="image/*" multiple />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <main class="slides-grid" id="slidesContainer"></main>
+
+  <!-- QRコード生成用軽量ライブラリ（Slide 07用・フォールバック内蔵） -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+  <script>
+    (function() {
+      var W = 1080;
+      var H = 1350;
+      var isEn = false;
+
+      // 読み込まれた画像キャッシュ（キー: 'rs', 'map1', 'map2', 'map3', 'map4'）
+      var loadedImages = {
+        rs: null,
+        map1: null,
+        map2: null,
+        map3: null,
+        map4: null
+      };
+
+      var qrCanvas = document.createElement('canvas');
+      function generateQrCode() {
+        var url = isEn
+          ? 'https://vectra-hud.github.io/vectra-manual/?lang=en'
+          : 'https://vectra-hud.github.io/vectra-manual/';
+        if (window.QRious) {
+          new QRious({
+            element: qrCanvas,
+            value: url,
+            size: 260,
+            background: '#FFFFFF',
+            foreground: '#050608',
+            level: 'M'
+          });
+        }
+      }
+
+      var SLIDE_META = [
+        { num: '01', nameJa: '表紙：VECTRA 11月中旬公開予告', nameEn: 'Cover: VECTRA Mid-Nov Launch' },
+        { num: '02', nameJa: '走り屋モード＆首都高C1無限周回', nameEn: 'Runner Mode & Shutoko C1 Radar' },
+        { num: '03', nameJa: '全国高速スタバ49箇所＆GAS捕捉', nameEn: '49 Starbucks & GAS Auto-Radar' },
+        { num: '04', nameJa: 'VECTRA RS デュアル音声＆160MB先読み', nameEn: 'VECTRA RS Dual Voice & Preloader' },
+        { num: '05', nameJa: '実機7種タクティカル・マップ切替', nameEn: '7 Tactical Map Styles Showcase' },
+        { num: '06', nameJa: 'U字タブ3拠点＆日英1タップ切替', nameEn: 'U-Tab 3 Quick Pins & EN/JP HUD' },
+        { num: '07', nameJa: '先行20名枠満員御礼＆公式マニュアルQR', nameEn: 'Beta Full & Official Manual QR' }
+      ];
+
+      var canvases = [];
+      var container = document.getElementById('slidesContainer');
+
+      function initSlideDOM() {
+        container.innerHTML = '';
+        canvases = [];
+        for (var i = 0; i < SLIDE_META.length; i++) {
+          (function(idx) {
+            var meta = SLIDE_META[idx];
+            var card = document.createElement('div');
+            card.className = 'slide-card';
+
+            var top = document.createElement('div');
+            top.className = 'slide-card-top';
+            top.innerHTML =
+              '<span class="slide-num">SLIDE ' + meta.num + ' // ' + (isEn ? meta.nameEn : meta.nameJa) + '</span>' +
+              '<span class="slide-spec">1080×1350 (4:5)</span>';
+
+            var wrap = document.createElement('div');
+            wrap.className = 'canvas-wrap';
+            var cv = document.createElement('canvas');
+            cv.width = W;
+            cv.height = H;
+            wrap.appendChild(cv);
+            canvases.push(cv);
+
+            var actions = document.createElement('div');
+            actions.className = 'slide-actions';
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'dl-single-btn';
+            btn.textContent = '⬇ SLIDE ' + meta.num + ' をPNG保存';
+            btn.addEventListener('click', function() {
+              downloadCanvasAsPng(cv, idx + 1);
+            });
+            actions.appendChild(btn);
+
+            card.appendChild(top);
+            card.appendChild(wrap);
+            card.appendChild(actions);
+            container.appendChild(card);
+          })(i);
+        }
+      }
+
+      // 同一フォルダにある画像（GitHub Pages上など）の自動プリロード試行
+      function tryAutoLoadLocalFiles() {
+        var candidates = [
+          { key: 'rs', file: '258802.jpg' },
+          { key: 'map1', file: 'Screenshot_20261029_183622.jpg' },
+          { key: 'map2', file: 'Screenshot_20261029_183524.jpg' },
+          { key: 'map3', file: 'Screenshot_20261029_183726.jpg' },
+          { key: 'map4', file: 'Screenshot_20261029_183419.jpg' }
+        ];
+        candidates.forEach(function(item) {
+          var img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = function() {
+            // file:// 直開き時は汚染チェックを行い、toDataURLが使える場合のみ採用
+            try {
+              var testCv = document.createElement('canvas');
+              testCv.width = 2; testCv.height = 2;
+              testCv.getContext('2d').drawImage(img, 0, 0, 2, 2);
+              testCv.toDataURL('image/png');
+              loadedImages[item.key] = img;
+              renderAllSlides();
+            } catch (e) {
+              // file:// 時は上部のファイル選択からDataURL読み込みを使えば100%回避可能
+            }
+          };
+          img.src = item.file;
+        });
+      }
+
+      // ユーザーによるファイル選択（DataURL化するためCORS制限100%ゼロ）
+      var fileInput = document.getElementById('fileInput');
+      var statusText = document.getElementById('uploadStatusText');
+      if (fileInput) {
+        fileInput.addEventListener('change', function(ev) {
+          var files = Array.prototype.slice.call(ev.target.files || []);
+          if (!files.length) return;
+          var mapIdx = 1;
+          var loadedCount = 0;
+
+          files.forEach(function(file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              var img = new Image();
+              img.onload = function() {
+                var fname = file.name.toLowerCase();
+                if (fname.indexOf('258802') !== -1 || fname.indexOf('003008') !== -1 || fname.indexOf('rs') !== -1 || files.length === 1) {
+                  loadedImages.rs = img;
+                } else {
+                  if (mapIdx <= 4) {
+                    loadedImages['map' + mapIdx] = img;
+                    mapIdx++;
+                  }
+                }
+                loadedCount++;
+                if (loadedCount === files.length) {
+                  statusText.textContent = '✅ ' + loadedCount + '枚のスクリーンショットをスライドへ高解像度合成しました！そのままPNG保存できます。';
+                  statusText.style.color = '#00E676';
+                  renderAllSlides();
+                }
+              };
+              img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          });
+        });
+      }
+
+      // =========================================================================
+      // 共通Canvas描画ヘルパー群
+      // =========================================================================
+      function drawTacticalBackground(ctx, slideNumStr, totalStr) {
+        var grad = ctx.createRadialGradient(W * 0.5, H * 0.15, 50, W * 0.5, H * 0.5, H * 0.9);
+        grad.addColorStop(0, '#161C28');
+        grad.addColorStop(0.55, '#0A0D13');
+        grad.addColorStop(1, '#040507');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
+
+        // グリッド線
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.028)';
+        ctx.lineWidth = 1;
+        for (var x = 0; x < W; x += 40) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+        }
+        for (var y = 0; y < H; y += 40) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+        }
+
+        // 外周タクティカルフレーム
+        ctx.strokeStyle = '#1E2636';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(28, 28, W - 56, H - 56);
+
+        // 上部赤アクセントライン
+        ctx.fillStyle = '#E3000F';
+        ctx.fillRect(28, 28, W - 56, 6);
+
+        // トップヘッダーバー
+        ctx.fillStyle = 'rgba(8, 11, 16, 0.9)';
+        ctx.fillRect(30, 34, W - 60, 76);
+        ctx.strokeStyle = '#222A38';
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(30, 110); ctx.lineTo(W - 30, 110); ctx.stroke();
+
+        // 左上 // VECTRA
+        ctx.font = '900 32px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#E3000F';
+        ctx.textAlign = 'left';
+        ctx.fillText('//', 58, 83);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillText('VECTRA', 102, 83);
+
+        // 中央ステータス
+        ctx.font = 'bold 21px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#00E5FF';
+        ctx.textAlign = 'center';
+        ctx.fillText('TACTICAL HIGHWAY HUD // v4.0.0', W * 0.5, 80);
+
+        // 右上 ページ番号
+        ctx.font = 'bold 26px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#94A3B8';
+        ctx.textAlign = 'right';
+        ctx.fillText(slideNumStr + ' / ' + totalStr, W - 58, 82);
+
+        // ボトムフッターバー
+        ctx.fillStyle = 'rgba(8, 11, 16, 0.92)';
+        ctx.fillRect(30, H - 96, W - 60, 66);
+        ctx.strokeStyle = '#222A38';
+        ctx.beginPath(); ctx.moveTo(30, H - 96); ctx.lineTo(W - 30, H - 96); ctx.stroke();
+
+        ctx.font = 'bold 22px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#94A3B8';
+        ctx.textAlign = 'left';
+        ctx.fillText('2021 AUDI TT RS TESTED // ANDROID EXCLUSIVE', 58, H - 55);
+
+        ctx.fillStyle = slideNumStr === '07' ? '#00E676' : '#E3000F';
+        ctx.textAlign = 'right';
+        ctx.fillText(slideNumStr === '07' ? 'CHECK LINK IN BIO ▸' : 'SWIPE NEXT ▸▸', W - 58, H - 55);
+      }
+
+      // Audi Sport風 RS エンブレム描画
+      function drawRsEmblem(ctx, x, y, scale) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(scale, scale);
+
+        // 赤い斜め平行四辺形
+        ctx.fillStyle = '#E3000F';
+        ctx.beginPath();
+        ctx.moveTo(14, 0);
+        ctx.lineTo(48, 0);
+        ctx.lineTo(34, 44);
+        ctx.lineTo(0, 44);
+        ctx.closePath();
+        ctx.fill();
+
+        // 外周シルバーフレーム
+        ctx.strokeStyle = 'rgba(209, 213, 219, 0.85)';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(14, 0);
+        ctx.lineTo(106, 0);
+        ctx.lineTo(92, 44);
+        ctx.lineTo(0, 44);
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.font = 'italic 900 30px "Share Tech Mono", sans-serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.fillText('RS', 56, 33);
+        ctx.restore();
+      }
+
+      // VECTRA ステルスクレスト描画
+      function drawVectraCrest(ctx, cx, cy, radius) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        var s = radius / 50;
+        ctx.scale(s, s);
+
+        function hexPoly(r) {
+          ctx.beginPath();
+          for (var i = 0; i < 6; i++) {
+            var ang = (i * 60 - 90) * Math.PI / 180;
+            var px = Math.cos(ang) * r;
+            var py = Math.sin(ang) * r;
+            if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+          }
+          ctx.closePath();
+        }
+
+        hexPoly(48);
+        ctx.fillStyle = '#0B0E15';
+        ctx.fill();
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        hexPoly(41);
+        ctx.strokeStyle = 'rgba(203, 213, 225, 0.38)';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        // 赤いVシェイプ
+        ctx.fillStyle = '#E3000F';
+        ctx.beginPath();
+        ctx.moveTo(-26, -22);
+        ctx.lineTo(0, 32);
+        ctx.lineTo(26, -22);
+        ctx.lineTo(14, -22);
+        ctx.lineTo(0, 9);
+        ctx.lineTo(-14, -22);
+        ctx.closePath();
+        ctx.fill();
+
+        // 中央ホワイトアロー
+        ctx.fillStyle = '#F8FAFC';
+        ctx.beginPath();
+        ctx.moveTo(0, -34);
+        ctx.lineTo(9, -15);
+        ctx.lineTo(0, -20);
+        ctx.lineTo(-9, -15);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      // VECTRA タクティカル・カフェアイコン描画
+      function drawTacticalCafeIcon(ctx, cx, cy, r) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        var s = r / 50;
+        ctx.scale(s, s);
+
+        ctx.beginPath();
+        ctx.arc(0, 0, 49, 0, Math.PI * 2);
+        ctx.fillStyle = '#042E1D';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(0, 0, 45, 0, Math.PI * 2);
+        ctx.strokeStyle = '#00A862';
+        ctx.lineWidth = 5;
+        ctx.stroke();
+
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 6.5;
+        ctx.beginPath();
+        ctx.moveTo(-20, -2);
+        ctx.lineTo(16, -2);
+        ctx.lineTo(10, 22);
+        ctx.lineTo(-14, 22);
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(15, 2);
+        ctx.lineTo(25, 2);
+        ctx.lineTo(22, 15);
+        ctx.lineTo(11, 15);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(-24, 29);
+        ctx.lineTo(20, 29);
+        ctx.stroke();
+
+        // 蒸気3本
+        [-11, -1, 9].forEach(function(ox) {
+          ctx.beginPath();
+          ctx.moveTo(ox, -9);
+          ctx.lineTo(ox - 3, -17);
+          ctx.lineTo(ox + 1, -26);
+          ctx.stroke();
+        });
+
+        ctx.restore();
+      }
+
+      function drawSectionHeader(ctx, numStr, titleStr, subtitleJaOrEn) {
+        ctx.textAlign = 'left';
+        ctx.font = '900 30px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#E3000F';
+        ctx.fillText('SECTION ' + numStr, 64, 162);
+
+        ctx.font = '900 44px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillText(titleStr, 64, 216);
+
+        ctx.fillStyle = '#E3000F';
+        ctx.fillRect(64, 234, W - 128, 3);
+
+        ctx.font = '900 30px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#00E5FF';
+        ctx.fillText(subtitleJaOrEn, 64, 282);
+      }
+
+      // =========================================================================
+      // SLIDE 01: 表紙（HERO & 11月中旬リリース予告）
+      // =========================================================================
+      function renderSlide01(ctx) {
+        drawTacticalBackground(ctx, '01', '07');
+
+        // トップ告知ピル
+        ctx.fillStyle = 'rgba(227, 0, 15, 0.2)';
+        ctx.strokeStyle = '#E3000F';
+        ctx.lineWidth = 2;
+        ctx.fillRect(140, 145, W - 280, 54);
+        ctx.strokeRect(140, 145, W - 280, 54);
+
+        ctx.font = '900 25px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.fillText(
+          isEn ? '🚀 LAUNCHING MID-NOVEMBER 2026 ON GOOGLE PLAY' : '🚀 2026年11月中旬 Google Play ストア正式公開決定！',
+          W * 0.5, 181
+        );
+
+        drawVectraCrest(ctx, W * 0.5, 310, 86);
+
+        ctx.font = 'bold 26px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#CBD5E1';
+        ctx.fillText('NEXT-GEN TACTICAL HIGHWAY HUD', W * 0.5, 435);
+
+        ctx.font = '900 118px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillText('VECTRA', W * 0.5, 545);
+
+        // メインキャッチコピーボックス
+        ctx.fillStyle = 'rgba(12, 16, 24, 0.92)';
+        ctx.strokeStyle = '#2B3648';
+        ctx.lineWidth = 2;
+        ctx.fillRect(68, 585, W - 136, 150);
+        ctx.strokeRect(68, 585, W - 136, 150);
+        ctx.fillStyle = '#00E5FF';
+        ctx.fillRect(68, 585, 6, 150);
+        ctx.fillStyle = '#E3000F';
+        ctx.fillRect(W - 74, 585, 6, 150);
+
+        ctx.font = '900 34px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#FFFFFF';
+        if (isEn) {
+          ctx.fillText('Conquer Tokyo Shutoko C1 & Japan Highways', W * 0.5, 646);
+          ctx.fillStyle = '#00E5FF';
+          ctx.fillText('Fighter-Jet Cockpit HUD in 100% English & Japanese', W * 0.5, 702);
+        } else {
+          ctx.fillText('目的地設定ゼロで首都高C1・湾岸線・全国高速を射抜く', W * 0.5, 646);
+          ctx.fillStyle = '#00E5FF';
+          ctx.fillText('ドライバー特化型「戦闘機コックピット風HUDナビ」', W * 0.5, 702);
+        }
+
+        // 4大特徴カード（2×2グリッド）
+        var feats = isEn ? [
+          { tag: 'RUNNER MODE // FREE', title: 'Shutoko C1 Endless Radar', sub: 'Zero destination setup required' },
+          { tag: '49 STARBUCKS & GAS', title: 'Auto-Detect SA/PA Ahead', sub: 'Strict Inbound/Outbound filter' },
+          { tag: 'VECTRA RS // VOICE', title: 'Dual-Slot 160MB Preloader', sub: '0.01s response even in tunnels' },
+          { tag: '7 MAPBOX v11 STYLES', title: 'Night / Dark / Satellite / 3D', sub: 'Plus 1-tap [Home] Pull-Tab' }
+        ] : [
+          { tag: 'RUNNER MODE // 永久無料', title: '首都高C1「走り屋モード」', sub: '目的地不要・環状線エンドレス周回対応' },
+          { tag: '49 STARBUCKS & GAS', title: '全国スタバ49箇所＆給油捕捉', sub: '上下線まで厳密判定してネオン点灯' },
+          { tag: 'VECTRA RS // 音声先読み', title: 'SLOT 1:2 ＆ 160MB先読み', sub: '山手トンネル等の圏外でもラグ0.01秒' },
+          { tag: '7 TACTICAL MAPS', title: '実機7種マップ＆U字タブ帰還', sub: '夜間渋滞・漆黒ダーク・航空写真・3D' }
+        ];
+
+        var cardW = (W - 156) / 2;
+        var cardH = 165;
+        feats.forEach(function(f, idx) {
+          var col = idx % 2;
+          var row = Math.floor(idx / 2);
+          var x = 68 + col * (cardW + 20);
+          var y = 765 + row * (cardH + 18);
+
+          ctx.fillStyle = '#0D1119';
+          ctx.strokeStyle = idx === 2 ? '#E3000F' : '#263042';
+          ctx.lineWidth = 2;
+          ctx.fillRect(x, y, cardW, cardH);
+          ctx.strokeRect(x, y, cardW, cardH);
+
+          ctx.fillStyle = idx === 2 ? '#E3000F' : '#00E5FF';
+          ctx.fillRect(x, y, cardW, 4);
+
+          ctx.textAlign = 'left';
+          ctx.font = 'bold 21px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = idx === 2 ? '#FF8A80' : '#00E5FF';
+          ctx.fillText(f.tag, x + 22, y + 42);
+
+          ctx.font = '900 30px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText(f.title, x + 22, y + 92);
+
+          ctx.font = 'bold 22px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#94A3B8';
+          ctx.fillText(f.sub, x + 22, y + 134);
+        });
+
+        // 下部3ティアバー
+        ctx.fillStyle = '#090C12';
+        ctx.strokeStyle = '#263244';
+        ctx.fillRect(68, 1146, W - 136, 72);
+        ctx.strokeRect(68, 1146, W - 136, 72);
+
+        ctx.textAlign = 'center';
+        ctx.font = '900 25px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#00E676';
+        ctx.fillText('FREE: ¥0', 220, 1191);
+        ctx.fillStyle = '#00E5FF';
+        ctx.fillText('PRO: ¥300 / mo', W * 0.5, 1191);
+        ctx.fillStyle = '#FF6B72';
+        ctx.fillText('VECTRA RS: ¥500 / mo', W - 240, 1191);
+      }
+
+      // =========================================================================
+      // SLIDE 02: 走り屋モード ＆ 首都高C1タクティカルレーダー
+      // =========================================================================
+      function renderSlide02(ctx) {
+        drawTacticalBackground(ctx, '02', '07');
+        drawSectionHeader(
+          ctx,
+          '01',
+          "RUNNER'S MODE // SHUTOKO C1 RADAR",
+          isEn ? 'Zero Destination Setup. Endless C1 Loop Lock-On.' : '目的地設定ゼロ。首都高C1を何周しても前方IC/PAを無限捕捉。'
+        );
+
+        // 大型レーダーステージ
+        var rx = 64, ry = 315, rw = W - 128, rh = 520;
+        var rGrad = ctx.createRadialGradient(rx + rw * 0.45, ry + rh * 0.5, 20, rx + rw * 0.45, ry + rh * 0.5, 360);
+        rGrad.addColorStop(0, '#121C2B');
+        rGrad.addColorStop(1, '#06080D');
+        ctx.fillStyle = rGrad;
+        ctx.strokeStyle = '#283548';
+        ctx.lineWidth = 2;
+        ctx.fillRect(rx, ry, rw, rh);
+        ctx.strokeRect(rx, ry, rw, rh);
+
+        var cx = rx + 410;
+        var cy = ry + 255;
+
+        // レーダー同心円
+        ctx.strokeStyle = '#1B273A';
+        ctx.lineWidth = 1.5;
+        [90, 170, 240].forEach(function(rad) {
+          ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.stroke();
+        });
+        ctx.beginPath();
+        ctx.moveTo(rx, cy); ctx.lineTo(rx + rw, cy);
+        ctx.moveTo(cx, ry); ctx.lineTo(cx, ry + rh);
+        ctx.stroke();
+
+        // 湾岸線ライン（シアン）
+        ctx.strokeStyle = '#00E5FF';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(cx + 130, cy - 55);
+        ctx.lineTo(cx + 260, cy + 10);
+        ctx.lineTo(cx + 360, cy + 85);
+        ctx.lineTo(cx + 200, cy + 185);
+        ctx.lineTo(cx - 90, cy + 230);
+        ctx.stroke();
+
+        // C1 都心環状線ループ（レッド発光）
+        ctx.save();
+        ctx.strokeStyle = '#E3000F';
+        ctx.lineWidth = 10;
+        ctx.shadowColor = '#E3000F';
+        ctx.shadowBlur = 22;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, 155, 115, -0.15, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        // 中央テキスト
+        ctx.textAlign = 'center';
+        ctx.font = '900 32px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#E3000F';
+        ctx.fillText('C1 INNER / OUTER', cx, cy - 6);
+        ctx.font = 'bold 21px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#00E5FF';
+        ctx.fillText('ENDLESS VECTOR LOCK-ON', cx, cy + 26);
+
+        // JCT / PA ノード描画
+        var nodes = [
+          { x: cx - 30, y: cy - 114, label: isEn ? 'Takebashi JCT' : '竹橋JCT', isPa: false },
+          { x: cx + 150, y: cy - 30, label: isEn ? 'Edobashi JCT' : '江戸橋JCT', isPa: false },
+          { x: cx + 45, y: cy + 112, label: isEn ? 'Hamasakibashi JCT' : '浜崎橋JCT', isPa: false },
+          { x: cx - 140, y: cy + 50, label: isEn ? 'Tanimachi JCT' : '谷町JCT', isPa: false },
+          { x: cx - 148, y: cy - 35, label: isEn ? 'Miyakezaka JCT' : '三宅坂JCT', isPa: false },
+          { x: cx + 340, y: cy + 72, label: isEn ? 'Tatsumi PA [LOCK]' : '辰巳PA [LOCK]', isPa: true },
+          { x: cx + 180, y: cy + 170, label: isEn ? 'Shibaura PA [LOCK]' : '芝浦PA [LOCK]', isPa: true },
+          { x: cx - 40, y: cy + 218, label: isEn ? 'Daikoku PA [LOCK]' : '大黒PA [LOCK]', isPa: true }
+        ];
+
+        nodes.forEach(function(n) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.isPa ? 10 : 8, 0, Math.PI * 2);
+          ctx.fillStyle = n.isPa ? '#00E676' : '#0B0E14';
+          ctx.fill();
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = 3;
+          ctx.stroke();
+
+          ctx.font = '900 22px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = n.isPa ? '#00E676' : '#FFFFFF';
+          ctx.textAlign = 'left';
+          ctx.fillText(n.label, n.x + 16, n.y + 8);
+        });
+
+        // 下部3つの解説ボックス
+        var boxes = isEn ? [
+          { color: '#E3000F', title: '01 // ENDLESS C1 LOOP TRACKING', desc: 'Conventional nav apps terminate after 1 lap. VECTRA continuously re-locks onto upcoming ICs & JCTs from your heading vector.' },
+          { color: '#00E5FF', title: '02 // 3-STAGE DIRECTION FILTER & 0.5s JCT SWITCH', desc: 'Eliminates opposite-lane SA/PA noise and updates the forward stack within 0.5 seconds of steering into a junction branch.' },
+          { color: '#00E676', title: '03 // 100% FREE & UNLIMITED FOREVER', desc: 'Runner\'s Mode consumes zero monthly quota. Enjoy unlimited highway radar cruising even on the FREE (¥0) plan.' }
+        ] : [
+          { color: '#E3000F', title: '01 // 首都高C1・環状線の「エンドレス周回」完全対応', desc: '純正ナビのように1周で案内が消えることはありません。進行方向ベクトルから次に来るIC・JCT・PAとETAを無限にロックオンし続けます。' },
+          { color: '#00E5FF', title: '02 // 上下線3段階フィルタ ＆ JCT分岐の0.5秒即応', desc: '対向車線のSA/PAや隣接ICの誤混入を完全にシャットアウト。JCT分岐でステアリングを切った瞬間に前方路線リストを書き換えます。' },
+          { color: '#00E676', title: '03 // 無料プラン（FREE ¥0）で永久・回数無制限！', desc: '「走り屋モード」は月間ナビ枠を一切消費しません。無料プランのままでも全国の高速道路・都市高速で無制限に稼働します。' }
+        ];
+
+        boxes.forEach(function(b, idx) {
+          var by = 860 + idx * 122;
+          ctx.fillStyle = '#0D1118';
+          ctx.strokeStyle = '#252E3E';
+          ctx.lineWidth = 2;
+          ctx.fillRect(64, by, W - 128, 108);
+          ctx.strokeRect(64, by, W - 128, 108);
+          ctx.fillStyle = b.color;
+          ctx.fillRect(64, by, 7, 108);
+
+          ctx.textAlign = 'left';
+          ctx.font = '900 25px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText(b.title, 90, by + 40);
+
+          ctx.font = 'bold 21px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#94A3B8';
+          ctx.fillText(b.desc, 90, by + 82);
+        });
+      }
+
+      // =========================================================================
+      // SLIDE 03: 全国高速49箇所スタバ ＆ GAS 自動捕捉
+      // =========================================================================
+      function renderSlide03(ctx) {
+        drawTacticalBackground(ctx, '03', '07');
+        drawSectionHeader(
+          ctx,
+          '02',
+          '49 STARBUCKS & GAS AUTO-RADAR',
+          isEn ? 'Never miss fuel or coffee on Japanese Expressways.' : '次のSA/PAにスタバや給油所はあるか？上下線まで厳密判定して自動点灯。'
+        );
+
+        // 実機3段スタック施設カードの超リアル再現
+        var rows = [
+          {
+            tag: 'SA', tagBg: '#1B5E20',
+            name: isEn ? 'Ebina SA (Inbound)' : '海老名SA (上り)',
+            badges: ['GAS', 'STARBUCKS'],
+            km: '6.4 km', eta: '18:37'
+          },
+          {
+            tag: 'JCT', tagBg: '#00796B',
+            name: isEn ? 'Ebina JCT' : '海老名JCT',
+            badges: ['EXIT'],
+            km: '4.8 km', eta: '18:35'
+          },
+          {
+            tag: 'IC', tagBg: '#43A047',
+            name: isEn ? 'Atsugi IC' : '厚木IC',
+            badges: ['IN'],
+            km: '1.5 km', eta: '18:32'
+          }
+        ];
+
+        rows.forEach(function(r, idx) {
+          var ry = 320 + idx * 170;
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.94)';
+          ctx.strokeStyle = idx === 0 ? '#00A862' : '#262E3D';
+          ctx.lineWidth = idx === 0 ? 3 : 2;
+          ctx.fillRect(64, ry, W - 128, 146);
+          ctx.strokeRect(64, ry, W - 128, 146);
+
+          // 種別タグ (SA / JCT / IC)
+          ctx.fillStyle = r.tagBg;
+          ctx.fillRect(92, ry + 36, 96, 74);
+          ctx.font = '900 36px "Share Tech Mono", sans-serif';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.textAlign = 'center';
+          ctx.fillText(r.tag, 140, ry + 86);
+
+          // 施設名
+          ctx.textAlign = 'left';
+          ctx.font = '900 44px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText(r.name, 214, ry + 66);
+
+          // サブバッジ
+          var bx = 214;
+          var by = ry + 86;
+          r.badges.forEach(function(b) {
+            if (b === 'STARBUCKS') {
+              ctx.save();
+              ctx.shadowColor = 'rgba(0, 230, 118, 0.65)';
+              ctx.shadowBlur = 16;
+              ctx.fillStyle = '#063B25';
+              ctx.strokeStyle = '#00A862';
+              ctx.lineWidth = 2.5;
+              ctx.fillRect(bx, by, 250, 44);
+              ctx.strokeRect(bx, by, 250, 44);
+              ctx.restore();
+
+              drawTacticalCafeIcon(ctx, bx + 26, by + 22, 16);
+              ctx.font = '900 26px "Share Tech Mono", monospace';
+              ctx.fillStyle = '#FFFFFF';
+              ctx.fillText('STARBUCKS', bx + 54, by + 31);
+              bx += 268;
+            } else {
+              var isRed = b === 'IN';
+              ctx.strokeStyle = isRed ? '#E3000F' : '#64748B';
+              ctx.lineWidth = 2.5;
+              ctx.strokeRect(bx, by, 90, 44);
+              ctx.font = '900 25px "Share Tech Mono", monospace';
+              ctx.fillStyle = isRed ? '#E3000F' : '#CBD5E1';
+              ctx.textAlign = 'center';
+              ctx.fillText(b, bx + 45, by + 31);
+              ctx.textAlign = 'left';
+              bx += 108;
+            }
+          });
+
+          // 右側 距離 ＆ ETA
+          ctx.textAlign = 'right';
+          ctx.font = '900 50px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText(r.km, W - 92, ry + 70);
+
+          ctx.font = 'bold 34px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#00E676';
+          ctx.fillText('ETA ' + r.eta, W - 92, ry + 118);
+        });
+
+        // 下部グリーン・スポットライト解説カード
+        var sy = 845;
+        ctx.fillStyle = '#071F16';
+        ctx.strokeStyle = '#00A862';
+        ctx.lineWidth = 3;
+        ctx.fillRect(64, sy, W - 128, 365);
+        ctx.strokeRect(64, sy, W - 128, 365);
+
+        drawTacticalCafeIcon(ctx, 146, sy + 90, 52);
+
+        ctx.textAlign = 'left';
+        ctx.font = '900 32px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#34D399';
+        ctx.fillText(
+          isEn ? 'ALL 49 HIGHWAY STARBUCKS LOCATIONS AUDITED' : '全国高速SA/PA「全49箇所スタバ＆給油所」完全網羅！',
+          224, sy + 72
+        );
+
+        ctx.font = 'bold 24px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#E2E8F0';
+        var lines = isEn ? [
+          '• Strictly verifies Inbound vs. Outbound lanes (e.g., Umahotaru PA,',
+          '  Wangan-Makuhari PA, Moriya SA, Hasuda SA, Ebina SA, Ashigara SA).',
+          '• Prioritizes critical [GAS] fuel tags and wide [STARBUCKS] neon badges',
+          '  by automatically hiding standard P/WC tags for instant legibility.',
+          '* Store names are trademarks of their respective owners (POI info only).'
+        ] : [
+          '・海ほたるPA、湾岸幕張PA、守谷SA、蓮田SA、羽生PA下り、三芳PA下り、',
+          '  海老名SA上り、足柄SA、都筑PA上り、談合坂SAなど全49箇所を厳密登録！',
+          '・京葉道路「幕張PA」と東関道「湾岸幕張PA」の違いや、片側（上り/下り）',
+          '  にしか存在しない店舗も進行方向ベクトルから100%正確に判別して点灯。',
+          '※店舗名・ブランド名は各社の商標であり、施設案内（POI情報）目的でのみ表示。'
+        ];
+        lines.forEach(function(l, i) {
+          ctx.fillStyle = i === 4 ? '#94A3B8' : '#FFFFFF';
+          ctx.font = (i === 4 ? 'bold 20px ' : 'bold 24px ') + '"Zen Kaku Gothic New", sans-serif';
+          ctx.fillText(l, 224, sy + 125 + i * 46);
+        });
+      }
+
+      // =========================================================================
+      // SLIDE 04: VECTRA RS デュアルスロット音声 ＆ 160MB先読み (258802.jpg)
+      // =========================================================================
+      function renderSlide04(ctx) {
+        drawTacticalBackground(ctx, '04', '07');
+        drawSectionHeader(
+          ctx,
+          '03',
+          'VECTRA RS // DUAL-SLOT VOICE ENGINE',
+          isEn ? 'Instant Dual Speaker Switch & 160MB Tunnel-Proof Preloader.' : '2つの声を瞬時切替。160MB事前先読みでトンネル圏外でもラグ0.01秒。'
+        );
+        drawRsEmblem(ctx, W - 185, 165, 1.15);
+
+        // 左側：スマホ実機ベゼル（258802.jpg があれば描画、なければ258802.jpgのUIを完全ベクター再現）
+        var px = 64, py = 310, pw = 430, ph = 895;
+        ctx.fillStyle = '#040507';
+        ctx.strokeStyle = '#E3000F';
+        ctx.lineWidth = 3;
+        ctx.fillRect(px, py, pw, ph);
+        ctx.strokeRect(px, py, pw, ph);
+
+        if (loadedImages.rs) {
+          ctx.drawImage(loadedImages.rs, px + 8, py + 8, pw - 16, ph - 16);
+        } else {
+          // 258802.jpg の実機画面を寸分違わずCanvasネイティブ描画
+          var ux = px + 22, uy = py + 32, uw = pw - 44;
+          ctx.textAlign = 'left';
+          ctx.font = 'bold 24px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#E3000F';
+          ctx.fillText('AUDIO & API CONFIGURATION', ux, uy + 24);
+          drawRsEmblem(ctx, ux + uw - 65, uy - 2, 0.58);
+
+          ctx.font = 'bold 22px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText('CUSTOM VOICE API', ux, uy + 82);
+          ctx.strokeStyle = '#00E676';
+          ctx.strokeRect(ux + 195, uy + 60, 110, 28);
+          ctx.font = 'bold 15px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#00E676';
+          ctx.fillText('RS UNLOCKED', ux + 205, uy + 80);
+
+          // Endpoint URL (ぼかし表現付き)
+          ctx.strokeStyle = '#333B48';
+          ctx.strokeRect(ux, uy + 115, uw, 68);
+          ctx.font = 'bold 16px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#94A3B8';
+          ctx.fillText('Endpoint URL (https://...)', ux + 12, uy + 115);
+          ctx.font = 'bold 22px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText('https://', ux + 16, uy + 158);
+          ctx.fillStyle = 'rgba(148, 163, 184, 0.35)';
+          ctx.fillRect(ux + 112, uy + 138, 220, 24);
+
+          // 使用ボイススロット選択枠
+          ctx.fillStyle = '#0B1018';
+          ctx.strokeStyle = '#263244';
+          ctx.fillRect(ux, uy + 205, uw, 430);
+          ctx.strokeRect(ux, uy + 205, uw, 430);
+
+          ctx.font = 'bold 18px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#00E5FF';
+          ctx.fillText('使用ボイススロット選択 (1 : 2)', ux + 14, uy + 238);
+          ctx.textAlign = 'right';
+          ctx.fillStyle = '#94A3B8';
+          ctx.fillText('MAX 80MB × 2', ux + uw - 14, uy + 238);
+
+          // SLOT 1 / SLOT 2 ボックス
+          var sw = (uw - 36) / 2;
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#12161F';
+          ctx.strokeStyle = '#333B48';
+          ctx.fillRect(ux + 14, uy + 255, sw, 82);
+          ctx.strokeRect(ux + 14, uy + 255, sw, 82);
+          ctx.font = 'bold 17px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#CBD5E1';
+          ctx.fillText('○ SLOT 1 [ID: 119]', ux + 14 + sw * 0.5, uy + 290);
+          ctx.font = 'bold 14px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#00E676';
+          ctx.fillText('CACHE: 2.0 / 80 MB', ux + 14 + sw * 0.5, uy + 320);
+
+          ctx.fillStyle = '#28070B';
+          ctx.strokeStyle = '#E3000F';
+          ctx.lineWidth = 2.5;
+          ctx.fillRect(ux + 22 + sw, uy + 255, sw, 82);
+          ctx.strokeRect(ux + 22 + sw, uy + 255, sw, 82);
+          ctx.font = 'bold 17px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText('● SLOT 2 [ID: 89]', ux + 22 + sw * 1.5, uy + 290);
+          ctx.font = 'bold 14px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#00E676';
+          ctx.fillText('CACHE: 1.0 / 80 MB', ux + 22 + sw * 1.5, uy + 320);
+
+          // Speaker ID 入力欄
+          ctx.lineWidth = 1.5;
+          ctx.strokeStyle = '#333B48';
+          ctx.strokeRect(ux + 14, uy + 360, sw, 68);
+          ctx.strokeStyle = '#00E5FF';
+          ctx.strokeRect(ux + 22 + sw, uy + 360, sw, 68);
+          ctx.textAlign = 'left';
+          ctx.font = 'bold 24px "Share Tech Mono", monospace';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText('119', ux + 30, uy + 404);
+          ctx.fillText('89', ux + 38 + sw, uy + 404);
+
+          // 先読み進捗ボックス
+          ctx.fillStyle = '#070A0F';
+          ctx.strokeStyle = '#1E293B';
+          ctx.fillRect(ux + 14, uy + 448, uw - 28, 168);
+          ctx.strokeRect(ux + 14, uy + 448, uw - 28, 168);
+          ctx.font = 'bold 16.5px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#FFAB00';
+          ctx.fillText('SLOT 2 (ID:89) 先読み中: 15 / 63 (1.0 / 80.0 MB)', ux + 24, uy + 482);
+
+          // プログレスバー
+          ctx.fillStyle = '#1E293B';
+          ctx.fillRect(ux + 24, uy + 498, uw - 48, 10);
+          ctx.fillStyle = '#00E5FF';
+          ctx.fillRect(ux + 24, uy + 498, (uw - 48) * 0.28, 10);
+
+          ctx.font = 'bold 14px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#94A3B8';
+          ctx.fillText('※ナビ開始時にルート上の通り名・施設名も自動先読み', ux + 24, uy + 542);
+
+          // 赤＆シアンボタン
+          ctx.fillStyle = '#E3000F';
+          ctx.fillRect(ux, uy + 660, uw, 64);
+          ctx.textAlign = 'center';
+          ctx.font = '900 20px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText('設定を保存して SLOT 2 を先読み開始', ux + uw * 0.5, uy + 700);
+
+          ctx.fillStyle = '#0F1E2A';
+          ctx.strokeStyle = '#00E5FF';
+          ctx.fillRect(ux, uy + 740, uw, 58);
+          ctx.strokeRect(ux, uy + 740, uw, 58);
+          ctx.fillStyle = '#00E5FF';
+          ctx.fillText('選択中のボイスをテスト再生 (SLOT 2)', ux + uw * 0.5, uy + 777);
+        }
+
+        // 右側：4つの技術ポイント解説カード
+        var rx = 516, rw = W - 516 - 64;
+        var specs = isEn ? [
+          { c: '#E3000F', t: '01 // DUAL-SLOT (SLOT 1 : 2)', d1: 'Store 2 Speaker IDs (e.g. ID:119 & ID:89).', d2: 'Switch voices in 1 tap without losing cache.' },
+          { c: '#00E5FF', t: '02 // 160MB (80MB×2) PRELOADER', d1: 'Saves core system phrases into OS-safe', d2: 'internal storage for 0.01s instant playback.' },
+          { c: '#00E676', t: '03 // ROUTE STREET PRE-CACHING', d1: 'Auto-preloads all upcoming street & JCT', d2: 'names on launch. Works inside deep tunnels!' },
+          { c: '#FFAB00', t: '04 // HTTPS & SMART FALLBACK', d1: 'Encrypted HTTPS link to your private NAS', d2: 'with automatic built-in OS TTS fallback.' }
+        ] : [
+          { c: '#E3000F', t: '01 // デュアルスロット（SLOT 1 : 2）瞬時切替', d1: '2つの話者ID（昼の高速巡航用／夜の首都高用など）', d2: 'を常時ペア保管し、1タップで即座に切り替え！' },
+          { c: '#00E5FF', t: '02 // 最大160MB（80MB×2）定型句ピン留め先読み', d1: '保存ボタン1つで基本定型句を一括プリロード。', d2: 'OSに消されない専用領域からラグ0.01秒で即発話。' },
+          { c: '#00E676', t: '03 // ルート上の「全通り名・JCT・SA/PA」自動先読み', d1: 'ナビ開始時に終点までの通り名や分岐名を裏で先読み。', d2: '山手トンネルやアクアライン等の圏外でも完全発話！' },
+          { c: '#FFAB00', t: '04 // HTTPS完全暗号化 ＆ 標準TTS自動フォールバック', d1: '自宅NAS（Docker）等とHTTPS直結。万が一の通信', d2: '切断時も標準TTSへシームレスに自動切り替え。' }
+        ];
+
+        specs.forEach(function(s, i) {
+          var sy = 310 + i * 228;
+          ctx.fillStyle = '#0D1119';
+          ctx.strokeStyle = '#263244';
+          ctx.lineWidth = 2;
+          ctx.fillRect(rx, sy, rw, 206);
+          ctx.strokeRect(rx, sy, rw, 206);
+          ctx.fillStyle = s.c;
+          ctx.fillRect(rx, sy, 7, 206);
+
+          ctx.textAlign = 'left';
+          ctx.font = '900 24px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText(s.t, rx + 22, sy + 52);
+
+          ctx.font = 'bold 21px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#CBD5E1';
+          ctx.fillText(s.d1, rx + 22, sy + 112);
+          ctx.fillText(s.d2, rx + 22, sy + 154);
+        });
+      }
+
+      // =========================================================================
+      // SLIDE 05: 全7種タクティカル・マップスタイル
+      // =========================================================================
+      function renderSlide05(ctx) {
+        drawTacticalBackground(ctx, '05', '07');
+        drawSectionHeader(
+          ctx,
+          '04',
+          '7 TACTICAL MAPBOX v11 STYLES',
+          isEn ? '1-Tap rotation across Night Traffic, Stealth Dark, Satellite & 3D.' : '夜間渋滞・漆黒ダーク・航空写真・3D立体都市まで1タップ巡回切替。'
+        );
+
+        var styles = isEn ? [
+          { id: '01', name: 'TRAFFIC NIGHT', tier: 'PRO / RS', accent: '#E3000F', desc: 'High-contrast neon congestion lines over a dark night combat canvas.' },
+          { id: '02', name: 'STEALTH DARK', tier: 'PRO / RS', accent: '#00E5FF', desc: 'Strips away ambient color noise so HUD telemetry & route vectors pop.' },
+          { id: '03', name: 'SATELLITE STREETS', tier: 'PRO / RS', accent: '#00E676', desc: 'High-res satellite imagery overlaid with expressway networks & traffic.' },
+          { id: '04', name: 'TRAFFIC DAY', tier: 'FREE & PRO', accent: '#00E676', desc: 'Crisp daylight visibility under direct sunlight or open-top driving.' },
+          { id: '05', name: 'STANDARD 3D', tier: 'PRO / RS', accent: '#00E5FF', desc: 'Next-gen 3D urban structures, dynamic lighting & spiral JCT ramps.' },
+          { id: '06', name: 'MAPBOX STREETS', tier: 'FREE & PRO', accent: '#00E676', desc: 'Balanced vector street map for local roads & metropolitan landmarks.' },
+          { id: '07', name: 'MINIMAL LIGHT', tier: 'PRO / RS', accent: '#CBD5E1', desc: 'Clean silver-white architectural canvas highlighting active route lines.' }
+        ] : [
+          { id: '01', name: 'TRAFFIC NIGHT（夜間トラフィック）', tier: 'PRO / RS', accent: '#E3000F', desc: 'ダーク背景に渋滞ラインとネオンルートが浮かび上がる夜間戦闘モード' },
+          { id: '02', name: 'STEALTH DARK（ステルスダーク）', tier: 'PRO / RS', accent: '#00E5FF', desc: '色彩ノイズを極限まで削ぎ落とした純粋な漆黒コックピットモード' },
+          { id: '03', name: 'SATELLITE（航空写真＋高速網）', tier: 'PRO / RS', accent: '#00E676', desc: '衛星航空写真に高速ネットワーク・IC/JCT・リアルタイム渋滞を重畳' },
+          { id: '04', name: 'TRAFFIC DAY（昼間トラフィック）', tier: 'FREE対応', accent: '#00E676', desc: '日中の直射日光下でも道路形状と渋滞ラインがくっきり見える昼間標準' },
+          { id: '05', name: 'STANDARD 3D（3D立体都市・JCT）', tier: 'PRO / RS', accent: '#00E5FF', desc: '大黒JCTのループ橋ランプ形状や都市ビル群を立体描画する次世代3D' },
+          { id: '06', name: 'STREETS（ストリート標準）', tier: 'FREE対応', accent: '#00E676', desc: '幹線道路・細街路・ランドマークを最もバランスよく描画する王道地図' },
+          { id: '07', name: 'LIGHT（モノトーンライト）', tier: 'PRO / RS', accent: '#CBD5E1', desc: '装飾色を抑えたシルバー調背景でルートラインをシャープに際立たせる' }
+        ];
+
+        styles.forEach(function(st, i) {
+          var sy = 310 + i * 116;
+          ctx.fillStyle = '#0D1119';
+          ctx.strokeStyle = i === 0 ? '#E3000F' : '#252F40';
+          ctx.lineWidth = 2;
+          ctx.fillRect(64, sy, W - 128, 102);
+          ctx.strokeRect(64, sy, W - 128, 102);
+
+          ctx.fillStyle = st.accent;
+          ctx.fillRect(64, sy, 8, 102);
+
+          ctx.textAlign = 'left';
+          ctx.font = '900 28px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText('STYLE ' + st.id + ' // ' + st.name, 94, sy + 44);
+
+          ctx.font = 'bold 21px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#94A3B8';
+          ctx.fillText(st.desc, 94, sy + 82);
+
+          // 右上ティアバッジ
+          ctx.textAlign = 'right';
+          ctx.font = 'bold 20px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = st.tier.indexOf('FREE') !== -1 ? '#00E676' : '#FF8A80';
+          ctx.fillText('[' + st.tier + ']', W - 88, sy + 44);
+        });
+
+        // 下部補足：渋滞ライン太さスライダー
+        ctx.fillStyle = '#09131E';
+        ctx.strokeStyle = '#00E5FF';
+        ctx.lineWidth = 2;
+        ctx.fillRect(64, 1134, W - 128, 78);
+        ctx.strokeRect(64, 1134, W - 128, 78);
+        ctx.textAlign = 'center';
+        ctx.font = '900 24px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#00E5FF';
+        ctx.fillText(
+          isEn ? '⚡ Real-Time Traffic Line Width Slider (0.5x - 2.0x / THIN・STD・BOLD)' : '⚡ 渋滞ライン太さリアルタイム調整スライダー搭載（0.5x〜2.0x ／ THIN・STD・BOLD）',
+          W * 0.5, 1182
+        );
+      }
+
+      // =========================================================================
+      // SLIDE 06: U字プルタブお気に入り3拠点 ＆ 2段階ステルス代替ルート
+      // =========================================================================
+      function renderSlide06(ctx) {
+        drawTacticalBackground(ctx, '06', '07');
+        drawSectionHeader(
+          ctx,
+          '05',
+          'QUICK 3 PINS & STEALTH ALT ROUTE',
+          isEn ? '1-Tap Return Drawer & Non-Intrusive Alternative Route Switcher.' : '左端「U字タブ」から1タップ帰還。運転を妨げないステルス代替ルート。'
+        );
+
+        // 1. U字プルタブの実機再現図解ステージ
+        ctx.fillStyle = '#0B0F17';
+        ctx.strokeStyle = '#283446';
+        ctx.lineWidth = 2;
+        ctx.fillRect(64, 315, W - 128, 290);
+        ctx.strokeRect(64, 315, W - 128, 290);
+
+        ctx.textAlign = 'left';
+        ctx.font = '900 28px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#00E5FF';
+        ctx.fillText(
+          isEn ? '01 // LEFT-EDGE "U-SHAPED PULL-TAB" (3 QUICK PINS)' : '01 // 画面左端「U字プルタブ」お気に入り3拠点ドロワー',
+          94, 366
+        );
+
+        // U字ドロワーの大型モック描画
+        var dx = 94, dy = 392;
+        ctx.fillStyle = '#05070B';
+        ctx.strokeStyle = '#263040';
+        ctx.fillRect(dx, dy, 650, 92);
+        ctx.strokeRect(dx, dy, 650, 92);
+
+        var pins = ['[Home]', '[Favorite1]', '[Favorite2]'];
+        pins.forEach(function(p, i) {
+          var px = dx + 18 + i * 208;
+          ctx.fillStyle = i < 2 ? '#26070B' : '#12161F';
+          ctx.strokeStyle = i < 2 ? '#E3000F' : '#475569';
+          ctx.lineWidth = 2.5;
+          ctx.fillRect(px, dy + 16, 192, 60);
+          ctx.strokeRect(px, dy + 16, 192, 60);
+
+          ctx.textAlign = 'center';
+          ctx.font = '900 27px "Share Tech Mono", monospace';
+          ctx.fillStyle = i < 2 ? '#FFFFFF' : '#94A3B8';
+          ctx.fillText(p, px + 96, dy + 56);
+        });
+
+        // U字タブ先端
+        ctx.fillStyle = '#090C12';
+        ctx.strokeStyle = '#E3000F';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.roundRect(dx + 650, dy + 6, 68, 80, [0, 38, 38, 0]);
+        ctx.fill();
+        ctx.stroke();
+        ctx.font = '900 32px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#E3000F';
+        ctx.fillText('⋮⋮', dx + 684, dy + 57);
+
+        ctx.textAlign = 'left';
+        ctx.font = 'bold 23px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#E2E8F0';
+        ctx.fillText(
+          isEn ? '• Launch route to Home or Daikoku PA in 1 tap with ZERO search quota used!' : '・検索枠を一切消費せず、自宅や大黒PA・辰巳PAへ1タップでルート案内開始！',
+          94, 534
+        );
+        ctx.fillStyle = '#94A3B8';
+        ctx.fillText(
+          isEn ? '• Map Long-Press (1 sec) also drops a direct pin with zero search quota.' : '・地図上の行きたい場所を「1秒長押し」しても検索消費ゼロで直接ピン留め出発！',
+          94, 576
+        );
+
+        // 2. 2段階ステルス代替ルート
+        ctx.fillStyle = '#0B0F17';
+        ctx.strokeStyle = '#283446';
+        ctx.fillRect(64, 630, W - 128, 270);
+        ctx.strokeRect(64, 630, W - 128, 270);
+
+        ctx.font = '900 28px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#00E676';
+        ctx.fillText(
+          isEn ? '02 // 2-STEP STEALTH ALTERNATIVE ROUTE SWITCHER' : '02 // 運転を妨げない「2段階ステルス代替ルート」切り替え',
+          94, 680
+        );
+
+        // ALT ROUTE ボタン再現
+        ctx.fillStyle = '#080B10';
+        ctx.strokeStyle = '#E3000F';
+        ctx.lineWidth = 3;
+        ctx.fillRect(94, 706, 430, 92);
+        ctx.strokeRect(94, 706, 430, 92);
+        ctx.font = '900 26px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillText('ALT ROUTE 1/2 | ', 118, 746);
+        ctx.fillStyle = '#00E676';
+        ctx.fillText('-4 min', 355, 746);
+        ctx.font = 'bold 20px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#E3000F';
+        ctx.fillText('[ TAP AGAIN TO SWITCH ]', 118, 782);
+
+        ctx.font = 'bold 22px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#E2E8F0';
+        ctx.fillText(
+          isEn ? '1st Tap: Wakes up button & shows ETA callout on map.' : '・1タップ目でボタンと地図上の時間差吹き出しが起動（4秒放置で自動減光）',
+          94, 838
+        );
+        ctx.fillText(
+          isEn ? '2nd Tap: Switches route instantly with 0 extra quota used!' : '・2タップ目で追加のナビ枠消費なし（0消費）で即座に別ルートへ切り替え！',
+          94, 876
+        );
+
+        // 3. 日英バイリンガル ＆ 300m近距離ガード
+        ctx.fillStyle = '#0B0F17';
+        ctx.strokeStyle = '#283446';
+        ctx.fillRect(64, 925, W - 128, 285);
+        ctx.strokeRect(64, 925, W - 128, 285);
+
+        ctx.font = '900 28px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#FFAB00';
+        ctx.fillText(
+          isEn ? '03 // 1-TAP [EN | JP] COCKPIT & SMART QUOTA GUARD' : '03 // 日英ワンタップ切替 ＆ 300m誤タップ防止ガード',
+          94, 976
+        );
+
+        ctx.font = 'bold 23px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillText(
+          isEn ? '• Switch Map Labels, Highway HUD & Voice between EN and JP anytime.' : '・地図ラベル・高速施設名・音声案内を「日本語 ⇔ 英語（欧州車純正風）」へ瞬時切替。',
+          94, 1030
+        );
+        ctx.fillText(
+          isEn ? '• 300m Nearby Guard prevents accidental quota loss; 40m Auto-Arrival.' : '・現在地から300m以内の誤タップは枠消費ゼロで自動保護＆40m圏内で自動到着完了！',
+          94, 1080
+        );
+        ctx.fillStyle = '#00E5FF';
+        ctx.fillText(
+          isEn ? '• Zero Ads, Zero Tracking & 1-Tap Account/Data Wipe in Settings.' : '・広告ゼロ・追跡ゼロ・GPSホットリカバリー対応でストレスフリーなコックピット。',
+          94, 1130
+        );
+      }
+
+      // =========================================================================
+      // SLIDE 07: 先行20名枠締切 ＆ 11月中旬Google Play公開・QRコード
+      // =========================================================================
+      function renderSlide07(ctx) {
+        drawTacticalBackground(ctx, '07', '07');
+        generateQrCode();
+
+        // 最上段 20名枠締切バナー
+        ctx.fillStyle = '#28070B';
+        ctx.strokeStyle = '#E3000F';
+        ctx.lineWidth = 3;
+        ctx.fillRect(64, 140, W - 128, 130);
+        ctx.strokeRect(64, 140, W - 128, 130);
+
+        ctx.textAlign = 'center';
+        ctx.font = '900 28px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#FF8A80';
+        ctx.fillText(
+          isEn ? '✅ PIONEER 20 TEST PILOT SLOTS: 100% FILLED (CLOSED)' : '✅ 先行テストパイロット（20名限定枠）：満員御礼・募集締切',
+          W * 0.5, 190
+        );
+        ctx.font = 'bold 22px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillText(
+          isEn ? 'Huge thanks to all test pilots! Direct APK distribution has ended.' : '熱い実走フィードバックをありがとうございます！（※テスト用APK配布は終了しました）',
+          W * 0.5, 240
+        );
+
+        // メイン告知：11月中旬 Google Play 正式リリース
+        ctx.fillStyle = '#081824';
+        ctx.strokeStyle = '#00E5FF';
+        ctx.lineWidth = 3;
+        ctx.fillRect(64, 295, W - 128, 175);
+        ctx.strokeRect(64, 295, W - 128, 175);
+
+        ctx.font = 'bold 25px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#00E5FF';
+        ctx.fillText('OFFICIAL GOOGLE PLAY STORE RELEASE', W * 0.5, 345);
+
+        ctx.font = '900 52px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillText(
+          isEn ? 'LAUNCHING MID-NOVEMBER 2026!' : '2026年11月中旬 正式リリース！',
+          W * 0.5, 412
+        );
+        ctx.font = 'bold 22px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#00E676';
+        ctx.fillText(
+          isEn ? 'Follow this account to get notified the moment VECTRA v4.0.0 goes live!' : '公開通知を見逃さないよう、ぜひフォロー＆保存してお待ちください！',
+          W * 0.5, 452
+        );
+
+        // 3ティア比較サマリー
+        var tiers = isEn ? [
+          { name: 'VECTRA FREE', price: '¥0 (FREE FOREVER)', c: '#00E676', desc: 'Unlimited Highway & 49 Starbucks Radar + 6 Route Navs & 6 Searches / mo' },
+          { name: 'VECTRA PRO', price: '¥300 / MONTH', c: '#00E5FF', desc: '100 Navs & 100 Searches / mo + U-Tab 3 Quick Pins + All 7 Map Styles' },
+          { name: 'VECTRA RS', price: '¥500 / MONTH', c: '#E3000F', desc: 'All PRO Features + Dual-Slot (SLOT 1:2) & 160MB Preload Custom Voice Engine' }
+        ] : [
+          { name: 'VECTRA FREE（無料版）', price: '月額 ¥0（永久無料）', c: '#00E676', desc: '走り屋モード＆全国49箇所スタバ捕捉 無制限 ＋ ルートナビ月6回＆検索月6回' },
+          { name: 'VECTRA PRO（標準版）', price: '月額 ¥300', c: '#00E5FF', desc: 'ナビ月100回＆検索月100回 ＋ U字タブ3拠点1タップ帰還 ＋ 全7種マップ解放' },
+          { name: 'VECTRA RS（最上位版）', price: '月額 ¥500', c: '#E3000F', desc: 'PRO全機能 ＋ デュアル音声（SLOT 1:2）＆ 160MB先読みエンジン ＋ RS特典' }
+        ];
+
+        tiers.forEach(function(t, i) {
+          var ty = 495 + i * 112;
+          ctx.fillStyle = '#0D1119';
+          ctx.strokeStyle = '#263244';
+          ctx.lineWidth = 2;
+          ctx.fillRect(64, ty, W - 128, 98);
+          ctx.strokeRect(64, ty, W - 128, 98);
+          ctx.fillStyle = t.c;
+          ctx.fillRect(64, ty, 8, 98);
+
+          ctx.textAlign = 'left';
+          ctx.font = '900 27px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText(t.name, 92, ty + 42);
+
+          ctx.textAlign = 'right';
+          ctx.font = '900 26px "Share Tech Mono", "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = t.c;
+          ctx.fillText(t.price, W - 92, ty + 42);
+
+          ctx.textAlign = 'left';
+          ctx.font = 'bold 21px "Zen Kaku Gothic New", sans-serif';
+          ctx.fillStyle = '#CBD5E1';
+          ctx.fillText(t.desc, 92, ty + 80);
+        });
+
+        // 下部：公式Webマニュアル誘導 ＆ 実動QRコード
+        var qy = 850;
+        ctx.fillStyle = '#0B1018';
+        ctx.strokeStyle = '#00E5FF';
+        ctx.lineWidth = 3;
+        ctx.fillRect(64, qy, W - 128, 355);
+        ctx.strokeRect(64, qy, W - 128, 355);
+
+        // QRコード描画
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(96, qy + 38, 280, 280);
+        ctx.drawImage(qrCanvas, 106, qy + 48, 260, 260);
+
+        ctx.textAlign = 'left';
+        ctx.font = 'bold 23px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#00E5FF';
+        ctx.fillText('// OFFICIAL INTERACTIVE WEB MANUAL', 410, qy + 78);
+
+        ctx.font = '900 36px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#FFFFFF';
+        if (isEn) {
+          ctx.fillText('Tap the Link in Bio or Scan QR', 410, qy + 135);
+          ctx.fillText('to Try the Live HUD Manual!', 410, qy + 185);
+        } else {
+          ctx.fillText('プロフィールのリンク、または', 410, qy + 135);
+          ctx.fillText('QRから公式マニュアルを体験！', 410, qy + 185);
+        }
+
+        ctx.font = 'bold 23px "Share Tech Mono", monospace';
+        ctx.fillStyle = '#00E676';
+        ctx.fillText('https://vectra-hud.github.io/vectra-manual/', 410, qy + 245);
+
+        ctx.font = 'bold 21px "Zen Kaku Gothic New", sans-serif';
+        ctx.fillStyle = '#94A3B8';
+        ctx.fillText(
+          isEn ? 'Features interactive C1 radar, 7 live map captures & FAQ.' : '首都高C1レーダー・実機7種マップ切替・RS音声仕様を公開中！',
+          410, qy + 295
+        );
+      }
+
+      function renderAllSlides() {
+        if (canvases.length < 7) return;
+        renderSlide01(canvases[0].getContext('2d'));
+        renderSlide02(canvases[1].getContext('2d'));
+        renderSlide03(canvases[2].getContext('2d'));
+        renderSlide04(canvases[3].getContext('2d'));
+        renderSlide05(canvases[4].getContext('2d'));
+        renderSlide06(canvases[5].getContext('2d'));
+        renderSlide07(canvases[6].getContext('2d'));
+      }
+
+      function downloadCanvasAsPng(cv, slideIndex) {
+        var langSuffix = isEn ? 'EN' : 'JP';
+        var numStr = slideIndex < 10 ? '0' + slideIndex : '' + slideIndex;
+        var fileName = 'VECTRA_Insta_' + langSuffix + '_' + numStr + '.png';
+        var dataUrl = cv.toDataURL('image/png');
+        var a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+
+      // 一括ダウンロード（ブラウザの連続DLブロックを避けるため350ms間隔で順次保存）
+      document.getElementById('btnDownloadAll').addEventListener('click', function() {
+        canvases.forEach(function(cv, i) {
+          setTimeout(function() {
+            downloadCanvasAsPng(cv, i + 1);
+          }, i * 350);
+        });
+      });
+
+      var btnJp = document.getElementById('btnLangJp');
+      var btnEn = document.getElementById('btnLangEn');
+      btnJp.addEventListener('click', function() {
+        isEn = false;
+        btnJp.classList.add('lang-active');
+        btnEn.classList.remove('lang-active');
+        initSlideDOM();
+        renderAllSlides();
+      });
+      btnEn.addEventListener('click', function() {
+        isEn = true;
+        btnEn.classList.add('lang-active');
+        btnJp.classList.remove('lang-active');
+        initSlideDOM();
+        renderAllSlides();
+      });
+
+      initSlideDOM();
+      renderAllSlides();
+      tryAutoLoadLocalFiles();
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() {
+          renderAllSlides();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
