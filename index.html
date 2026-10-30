@@ -112,41 +112,37 @@
     /* ヒーローセクション */
     .hero {
       position: relative; text-align: center;
-      padding: 52px 16px 40px;
-      border-bottom: 1px solid var(--border-stealth); margin-bottom: 36px;
+      padding: 48px 12px 36px;
+      border-bottom: 1px solid var(--border-stealth); margin-bottom: 32px;
     }
     .crest-box {
-      width: 96px; height: 96px; margin: 0 auto 20px;
+      width: 92px; height: 92px; margin: 0 auto 18px;
       position: relative; display: flex; align-items: center; justify-content: center;
     }
     .hero-eyebrow {
       font-family: var(--font-mono); color: var(--rs-silver);
-      font-size: 0.85rem; font-weight: bold; letter-spacing: 4px; margin-bottom: 8px;
+      font-size: 0.82rem; font-weight: bold; letter-spacing: 3.5px; margin-bottom: 8px;
     }
     .hero-title {
-      font-family: var(--font-mono); font-size: clamp(2.4rem, 7vw, 4rem);
+      font-family: var(--font-mono); font-size: clamp(2.3rem, 7vw, 4rem);
       font-weight: bold; letter-spacing: 8px; color: #FFFFFF;
       text-shadow: 0 0 28px rgba(203, 213, 225, 0.22); margin-bottom: 8px;
     }
-    .hero-subtitle { font-size: 0.95rem; color: var(--text-sub); max-width: 680px; margin: 0 auto 26px; }
+    .hero-subtitle { font-size: 0.94rem; color: var(--text-sub); max-width: 680px; margin: 0 auto 24px; }
 
     .pioneer-frame {
-      display: inline-block;
+      display: inline-block; max-width: 100%;
       background: linear-gradient(90deg, rgba(30, 36, 48, 0.9), rgba(15, 18, 24, 0.95), rgba(30, 36, 48, 0.9));
       border: 1px solid #334155;
       border-left: 3px solid var(--hud-cyan); border-right: 3px solid var(--audi-red);
-      padding: 12px 28px; margin-bottom: 8px;
+      padding: 12px 22px; margin-bottom: 8px;
     }
-    .pioneer-frame .edition { font-family: var(--font-mono); color: #FFFFFF; font-size: 1.05rem; letter-spacing: 2.5px; font-weight: bold; }
-    .pioneer-frame .desc { font-size: 0.8rem; color: var(--rs-silver); margin-top: 2px; }
+    .pioneer-frame .edition { font-family: var(--font-mono); color: #FFFFFF; font-size: 1.02rem; letter-spacing: 2px; font-weight: bold; }
+    .pioneer-frame .desc { font-size: 0.78rem; color: var(--rs-silver); margin-top: 3px; }
 
-    /* Audi Sport風 RS タクティカル・エンブレム（アプリ実機と完全同一デザイン） */
-    .rs-sport-emblem {
-      display: inline-flex; align-items: center; gap: 5px; vertical-align: middle;
-    }
-    .rs-sport-emblem .vectra-txt {
-      font-family: var(--font-mono); font-weight: 900; color: #FFFFFF; letter-spacing: 1px;
-    }
+    /* Audi Sport風 RS タクティカル・エンブレム */
+    .rs-sport-emblem { display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; flex-wrap: wrap; }
+    .rs-sport-emblem .vectra-txt { font-family: var(--font-mono); font-weight: 900; color: #FFFFFF; letter-spacing: 1px; }
     .rs-rhombus-badge {
       display: inline-flex; align-items: center; justify-content: center;
       position: relative; padding: 1px 9px 1px 11px;
@@ -164,8 +160,8 @@
     /* クイックジャンプナビ（6グリッド） */
     .quick-nav {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
-      gap: 10px; margin-bottom: 48px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin-bottom: 44px;
     }
     .quick-link {
       background: var(--bg-panel); border: 1px solid var(--border-stealth);
@@ -179,20 +175,18 @@
       background: linear-gradient(135deg, rgba(227, 0, 15, 0.18) 0%, rgba(12, 14, 18, 0.96) 80%);
       border-color: rgba(227, 0, 15, 0.65);
     }
-    .quick-link.rs-special:hover {
-      border-color: var(--hud-cyan);
-      box-shadow: 0 0 16px rgba(227, 0, 15, 0.35);
-    }
+    .quick-link.rs-special:hover { border-color: var(--hud-cyan); box-shadow: 0 0 16px rgba(227, 0, 15, 0.35); }
 
     /* セクション共通 */
-    .section { margin-bottom: 56px; scroll-margin-top: 72px; }
+    .section { margin-bottom: 52px; scroll-margin-top: 72px; }
     .sec-header {
-      display: flex; align-items: baseline; gap: 12px;
-      border-bottom: 2px solid var(--audi-red); padding-bottom: 8px; margin-bottom: 24px;
+      display: flex; align-items: baseline; gap: 10px;
+      border-bottom: 2px solid var(--audi-red); padding-bottom: 8px; margin-bottom: 22px;
+      flex-wrap: wrap;
     }
-    .sec-num { font-family: var(--font-mono); color: var(--audi-red); font-size: 1.3rem; font-weight: bold; letter-spacing: 1px; }
-    .sec-title { font-family: var(--font-mono); font-size: 1.35rem; font-weight: bold; color: #FFFFFF; letter-spacing: 2px; }
-    .sec-jp { font-size: 0.85rem; color: var(--text-sub); margin-left: auto; }
+    .sec-num { font-family: var(--font-mono); color: var(--audi-red); font-size: 1.25rem; font-weight: bold; letter-spacing: 1px; flex-shrink: 0; }
+    .sec-title { font-family: var(--font-mono); font-size: clamp(1.05rem, 3.8vw, 1.35rem); font-weight: bold; color: #FFFFFF; letter-spacing: 1.5px; line-height: 1.3; }
+    .sec-jp { font-size: 0.82rem; color: var(--text-sub); margin-left: auto; }
 
     /* パネル・カード */
     .hud-card {
@@ -208,8 +202,8 @@
     .hud-card.cyan-accent::before { background: var(--hud-cyan); }
 
     .card-title {
-      font-family: var(--font-mono); font-size: 1.1rem; font-weight: bold;
-      color: #FFFFFF; letter-spacing: 1px; margin-bottom: 10px;
+      font-family: var(--font-mono); font-size: 1.06rem; font-weight: bold;
+      color: #FFFFFF; letter-spacing: 0.8px; margin-bottom: 10px;
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
     }
     .hud-card.red-accent .card-title { color: #FF6B72; }
@@ -217,9 +211,46 @@
     .hud-card.cyan-accent .card-title { color: var(--hud-cyan); }
 
     .badge {
-      font-family: var(--font-mono); font-size: 0.7rem; font-weight: bold;
-      padding: 2px 8px; border: 1px solid currentColor; letter-spacing: 1px;
+      display: inline-block; white-space: nowrap;
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: bold;
+      padding: 2px 8px; border: 1px solid currentColor; letter-spacing: 1px; line-height: 1.2;
     }
+
+    /* ★ 四角枠バッジの改行分裂を100%防止する inline-block & nowrap 定義 */
+    .mono-hl {
+      display: inline-block; white-space: nowrap; line-height: 1.25; vertical-align: middle;
+      font-family: var(--font-mono); font-weight: bold; font-size: 0.78rem; color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08); padding: 2px 7px; border: 1px solid rgba(255, 255, 255, 0.24);
+      margin: 1px 0;
+    }
+    .mono-red {
+      display: inline-block; white-space: nowrap; line-height: 1.25; vertical-align: middle;
+      font-family: var(--font-mono); font-weight: bold; font-size: 0.78rem; color: #FF8A80;
+      background: rgba(227, 0, 15, 0.16); padding: 2px 7px; border: 1px solid rgba(227, 0, 15, 0.45);
+      margin: 1px 0;
+    }
+    .mono-cyan {
+      display: inline-block; white-space: nowrap; line-height: 1.25; vertical-align: middle;
+      font-family: var(--font-mono); font-weight: bold; font-size: 0.78rem; color: var(--hud-cyan);
+      background: rgba(0, 229, 255, 0.12); padding: 2px 7px; border: 1px solid rgba(0, 229, 255, 0.4);
+      margin: 1px 0;
+    }
+
+    /* ============================================================
+       ★ マトリクス表（PCでは横テーブル ／ スマホではタクティカル・カードへ自動変形）
+       ============================================================ */
+    .table-wrap { overflow-x: auto; margin-top: 14px; }
+    table.hud-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.hud-table th, table.hud-table td { border: 1px solid var(--border-stealth); padding: 12px 13px; text-align: left; vertical-align: middle; }
+    table.hud-table th {
+      background: #151921; color: var(--rs-silver);
+      font-family: var(--font-mono); font-weight: bold; letter-spacing: 1px; white-space: nowrap;
+    }
+    table.hud-table th.rs-col-head {
+      background: linear-gradient(180deg, rgba(227, 0, 15, 0.28) 0%, #151921 100%);
+      color: #FFFFFF; border-top: 2px solid var(--audi-red);
+    }
+    table.hud-table td { background: var(--bg-card); color: var(--text-main); }
 
     /* ============================================================
        ★ 首都高「走り屋モード」タクティカル・レーダー図解 (SVG & HUD)
@@ -236,10 +267,10 @@
     .shutoko-mode-tag {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--audi-red); color: #FFFFFF;
-      font-family: var(--font-mono); font-size: 0.82rem; font-weight: bold;
-      letter-spacing: 2px; padding: 4px 12px; box-shadow: 0 0 16px var(--audi-red-glow);
+      font-family: var(--font-mono); font-size: 0.78rem; font-weight: bold;
+      letter-spacing: 1.5px; padding: 4px 12px; box-shadow: 0 0 16px var(--audi-red-glow);
     }
-    .shutoko-Catch { font-size: 1.22rem; font-weight: 900; color: #FFFFFF; letter-spacing: 1px; margin-bottom: 8px; }
+    .shutoko-Catch { font-size: clamp(1.05rem, 3.6vw, 1.22rem); font-weight: 900; color: #FFFFFF; letter-spacing: 0.6px; margin-bottom: 8px; line-height: 1.45; }
     .shutoko-grid {
       display: grid; grid-template-columns: 1.15fr 0.85fr;
       gap: 18px; align-items: stretch; margin-top: 16px;
@@ -248,12 +279,12 @@
       background: radial-gradient(circle at 50% 50%, #101722 0%, #06080C 78%);
       border: 1px solid #283242; position: relative; padding: 12px;
       display: flex; flex-direction: column; justify-content: space-between;
-      min-height: 320px; overflow: hidden;
+      min-height: 300px; overflow: hidden;
     }
     .shutoko-svg-header {
-      display: flex; justify-content: space-between; align-items: center;
-      font-family: var(--font-mono); font-size: 0.7rem; color: var(--hud-cyan);
-      letter-spacing: 1.5px; border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px;
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--hud-cyan);
+      letter-spacing: 1px; border-bottom: 1px solid rgba(0, 229, 255, 0.2);
       padding-bottom: 6px; margin-bottom: 6px; z-index: 2;
     }
     .shutoko-svg-wrap { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; }
@@ -276,8 +307,8 @@
     @keyframes radarSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
     .shutoko-svg-footer {
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
-      font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-sub);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;
+      font-family: var(--font-mono); font-size: 0.66rem; color: var(--text-sub);
       border-top: 1px solid #1E2530; padding-top: 6px; z-index: 2;
     }
     .shutoko-feature-list { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
@@ -290,9 +321,9 @@
     .shutoko-point-box.amber { border-left-color: var(--hud-amber); }
     .shutoko-point-box h5 {
       font-family: var(--font-sans); font-size: 0.9rem; color: #FFFFFF;
-      margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
+      margin-bottom: 4px; display: flex; align-items: center; gap: 6px; line-height: 1.35;
     }
-    .shutoko-point-box p { font-size: 0.8rem; color: var(--text-sub); line-height: 1.48; }
+    .shutoko-point-box p { font-size: 0.8rem; color: var(--text-sub); line-height: 1.5; }
 
     /* ============================================================
        ★ 03 // VECTRA RS — TACTICAL VOICE ENGINE 特設ショーケース
@@ -311,46 +342,47 @@
     }
     .rs-stage-header {
       display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
+      flex-wrap: wrap; gap: 10px;
       border-bottom: 1px solid rgba(227, 0, 15, 0.35);
       padding-bottom: 14px; margin-bottom: 16px;
     }
     .rs-patron-pill {
-      font-family: var(--font-mono); font-size: 0.74rem; font-weight: bold;
+      display: inline-block; white-space: nowrap;
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: bold;
       color: #FFFFFF; background: rgba(227, 0, 15, 0.25);
-      border: 1px solid var(--audi-red); padding: 4px 12px; letter-spacing: 1.5px;
+      border: 1px solid var(--audi-red); padding: 4px 10px; letter-spacing: 1.2px;
       box-shadow: 0 0 14px rgba(227, 0, 15, 0.35);
     }
     .rs-showcase-grid {
       display: grid;
       grid-template-columns: 310px 1fr;
-      gap: 24px;
+      gap: 22px;
       align-items: stretch;
       margin-top: 18px;
     }
     .rs-spec-pills {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .rs-metric-box {
       background: rgba(7, 10, 15, 0.95);
       border: 1px solid #263244;
       border-top: 2px solid var(--hud-cyan);
-      padding: 8px 10px;
+      padding: 8px 6px;
       text-align: center;
     }
     .rs-metric-box.red-top { border-top-color: var(--audi-red); }
     .rs-metric-box.emerald-top { border-top-color: var(--hud-emerald); }
     .rs-metric-label {
-      font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-sub); letter-spacing: 1px;
+      font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-sub); letter-spacing: 0.8px;
     }
     .rs-metric-val {
-      font-family: var(--font-mono); font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin-top: 2px;
+      font-family: var(--font-mono); font-size: 0.92rem; font-weight: 900; color: #FFFFFF; margin-top: 2px; white-space: nowrap;
     }
 
-    /* プレビュー路線切り替えボタン (首都高C1 / 東名高速) */
+    /* プレビュー路線切り替えボタン */
     .route-preset-tabs { display: inline-flex; gap: 4px; background: #050608; padding: 3px; border: 1px solid #262C36; }
     .route-preset-btn {
       background: transparent; border: none; color: #64748B;
@@ -360,52 +392,26 @@
     .route-preset-btn.active { background: var(--audi-red); color: #FFFFFF; }
 
     /* ステップリスト */
-    .step-list { display: flex; flex-direction: column; gap: 16px; }
+    .step-list { display: flex; flex-direction: column; gap: 14px; }
     .step-item {
       background: var(--bg-card); border: 1px solid var(--border-stealth);
       padding: 16px 18px; display: flex; gap: 16px; align-items: flex-start;
     }
     .step-badge {
+      display: inline-block; white-space: nowrap;
       font-family: var(--font-mono); background: rgba(227, 0, 15, 0.15);
       border: 1px solid var(--audi-red); color: var(--audi-red);
-      font-weight: bold; font-size: 0.8rem; padding: 4px 10px; white-space: nowrap; margin-top: 2px;
+      font-weight: bold; font-size: 0.76rem; padding: 4px 10px; margin-top: 2px;
     }
     .step-badge.cyan { background: rgba(0, 229, 255, 0.12); border-color: var(--hud-cyan); color: var(--hud-cyan); }
-    .step-body h4 { color: #FFFFFF; font-size: 0.98rem; font-weight: 900; margin-bottom: 4px; }
-    .step-body p { color: var(--text-sub); font-size: 0.88rem; }
-
-    /* マトリクス表 */
-    .table-wrap { overflow-x: auto; margin-top: 12px; }
-    table.hud-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-    table.hud-table th, table.hud-table td { border: 1px solid var(--border-stealth); padding: 12px 13px; text-align: left; }
-    table.hud-table th {
-      background: #151921; color: var(--rs-silver);
-      font-family: var(--font-mono); font-weight: bold; letter-spacing: 1px; white-space: nowrap;
-    }
-    table.hud-table th.rs-col-head {
-      background: linear-gradient(180deg, rgba(227, 0, 15, 0.28) 0%, #151921 100%);
-      color: #FFFFFF; border-top: 2px solid var(--audi-red);
-    }
-    table.hud-table td { background: var(--bg-card); color: var(--text-main); }
-
-    .mono-hl {
-      font-family: var(--font-mono); font-weight: bold; color: #FFFFFF;
-      background: rgba(255, 255, 255, 0.08); padding: 2px 6px; border: 1px solid rgba(255, 255, 255, 0.22);
-    }
-    .mono-red {
-      font-family: var(--font-mono); font-weight: bold; color: #FF8A80;
-      background: rgba(227, 0, 15, 0.14); padding: 2px 6px; border: 1px solid rgba(227, 0, 15, 0.35);
-    }
-    .mono-cyan {
-      font-family: var(--font-mono); font-weight: bold; color: var(--hud-cyan);
-      background: rgba(0, 229, 255, 0.10); padding: 2px 6px; border: 1px solid rgba(0, 229, 255, 0.35);
-    }
+    .step-body h4 { color: #FFFFFF; font-size: 0.96rem; font-weight: 900; margin-bottom: 4px; line-height: 1.4; }
+    .step-body p { color: var(--text-sub); font-size: 0.86rem; line-height: 1.6; }
 
     /* HUDモックアップ図解 */
     .hud-mockup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
-    .mock-box { background: #07090C; border: 1px solid #262C36; padding: 16px; }
+    .mock-box { background: #07090C; border: 1px solid #262C36; padding: 14px; }
     .mock-header-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-    .mock-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: bold; color: var(--text-sub); letter-spacing: 1.5px; }
+    .mock-label { font-family: var(--font-mono); font-size: 0.7rem; font-weight: bold; color: var(--text-sub); letter-spacing: 1.2px; }
 
     /* ★施設表示プレビュー用：Audi風タクティカル日英トグルスイッチ */
     .lang-toggle-switch {
@@ -433,26 +439,26 @@
       padding: 8px 10px; display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 8px; font-family: var(--font-sans);
     }
-    .fac-tag { padding: 4px 9px; font-size: 0.82rem; font-weight: 900; color: #FFF; margin-right: 10px; min-width: 42px; text-align: center; }
+    .fac-tag { padding: 4px 8px; font-size: 0.8rem; font-weight: 900; color: #FFF; margin-right: 10px; min-width: 40px; text-align: center; flex-shrink: 0; }
     .fac-tag.sa { background: #1B5E20; }
     .fac-tag.pa { background: #2E7D32; }
     .fac-tag.jct { background: #00796B; }
     .fac-tag.ic { background: #43A047; }
-    .fac-info { flex: 1; }
-    .fac-name { color: #FFF; font-weight: 900; font-size: 1.05rem; line-height: 1.15; display: flex; align-items: center; gap: 6px; }
-    .fac-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 5px; }
-    .fac-sub span { font-size: 0.68rem; font-weight: bold; border: 1.2px solid #555; color: #CCC; padding: 1px 6px; line-height: 1.2; }
+    .fac-info { flex: 1; min-width: 0; }
+    .fac-name { color: #FFF; font-weight: 900; font-size: 1.02rem; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .fac-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 5px; }
+    .fac-sub span { font-size: 0.66rem; font-weight: bold; border: 1.2px solid #555; color: #CCC; padding: 1px 6px; line-height: 1.2; white-space: nowrap; }
     .fac-sub span.in-tag { border-color: var(--audi-red); color: var(--audi-red); font-weight: bold; }
     .fac-sub span.sbux-tag {
-      display: inline-flex; align-items: center; gap: 7px;
+      display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
       background: var(--sbux-bg); border: 1.2px solid var(--sbux-bright); border-radius: 4px;
-      color: #FFFFFF; font-weight: 900; font-size: 0.7rem; letter-spacing: 0.8px;
-      padding: 2px 11px 2px 8px; box-shadow: 0 0 12px rgba(0, 210, 120, 0.55);
+      color: #FFFFFF; font-weight: 900; font-size: 0.68rem; letter-spacing: 0.6px;
+      padding: 2px 9px 2px 7px; box-shadow: 0 0 12px rgba(0, 210, 120, 0.55);
     }
-    .sbux-real-logo-mini { width: 16.5px; height: 16.5px; border-radius: 50%; display: block; flex-shrink: 0; }
-    .fac-dist { text-align: right; margin-left: 8px; }
-    .fac-dist .km { color: #FFF; font-size: 1.15rem; font-weight: 900; line-height: 1.1; }
-    .fac-dist .eta { color: #FFFFFF; font-size: 0.82rem; font-weight: bold; margin-top: 2px; }
+    .sbux-real-logo-mini { width: 15.5px; height: 15.5px; border-radius: 50%; display: block; flex-shrink: 0; }
+    .fac-dist { text-align: right; margin-left: 8px; flex-shrink: 0; }
+    .fac-dist .km { color: #FFF; font-size: 1.1rem; font-weight: 900; line-height: 1.1; white-space: nowrap; }
+    .fac-dist .eta { color: #FFFFFF; font-size: 0.8rem; font-weight: bold; margin-top: 2px; white-space: nowrap; }
 
     /* STARBUCKS ワンポイントアドバイス */
     .sbux-spotlight {
@@ -462,37 +468,39 @@
       display: flex; align-items: center; gap: 20px; box-shadow: 0 0 24px rgba(0, 112, 74, 0.25);
     }
     .sbux-emblem-wrap {
-      width: 68px; height: 68px; flex-shrink: 0; border-radius: 50%;
+      width: 64px; height: 64px; flex-shrink: 0; border-radius: 50%;
       background: #021A10; border: 1.5px solid var(--sbux-bright); padding: 1px;
       display: flex; align-items: center; justify-content: center; box-shadow: 0 0 22px rgba(0, 230, 118, 0.55);
     }
     .sbux-real-logo-large { width: 100%; height: 100%; border-radius: 50%; display: block; }
     .sbux-content { flex: 1; }
     .sbux-spotlight-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
-    .sbux-spotlight-title { font-family: var(--font-mono); color: #34D399; font-size: 1rem; font-weight: bold; letter-spacing: 1px; }
+    .sbux-spotlight-title { font-family: var(--font-mono); color: #34D399; font-size: 0.96rem; font-weight: bold; letter-spacing: 0.8px; }
     .sbux-pill {
+      display: inline-block; white-space: nowrap;
       font-family: var(--font-mono); font-size: 0.68rem; font-weight: bold;
       background: rgba(0, 168, 98, 0.25); border: 1px solid var(--sbux-bright);
       color: #A7F3D0; padding: 2px 8px; letter-spacing: 1px;
     }
-    .sbux-spotlight p { font-size: 0.87rem; color: #E2E8F0; }
+    .sbux-spotlight p { font-size: 0.86rem; color: #E2E8F0; line-height: 1.62; }
     .sbux-inline-badge {
-      display: inline-flex; align-items: center; gap: 6px; vertical-align: middle;
-      font-family: var(--font-mono); font-size: 0.76rem; font-weight: bold; letter-spacing: 0.8px;
+      display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; white-space: nowrap;
+      font-family: var(--font-mono); font-size: 0.74rem; font-weight: bold; letter-spacing: 0.8px;
       background: var(--sbux-bg); border: 1px solid var(--sbux-bright); border-radius: 4px;
-      color: #FFFFFF; padding: 2px 10px 2px 7px; margin: 0 4px; box-shadow: 0 0 10px rgba(0, 210, 120, 0.45);
+      color: #FFFFFF; padding: 2px 9px 2px 7px; margin: 2px 4px; box-shadow: 0 0 10px rgba(0, 210, 120, 0.45);
     }
     .poi-trademark-note {
       margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(0, 168, 98, 0.35);
-      font-size: 0.76rem !important; color: var(--text-sub) !important; line-height: 1.5;
+      font-size: 0.75rem !important; color: var(--text-sub) !important; line-height: 1.5;
     }
 
     /* ★U字タブ（絆創膏タブ）クイックドロワー */
     .bandaid-demo-bar { display: inline-flex; align-items: center; margin-top: 10px; margin-bottom: 4px; flex-wrap: wrap; gap: 6px; }
-    .bandaid-drawer-mock { display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 0, 0, 0.9); border: 1px solid #222731; padding: 5px 8px; }
+    .bandaid-drawer-mock { display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 0, 0, 0.9); border: 1px solid #222731; padding: 5px 8px; flex-wrap: wrap; }
     .bandaid-chip {
-      font-family: var(--font-mono); font-size: 0.75rem; font-weight: bold;
-      padding: 4px 10px; border-radius: 3px; background: #1F070A; border: 1px solid var(--audi-red); color: #FFFFFF;
+      display: inline-block; white-space: nowrap;
+      font-family: var(--font-mono); font-size: 0.74rem; font-weight: bold;
+      padding: 4px 9px; border-radius: 3px; background: #1F070A; border: 1px solid var(--audi-red); color: #FFFFFF;
     }
     .bandaid-chip.unset { background: #12151B; border-color: #3A3F4B; color: #94A3B8; }
     .bandaid-tab-mock {
@@ -507,13 +515,13 @@
        ============================================================ */
     .map-gallery-stage {
       background: linear-gradient(145deg, #070A0F 0%, #0E131B 100%);
-      border: 1px solid #283242; padding: 20px; margin-top: 14px; margin-bottom: 24px;
+      border: 1px solid #283242; padding: 18px; margin-top: 14px; margin-bottom: 24px;
       box-shadow: 0 0 28px rgba(0, 0, 0, 0.65);
     }
     .map-selector-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; margin-bottom: 18px; }
     .map-style-btn {
       background: #0B0E14; border: 1px solid #262F3F; border-left: 3px solid #475569;
-      padding: 10px 10px; color: var(--text-sub); font-family: var(--font-mono);
+      padding: 9px 10px; color: var(--text-sub); font-family: var(--font-mono);
       text-align: left; cursor: pointer; transition: all 0.18s ease;
       display: flex; flex-direction: column; gap: 3px;
     }
@@ -523,9 +531,9 @@
       border-color: var(--audi-red); border-left: 3px solid var(--audi-red);
       color: #FFFFFF; box-shadow: 0 0 16px rgba(227, 0, 15, 0.28);
     }
-    .map-style-btn .btn-num { font-size: 0.65rem; color: var(--hud-cyan); letter-spacing: 1px; display: flex; align-items: center; justify-content: space-between; }
+    .map-style-btn .btn-num { font-size: 0.64rem; color: var(--hud-cyan); letter-spacing: 0.8px; display: flex; align-items: center; justify-content: space-between; }
     .map-style-btn.active .btn-num { color: #FF8A80; }
-    .map-style-btn .btn-name { font-size: 0.8rem; font-weight: bold; letter-spacing: 0.6px; color: #F8FAFC; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .map-style-btn .btn-name { font-size: 0.78rem; font-weight: bold; letter-spacing: 0.5px; color: #F8FAFC; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     .map-viewer-grid { display: grid; grid-template-columns: 300px 1fr; gap: 22px; align-items: stretch; }
 
@@ -534,7 +542,7 @@
       background: #040507; border: 2px solid #2E3846; border-top: 3px solid var(--audi-red);
       border-radius: 14px; padding: 8px; position: relative;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85); min-height: 460px; overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85); min-height: 440px; overflow: hidden;
     }
     .phone-frame-topbar {
       width: 100%; display: flex; justify-content: space-between; align-items: center;
@@ -559,21 +567,22 @@
       padding: 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
     }
     .map-info-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid #1E2634; padding-bottom: 10px; }
-    .map-info-code { font-family: var(--font-mono); font-size: 0.78rem; color: var(--hud-cyan); letter-spacing: 1.5px; }
+    .map-info-code { font-family: var(--font-mono); font-size: 0.76rem; color: var(--hud-cyan); letter-spacing: 1.2px; }
     .map-tier-pill {
-      font-family: var(--font-mono); font-size: 0.7rem; font-weight: bold; padding: 3px 9px;
+      display: inline-block; white-space: nowrap;
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: bold; padding: 3px 9px;
       letter-spacing: 1px; border: 1px solid var(--hud-emerald); color: var(--hud-emerald); background: rgba(0, 230, 118, 0.1);
     }
     .map-tier-pill.pro-only { border-color: var(--audi-red); color: #FF8A80; background: rgba(227, 0, 15, 0.15); }
-    .map-info-title { font-size: 1.28rem; font-weight: 900; color: #FFFFFF; letter-spacing: 1px; margin: 6px 0 8px; }
-    .map-info-desc { font-size: 0.9rem; color: #E2E8F0; line-height: 1.68; }
-    .map-telemetry-box { background: #07090D; border: 1px solid #1F2735; border-left: 3px solid var(--hud-cyan); padding: 12px 14px; font-size: 0.82rem; color: var(--text-sub); }
+    .map-info-title { font-size: 1.2rem; font-weight: 900; color: #FFFFFF; letter-spacing: 0.8px; margin: 6px 0 8px; line-height: 1.35; }
+    .map-info-desc { font-size: 0.88rem; color: #E2E8F0; line-height: 1.65; }
+    .map-telemetry-box { background: #07090D; border: 1px solid #1F2735; border-left: 3px solid var(--hud-cyan); padding: 12px 14px; font-size: 0.8rem; color: var(--text-sub); }
     .map-telemetry-box strong { color: #FFFFFF; font-family: var(--font-mono); }
     .map-nav-controls { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid #1E2634; }
     .map-step-btn {
       background: #10151F; border: 1px solid #334155; color: #FFFFFF;
-      font-family: var(--font-mono); font-size: 0.78rem; font-weight: bold;
-      padding: 8px 14px; cursor: pointer; letter-spacing: 1px; transition: all 0.18s ease;
+      font-family: var(--font-mono); font-size: 0.76rem; font-weight: bold;
+      padding: 8px 12px; cursor: pointer; letter-spacing: 1px; transition: all 0.18s ease;
     }
     .map-step-btn:hover { border-color: var(--audi-red); background: rgba(227, 0, 15, 0.2); }
 
@@ -587,39 +596,39 @@
     }
     details.faq-item[open] { border-left-color: var(--audi-red); background: #10141C; }
     details.faq-item summary {
-      list-style: none; cursor: pointer; padding: 16px 18px;
-      display: flex; align-items: center; justify-content: space-between; gap: 14px; user-select: none;
+      list-style: none; cursor: pointer; padding: 15px 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; user-select: none;
     }
     details.faq-item summary::-webkit-details-marker { display: none; }
-    .faq-q-wrap { display: flex; align-items: baseline; gap: 12px; flex: 1; }
-    .faq-q-badge { font-family: var(--font-mono); font-size: 0.82rem; font-weight: bold; color: var(--hud-cyan); letter-spacing: 1px; flex-shrink: 0; }
+    .faq-q-wrap { display: flex; align-items: baseline; gap: 10px; flex: 1; }
+    .faq-q-badge { font-family: var(--font-mono); font-size: 0.8rem; font-weight: bold; color: var(--hud-cyan); letter-spacing: 1px; flex-shrink: 0; }
     details.faq-item[open] .faq-q-badge { color: var(--audi-red); }
-    .faq-q-text { color: #FFFFFF; font-size: 0.96rem; font-weight: 900; line-height: 1.45; }
+    .faq-q-text { color: #FFFFFF; font-size: 0.94rem; font-weight: 900; line-height: 1.45; }
     .faq-indicator { font-family: var(--font-mono); font-size: 1.1rem; color: var(--rs-silver); transition: transform 0.2s ease, color 0.2s ease; flex-shrink: 0; }
     details.faq-item[open] .faq-indicator { transform: rotate(45deg); color: var(--audi-red); }
-    .faq-a-body { padding: 12px 18px 18px 46px; color: var(--text-sub); font-size: 0.88rem; line-height: 1.65; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+    .faq-a-body { padding: 12px 16px 16px 42px; color: var(--text-sub); font-size: 0.86rem; line-height: 1.65; border-top: 1px solid rgba(255, 255, 255, 0.04); }
 
     /* 下部法務・規約リンクバー */
     .legal-link-bar {
-      margin-top: 40px; padding: 20px; background: var(--bg-panel); border: 1px solid var(--border-stealth);
+      margin-top: 36px; padding: 18px; background: var(--bg-panel); border: 1px solid var(--border-stealth);
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
     }
     .btn-legal-link {
       display: inline-flex; align-items: center; justify-content: center;
-      font-family: var(--font-mono); font-size: 0.82rem; font-weight: bold; letter-spacing: 1.5px;
+      font-family: var(--font-mono); font-size: 0.8rem; font-weight: bold; letter-spacing: 1.2px;
       color: var(--hud-cyan); background: rgba(0, 229, 255, 0.08);
-      border: 1px solid rgba(0, 229, 255, 0.55); padding: 10px 18px; text-decoration: none; transition: all 0.2s ease;
+      border: 1px solid rgba(0, 229, 255, 0.55); padding: 10px 16px; text-decoration: none; transition: all 0.2s ease;
     }
     .btn-legal-link:hover { background: rgba(0, 229, 255, 0.18); border-color: var(--hud-cyan); color: #FFFFFF; }
 
     /* ★ページ中盤以降で出現する「TOPへ戻る」タクティカルHUDボタン */
     .back-to-top {
-      position: fixed; right: 22px; bottom: 24px; z-index: 150;
-      width: 52px; height: 52px; background: rgba(10, 12, 16, 0.92);
+      position: fixed; right: 16px; bottom: 18px; z-index: 150;
+      width: 46px; height: 46px; background: rgba(8, 10, 14, 0.88);
       border: 1px solid #334155; border-top: 2px solid var(--audi-red);
       color: #FFFFFF; text-decoration: none;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-      font-family: var(--font-mono); font-size: 0.68rem; font-weight: bold; letter-spacing: 1.5px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+      font-family: var(--font-mono); font-size: 0.64rem; font-weight: bold; letter-spacing: 1px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
       opacity: 0; visibility: hidden; transform: translateY(14px);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
@@ -629,31 +638,188 @@
       background: #161A22; border-color: var(--audi-red); color: var(--audi-red);
       box-shadow: 0 0 20px var(--audi-red-glow); transform: translateY(-2px);
     }
-    .back-to-top svg { width: 18px; height: 18px; stroke: var(--audi-red); transition: transform 0.2s ease; }
-    .back-to-top:hover svg { transform: translateY(-2px); }
+    .back-to-top svg { width: 16px; height: 16px; stroke: var(--audi-red); transition: transform 0.2s ease; }
 
     footer {
       text-align: center; padding: 32px 16px; border-top: 1px solid var(--border-stealth);
-      font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-sub); letter-spacing: 1.5px;
+      font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-sub); letter-spacing: 1.2px;
     }
     .footer-disclaimer {
       max-width: 820px; margin: 12px auto 0; font-family: var(--font-sans);
       font-size: 0.72rem; color: #64748B; letter-spacing: 0.3px; line-height: 1.6;
     }
 
+    /* =========================================================================
+       ★ スマホ＆タブレット完全特化レスポンシブ設計（768px以下：テーブル自動カード化）
+       ========================================================================= */
     @media (max-width: 780px) {
+      .container { padding: 0 14px 84px; }
+      .quick-nav { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 36px; }
       .shutoko-grid, .rs-showcase-grid, .map-viewer-grid { grid-template-columns: 1fr; }
       .map-selector-grid { grid-template-columns: repeat(2, 1fr); }
-      .phone-cockpit-frame { max-width: 340px; margin: 0 auto; width: 100%; }
+      .phone-cockpit-frame { max-width: 340px; margin: 0 auto; width: 100%; min-height: auto; }
+      .sec-jp, .status-pill { display: none; }
+      .hud-card, .rs-exclusive-stage, .shutoko-hero-banner { padding: 16px 14px; }
+      .table-wrap { overflow-x: visible; }
+
+      /* -------------------------------------------------------------------
+         1. 01 // LICENSE 3ティア比較表（5列）➔ スマホ用タクティカル比較カードへ変形
+         ------------------------------------------------------------------- */
+      table.tier-compare-table,
+      table.tier-compare-table tbody {
+        display: block;
+        width: 100%;
+      }
+      table.tier-compare-table thead {
+        display: none;
+      }
+      table.tier-compare-table tbody tr {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background: #0D1017;
+        border: 1px solid #2A3446;
+        border-top: 2px solid var(--hud-cyan);
+        margin-bottom: 14px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+      }
+      /* 1セル目：機能カテゴリー名（全3列ぶち抜きヘッダー） */
+      table.tier-compare-table tbody td:nth-child(1) {
+        grid-column: 1 / -1;
+        background: #141923;
+        border: none;
+        border-bottom: 1px solid #252E3E;
+        padding: 11px 12px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+      /* 2〜4セル目：FREE / PRO / RS の3列横並び比較ボックス */
+      table.tier-compare-table tbody td:nth-child(2),
+      table.tier-compare-table tbody td:nth-child(3),
+      table.tier-compare-table tbody td:nth-child(4) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 10px 4px;
+        border: none;
+        border-right: 1px solid #1E2532;
+        background: #0B0E14;
+        font-size: 0.78rem;
+        gap: 5px;
+      }
+      table.tier-compare-table tbody td:nth-child(4) {
+        border-right: none;
+        background: linear-gradient(180deg, rgba(227, 0, 15, 0.14) 0%, #0B0E14 100%);
+      }
+      /* 各プランのミニ見出しラベルを自動付与 */
+      table.tier-compare-table tbody td:nth-child(2)::before {
+        content: "FREE (¥0)";
+        font-family: var(--font-mono);
+        font-size: 0.64rem;
+        color: #94A3B8;
+        letter-spacing: 0.5px;
+      }
+      table.tier-compare-table tbody td:nth-child(3)::before {
+        content: "PRO (¥300)";
+        font-family: var(--font-mono);
+        font-size: 0.64rem;
+        color: var(--hud-cyan);
+        letter-spacing: 0.5px;
+      }
+      table.tier-compare-table tbody td:nth-child(4)::before {
+        content: "VECTRA RS (¥500)";
+        font-family: var(--font-mono);
+        font-size: 0.64rem;
+        color: #FF8A80;
+        font-weight: 900;
+        letter-spacing: 0.5px;
+      }
+      /* 5セル目：リセット周期・備考（全3列ぶち抜きフッター） */
+      table.tier-compare-table tbody td:nth-child(5) {
+        grid-column: 1 / -1;
+        background: #080A0F;
+        border: none;
+        border-top: 1px dashed #222B38;
+        padding: 8px 12px;
+        font-size: 0.75rem;
+        color: var(--text-sub);
+        line-height: 1.45;
+      }
+      /* スマホ3分割セル内でも四角バッジが絶対に改行分裂しないようサイズ最適化 */
+      table.tier-compare-table .mono-hl,
+      table.tier-compare-table .mono-red,
+      table.tier-compare-table .mono-cyan {
+        font-size: 0.66rem;
+        padding: 2px 5px;
+        letter-spacing: 0.2px;
+      }
+
+      /* -------------------------------------------------------------------
+         2. 05 // CONTROLS 設定一覧表（3列）➔ スマホ用2段コマンドカードへ変形
+         ------------------------------------------------------------------- */
+      table.controls-spec-table,
+      table.controls-spec-table tbody {
+        display: block;
+        width: 100%;
+      }
+      table.controls-spec-table thead {
+        display: none;
+      }
+      table.controls-spec-table tbody tr {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        background: #0D1017;
+        border: 1px solid #283244;
+        border-left: 3px solid var(--audi-red);
+        margin-bottom: 12px;
+        padding: 10px 12px;
+        gap: 6px;
+      }
+      table.controls-spec-table tbody td {
+        border: none;
+        background: transparent;
+        padding: 0;
+      }
+      table.controls-spec-table tbody td:nth-child(1) {
+        font-size: 0.92rem;
+        color: #FFFFFF;
+        flex: 1 1 auto;
+        padding-right: 8px;
+      }
+      table.controls-spec-table tbody td:nth-child(2) {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        color: var(--hud-cyan);
+        background: rgba(0, 229, 255, 0.1);
+        border: 1px solid rgba(0, 229, 255, 0.35);
+        padding: 2px 8px;
+        white-space: nowrap;
+      }
+      table.controls-spec-table tbody td:nth-child(3) {
+        width: 100%;
+        margin-top: 6px;
+        padding-top: 8px;
+        border-top: 1px solid #1E2634;
+        font-size: 0.82rem;
+        color: var(--text-sub);
+        line-height: 1.55;
+      }
     }
 
-    @media (max-width: 600px) {
-      .sec-jp, .status-pill { display: none; }
-      .step-item { flex-direction: column; gap: 8px; }
-      .hud-card, .rs-exclusive-stage { padding: 18px 16px; }
-      .sbux-spotlight { flex-direction: column; text-align: left; align-items: flex-start; gap: 14px; }
-      .faq-a-body { padding-left: 18px; }
-      .back-to-top { right: 16px; bottom: 18px; width: 48px; height: 48px; }
+    @media (max-width: 520px) {
+      .top-hud-bar { padding: 8px 14px; }
+      .hero { padding: 36px 8px 28px; }
+      .pioneer-frame { padding: 10px 12px; }
+      .pioneer-frame .edition { font-size: 0.88rem; letter-spacing: 1.2px; }
+      .step-item { flex-direction: column; gap: 8px; padding: 14px; }
+      .sbux-spotlight { flex-direction: column; text-align: left; align-items: flex-start; gap: 12px; padding: 16px; }
+      .rs-spec-pills { grid-template-columns: 1fr; gap: 6px; }
+      .rs-metric-box { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; }
+      .rs-metric-val { margin-top: 0; }
+      .faq-a-body { padding-left: 14px; }
     }
   </style>
 </head>
@@ -700,7 +866,6 @@
         PRODUCTION v4.0.0
       </div>
 
-      <!-- アプリ側と完全同期する [ EN | JP ] トグル -->
       <div id="globalLangToggle" class="hud-lang-pill" role="button" tabindex="0" aria-label="Switch Manual Language">
         <span id="globalChipEn" class="hud-lang-chip">EN</span>
         <span id="globalChipJp" class="hud-lang-chip active-jp">JP</span>
@@ -740,7 +905,7 @@
       </div>
     </section>
 
-    <!-- クイックナビゲーション（全6セクション） -->
+    <!-- クイックナビゲーション（全6セクション：PC 3×2 ／ スマホ 2×3 グリッド） -->
     <nav class="quick-nav">
       <a href="#sec-auth" class="quick-link">
         <span class="num">01 // LICENSE</span>
@@ -798,8 +963,9 @@
           Once authenticated, your credentials are saved locally so you can <strong>jump straight into the main HUD with a single tap on "LAUNCH VECTRA"</strong> next time. Your monthly quota is automatically preserved across app updates or reinstallations.
         </p>
 
+        <!-- ★ PCでは5列テーブル ／ スマホでは横スクロール不要の3列比較カードへ自動変形 -->
         <div class="table-wrap">
-          <table class="hud-table">
+          <table class="hud-table tier-compare-table">
             <thead>
               <tr>
                 <th>
@@ -878,7 +1044,7 @@
                   <strong class="i18n-ja">U字タブ お気に入り3拠点（[Home] / [Favorite1] / [Favorite2]）</strong>
                   <strong class="i18n-en">Pull-Tab 3 Quick Pins ([Home] / [Favorite1] / [Favorite2])</strong>
                 </td>
-                <td><span class="mono-hl" style="color:#64748B;">LOCKED [PRO / RS]</span></td>
+                <td><span class="mono-hl" style="color:#94A3B8;">LOCKED [PRO / RS]</span></td>
                 <td>
                   <strong class="i18n-ja" style="color:var(--hud-emerald);">フル解放</strong>
                   <strong class="i18n-en" style="color:var(--hud-emerald);">UNLOCKED</strong>
@@ -898,7 +1064,7 @@
                   <strong class="i18n-en">Tactical Map Style Layers</strong>
                 </td>
                 <td>
-                  <span class="i18n-ja">標準 2種（DAY / STREETS）</span>
+                  <span class="i18n-ja">標準 2種 (DAY / STREETS)</span>
                   <span class="i18n-en">Standard 2 Styles</span>
                 </td>
                 <td>
@@ -919,8 +1085,8 @@
                   <strong class="i18n-ja">CUSTOM VOICE（SLOT 1:2 デュアル音声 ＆ 160MB先読みエンジン）</strong>
                   <strong class="i18n-en">CUSTOM VOICE (SLOT 1:2 Dual Voice &amp; 160MB Preload Engine)</strong>
                 </td>
-                <td><span class="mono-hl" style="color:#64748B;">LOCKED [RS限定]</span></td>
-                <td><span class="mono-hl" style="color:#64748B;">LOCKED [RS限定]</span></td>
+                <td><span class="mono-hl" style="color:#94A3B8;">LOCKED [RS限定]</span></td>
+                <td><span class="mono-hl" style="color:#94A3B8;">LOCKED [RS限定]</span></td>
                 <td>
                   <span class="mono-red">RS PATRON UNLOCKED</span>
                 </td>
@@ -1218,7 +1384,6 @@
 
     <!-- ====================================================================
          ★ 03. VECTRA RS EXCLUSIVE // TACTICAL VOICE ENGINE & DUAL-SLOT PRELOADER
-         （新規独立セクション：258802.jpg 実機画面＆160MBゼロ遅延プリロード仕様）
          ==================================================================== -->
     <section id="sec-rs" class="section">
       <div class="sec-header">
@@ -1229,10 +1394,10 @@
 
       <div class="rs-exclusive-stage">
         <div class="rs-stage-header">
-          <div class="rs-sport-emblem" style="font-size:1.25rem;">
+          <div class="rs-sport-emblem" style="font-size:1.2rem;">
             <span class="vectra-txt">VECTRA</span>
             <span class="rs-rhombus-badge"><span>RS</span></span>
-            <span style="font-family:var(--font-mono); font-size:0.85rem; color:var(--hud-cyan); margin-left:6px; letter-spacing:1.5px;">// AUDIO &amp; API ARCHITECTURE</span>
+            <span style="font-family:var(--font-mono); font-size:0.82rem; color:var(--hud-cyan); margin-left:4px; letter-spacing:1.2px;">// AUDIO &amp; API ARCHITECTURE</span>
           </div>
           <span class="rs-patron-pill">PATRON EXCLUSIVE // ¥500 / MO</span>
         </div>
@@ -1505,7 +1670,7 @@
         </div>
       </div>
 
-      <!-- 画面コントロール＆設定メニュー一覧表 -->
+      <!-- 画面コントロール＆設定メニュー一覧表（スマホでは2段コマンドカードへ自動変形） -->
       <div class="hud-card">
         <div class="card-title">
           <span class="i18n-ja">クイック拠点管理・渋滞ライン太さ調整・カメラ制御</span>
@@ -1514,7 +1679,7 @@
         </div>
 
         <div class="table-wrap">
-          <table class="hud-table">
+          <table class="hud-table controls-spec-table">
             <thead>
               <tr>
                 <th>
