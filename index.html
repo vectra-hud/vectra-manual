@@ -1000,8 +1000,8 @@
                   <strong class="i18n-en" style="color:#FF8A80;">100 uses / mo (Shared)</strong>
                 </td>
                 <td>
-                  <span class="i18n-ja">非ナビ時の高速施設リスト表示確定で1回消費（高速外50m超の自動OFFは消費なし／そのままナビ開始時は追加消費なし・手動OFF時5秒確認ガード付）</span>
-                  <span class="i18n-en">Consumes 1 shared quota when facility list locks on (0 quota if auto-OFF &gt;50m from hwy / 0 extra quota when transitioning to Route Nav / 5s OFF-guard)</span>
+                  <span class="i18n-ja">毎月1日リセット（ルートナビと共通枠／非ナビ時の高速リスト表示確定で1回消費・高速外50m超の自動OFFは消費なし・手動OFF時5秒確認ガード付）</span>
+                  <span class="i18n-en">Resets 1st of month (Shared with Route Nav / Consumes 1 quota when facility list locks on / 0 quota if auto-OFF &gt;50m from hwy / 5s OFF-guard)</span>
                 </td>
               </tr>
               <tr>
@@ -1010,20 +1010,20 @@
                   <strong class="i18n-en">Turn-by-Turn Route Navigation (&amp; In-Route Highway HUD)</strong>
                 </td>
                 <td>
-                  <strong class="i18n-ja">月間 6 回まで</strong>
-                  <strong class="i18n-en">6 runs / mo</strong>
+                  <strong class="i18n-ja">月間 6 回 (高速共通)</strong>
+                  <strong class="i18n-en">6 runs / mo (Shared)</strong>
                 </td>
                 <td>
-                  <strong class="i18n-ja" style="color:var(--hud-cyan);">月間 100 回まで</strong>
-                  <strong class="i18n-en" style="color:var(--hud-cyan);">100 runs / mo</strong>
+                  <strong class="i18n-ja" style="color:var(--hud-cyan);">月間 100 回 (高速共通)</strong>
+                  <strong class="i18n-en" style="color:var(--hud-cyan);">100 runs / mo (Shared)</strong>
                 </td>
                 <td>
-                  <strong class="i18n-ja" style="color:#FF8A80;">月間 100 回まで</strong>
-                  <strong class="i18n-en" style="color:#FF8A80;">100 runs / mo</strong>
+                  <strong class="i18n-ja" style="color:#FF8A80;">月間 100 回 (高速共通)</strong>
+                  <strong class="i18n-en" style="color:#FF8A80;">100 runs / mo (Shared)</strong>
                 </td>
                 <td>
-                  <span class="i18n-ja">毎月1日リセット（走り屋モードと共通枠／ナビ中の高速リストON/OFF切替は追加消費なし・300m近距離ガード・40m圏内自動到着終了）</span>
-                  <span class="i18n-en">Resets 1st of month (Shared with Runner's Mode / Free Hwy toggle during active nav / 300m nearby guard &amp; 40m auto-arrival)</span>
+                  <span class="i18n-ja">毎月1日リセット（走り屋モードと共通枠／ルート確定時に1回消費・ナビ中の高速リストON/OFF切替は追加消費なし・300m近距離ガード・40m圏内自動到着終了）</span>
+                  <span class="i18n-en">Resets 1st of month (Shared with Runner's Mode / Consumes 1 quota on route start / Free Hwy toggle during active nav / 300m nearby guard &amp; 40m auto-arrival)</span>
                 </td>
               </tr>
               <tr>
@@ -1124,7 +1124,7 @@
             <span class="status-dot" style="background:#FFF; box-shadow:0 0 8px #FFF;"></span>
             RUNNER'S MODE // FREE-DRIVE LOCK-ON
           </span>
-          <span class="badge" style="color:var(--hud-cyan);">5S OFF-GUARD &amp; NAVI CARRY-OVER</span>
+          <span class="badge" style="color:var(--hud-cyan);">5S OFF-GUARD &amp; SMART LOCK-ON</span>
         </div>
 
         <div class="shutoko-Catch i18n-ja">
@@ -1274,12 +1274,12 @@
             </div>
             <p class="i18n-ja" style="font-size:0.86rem; color:var(--text-main); margin-bottom:10px;">
               1. 画面右側の <span class="mono-red">ROUTE HGWY</span> スイッチが左側（HGWY）になっていることを確認します。<br><br>
-              2. 目的地を設定しないまま高速道路・都市高速の本線に乗り、<span class="mono-hl">HIGHWAY MODE</span> スイッチをONにするだけで「走り屋モード」が起動！前方の施設リストが確定・表示された時点で月間利用枠（ナビ/高速共通）を1回消費し、直近3つの施設を下から上へ積み上げ表示します（そのままルートナビを開始した場合は追加の枠消費なしで引き継がれます）。<br><br>
+              2. 目的地を設定しないまま高速道路・都市高速の本線に乗り、<span class="mono-hl">HIGHWAY MODE</span> スイッチをONにするだけで「走り屋モード」が起動！前方の施設リストが確定・表示された時点で月間利用枠（ナビ/高速共通）を1回消費し、直近3つの施設を下から上へ積み上げ表示します（一般道など高速外50m超で自動OFFになった場合は枠消費ゼロ／走行中の手動OFF時は5秒カウントダウン確認ガード付）。<br><br>
               <span style="color:var(--text-sub); font-size:0.8rem;">※右側のプレビューで<strong>「東名高速（海老名SA：スタバ＆GAS表示）」</strong>と<strong>「首都高 C1/湾岸（大黒PA：P/WC表示）」</strong>、および<strong>「日本語 ⇔ 英語表記」</strong>を実際に切り替えて比較できます。</span>
             </p>
             <p class="i18n-en" style="font-size:0.86rem; color:var(--text-main); margin-bottom:10px;">
               1. Ensure the <span class="mono-red">ROUTE HGWY</span> switch on the right side of the screen is set to the left (HGWY).<br><br>
-              2. Enter any expressway mainline without setting a destination and flip <span class="mono-hl">HIGHWAY MODE</span> ON. Runner's Mode activates immediately, consuming 1 monthly shared quota once upcoming facilities lock on and stacking the next 3 nodes from bottom to top (transitioning directly into route navigation consumes zero extra quota)!<br><br>
+              2. Enter any expressway mainline without setting a destination and flip <span class="mono-hl">HIGHWAY MODE</span> ON. Runner's Mode activates immediately, consuming 1 monthly shared quota once upcoming facilities lock on and stacking the next 3 nodes from bottom to top (0 quota used if auto-OFF &gt;50m from an expressway / protected by a 5-second confirmation guard when manually turned OFF)!<br><br>
               <span style="color:var(--text-sub); font-size:0.8rem;">* Use the interactive preview on the right to compare <strong>"Tomei Expwy (Ebina SA: Starbucks &amp; GAS)"</strong> vs. <strong>"Shutoko C1/Bayshore (Daikoku PA: P/WC)"</strong> and toggle between <strong>JA / EN labels</strong>.</span>
             </p>
           </div>
@@ -1864,12 +1864,12 @@
             </summary>
             <div class="faq-a-body">
               <span class="i18n-ja">
-                <strong>はい！FREEモードでも毎月6回まで「ルートナビ＆高速施設リスト表示（全国49箇所スタバ自動捕捉を含む）」と「月間6回までの目的地キーワード検索」を完全無料でお使いいただけます。</strong><br>
-                さらに、非ナビ（フリー走行）で高速施設リストを表示している状態からそのまま目的地をセットしてルートナビを開始した場合は、<strong>追加の枠消費なし（合計1回分の消費のみ）でシームレスにルート案内へ移行</strong>できます。まずは無料でVECTRAのすべてのコア機能を実走体験してください。
+                <strong>はい！FREEモードでも毎月6回まで「ルートナビ＆高速施設リスト表示（全国49箇所スタバ自動捕捉を含む共通枠）」と「月間6回までの目的地キーワード検索」を完全無料でお使いいただけます。</strong><br>
+                なお、最初から目的地をセットして「ルートナビ」を開始した場合は、その1回の消費だけでターン・バイ・ターン案内と高速道路の施設リスト表示の両方が同時に稼働します。まずは無料でVECTRAのすべてのコア機能を実走体験してください。
               </span>
               <span class="i18n-en">
-                <strong>Yes! FREE mode includes up to 6 monthly uses of "Route Navigation &amp; Expressway Facility HUD (including all 49 Starbucks radar)" plus 6 destination keyword searches per month at zero cost.</strong><br>
-                Furthermore, if you start route navigation while already running the Free-Drive Expressway HUD, <strong>it carries over seamlessly with zero additional quota consumption (counting as just 1 single session)</strong>.
+                <strong>Yes! FREE mode includes up to 6 monthly uses of "Route Navigation &amp; Expressway Facility HUD (shared quota including all 49 Starbucks radar)" plus 6 destination keyword searches per month at zero cost.</strong><br>
+                When you start Route Navigation with a destination set, both turn-by-turn guidance and the Expressway Facility HUD operate together within that single session.
               </span>
             </div>
           </details>
@@ -1887,12 +1887,12 @@
             <div class="faq-a-body">
               <span class="i18n-ja">
                 VECTRAはGPS座標・走行速度・進行方向ベクトルから「現在、高速道路の本線上（50m以内）を走行しているか」を厳密に自動判定しています。<br>
-                ・<strong>自動OFF時は枠消費ゼロ</strong>：一般道や高速外（50m超）でONにして自動OFF（Auto Bounce-Back）になった場合、<strong>月間利用枠は一切消費されません。</strong>高速本線に入ってからONにしてください。<br>
+                ・<strong>自動OFF時は枠消費ゼロ</strong>：一般道や高速外（50m超）でONにして自動OFF（Auto Bounce-Back）になった場合、ナビエンジン（SDKセッション）は起動せず<strong>月間利用枠も一切消費されません。</strong>高速本線に入ってからONにしてください。<br>
                 ・<strong>走行中の誤OFF防止ガード</strong>：非ナビ高速モード稼働中に誤って手動でOFFをタップした際は、再ONによる枠消費を防ぐため<strong>「5秒カウントダウン確認ダイアログ」</strong>が表示されます（そのまま放置すれば自動でONが継続されます）。
               </span>
               <span class="i18n-en">
                 VECTRA strictly verifies whether you are actively driving on an expressway mainline (within 50m) using GPS coordinates, speed, and heading vectors.<br>
-                • <strong>Zero Quota Used on Auto Bounce-Back</strong>: If toggled ON while on local roads (&gt;50m from an expressway), it automatically turns OFF <strong>without consuming any monthly quota</strong>.<br>
+                • <strong>Zero Quota Used on Auto Bounce-Back</strong>: If toggled ON while on local roads (&gt;50m from an expressway), it automatically turns OFF <strong>without starting an SDK session or consuming any monthly quota</strong>.<br>
                 • <strong>5-Second Manual OFF Protection</strong>: If you accidentally tap OFF while the Free-Drive Highway HUD is active, a <strong>5-second countdown confirmation dialog</strong> appears (leaving it untouched automatically keeps Highway Mode ON so you never waste quota).
               </span>
             </div>
@@ -1910,17 +1910,17 @@
             </summary>
             <div class="faq-a-body">
               <span class="i18n-ja">
-                月間利用枠（ナビ＆高速リスト共通）は、以下のいずれかのタイミングでのみ1回消費されます。<br>
-                ・<strong>① ルートナビ開始時</strong>：確認ダイアログで「ナビ開始 (-1)」を押してルートが確定した瞬間（ルートナビ中は <span class="mono-hl">HIGHWAY MODE</span> を何度手動でON/OFFしても追加消費はありません）。<br>
-                ・<strong>② 非ナビ（フリー走行）高速リスト開始時</strong>：高速道路上で <span class="mono-hl">HIGHWAY MODE</span> をONにし、前方の高速施設リストが確定・表示された瞬間（そのままルートナビを開始した場合は二重消費されません）。<br>
-                ・<strong>追加消費されないケース</strong>：走行中の「自動リルート（再計算）」、右下の「代替ルート（ALT ROUTE）への切り替え」、および <span class="mono-red">HGWY ⇔ LOCAL</span> トグル切り替え時の再計算では枠は一切消費されません（300m以内の近距離ガード＆40m圏内自動到着終了付き）。<br>
+                月間利用枠（ナビ＆高速リスト共通）は、ナビエンジン（SDK）のセッション起動と1対1で連動し、以下のタイミングでそれぞれ1回消費されます。<br>
+                ・<strong>① ルートナビ開始時（-1回）</strong>：確認ダイアログで「ナビ開始 (-1)」を押してルートが確定した瞬間（ルートナビ稼働中は <span class="mono-hl">HIGHWAY MODE</span> を何度手動でON/OFFしても追加消費はありません）。<br>
+                ・<strong>② 非ナビ（フリー走行）高速リスト開始時（-1回）</strong>：目的地未設定のまま高速道路上で <span class="mono-hl">HIGHWAY MODE</span> をONにし、前方の高速施設リストが確定・表示された瞬間（※その後、新たに目的地を指定してルートナビを開始する場合は、新規ナビセッションとして確認ダイアログ表示の通り1回消費されます）。<br>
+                ・<strong>追加消費されないケース</strong>：ルートナビ走行中の「自動リルート（再計算）」、右下の「代替ルート（ALT ROUTE）への切り替え」、および <span class="mono-red">HGWY ⇔ LOCAL</span> トグル切り替え時の再計算では枠は一切消費されません（300m以内の近距離ガード＆40m圏内自動到着終了付き）。<br>
                 ・<strong>高速本線上のスマートHUD制御</strong>：ルートナビで高速本線を走行中は、上部HUDの不要な大矢印アイコンを自動消去して視界をクリアに保ち（次ステップの距離・名称テキストと車線レーン案内はそのまま表示）、降りる最終出口ICに進入した時点で矢印アイコンが自動復帰します。
               </span>
               <span class="i18n-en">
-                1 monthly shared quota is consumed only in one of the following two cases:<br>
-                • <strong>1. Starting Route Navigation</strong>: When you tap "START NAVI (-1)" and the route is established (toggling <span class="mono-hl">HIGHWAY MODE</span> ON/OFF during active route navigation uses 0 extra quota).<br>
-                • <strong>2. Locking On Free-Drive Highway HUD</strong>: When you toggle <span class="mono-hl">HIGHWAY MODE</span> ON during free driving and the upcoming facility list locks on (transitioning directly into Route Navigation afterward uses 0 extra quota).<br>
-                • <strong>Zero Extra Consumption</strong>: Automatic rerouting, switching to an <span class="mono-hl">ALT ROUTE</span>, or toggling <span class="mono-red">HGWY ⇔ LOCAL</span> uses 0 quota (includes 300m nearby guard &amp; 40m auto-arrival).<br>
+                Monthly shared quotas are synchronized 1-to-1 with navigation engine (SDK) sessions and are consumed as follows:<br>
+                • <strong>1. Starting Route Navigation (-1 quota)</strong>: When you tap "START NAVI (-1)" and the route is established (toggling <span class="mono-hl">HIGHWAY MODE</span> ON/OFF during active route navigation uses 0 extra quota).<br>
+                • <strong>2. Locking On Free-Drive Highway HUD (-1 quota)</strong>: When you toggle <span class="mono-hl">HIGHWAY MODE</span> ON during free driving and the upcoming facility list locks on (starting a new Route Navigation session afterward will consume 1 quota as shown in the launch confirmation dialog).<br>
+                • <strong>Zero Extra Consumption</strong>: Automatic rerouting, switching to an <span class="mono-hl">ALT ROUTE</span>, or toggling <span class="mono-red">HGWY ⇔ LOCAL</span> during active navigation uses 0 quota (includes 300m nearby guard &amp; 40m auto-arrival).<br>
                 • <strong>Smart Expressway Top HUD</strong>: While cruising on an expressway mainline during navigation, the large turn arrow icon is hidden to keep your view clean (while preserving distance/name text and lane guidance) and automatically reappears as you enter your final exit IC.
               </span>
             </div>
