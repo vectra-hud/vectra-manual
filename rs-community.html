@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>VECTRA RS // NEURAL TELEMETRY &amp; AUDIO LAB</title>
+
+  <!-- 1. Google Fonts 読み込み（index.html 10〜12行目と完全同一） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* 2. CSS変数定義（index.html 28〜29行目と完全同一 ＋ Audi F1 Revolut カラーパレット） */
+    :root {
+      --font-mono: 'Share Tech Mono', monospace;
+      --font-sans: 'Share Tech Mono', 'Zen Kaku Gothic New', sans-serif;
+      --bg-carbon: #090B0E;
+      --bg-panel: #11151C;
+      --bg-card: #161B24;
+      --bg-code: #06080B;
+      --laser-red: #E3000F;
+      --laser-red-glow: rgba(227, 0, 15, 0.35);
+      --titanium-silver: #CBD5E1;
+      --titanium-bright: #F8FAFC;
+      --titanium-muted: #64748B;
+      --telemetry-cyan: #00E5FF;
+      --telemetry-cyan-glow: rgba(0, 229, 255, 0.25);
+      --emerald-ok: #10B981;
+      --amber-warn: #F59E0B;
+      --border-line: #222B38;
+    }
+
+    /* 3. 全要素への指定フォント＆太字（700/900）の強制適用（ブラウザ標準フォントへの先祖返り防止） */
+    html, body, button, input, select, textarea, code, pre,
+    div, span, p, a, table, thead, tbody, tr, th, td, ul, li, label {
+      font-family: var(--font-sans) !important;
+      font-weight: 700;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .fw-900, .rs-logo-text, .sec-num, .badge-strong {
+      font-family: var(--font-sans) !important;
+      font-weight: 900 !important;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-carbon);
+      background-image:
+        radial-gradient(circle at 85% 10%, rgba(227, 0, 15, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(0, 229, 255, 0.08) 0%, transparent 45%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 2px, transparent 2px, transparent 6px);
+      color: var(--titanium-silver);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* TOP TELEMETRY HEADER BAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 11, 14, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--laser-red);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Audi Sport 斜体RS菱形エンブレム */
+    .rs-rhombus {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--laser-red);
+      color: #FFFFFF;
+      padding: 4px 12px;
+      transform: skewX(-18deg);
+      box-shadow: 0 0 14px var(--laser-red-glow);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .rs-rhombus span {
+      transform: skewX(18deg);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+    }
+
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-main {
+      color: var(--titanium-bright);
+      font-size: 1.05rem;
+      letter-spacing: 0.1em;
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      color: var(--telemetry-cyan);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+    }
+
+    /* 日英切替トグル [ EN | JP ] */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--titanium-muted);
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--laser-red);
+      color: #FFFFFF;
+    }
+
+    .lang-divider {
+      color: var(--border-line);
+      font-size: 0.75rem;
+      user-select: none;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    /* HERO TELEMETRY BANNER */
+    .hero-box {
+      position: relative;
+      background: linear-gradient(135deg, rgba(22, 27, 36, 0.96) 0%, rgba(11, 14, 19, 0.98) 100%);
+      border: 1px solid var(--border-line);
+      border-left: 4px solid var(--laser-red);
+      border-radius: 6px;
+      padding: 24px 20px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .hero-status-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .pill-red {
+      background: rgba(227, 0, 15, 0.16);
+      border: 1px solid var(--laser-red);
+      color: #FF4D58;
+    }
+
+    .pill-cyan {
+      background: rgba(0, 229, 255, 0.12);
+      border: 1px solid var(--telemetry-cyan);
+      color: var(--telemetry-cyan);
+    }
+
+    .hero-title {
+      margin: 0 0 8px 0;
+      font-size: 1.55rem;
+      color: var(--titanium-bright);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-desc {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--titanium-silver);
+    }
+
+    /* TELEMETRY KPI GRID */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .kpi-card {
+      background: var(--bg-code);
+      border: 1px solid var(--border-line);
+      border-top: 2px solid var(--telemetry-cyan);
+      padding: 12px 14px;
+      border-radius: 4px;
+    }
+
+    .kpi-label {
+      font-size: 0.72rem;
+      color: var(--titanium-muted);
+      letter-spacing: 0.1em;
+      display: block;
+    }
+
+    .kpi-val {
+      font-size: 1.2rem;
+      color: var(--titanium-bright);
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+      display: block;
+    }
+
+    .kpi-val span {
+      color: var(--telemetry-cyan);
+      font-size: 0.85rem;
+    }
+
+    /* SECTION PANEL */
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      border-radius: 6px;
+      padding: 22px 18px;
+      margin-bottom: 22px;
+    }
+
+    .panel-rs-special {
+      border-color: var(--laser-red);
+      box-shadow: 0 0 24px rgba(227, 0, 15, 0.12);
+    }
+
+    .sec-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-line);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+
+    .sec-num {
+      background: var(--laser-red);
+      color: #FFFFFF;
+      font-size: 0.78rem;
+      padding: 2px 8px;
+      transform: skewX(-14deg);
+      letter-spacing: 0.08em;
+    }
+
+    .sec-title {
+      margin: 0;
+      font-size: 1.12rem;
+      color: var(--titanium-bright);
+      letter-spacing: 0.05em;
+    }
+
+    /* TABLES */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 12px 0;
+      border: 1px solid var(--border-line);
+      border-radius: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      font-size: 0.86rem;
+    }
+
+    th {
+      background: #0D1117;
+      color: var(--telemetry-cyan);
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-line);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-line);
+      color: var(--titanium-silver);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* CODE & COPY BLOCK */
+    .code-block {
+      position: relative;
+      background: var(--bg-code);
+      border: 1px solid var(--border-line);
+      border-left: 3px solid var(--telemetry-cyan);
+      border-radius: 4px;
+      padding: 14px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      margin: 0;
+      font-size: 0.82rem;
+      color: #E2E8F0;
+      line-height: 1.55;
+      white-space: pre;
+    }
+
+    .copy-btn {
+      background: #1E293B;
+      border: 1px solid var(--telemetry-cyan);
+      color: var(--telemetry-cyan);
+      padding: 4px 10px;
+      font-size: 0.74rem;
+      border-radius: 3px;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      transition: all 0.15s ease;
+    }
+
+    .copy-btn:hover, .copy-btn:active {
+      background: var(--telemetry-cyan);
+      color: #000000;
+    }
+
+    /* ACTION BUTTONS */
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .btn-red {
+      background: var(--laser-red);
+      color: #FFFFFF;
+      box-shadow: 0 0 16px var(--laser-red-glow);
+    }
+
+    .btn-cyan {
+      background: rgba(0, 229, 255, 0.14);
+      border: 1px solid var(--telemetry-cyan);
+      color: var(--telemetry-cyan);
+    }
+
+    /* ENDPOINT PING TESTER */
+    .tester-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .tester-input {
+      flex: 1;
+      min-width: 220px;
+      background: var(--bg-code);
+      border: 1px solid var(--border-line);
+      color: var(--titanium-bright);
+      padding: 10px 12px;
+      border-radius: 4px;
+      font-size: 0.86rem;
+    }
+
+    .tester-btn {
+      background: var(--laser-red);
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.84rem;
+      letter-spacing: 0.06em;
+    }
+
+    .tester-result {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      padding: 10px 12px;
+      border-radius: 4px;
+      background: var(--bg-code);
+      border: 1px solid var(--border-line);
+      display: none;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-line);
+      color: var(--titanium-muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* LANGUAGE VISIBILITY */
+    [data-lang="en"] { display: none; }
+    body.lang-en [data-lang="jp"] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: block !important; }
+    body.lang-en span[data-lang="en"] { display: inline !important; }
+    body.lang-en th[data-lang="en"], body.lang-en td[data-lang="en"] { display: table-cell !important; }
+
+    /* PHASE 2 HIDDEN BY DEFAULT UNTIL UNLOCKED */
+    #rs-phase2-vault {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="rs-rhombus"><span class="rs-logo-text">RS</span></div>
+      <div class="brand-title">
+        <span class="brand-main fw-900">VECTRA RS</span>
+        <span class="brand-sub">PLAN_500 // TELEMETRY &amp; NEURAL LAB</span>
+      </div>
+    </div>
+
+    <div class="lang-switch" role="group" aria-label="Language Switch">
+      <button type="button" id="btn-lang-en" class="lang-btn" onclick="setLanguage('en')">EN</button>
+      <span class="lang-divider">|</span>
+      <button type="button" id="btn-lang-jp" class="lang-btn active" onclick="setLanguage('jp')">JP</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO TELEMETRY SUMMARY -->
+    <section class="hero-box">
+      <div class="hero-status-row">
+        <span class="status-pill pill-red">TIER // VECTRA RS (PLAN_500)</span>
+        <span class="status-pill pill-cyan">DUAL SLOT 80MBx2 ACTIVE</span>
+      </div>
+
+      <h1 class="hero-title" data-lang="jp">VECTRA RS ニューラル音声テレメトリ技術基地</h1>
+      <h1 class="hero-title" data-lang="en">VECTRA RS NEURAL AUDIO &amp; TELEMETRY BASE</h1>
+
+      <p class="hero-desc" data-lang="jp">
+        VECTRA RS（PLAN_500）専用のカスタムHTTPS Neural TTSエンドポイント接続仕様、デュアルスロット（SLOT 1 / SLOT 2）各80MB先読みキャッシュ制御、およびセキュアトンネル構築プロトコルを提供します。
+      </p>
+      <p class="hero-desc" data-lang="en">
+        Official technical specification for VECTRA RS (PLAN_500) custom HTTPS Neural TTS endpoints, Dual-Slot (SLOT 1 / SLOT 2) 80MBx2 pre-fetch cache control, and TLS tunnel provisioning.
+      </p>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-label">LOCAL CACHE CAPACITY</span>
+          <span class="kpi-val">160 MB <span>(80MB × 2 SLOTS)</span></span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">TRANSPORT SECURITY</span>
+          <span class="kpi-val">HTTPS / TLS 1.3 <span>ONLY</span></span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">SYNTHESIS PROTOCOL</span>
+          <span class="kpi-val">2-STAGE REST <span>(WAV/PCM)</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PHASE 2 VAULT (審査通過後に PHASE_2_UNLOCKED = true で即座に解禁)
+         ===================================================================== -->
+    <div id="rs-phase2-vault">
+
+      <!-- PHASE 2-A: VOICEVOX SPEAKER ID CATALOG -->
+      <section class="panel panel-rs-special">
+        <div class="sec-header">
+          <span class="sec-num">RS-01</span>
+          <h2 class="sec-title" data-lang="jp">VOICEVOX おすすめ Speaker ID カタログ（ワンタップコピー）</h2>
+          <h2 class="sec-title" data-lang="en">VOICEVOX RECOMMENDED SPEAKER ID CATALOG</h2>
+        </div>
+
+        <p data-lang="jp">
+          VECTRA RS の SLOT 1 / SLOT 2 にて検証済みの高視認性・高明瞭度 Speaker ID 一覧です。車載オーディオのロードノイズ環境下でも聞き取りやすいスタイルを厳選しています。
+        </p>
+        <p data-lang="en">
+          Verified high-clarity VOICEVOX Speaker IDs optimized for in-cabin cockpit acoustics under highway road noise. Tap any ID button to copy the numeric Speaker ID.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-lang="jp">キャラクター名</th>
+                <th data-lang="en">Character</th>
+                <th data-lang="jp">スタイル</th>
+                <th data-lang="en">Voice Style</th>
+                <th>Speaker ID</th>
+                <th data-lang="jp">コックピット推奨用途</th>
+                <th data-lang="en">Cockpit Use Case</th>
+                <th>COPY</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-lang="jp">ずんだもん</td>
+                <td data-lang="en">Zundamon</td>
+                <td data-lang="jp">ノーマル / あまあま / ツンツン / ささやき</td>
+                <td data-lang="en">Normal / Sweet / Sharp / Whisper</td>
+                <td style="color: var(--telemetry-cyan);">3 / 1 / 7 / 22</td>
+                <td data-lang="jp">メインナビ案内（高域の抜けが良く高速巡航向き）</td>
+                <td data-lang="en">Primary Route Guidance (High clarity at speed)</td>
+                <td><button type="button" class="copy-btn" onclick="copyText('3', this)">ID: 3</button></td>
+              </tr>
+              <tr>
+                <td data-lang="jp">四国めたん</td>
+                <td data-lang="en">Shikoku Metan</td>
+                <td data-lang="jp">ノーマル / あまあま / ツンツン</td>
+                <td data-lang="en">Normal / Sweet / Sharp</td>
+                <td style="color: var(--telemetry-cyan);">2 / 0 / 6</td>
+                <td data-lang="jp">高速SA/PA・スタバ接近アナウンス（落ち着いたトーン）</td>
+                <td data-lang="en">Highway SA/PA &amp; Waypoint Telemetry</td>
+                <td><button type="button" class="copy-btn" onclick="copyText('2', this)">ID: 2</button></td>
+              </tr>
+              <tr>
+                <td data-lang="jp">ナースロボ＿タイプＴ</td>
+                <td data-lang="en">NurseT (Type-T)</td>
+                <td data-lang="jp">ノーマル / 楽々 / 内緒話</td>
+                <td data-lang="en">Normal / Calm / Secret</td>
+                <td style="color: var(--telemetry-cyan);">47 / 48 / 50</td>
+                <td data-lang="jp">戦術HUD・システムテレメトリ通知（無機質AI音声）</td>
+                <td data-lang="en">Tactical HUD &amp; System Telemetry Alerts</td>
+                <td><button type="button" class="copy-btn" onclick="copyText('47', this)">ID: 47</button></td>
+              </tr>
+              <tr>
+                <td data-lang="jp">九州そら</td>
+                <td data-lang="en">Kyushu Sora</td>
+                <td data-lang="jp">ノーマル / セクシー</td>
+                <td data-lang="en">Normal / Mature</td>
+                <td style="color: var(--telemetry-cyan);">16 / 17</td>
+                <td data-lang="jp">ナイトドライブ・長距離グランドツーリング</td>
+                <td data-lang="en">Night Drive &amp; Grand Touring Mode</td>
+                <td><button type="button" class="copy-btn" onclick="copyText('16', this)">ID: 16</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PHASE 2-B: GOOGLE COLAB ONE-TAP 80MB PRE-FETCH LAUNCHER -->
+      <section class="panel panel-rs-special">
+        <div class="sec-header">
+          <span class="sec-num">RS-02</span>
+          <h2 class="sec-title" data-lang="jp">PC・NAS不要：Google Colab ワンタップ 80MB先読み起動ゲートウェイ</h2>
+          <h2 class="sec-title" data-lang="en">ZERO-PC / ZERO-NAS: GOOGLE COLAB 80MB PRE-FETCH GATEWAY</h2>
+        </div>
+
+        <p data-lang="jp">
+          自宅に常時稼働PCやNASがない環境でも、スマートフォンのブラウザから Google Colaboratory（無料GPU/CPU枠）を数分間だけ一時起動し、VECTRA RS の SLOT 1 / SLOT 2（各80MBキャッシュ）へ全案内フレーズを一括先読みさせることができます。キャッシュ完了後は Colab を閉じてもオフライン再生が継続します。
+        </p>
+        <p data-lang="en">
+          No home PC or NAS required. Launch a temporary Google Colaboratory instance from your smartphone browser, pre-fetch up to 80MB per slot into VECTRA RS local storage, and enjoy 100% offline neural voice playback even after closing Colab.
+        </p>
+
+        <div class="code-block">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:0.75rem; color:var(--telemetry-cyan);">COLAB ONE-CELL QUICK LAUNCH SCRIPT (VOICEVOX + CLOUDFLARED HTTPS)</span>
+            <button type="button" class="copy-btn" onclick="copyCode('colab-cmd', this)">COPY SCRIPT</button>
+          </div>
+          <pre id="colab-cmd">!wget -q https://github.com/VOICEVOX/voicevox_engine/releases/latest/download/voicevox_engine-linux-cpu-x64.7z
+!7z x -y voicevox_engine-linux-cpu-x64.7z &gt; /dev/null
+!wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared &amp;&amp; chmod +x cloudflared
+!nohup ./linux-cpu-x64/run --host 0.0.0.0 --port 50021 &gt; /dev/null 2&gt;&amp;1 &amp;
+!./cloudflared tunnel --url http://localhost:50021</pre>
+        </div>
+
+        <a href="https://colab.research.google.com/#create=true" target="_blank" rel="noopener noreferrer" class="action-btn btn-red">
+          <span data-lang="jp">▶ Google Colab 新規ノートブックを起動して80MB先読みを実行</span>
+          <span data-lang="en">▶ LAUNCH GOOGLE COLAB TO PRE-FETCH 80MB CACHE</span>
+        </a>
+      </section>
+
+      <!-- PHASE 2-C: DISCORD OWNERS CLUB -->
+      <section class="panel panel-rs-special">
+        <div class="sec-header">
+          <span class="sec-num">RS-03</span>
+          <h2 class="sec-title" data-lang="jp">VECTRA RS OWNERS CLUB（Discord 専用ピット）</h2>
+          <h2 class="sec-title" data-lang="en">VECTRA RS OWNERS CLUB (OFFICIAL DISCORD PIT)</h2>
+        </div>
+
+        <p data-lang="jp">
+          VECTRA RS オーナー限定のクローズド・コミュニティです。カスタム音声モデルのチューニング共有、全国高速SA/PA＆スターバックス検証ログ、次期ビルドの先行テレメトリ情報を共有しています。
+        </p>
+        <p data-lang="en">
+          Exclusive pit channel for VECTRA RS subscribers. Share neural audio tuning presets, highway SA/PA routing telemetry, and early access build notes.
+        </p>
+
+        <a href="https://discord.gg/vectra-rs-owners" target="_blank" rel="noopener noreferrer" class="action-btn btn-cyan">
+          <span data-lang="jp">◆ DISCORD OWNERS CLUB に参加する（VECTRA RS 専用）</span>
+          <span data-lang="en">◆ JOIN VECTRA RS DISCORD OWNERS CLUB</span>
+        </a>
+      </section>
+
+    </div>
+    <!-- /END PHASE 2 VAULT -->
+
+    <!-- =====================================================================
+         PHASE 1 (審査提出時デフォルト常時表示：100%クリーン汎用HTTPS Neural TTS仕様)
+         ===================================================================== -->
+
+    <!-- SECTION 01: SLOT 1:2 DUAL 80MB PRE-FETCH ARCHITECTURE -->
+    <section class="panel">
+      <div class="sec-header">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title" data-lang="jp">SLOT 1:2 デュアル 80MB×2 先読みキャッシュ・アーキテクチャ</h2>
+        <h2 class="sec-title" data-lang="en">SLOT 1:2 DUAL 80MBx2 PRE-FETCH CACHE ARCHITECTURE</h2>
+      </div>
+
+      <p data-lang="jp">
+        VECTRA RS は独立した2系統のニューラル音声スロット（<strong>SLOT 1</strong> および <strong>SLOT 2</strong>）を搭載しています。各スロットは最大 <strong>80MB（合計160MB）</strong> の不揮発ローカルWAVストレージ領域を持ち、一度生成された案内音声はSHA-256ハッシュでインデックス化され、圏外エリアや山岳ワインディングでも遅延ゼロで再生されます。
+      </p>
+      <p data-lang="en">
+        VECTRA RS features two independent Neural TTS slots (<strong>SLOT 1</strong> and <strong>SLOT 2</strong>). Each slot allocates a dedicated <strong>80MB (160MB total)</strong> local WAV cache indexed via SHA-256 phrase signatures, guaranteeing zero-latency playback even in mountain passes without cellular coverage.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>SLOT ID</th>
+              <th data-lang="jp">キャッシュ上限</th>
+              <th data-lang="en">Max Quota</th>
+              <th data-lang="jp">ガベージコレクション方式</th>
+              <th data-lang="en">Eviction Policy</th>
+              <th data-lang="jp">優先フォールバック順序</th>
+              <th data-lang="en">Fallback Chain</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--telemetry-cyan);">SLOT 1 (PRIMARY)</td>
+              <td>80.0 MB</td>
+              <td>80.0 MB</td>
+              <td data-lang="jp">LRU（最終再生日時順・自動パージ）</td>
+              <td data-lang="en">Automated LRU Purge</td>
+              <td data-lang="jp">Local Cache ➔ HTTPS Synthesis ➔ OS Native TTS</td>
+              <td data-lang="en">Local Cache ➔ HTTPS Synthesis ➔ OS Native TTS</td>
+            </tr>
+            <tr>
+              <td style="color: var(--laser-red);">SLOT 2 (SECONDARY)</td>
+              <td>80.0 MB</td>
+              <td>80.0 MB</td>
+              <td data-lang="jp">LRU（SLOT 1領域と完全分離保護）</td>
+              <td data-lang="en">Isolated Slot LRU Purge</td>
+              <td data-lang="jp">Local Cache ➔ HTTPS Synthesis ➔ OS Native TTS</td>
+              <td data-lang="en">Local Cache ➔ HTTPS Synthesis ➔ OS Native TTS</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 02: REST API PROTOCOL SPECIFICATION (/audio_query & /synthesis) -->
+    <section class="panel">
+      <div class="sec-header">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title" data-lang="jp">汎用 HTTPS Neural TTS API プロトコル仕様（/audio_query ＆ /synthesis）</h2>
+        <h2 class="sec-title" data-lang="en">GENERIC HTTPS NEURAL TTS API PROTOCOL (/audio_query &amp; /synthesis)</h2>
+      </div>
+
+      <p data-lang="jp">
+        VECTRA RS のカスタム音声クライアントは、2フェーズRESTエンドポイント仕様に準拠した任意の自己ホスト型・クラウド型ニューラルTTS推論サーバーと通信可能です。
+      </p>
+      <p data-lang="en">
+        The VECTRA RS audio engine communicates with any self-hosted or cloud neural TTS inference server implementing the standard two-phase REST synthesis contract below.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>PHASE</th>
+              <th>HTTP METHOD &amp; PATH</th>
+              <th>QUERY PARAMETERS</th>
+              <th>RESPONSE CONTENT-TYPE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--telemetry-cyan);">STEP 1: QUERY</td>
+              <td><code>POST /audio_query</code></td>
+              <td><code>?text={UTF8_URL_ENCODED}&amp;speaker={INT}</code></td>
+              <td><code>application/json</code> (Acoustic Parameters)</td>
+            </tr>
+            <tr>
+              <td style="color: var(--laser-red);">STEP 2: SYNTH</td>
+              <td><code>POST /synthesis</code></td>
+              <td><code>?speaker={INT}</code> (Body: STEP 1 JSON)</td>
+              <td><code>audio/wav</code> (RIFF PCM 16-bit Mono/Stereo)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-block">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--telemetry-cyan);">CURL VERIFICATION COMMAND (2-STEP PIPELINE TEST)</span>
+          <button type="button" class="copy-btn" onclick="copyCode('curl-spec', this)">COPY CURL</button>
+        </div>
+        <pre id="curl-spec"># Step 1: Generate Acoustic Query JSON
+curl -s -X POST "https://your-tts-endpoint.example.com/audio_query?speaker=1" \
+  --get --data-urlencode "text=およそ300メートル先、斜め左方向です。" &gt; query.json
+
+# Step 2: Synthesize RIFF WAV Audio Stream
+curl -s -X POST "https://your-tts-endpoint.example.com/synthesis?speaker=1" \
+  -H "Content-Type: application/json" \
+  -d @query.json &gt; nav_test.wav</pre>
+      </div>
+    </section>
+
+    <!-- SECTION 03: SSL / CLOUDFLARE TUNNEL GATEWAY GUIDE & LIVE TESTER -->
+    <section class="panel">
+      <div class="sec-header">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title" data-lang="jp">SSL / Cloudflare Tunnel セキュア構成ガイド ＆ 疎通テスター</h2>
+        <h2 class="sec-title" data-lang="en">SSL / CLOUDFLARE TUNNEL CONFIGURATION &amp; ENDPOINT TESTER</h2>
+      </div>
+
+      <p data-lang="jp">
+        Android セキュリティポリシー（<code>usesCleartextTraffic="false"</code>）に準拠するため、VECTRA RS は平文HTTP（<code>http://</code>）を遮断し、有効なTLS証明書を持つ <strong>HTTPS（<code>https://</code>）エンドポイントのみ</strong> を許可します。ローカル推論サーバーを公開ポート開放なしでHTTPS化する場合は、Cloudflare Tunnel またはリバースプロキシをご使用ください。
+      </p>
+      <p data-lang="en">
+        In strict compliance with Android security policies (<code>usesCleartextTraffic="false"</code>), VECTRA RS rejects cleartext HTTP traffic and requires a valid TLS <strong>HTTPS (<code>https://</code>)</strong> endpoint. Use Cloudflare Tunnel or a TLS reverse proxy to expose local inference servers securely without opening router ports.
+      </p>
+
+      <div class="code-block">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--telemetry-cyan);">CLOUDFLARE QUICK TUNNEL (TLS 1.3 AUTO-PROVISIONING)</span>
+          <button type="button" class="copy-btn" onclick="copyCode('cf-cmd', this)">COPY CMD</button>
+        </div>
+        <pre id="cf-cmd">cloudflared tunnel --url http://127.0.0.1:50021 --http-host-header="localhost:50021"</pre>
+      </div>
+
+      <!-- LIVE HTTPS ENDPOINT TESTER -->
+      <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border-line);">
+        <label for="endpoint-url" style="display:block; font-size:0.82rem; color:var(--titanium-bright); margin-bottom:6px;">
+          <span data-lang="jp">HTTPS エンドポイント疎通チェッカー（/version 応答確認）</span>
+          <span data-lang="en">HTTPS ENDPOINT CONNECTIVITY CHECKER (/version PROBE)</span>
+        </label>
+        <div class="tester-row">
+          <input type="url" id="endpoint-url" class="tester-input" placeholder="https://xxxx.trycloudflare.com" autocomplete="off">
+          <button type="button" class="tester-btn" onclick="probeEndpoint()">PING HTTPS</button>
+        </div>
+        <div id="probe-output" class="tester-result"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>5UM1R3 WORKS // VECTRA V4.0.0 TACTICAL NAVIGATION SYSTEM</div>
+      <div style="margin-top:4px;">RESTRICTED TECHNICAL DOCUMENTATION FOR VECTRA RS (PLAN_500) SUBSCRIBERS</div>
+    </footer>
+
+  </main>
+
+  <script>
+    /**
+     * =========================================================================
+     * 2段階カメレオン切替フラグ（審査提出時は false ／ 審査通過後に true へ変更）
+     * =========================================================================
+     * - false : Phase 1（Google Play審査用クリーン汎用HTTPS Neural TTS仕様のみ表示）
+     * - true  : Phase 2（VOICEVOX Speaker IDカタログ / Google Colab起動 / Discord解禁）
+     */
+    const PHASE_2_UNLOCKED = true;
+
+    (function initVectraRsPortal() {
+      const params = new URLSearchParams(window.location.search);
+
+      // 1. 言語設定の初期化（?lang=en 付与時は自動で英語表示）
+      const langParam = (params.get('lang') || '').toLowerCase();
+      if (langParam === 'en') {
+        setLanguage('en', false);
+      } else {
+        setLanguage('jp', false);
+      }
+
+      // 2. カメレオンPhase 2解禁判定（フラグ true またはプレビュー用 ?unlock=rs）
+      const vault = document.getElementById('rs-phase2-vault');
+      if (vault) {
+        if (PHASE_2_UNLOCKED || params.get('unlock') === 'rs') {
+          vault.style.display = 'block';
+        } else {
+          vault.remove(); // Phase 1審査時はDOMツリーからも完全除去してクリーン化
+        }
+      }
+    })();
+
+    function setLanguage(lang, updateHistory = true) {
+      const isEn = (lang === 'en');
+      document.body.classList.toggle('lang-en', isEn);
+      document.documentElement.lang = isEn ? 'en' : 'ja';
+
+      const btnEn = document.getElementById('btn-lang-en');
+      const btnJp = document.getElementById('btn-lang-jp');
+      if (btnEn && btnJp) {
+        btnEn.classList.toggle('active', isEn);
+        btnJp.classList.toggle('active', !isEn);
+      }
+
+      if (updateHistory && window.history && window.history.replaceState) {
+        const url = new URL(window.location.href);
+        if (isEn) {
+          url.searchParams.set('lang', 'en');
+        } else {
+          url.searchParams.delete('lang');
+        }
+        window.history.replaceState({}, '', url.toString());
+      }
+    }
+
+    function copyText(text, btnEl) {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(text).then(function() {
+        const orig = btnEl.textContent;
+        btnEl.textContent = 'COPIED!';
+        setTimeout(function() { btnEl.textContent = orig; }, 1400);
+      });
+    }
+
+    function copyCode(preId, btnEl) {
+      const pre = document.getElementById(preId);
+      if (!pre) return;
+      copyText(pre.textContent, btnEl);
+    }
+
+    async function probeEndpoint() {
+      const input = document.getElementById('endpoint-url');
+      const out = document.getElementById('probe-output');
+      if (!input || !out) return;
+
+      const raw = (input.value || '').trim().replace(/\/+$/, '');
+      out.style.display = 'block';
+
+      if (!raw.startsWith('https://')) {
+        out.style.borderColor = 'var(--laser-red)';
+        out.style.color = '#FF4D58';
+        out.textContent = '[ERROR] Cleartext HTTP or invalid URL rejected. Must start with https://';
+        return;
+      }
+
+      out.style.borderColor = 'var(--telemetry-cyan)';
+      out.style.color = 'var(--telemetry-cyan)';
+      out.textContent = 'PROBING ' + raw + '/version ...';
+
+      try {
+        const res = await fetch(raw + '/version', { method: 'GET', mode: 'cors' });
+        if (res.ok) {
+          const ver = await res.text();
+          out.style.borderColor = 'var(--emerald-ok)';
+          out.style.color = 'var(--emerald-ok)';
+          out.textContent = '[ONLINE // TLS OK] Engine Version: ' + ver.replace(/"/g, '').trim();
+        } else {
+          out.style.borderColor = 'var(--amber-warn)';
+          out.style.color = 'var(--amber-warn)';
+          out.textContent = '[HTTP ' + res.status + '] Endpoint reachable, check path or CORS policy.';
+        }
+      } catch (err) {
+        out.style.borderColor = 'var(--laser-red)';
+        out.style.color = '#FF4D58';
+        out.textContent = '[UNREACHABLE / CORS BLOCKED] Verify tunnel status and --cors-policy-mode.';
+      }
+    }
+  </script>
+</body>
+</html>
