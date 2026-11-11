@@ -92,6 +92,21 @@
       animation: pulse 2s infinite;
     }
 
+    /* トップバー Google Play ショートカットボタン */
+    .top-store-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--font-mono); font-size: 0.74rem; font-weight: 900;
+      color: #FFFFFF; background: rgba(227, 0, 15, 0.22);
+      border: 1px solid var(--audi-red); border-radius: 5px;
+      padding: 4px 10px; letter-spacing: 1px; text-decoration: none;
+      box-shadow: 0 0 10px rgba(227, 0, 15, 0.3);
+      transition: all 0.2s ease; white-space: nowrap;
+    }
+    .top-store-btn:hover {
+      background: var(--audi-red);
+      box-shadow: 0 0 16px rgba(227, 0, 15, 0.65);
+    }
+
     /* ★右上 [ EN | JP ] グローバル言語切替トグル */
     .hud-lang-pill {
       display: inline-flex; align-items: center;
@@ -139,6 +154,64 @@
     }
     .pioneer-frame .edition { font-family: var(--font-mono); color: #FFFFFF; font-size: 1.02rem; letter-spacing: 2px; font-weight: bold; }
     .pioneer-frame .desc { font-size: 0.78rem; color: var(--rs-silver); margin-top: 3px; }
+
+    /* ★ Google Play ストア直リンクボタン ＆ PC用QRコードブロック */
+    .hero-store-cta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 18px; margin: 22px auto 4px; flex-wrap: wrap;
+    }
+    .btn-google-play {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: linear-gradient(135deg, rgba(227, 0, 15, 0.24) 0%, rgba(12, 15, 22, 0.96) 100%);
+      border: 1.5px solid var(--audi-red);
+      border-left: 4px solid var(--audi-red);
+      box-shadow: 0 0 24px rgba(227, 0, 15, 0.35);
+      color: #FFFFFF; text-decoration: none;
+      padding: 13px 24px; border-radius: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-google-play:hover {
+      transform: translateY(-2px);
+      border-color: var(--hud-cyan);
+      box-shadow: 0 0 32px rgba(227, 0, 15, 0.65);
+    }
+    .btn-google-play .gp-icon {
+      width: 28px; height: 28px; fill: var(--audi-red); flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(227, 0, 15, 0.6));
+    }
+    .gp-text-col {
+      display: flex; flex-direction: column; text-align: left; line-height: 1.25;
+    }
+    .gp-sub-txt {
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--hud-cyan);
+      letter-spacing: 1px; font-weight: bold;
+    }
+    .gp-main-txt {
+      font-family: var(--font-sans); font-size: 1.12rem; font-weight: 900;
+      color: #FFFFFF; letter-spacing: 0.8px; margin-top: 2px;
+    }
+    .hero-qr-card {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: rgba(12, 14, 18, 0.95);
+      border: 1px solid #2A3446; border-right: 3px solid var(--hud-cyan);
+      padding: 8px 14px 8px 10px; border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    }
+    .hero-qr-card img {
+      width: 72px; height: 72px; border-radius: 4px;
+      background: #FFFFFF; padding: 3px; display: block; flex-shrink: 0;
+    }
+    .hero-qr-meta {
+      display: flex; flex-direction: column; text-align: left;
+      max-width: 145px; line-height: 1.35; gap: 3px;
+    }
+    .hero-qr-tag {
+      font-family: var(--font-mono); font-size: 0.7rem; font-weight: bold;
+      color: var(--hud-emerald); letter-spacing: 0.8px;
+    }
+    .hero-qr-desc {
+      font-size: 0.72rem; color: var(--text-sub);
+    }
 
     /* Audi Sport風 RS タクティカル・エンブレム */
     .rs-sport-emblem { display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; flex-wrap: wrap; }
@@ -658,7 +731,8 @@
       .shutoko-grid, .rs-showcase-grid, .map-viewer-grid { grid-template-columns: 1fr; }
       .map-selector-grid { grid-template-columns: repeat(2, 1fr); }
       .phone-cockpit-frame { max-width: 340px; margin: 0 auto; width: 100%; min-height: auto; }
-      .sec-jp, .status-pill { display: none; }
+      .sec-jp, .status-pill, .hero-qr-card { display: none; }
+      .btn-google-play { width: 100%; max-width: 360px; justify-content: center; }
       .hud-card, .rs-exclusive-stage, .shutoko-hero-banner { padding: 16px 14px; }
       .table-wrap { overflow-x: visible; }
 
@@ -854,7 +928,7 @@
     </defs>
   </svg>
 
-  <!-- 固定トップHUDバー（右上に [ EN | JP ] 切替トグル常設） -->
+  <!-- 固定トップHUDバー（右上に Google Play ボタン ＆ [ EN | JP ] 切替トグル常設） -->
   <header class="top-hud-bar">
     <a href="#page-top" class="brand-mini">
       <span>//</span> VECTRA
@@ -865,6 +939,10 @@
         <span class="status-dot"></span>
         PRODUCTION v4.0.0
       </div>
+
+      <a href="https://play.google.com/store/apps/details?id=jp.vectra.navi" target="_blank" rel="noopener noreferrer" class="top-store-btn" aria-label="Download VECTRA on Google Play">
+        GOOGLE PLAY ▸
+      </a>
 
       <div id="globalLangToggle" class="hud-lang-pill" role="button" tabindex="0" aria-label="Switch Manual Language">
         <span id="globalChipEn" class="hud-lang-chip">EN</span>
@@ -902,6 +980,31 @@
         <div class="edition">VECTRA // FREE / PRO / RS EDITION</div>
         <div class="desc i18n-ja">走り屋モード＆タクティカル・ルートナビ（FREE 月6回 / PRO・VECTRA RS 月100回）3ティア仕様</div>
         <div class="desc i18n-en">Runner's Highway HUD &amp; Tactical Route Navigation (FREE 6/mo / PRO &amp; VECTRA RS 100/mo)</div>
+      </div>
+
+      <!-- ★ Google Play ストア直リンクボタン ＆ PC閲覧者用スマホ読取QRコード -->
+      <div class="hero-store-cta">
+        <a href="https://play.google.com/store/apps/details?id=jp.vectra.navi" target="_blank" rel="noopener noreferrer" class="btn-google-play">
+          <svg class="gp-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.61-1.44V3.254c0-.56.23-1.07.609-1.44zm11.254 11.254l2.768 2.768-11.49 6.634 8.722-9.402zm3.829-3.235l2.502 1.445c.795.459.795 1.605 0 2.064l-2.502 1.445-2.828-2.477 2.828-2.477zM6.141 1.53l11.49 6.634-2.768 2.768L6.141 1.53z"/>
+          </svg>
+          <div class="gp-text-col">
+            <span class="gp-sub-txt i18n-ja">ANDROID 8.0+ // 無料プラン（FREE）あり</span>
+            <span class="gp-sub-txt i18n-en">ANDROID 8.0+ // FREE TIER AVAILABLE</span>
+            <span class="gp-main-txt i18n-ja">Google Play で手に入れる ▸</span>
+            <span class="gp-main-txt i18n-en">GET IT ON Google Play ▸</span>
+          </div>
+        </a>
+
+        <div class="hero-qr-card">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&amp;margin=6&amp;data=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Djp.vectra.navi" alt="VECTRA Google Play QR Code" width="72" height="72" loading="lazy" />
+          <div class="hero-qr-meta">
+            <span class="hero-qr-tag i18n-ja">// SCAN FOR ANDROID</span>
+            <span class="hero-qr-tag i18n-en">// SCAN FOR ANDROID</span>
+            <span class="hero-qr-desc i18n-ja">スマホのカメラで読み取ってGoogle Playストアを直接開く</span>
+            <span class="hero-qr-desc i18n-en">Scan with your phone camera to open Google Play directly</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1510,8 +1613,6 @@
         </div>
       </div>
     </section>
-<!-- === [1 / 2] PART 1 END (このすぐ下の行に続けて 2 / 2 を貼り付けてください) === -->
-<!-- === [2 / 2] PART 2 START (前半パート Part 1 の直下にそのまま貼り付けてください) === -->
 
     <!-- 04. TACTICAL ROUTE NAVIGATION & QUICK DESTINATIONS -->
     <section id="sec-navi" class="section">
@@ -2430,4 +2531,3 @@
 
 </body>
 </html>
-<!-- === [2 / 2] PART 2 END === -->
